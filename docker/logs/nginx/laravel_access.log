@@ -1,0 +1,5 @@
+172.28.0.1 - - [14/Jul/2024:17:01:49 +0000] "GET / HTTP/1.1" 500 318796 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+172.28.0.1 - - [14/Jul/2024:17:01:50 +0000] "GET / HTTP/1.1" 500 316958 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+172.28.0.1 - - [14/Jul/2024:17:03:15 +0000] "GET / HTTP/1.1" 500 317862 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+172.28.0.1 - - [14/Jul/2024:17:40:03 +0000] "GET / HTTP/1.1" 500 317885 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+172.28.0.1 - - [14/Jul/2024:17:40:18 +0000] "GET / HTTP/1.1" 200 10294 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
