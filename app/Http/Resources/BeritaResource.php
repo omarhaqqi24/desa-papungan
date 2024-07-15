@@ -2,22 +2,12 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BeritaResource extends JsonResource
 {
-    public $status;
-    public $message;
-    public $resource;
-
-    public function __construct($status, $message, $resource)
-    {
-        parent::__construct($resource);
-        $this->status  = $status;
-        $this->message = $message;
-    }
-
     /**
      * Transform the resource into an array.
      *
@@ -26,9 +16,12 @@ class BeritaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'success'=> $this->status,
-            'message'=> $this->message,
-            'data'   => $this->resource
+            'id' => $this->id,
+            'judul' => $this->judul,
+            'teks' => $this->teks,
+            'foto' => $this->foto,
+            'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
+            'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
         ];
     }
 }
