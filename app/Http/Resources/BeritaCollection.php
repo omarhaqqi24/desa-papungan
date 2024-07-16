@@ -13,6 +13,7 @@ class BeritaCollection extends ResourceCollection
      */
     public function toArray(Request $request)
     {
+        parent::wrap('resource');
         return $this->collection;
     }
 }
