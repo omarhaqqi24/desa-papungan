@@ -18,6 +18,7 @@ Route::put('/berita/{id}', [BeritaController::class, 'update'])->middleware('aut
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 //fallback route for unauthorized user
 Route::get('/unauthorize', function () {

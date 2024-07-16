@@ -32,4 +32,10 @@ class AuthController extends Controller
         ];
         return ApiResponseClass::sendResponse($token, 'Otentikasi Berhasil!', 200);
     }
+
+    public function logout(Request $request){
+        $user = $request->user();
+        $user->currentAccessToken()->delete();
+        return ApiResponseClass::sendResponse(null, 'Token berhasil dihapus!', 200);
+    }
 }
