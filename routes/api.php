@@ -9,11 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/berita', function (){
-    return response()->json(Berita::all());
-});
-Route::get('/berita/{id}', function ($id) {
-    return response()->json(Berita::find($id));
-});
-
+Route::get('/berita', [BeritaController::class, 'getAll']);
+Route::get('/berita/{id}', [BeritaController::class, 'getById']);
 Route::post('/berita', [BeritaController::class, 'store']);
+Route::delete('/berita/{id}', [BeritaController::class, 'destroy']);
