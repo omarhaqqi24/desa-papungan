@@ -12,4 +12,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/berita', [BeritaController::class, 'getAll']);
 Route::get('/berita/{id}', [BeritaController::class, 'getById']);
 Route::post('/berita', [BeritaController::class, 'store']);
+Route::put('/berita/{id}', [BeritaController::class, 'update']);
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy']);
