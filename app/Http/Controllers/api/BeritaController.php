@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BeritaCollection;
 use App\Http\Resources\BeritaResource;
 use App\Models\Berita;
+use Hamcrest\Text\IsEmptyString;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 use function PHPUnit\Framework\isNull;
@@ -23,16 +25,16 @@ class BeritaController extends Controller
         return ApiResponseClass::sendResponse($resources, '', 200);
     }
 
-    public function getById(string $id) 
+    public function getById($id) 
     {
         $berita = Berita::where('id', $id)->first();
         
-        if (isNull($berita)) {
+        if (!$berita) {
             return ApiResponseClass::sendError('Data berita tidak ditemukan!', 400);
         }
 
         $resource = new BeritaResource($berita);
-        return ApiResponseClass::sendResponse($resource, '', 200);
+        return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diambil!', 200);
     }
 
     public function store(Request $request)
@@ -58,6 +60,44 @@ class BeritaController extends Controller
         $resource = new BeritaResource($berita);
 
         return ApiResponseClass::sendResponse($resource, 'Data berita berhasil ditambahkan!', 201);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $berita = Berita::findOrFail($id);
+        if (!$berita) {
+            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 400);
+        }
+
+        if (!empty($request->judul)){
+            $berita->update([
+                'judul'  => $request->judul,
+            ]);
+        }
+        if (!empty($request->teks)){
+            $berita->update([
+                'teks'  => $request->teks,
+            ]);
+        }
+
+        if ($request->hasFile('foto')) {
+
+            $image = $request->file('foto');
+            $image->storeAs('public/berita', $image->hashName());
+
+            Storage::delete('public/berita/'.$berita->foto);
+
+            $berita->update([
+                'foto' => $image->hashName()
+            ]);
+
+        }
+
+        $berita->save();
+
+        $resource = new BeritaResource($berita);
+
+        return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
     }
 
     public function destroy(string $id)
