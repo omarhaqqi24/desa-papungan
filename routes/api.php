@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
 use App\Models\Berita;
 use Illuminate\Http\Request;
@@ -14,3 +15,5 @@ Route::get('/berita/{id}', [BeritaController::class, 'getById']);
 Route::post('/berita', [BeritaController::class, 'store']);
 Route::put('/berita/{id}', [BeritaController::class, 'update']);
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy']);
+
+Route::post('/login', [AuthController::class, 'check_login']);
