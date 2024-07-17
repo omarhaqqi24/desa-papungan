@@ -16,4 +16,5 @@ Route::post('/berita', [BeritaController::class, 'store']);
 Route::put('/berita/{id}', [BeritaController::class, 'update']);
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy']);
 
-Route::get('/perangkat-desa', [PerangkatDesaController::class, 'get']);
+Route::get('/perangkat-desa', [PerangkatDesaController::class, 'getAll']);
+Route::post('/perangkat-desa', [PerangkatDesaController::class, 'store'])->middleware('auth:sanctum');
