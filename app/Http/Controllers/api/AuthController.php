@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required'
         ]);
 
@@ -22,11 +22,11 @@ class AuthController extends Controller
             return ApiResponseClass::sendError($validator->errors(), 422);
         }
 
-        if(!Auth::attempt($request->only(['email', 'password']))) {
+        if(!Auth::attempt($request->only(['username', 'password']))) {
             return ApiResponseClass::sendError('Kredensial tidak sesuai!', 401);
         }
 
-        $dataUser = User::where('email', $request->email)->first();
+        $dataUser = User::where('username', $request->username)->first();
         $token = [
             'token' => $dataUser->createToken('access-token')->plainTextToken,
         ];

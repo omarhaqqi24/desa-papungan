@@ -52,7 +52,7 @@ class BeritaController extends Controller
         $berita = Berita::create([
             'foto' => $image->hashName(),
             'judul' => $request->judul,
-            'teks' => $request->teks,
+            'teks' => $request->teks
         ]);
         $resource = new BeritaResource($berita);
 
@@ -74,6 +74,11 @@ class BeritaController extends Controller
         if (!empty($request->teks)){
             $berita->update([
                 'teks'  => $request->teks,
+            ]);
+        }
+        if (!empty($request->isAccepted)){
+            $berita->update([
+                'isAccepted'  => intval($request->isAccepted),
             ]);
         }
 
