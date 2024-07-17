@@ -7,12 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BeritaCollection;
 use App\Http\Resources\BeritaResource;
 use App\Models\Berita;
-use Hamcrest\Text\IsEmptyString;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-
-use function PHPUnit\Framework\isNull;
 
 class BeritaController extends Controller
 {
@@ -55,7 +52,7 @@ class BeritaController extends Controller
         $berita = Berita::create([
             'foto' => $image->hashName(),
             'judul' => $request->judul,
-            'teks' => $request->teks,
+            'teks' => $request->teks
         ]);
         $resource = new BeritaResource($berita);
 
@@ -77,6 +74,11 @@ class BeritaController extends Controller
         if (!empty($request->teks)){
             $berita->update([
                 'teks'  => $request->teks,
+            ]);
+        }
+        if (!empty($request->isAccepted)){
+            $berita->update([
+                'isAccepted'  => intval($request->isAccepted),
             ]);
         }
 
