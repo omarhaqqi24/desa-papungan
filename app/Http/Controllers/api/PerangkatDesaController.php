@@ -8,13 +8,28 @@ use App\Http\Resources\PerangkatDesaCollection;
 use App\Http\Resources\PerangkatDesaResource;
 use App\Models\PerangkatDesa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PerangkatDesaController extends Controller
 {
     public function getAll()
     {
-        $perangkats = PerangkatDesa::all();
+        $perangkats = DB::table('perangkat_desas')->orderByRaw("FIELD(jabatan,
+            \"Kepala Desa\",
+            \"Sekretaris Desa\",
+            \"Kaur Keuangan\",
+            \"Kaur Perencanaan dan Umum\",
+            \"Kasi Pemerintahan\",
+            \"Kasi Kesejahteraan dan Pelayanan\",
+            \"Kamituwo Gajah\",
+            \"Kamituwo Dusun Papungan\",
+            \"Kamituwo Dusun Sekardangan\",
+            \"Staf Kesejahteraan dan Pelayanan\",
+            \"Staf Keuangan Desa\",
+            \"Staf Perencanaan dan Umum\"
+        )")->get();
+        
         $resource = new PerangkatDesaCollection($perangkats);
         return ApiResponseClass::sendResponse($resource, 'Data perangkat desa berhasil diambil!', 200); 
     }
