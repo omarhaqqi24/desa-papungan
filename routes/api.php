@@ -4,7 +4,6 @@ use App\Classes\ApiResponseClass;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\api\PerangkatDesaController;
-use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +27,4 @@ Route::get('/unauthorize', function () {
 
 Route::get('/perangkat-desa', [PerangkatDesaController::class, 'getAll']);
 Route::post('/perangkat-desa', [PerangkatDesaController::class, 'store'])->middleware('auth:sanctum');
+Route::delete('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');

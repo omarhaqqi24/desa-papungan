@@ -43,4 +43,13 @@ class PerangkatDesaController extends Controller
 
         return ApiResponseClass::sendResponse($resource, 'Data perangkat desa berhasil ditambahkan', 201);
     }
+
+    public function destroy(string $id)
+    {
+        $isDeleted = PerangkatDesa::destroy(intval($id));
+        if (!$isDeleted){
+            return ApiResponseClass::sendError('Data perangkat desa gagal dihapus!', 400);
+        }
+        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 200);
+    }
 }
