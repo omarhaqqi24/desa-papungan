@@ -3,6 +3,7 @@
 use App\Classes\ApiResponseClass;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
+use App\Http\Controllers\api\PengumumanController;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::get('/unauthorize', function () {
     return ApiResponseClass::sendError('Unauthorized', 403);
 })->name('login');
+
+Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
+Route::post('/pengumuman', [PengumumanController::class, 'store']);
+Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->middleware('auth:sanctum');

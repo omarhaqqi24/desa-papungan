@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BeritaResource extends BaseResource
+class PengumumanResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,7 @@ class BeritaResource extends BaseResource
         return [
             'id' => $this->id,
             'judul' => $this->judul,
-            'isi' => $this->teks,
-            'foto' => url('storage/berita/' . $this->foto),
+            'isi' => $this->isi,
             'isAccepted' => intval($this->isAccepted),
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
