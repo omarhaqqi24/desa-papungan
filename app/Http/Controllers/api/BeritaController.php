@@ -39,7 +39,7 @@ class BeritaController extends Controller
         $validator = Validator::make($request->all(), [
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul' => 'required',
-            'teks' => 'required',
+            'isi' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -52,7 +52,7 @@ class BeritaController extends Controller
         $berita = Berita::create([
             'foto' => $image->hashName(),
             'judul' => $request->judul,
-            'teks' => $request->teks
+            'isi' => $request->isi
         ]);
         $resource = new BeritaResource($berita);
 
@@ -71,9 +71,9 @@ class BeritaController extends Controller
                 'judul'  => $request->judul,
             ]);
         }
-        if (!empty($request->teks)){
+        if (!empty($request->isi)){
             $berita->update([
-                'teks'  => $request->teks,
+                'isi'  => $request->isi,
             ]);
         }
         if (!empty($request->isAccepted)){
