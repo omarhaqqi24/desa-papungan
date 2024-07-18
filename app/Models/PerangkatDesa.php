@@ -9,5 +9,5 @@ class PerangkatDesa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'jabatan', 'foto'];
+    protected $fillable = ['nama', 'jabatan', 'foto', 'kontak'];
 }
