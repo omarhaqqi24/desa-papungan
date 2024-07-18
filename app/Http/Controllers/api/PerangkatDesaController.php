@@ -53,6 +53,7 @@ class PerangkatDesaController extends Controller
             'foto' => $image->hashName(),
             'nama' => $request->nama,
             'jabatan' => $request->jabatan,
+            'kontak' => $request->kontak
         ]);
         $resource = new PerangkatDesaResource($perangkat);
 
