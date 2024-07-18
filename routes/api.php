@@ -4,7 +4,7 @@ use App\Classes\ApiResponseClass;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\api\PengumumanController;
-use App\Models\Berita;
+use App\Http\Controllers\api\PerangkatDesaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +25,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::get('/unauthorize', function () {
     return ApiResponseClass::sendError('Unauthorized', 403);
 })->name('login');
+
+Route::get('/perangkat-desa', [PerangkatDesaController::class, 'getAll']);
+Route::post('/perangkat-desa', [PerangkatDesaController::class, 'store'])->middleware('auth:sanctum');
+Route::delete('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
 Route::post('/pengumuman', [PengumumanController::class, 'store']);
