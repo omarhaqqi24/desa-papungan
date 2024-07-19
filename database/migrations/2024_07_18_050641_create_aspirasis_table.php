@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('aspirasis', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('isi');
+            $table->longText('isi');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('data_desas', function (Blueprint $table) {
             $table->id();
             $table->string('foto');
-            $table->longtext('penjelasan');
+            $table->longText('penjelasan');
             $table->timestamps();
         });
 
