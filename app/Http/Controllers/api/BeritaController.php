@@ -61,9 +61,9 @@ class BeritaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $berita = Berita::findOrFail($id);
+        $berita = Berita::where('id', $id)->first();
         if (!$berita) {
-            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 400);
+            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
 
         if (!empty($request->judul)){

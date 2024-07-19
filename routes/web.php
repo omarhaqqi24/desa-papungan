@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PengumumanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,8 @@ Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
 });
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/umkm', function () {
+    return view('umkm');
 });
+
+Route::get('/test',[PengumumanController::class,"index"]);
