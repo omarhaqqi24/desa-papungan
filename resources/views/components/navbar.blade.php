@@ -1,6 +1,6 @@
 <div>
     <!--NAVBAR TOP START-->
-    <nav class="w-screen text-white flex flex-col">
+    <nav class="w-screen text-white flex flex-col fixed bg-white top-0 ">
             <div class="w-screen bg-primary flex">
                 <div class="container flex mx-auto justify-between py-2 text-center items-center">
                     <div class="flex gap-2">
