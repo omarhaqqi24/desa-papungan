@@ -26,7 +26,7 @@ class DataDesaController extends Controller
     {
         $data_desa = DataDesa::where('id', $id)->first();
         if (!$data_desa){
-            return ApiResponseClass::sendError('Data gagal diambil', 400);
+            return ApiResponseClass::sendError('Data tidak ditemukan', 404);
         }
 
         if (!empty($request->penjelasan)){
