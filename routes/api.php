@@ -4,6 +4,7 @@ use App\Classes\ApiResponseClass;
 use App\Http\Controllers\api\AspirasiController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
+use App\Http\Controllers\api\DataDesaController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
 use Illuminate\Http\Request;
@@ -38,3 +39,6 @@ Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->mid
 
 Route::get('/aspirasi', [AspirasiController::class, 'getAll'])->middleware('auth:sanctum');
 Route::post('/aspirasi', [AspirasiController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
+Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');
