@@ -44,7 +44,7 @@ class PengumumanController extends Controller
     {
         $pengumuman = Pengumuman::findOrFail($id);
         if (!$pengumuman) {
-            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 400);
+            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
         }
 
         if (!empty($request->judul)){
