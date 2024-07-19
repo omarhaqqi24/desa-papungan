@@ -18,6 +18,10 @@ Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
 });
 
+Route::get('/umkm', function () {
+    return view('umkm');
+});
+
 Route::get('/test', function () {
     return view('test');
 });
