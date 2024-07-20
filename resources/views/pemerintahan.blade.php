@@ -40,15 +40,45 @@
             judul="Perangkat Desa"
             deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. "
         />
-
-        <div class=" my-10 mx-auto font-bold text-3xl">BLOM FIX</div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
+                <!-- Card 1 BLOM FIX - PERLU DISESUAIKAN -->
+   <!--     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
+            <img src="/img/kepalaDesa.jpg" alt="kepala Desa" class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
+            <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">Card Title asdfghfdfgfdfdgbfgbfvbdfdfgfdg fdgfg fg1</h3>
+            <p class="text-gray-700 text-sm overflow-hidden text-ellipsis whitespace-nowrap">Card content goes here.</p>
+        </div>
+    -->
+    @foreach ($perangkatDesas->data as $perangkatDesa)
+    <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
+        <img src="/img/kepalaDesa.jpg" alt="kepala Desa" class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
+        <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">{{$perangkatDesa->nama}}</h3>
+        <p class="text-gray-700 text-sm overflow-hidden text-ellipsis whitespace-nowrap">{{$perangkatDesa->jabatan}}</p>
+    </div>
+    @endforeach
+    
+            
+        </div>
+        
         <x-cardSubjudul
             jenisJudul="PEMERINTAHAN"
             judul="Lembaga Desa"
             deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. "
         />
 
-        <div class=" my-10 mx-auto font-bold text-3xl">BLOM FIX</div>
+        <x-table.table :headers="['nama','alamat']">
+            @php
+                $i = 1;
+            @endphp
+            @foreach ($lembagas->data->resource as $lembaga)
+            
+            <tr class="border-b">
+                <td class="p-2 text-left">{{$i++;}}</td>
+              <td class="p-2 text-left">{{$lembaga->nama}}</td>
+              <td class="p-2 text-left">{{$lembaga->alamat}}</td>
+           </tr>
+    
+        @endforeach
+        </x-table.table>
        
     </div>
 </div>
