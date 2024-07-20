@@ -8,6 +8,7 @@ use App\Http\Controllers\api\DataDesaController;
 use App\Http\Controllers\api\LembagaController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
+use App\Http\Controllers\api\VisiMisiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,3 +49,6 @@ Route::get('/lembaga', [LembagaController::class, 'getAll']);
 Route::post('/lembaga', [LembagaController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/lembaga/{id}', [LembagaController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/lembaga/{id}', [LembagaController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/v-misi', [VisiMisiController::class, 'getAll']);
+Route::put('/v-misi', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
