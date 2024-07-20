@@ -54,6 +54,8 @@ Route::delete('/lembaga/{id}', [LembagaController::class, 'destroy'])->middlewar
 Route::get('/umkm', [UmkmController::class, 'getAll']);
 Route::get('/umkm/{id}', [UmkmController::class, 'getById']);
 Route::post('/umkm', [UmkmController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/umkm/{id}', [UmkmController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/umkm/{id}', [UmkmController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::post('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'store'])->middleware('auth:sanctum');
 Route::delete('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');
