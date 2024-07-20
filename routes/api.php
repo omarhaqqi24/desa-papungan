@@ -9,6 +9,7 @@ use App\Http\Controllers\api\FotoUmkmController;
 use App\Http\Controllers\api\LembagaController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
+use App\Http\Controllers\api\UmkmController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,10 @@ Route::get('/lembaga', [LembagaController::class, 'getAll']);
 Route::post('/lembaga', [LembagaController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/lembaga/{id}', [LembagaController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/lembaga/{id}', [LembagaController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/umkm', [UmkmController::class, 'getAll']);
+Route::get('/umkm/{id}', [UmkmController::class, 'getById']);
+Route::post('/umkm', [UmkmController::class, 'store'])->middleware('auth:sanctum');
 
 Route::post('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'store'])->middleware('auth:sanctum');
 Route::delete('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');

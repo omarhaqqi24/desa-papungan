@@ -15,8 +15,13 @@ class Umkm extends Model
         'no_nib', 'no_pirt', 'no_halal', 'no_bpom'
     ];
 
-    public function fotoUmkm()
+    public function foto_umkm()
     {
         return $this->hasMany(FotoUmkm::class);
+    }
+
+    public function jenis_umkm()
+    {
+        return $this->hasMany(JenisUmkm::class);
     }
 }
