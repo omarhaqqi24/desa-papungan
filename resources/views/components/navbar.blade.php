@@ -26,7 +26,7 @@
             <div class="w-screen flex shadow-lg text-black">
                 <div class="container flex mx-auto justify-between py-2 text-center items-center">
                     <div class="flex gap-2 text-left">
-                        <img src="img/contoh.jpeg" alt="papunganLogo" class="w-14 h-14">
+                        <img src="img/logokab.png" alt="papunganLogo" class="w-14 h-14">
                         <div class="flex flex-col">
                             <div class="text-2xl font-semibold font-jakarta ">Papungan</div>
                             <div class="text-xs font-medium font-jakarta ">Portal Resmi Desa Papungan</div>

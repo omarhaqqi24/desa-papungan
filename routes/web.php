@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DataDesaController;
+use App\Http\Controllers\DataDesaController as ControllersDataDesaController;
 use App\Http\Controllers\PengumumanController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,9 +9,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/profilDesa', function () {
-    return view('profilDesa');
-});
+Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
 Route::get('/pemerintahan', function () {
     return view('pemerintahan');
