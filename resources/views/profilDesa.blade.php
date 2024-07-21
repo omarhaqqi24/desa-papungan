@@ -31,9 +31,10 @@
         subJudul="Kenali Desa Papungan "
         judul="Tentang Kami" />
     <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis omnis, inventore accusantium cum quod maiores sint impedit asperiores veritatis similique modi corrupti ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
-     <img src="img/balaiDesa.png" alt="balai desa Papungan" class="rounded-lg w-full">
 
-    <div class="text-sm font-normal">Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque. Ut diam quam, semper iaculis condimentum ac, vestibulum eu nisl.</div>
+     <img src="{{$data1 -> data -> foto}}" alt="balai desa Papungan" class="rounded-lg w-full">
+
+    <div class="text-sm font-normal">{{$data1 -> data -> penjelasan}}</div>
 
     <x-cardSubjudul
             jenisJudul="PROFIL DESA"
@@ -48,8 +49,8 @@
             deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. "
         />
 
-        <div class="text-sm font-normal">               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum non erat sed sollicitudin. Nunc id nibh vel risus luctus eleifend. Sed lobortis, massa quis iaculis viverra, erat velit tincidunt lacus, vitae maximus massa risus ac odio. Nulla ornare varius interdum. Integer in erat enim. Morbi ultrices iaculis lobortis. Suspendisse gravida finibus odio, id varius magna cursus vitae. Curabitur in diam id nulla gravida tristique vel et enim. Etiam non sodales augue. Integer quam tellus, suscipit nec pulvinar in, euismod eu mauris. Fusce tristique quis eros et cursus. Vestibulum sit amet neque porttitor lectus elementum euismod quis at leo. Praesent a mollis ante. Ut ac sem aliquet, fermentum neque id, convallis sapien. Mauris luctus consectetur diam quis elementum. Nulla in laoreet eros, vel tristique risus.</div>
-    
+        <div class="text-sm font-normal">               {{$data2 -> data -> penjelasan}}</div>
+
     </div>
 </div>
     </body>
