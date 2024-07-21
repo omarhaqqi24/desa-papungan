@@ -17,7 +17,21 @@
     <x-navbar/>
     <div class="mt-36 space-y-10 px-5 md:px-0 min-h-screen">
              
-
+        <x-table.table :headers="['judul','isi','createdAt']">
+            @php
+                $i = 1;
+            @endphp
+            @foreach ($data->data as $berita)
+            
+            <tr class="border-b">
+                <td class="p-2 text-left">{{$i++;}}</td>
+              <td class="p-2 text-left">{{$berita->judul}}</td>
+              <td class="p-2 text-left">{{$berita->isi}}</td>
+              <td class="p-2 text-left">{{$berita->createdAt}}</td>
+           </tr>
+    
+        @endforeach
+        </x-table.table>
 
     </body>
 
