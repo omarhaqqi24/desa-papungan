@@ -2,7 +2,7 @@
         <div class="footer  text-white p-10">
   <aside>
     <div class="flex gap-3">
-    <img src="img/contoh.jpeg" alt="lambang" class=" w-14 h-14">
+    <img src="img/logokab.png" alt="lambang" class=" w-14 h-14">
     <div class="">
     <div class="text-2xl font-bold">Papungan</div>
     <div class="text-xs font-medium">Portal Resmi Desa Papungan</div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PengumumanController;
 use App\Models\PerangkatDesa;
@@ -9,9 +10,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/profilDesa', function () {
-    return view('profilDesa');
-});
+Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
 Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]); 
 
