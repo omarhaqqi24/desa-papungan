@@ -5,6 +5,7 @@ use App\Http\Controllers\api\AspirasiController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\api\DataDesaController;
+use App\Http\Controllers\api\LembagaController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
 use Illuminate\Http\Request;
@@ -42,3 +43,8 @@ Route::post('/aspirasi', [AspirasiController::class, 'store'])->middleware('auth
 
 Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
 Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');
+
+Route::get('/lembaga', [LembagaController::class, 'getAll']);
+Route::post('/lembaga', [LembagaController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/lembaga/{id}', [LembagaController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/lembaga/{id}', [LembagaController::class, 'destroy'])->middleware('auth:sanctum');
