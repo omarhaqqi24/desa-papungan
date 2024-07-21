@@ -1,0 +1,147 @@
+<?php
+
+namespace App\Http\Controllers\api;
+
+use App\Classes\ApiResponseClass;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UmkmCollection;
+use App\Http\Resources\UmkmResource;
+use App\Models\JenisUmkm;
+use App\Models\Umkm;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class UmkmController extends Controller
+{
+    public function getAll(Request $request)
+    {
+        $perPage = intval($request->query('size'));
+        $umkms = Umkm::paginate($perPage);
+        $resources = (new UmkmCollection($umkms))->response()->getData();
+
+        return ApiResponseClass::sendResponse($resources, '', 200);
+    }
+
+    public function getById($id)
+    {
+        $umkm = Umkm::where('id', $id)->first();
+        if (!$umkm){
+            return ApiResponseClass::sendError('Data UMKM tidak ditemukan!', 404);
+        }
+
+        $resource = new UmkmResource($umkm->load('jenis_umkm', 'foto_umkm'));
+        return ApiResponseClass::sendResponse($resource, 'Data UMKM berhasil diambil!', 200);
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'lat' => 'required',
+            'long' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+
+        $umkm = Umkm::create([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'alamat' => $request->alamat,
+            'kontak' => $request->kontak,
+            'jam_buka' => $request->jam_buka,
+            'lat' => $request->lat,
+            'long' => $request->long,
+            'no_nib' => $request->no_nib,
+            'no_pirt' => $request->no_pirt,
+            'no_halal' => $request->no_halal,
+            'no_bpom' => $request->no_bpom
+        ]);
+
+        $jenises = $request->jenis;
+        foreach ($jenises as $jenis){
+            JenisUmkm::create([
+                'jenis' => $jenis,
+                'umkm_id' => $umkm->id
+            ]);
+        }
+
+        $resource = new UmkmResource($umkm->load('jenis_umkm'));
+        return ApiResponseClass::sendResponse($resource, 'Data UMKM berhasil ditambahkan!', 201);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $umkm = Umkm::where('id', $id)->first();
+        if (!$umkm){
+            return ApiResponseClass::sendError('Data UMKM tidak ditemukan!', 404);
+        }
+        
+        $isDeleted = JenisUmkm::where('umkm_id', intval($id))->delete();
+        if (!$isDeleted){
+            return ApiResponseClass::sendError('Gagal memperbarui data jenis UMKM!', 400);
+        }
+
+        foreach ($request->jenis as $jenis){
+            JenisUmkm::create([
+                'jenis' => $jenis,
+                'umkm_id' => $id
+            ]);
+        }
+
+        if (!empty($request->nama)){
+            $umkm->update(['nama'  => $request->nama]);
+        }
+        if (!empty($request->deskripsi)){
+            $umkm->update(['deskripsi'  => $request->deskripsi]);
+        }
+        if (!empty($request->alamat)){
+            $umkm->update(['alamat'  => $request->alamat]);
+        }
+        if (!empty($request->kontak)){
+            $umkm->update(['kontak'  => $request->kontak]);
+        }
+        if (!empty($request->jam_buka)){
+            $umkm->update(['jam_buka'  => $request->jam_buka]);
+        }
+        if (!empty($request->lat)){
+            $umkm->update(['lat'  => floatval($request->lat)]);
+        }
+        if (!empty($request->long)){
+            $umkm->update(['long'  => floatval($request->long)]);
+        }
+        if (!empty($request->no_nib)){
+            $umkm->update(['no_nib'  => $request->no_nib]);
+        }
+        if (!empty($request->no_pirt)){
+            $umkm->update(['no_pirt'  => $request->no_pirt]);
+        }
+        if (!empty($request->no_halal)){
+            $umkm->update(['no_halal'  => $request->no_halal]);
+        }
+        if (!empty($request->no_bpom)){
+            $umkm->update(['no_bpom'  => $request->no_bpom]);
+        }
+
+        $umkm->save();
+
+        $resource = new UmkmResource($umkm->load('jenis_umkm'));
+        return ApiResponseClass::sendResponse($resource, 'Data UMKM berhasil diperbarui!', 200);
+    }
+
+    public function destroy(string $id)
+    {
+        $isDeleted = JenisUmkm::where('umkm_id', intval($id))->delete();
+        if (!$isDeleted){
+            return ApiResponseClass::sendError('Gagal menghapus data jenis UMKM!', 400);
+        }
+        
+        $isDeleted = Umkm::destroy(intval($id));
+        if (!$isDeleted){
+            return ApiResponseClass::sendError('Gagal menghapus data UMKM!', 400);
+        }
+
+        return ApiResponseClass::sendResponse(null, 'Data UMKM berhasil dihapus!', 200);
+    }
+}
