@@ -5,8 +5,11 @@ use App\Http\Controllers\api\AspirasiController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\api\DataDesaController;
+use App\Http\Controllers\api\FotoUmkmController;
+use App\Http\Controllers\api\LembagaController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
+use App\Http\Controllers\api\UmkmController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +45,17 @@ Route::post('/aspirasi', [AspirasiController::class, 'store'])->middleware('auth
 
 Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
 Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');
+
+Route::get('/lembaga', [LembagaController::class, 'getAll']);
+Route::post('/lembaga', [LembagaController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/lembaga/{id}', [LembagaController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/lembaga/{id}', [LembagaController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/umkm', [UmkmController::class, 'getAll']);
+Route::get('/umkm/{id}', [UmkmController::class, 'getById']);
+Route::post('/umkm', [UmkmController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/umkm/{id}', [UmkmController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/umkm/{id}', [UmkmController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::post('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'store'])->middleware('auth:sanctum');
+Route::delete('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');
