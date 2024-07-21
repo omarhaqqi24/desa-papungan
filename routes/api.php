@@ -10,6 +10,7 @@ use App\Http\Controllers\api\LembagaController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
 use App\Http\Controllers\api\UmkmController;
+use App\Http\Controllers\JabatanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,3 +60,5 @@ Route::delete('/umkm/{id}', [UmkmController::class, 'destroy'])->middleware('aut
 
 Route::post('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'store'])->middleware('auth:sanctum');
 Route::delete('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/jabatan', [JabatanController::class, 'getAll']);
