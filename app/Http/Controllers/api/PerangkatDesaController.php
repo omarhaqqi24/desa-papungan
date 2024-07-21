@@ -15,20 +15,11 @@ class PerangkatDesaController extends Controller
 {
     public function getAll()
     {
-        $perangkats = DB::table('perangkat_desas')->orderByRaw("FIELD(jabatan,
-            \"Kepala Desa\",
-            \"Sekretaris Desa\",
-            \"Kaur Keuangan\",
-            \"Kaur Perencanaan dan Umum\",
-            \"Kasi Pemerintahan\",
-            \"Kasi Kesejahteraan dan Pelayanan\",
-            \"Kamituwo Gajah\",
-            \"Kamituwo Dusun Papungan\",
-            \"Kamituwo Dusun Sekardangan\",
-            \"Staf Kesejahteraan dan Pelayanan\",
-            \"Staf Keuangan Desa\",
-            \"Staf Perencanaan dan Umum\"
-        )")->get();
+        $perangkats = PerangkatDesa::with('jabatan')
+            ->join('jabatans', 'perangkat_desas.jabatan_id', '=', 'jabatans.id')
+            ->orderBy('jabatans.order')
+            ->select('perangkat_desas.*')
+            ->get();
         
         $resource = new PerangkatDesaCollection($perangkats);
         return ApiResponseClass::sendResponse($resource, 'Data perangkat desa berhasil diambil!', 200); 
@@ -39,7 +30,7 @@ class PerangkatDesaController extends Controller
         $validator = Validator::make($request->all(), [
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama' => 'required',
-            'jabatan' => 'required',
+            'jabatan_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -52,7 +43,7 @@ class PerangkatDesaController extends Controller
         $perangkat = PerangkatDesa::create([
             'foto' => $image->hashName(),
             'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
+            'jabatan_id' => $request->jabatan_id,
             'kontak' => $request->kontak
         ]);
         $resource = new PerangkatDesaResource($perangkat);
@@ -66,6 +57,6 @@ class PerangkatDesaController extends Controller
         if (!$isDeleted){
             return ApiResponseClass::sendError('Data perangkat desa gagal dihapus!', 400);
         }
-        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 200);
+        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 204);
     }
 }
