@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,11 +13,11 @@
         @vite('resources/css/app.css')
         
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body  class="mytheme font-jakarta antialiased  dark:text-white/50">
     <x-navbar/>
-    <div class="mt-36 space-y-10 px-5 md:px-0 min-h-screen">
+    <div class=" container mx-auto mt-36 space-y-10 px-5 md:px-0 min-h-screen">
              
-        <x-table.table :headers="['judul','isi','createdAt']">
+        <x-table.table :headers="['judul','isi','createdAt']" jenisTabel="Template Tabel">
             @php
                 $i = 1;
             @endphp

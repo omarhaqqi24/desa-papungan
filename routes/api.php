@@ -7,6 +7,7 @@ use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\api\DataDesaController;
 use App\Http\Controllers\api\FotoUmkmController;
 use App\Http\Controllers\api\LembagaController;
+use App\Http\Controllers\api\PariwisataController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
 use App\Http\Controllers\api\UmkmController;
@@ -62,3 +63,8 @@ Route::post('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'store'])->middl
 Route::delete('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/jabatan', [JabatanController::class, 'getAll']);
+
+Route::get('/pariwisata', [PariwisataController::class, 'getAll']);
+Route::post('/pariwisata', [PariwisataController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/pariwisata/{id}', [PariwisataController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->middleware('auth:sanctum');
