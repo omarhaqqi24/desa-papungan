@@ -1,10 +1,10 @@
 <div>
     <!--NAVBAR TOP START-->
-    <nav class="w-screen text-white flex flex-col fixed bg-white top-0 ">
+    <nav class="w-screen text-lightText flex flex-col fixed bg-base-100 top-0 z-50 shadow-md">
             <div class="w-screen bg-primary flex">
                 <div class="container flex mx-auto justify-between py-2 text-center items-center">
                     <div class="flex gap-2">
-                        <div class="p-1 justify-start items-center gap-2 flex border-r-2 border-white">
+                        <div class="p-1 justify-start items-center gap-2 flex border-r-2 border-base-100">
                             <img src="img/phoneLogo.svg" alt="phoneLogo" class="w-4 h-4 relative ">
                             <div class="px-2 text-xs font-medium font-jakarta ">(0342) 814031</div>
                         </div>
@@ -34,7 +34,7 @@
                     </div>
 
                     <button id="mobile-menu-button"
-                        class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:bg-blue-400 transition duration-300 lg:hidden">
+                        class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:opacity-70 transition duration-300 lg:hidden">
                         <img src="img/hamburgerLogo.svg" class="w-6 h-6">
                     </button>
 
@@ -42,7 +42,7 @@
                     <div id="mobile-menu" class="navbar-menu fixed  hidden z-40 lg:hidden">
                         <div id="close-mobile-menu-outside" class="fixed inset-0 bg-gray-800 opacity-40"></div>
                         <div
-                            class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+                            class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-base-100 border-r overflow-y-auto">
                             <div class="flex items-center mb-8">
                                 <div class="text-3xl font-semibold">Menu</div>
                                 <a class="mr-auto text-3xl font-bold leading-none" href="#">
@@ -64,41 +64,41 @@
                                     <div class="menu-title font-semibold mr-auto">Profil Desa</div>
                                     <li>
                                         <ul>
-                                            <li><a>Tentang Kami</a></li>
-                                            <li><a>Visi dan Misi</a></li>
-                                            <li><a>Sejarah</a></li>
+                                            <li><a class="hover:bg-accent">Tentang Kami</a></li>
+                                            <li><a class="hover:bg-accent">Visi dan Misi</a></li>
+                                            <li><a class="hover:bg-accent">Sejarah</a></li>
                                         </ul>
                                     </li>
                                     <div class="menu-title font-semibold mr-auto">Pemerintahan</div>
                                     <li>
                                         <ul>
-                                            <li><a>Struktural</a></li>
-                                            <li><a>Perangkat Desa</a></li>
-                                            <li><a>Lembaga Desa</a></li>
+                                            <li><a class="hover:bg-accent">Struktural</a></li>
+                                            <li><a class="hover:bg-accent">Perangkat Desa</a></li>
+                                            <li><a class="hover:bg-accent">Lembaga Desa</a></li>
                                         </ul>
                                     </li>
                                     <div class="menu-title font-semibold mr-auto">Informasi</div>
                                     <li>
                                         <ul>
-                                            <li><a>Berita</a></li>
-                                            <li><a>Pengumuman</a></li>
-                                            <li><a>Aspirasi</a></li>
+                                            <li><a class="hover:bg-accent">Berita</a></li>
+                                            <li><a class="hover:bg-accent">Pengumuman</a></li>
+                                            <li><a class="hover:bg-accent">Aspirasi</a></li>
                                         </ul>
                                     </li>
                                     <div class="menu-title font-semibold mr-auto">UMKM Desa</div>
                                     <li>
                                         <ul>
-                                            <li><a>Profil UMKM dan IKKM</a></li>
-                                            <li><a>Peta UMKM</a></li>
-                                            <li><a>Daftar UMKM</a></li>
+                                            <li><a class="hover:bg-accent">Profil UMKM dan IKKM</a></li>
+                                            <li><a class="hover:bg-accent">Peta UMKM</a></li>
+                                            <li><a class="hover:bg-accent">Daftar UMKM</a></li>
                                         </ul>
                                     </li>
                                     <div class="menu-title font-semibold mr-auto">Pariwisata Desa</div>
                                     <li>
                                         <ul>
-                                            <li><a>Profil Pariwisata</a></li>
-                                            <li><a>Sejarah</a></li>
-                                            <li><a>Lokasi</a></li>
+                                            <li><a class="hover:bg-accent">Profil Pariwisata</a></li>
+                                            <li><a class="hover:bg-accent">Sejarah</a></li>
+                                            <li><a class="hover:bg-accent">Lokasi</a></li>
                                         </ul>
                                     </li>
 
@@ -116,12 +116,12 @@
                                 <details>
                                     <summary class="hover:text-primary">Profil Desa</summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Tentang
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Tentang
                                                 Kami</a></li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Visi
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Visi
                                                 dan
                                                 Misi</a></li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Sejarah</a>
                                         </li>
                                     </ul>
@@ -135,14 +135,14 @@
                                 <details>
                                     <summary class="hover:text-primary">Pemerintahan</summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Struktural</a>
                                         </li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Perangkat
                                                 Desa</a>
                                         </li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Lembaga
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Lembaga
                                                 Desa</a></li>
                                     </ul>
                                 </details>
@@ -155,13 +155,13 @@
                                 <details>
                                     <summary class="hover:text-primary">Informasi</summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Berita</a>
                                         </li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Pengumuman</a>
                                         </li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Aspirasi</a>
                                         </li>
                                     </ul>
@@ -174,13 +174,13 @@
                                 <details>
                                     <summary class="hover:text-primary ">UMKM Desa</summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 self-stretch text-xs ">
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Profil
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Profil
                                                 UMKM dan
                                                 IKKM</a></li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Peta
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Peta
                                                 UMKM</a>
                                         </li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Daftar
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Daftar
                                                 UMKM</a>
                                         </li>
                                     </ul>
@@ -193,12 +193,12 @@
                                 <details>
                                     <summary class="hover:text-primary">Pariwisata Desa</summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700"><a>Profil
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Profil
                                                 Pariwisata</a></li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Sejarah</a>
                                         </li>
-                                        <li class=" rounded-md hover:bg-blue-100 hover:text-gray-700">
+                                        <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                             <a>Lokasi</a>
                                         </li>
                                     </ul>
