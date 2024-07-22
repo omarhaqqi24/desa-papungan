@@ -44,26 +44,25 @@ class LembagaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+
         $lembaga = Lembaga::where('id', $id)->first();
         if (!$lembaga){
             return ApiResponseClass::sendError('Data lembaga tidak ditemukan!', 404);
         }
 
-        if (!empty($request->nama)){
-            $lembaga->update([
-                'nama'  => $request->nama,
-            ]);
-        }
-        if (!empty($request->alamat)){
-            $lembaga->update([
-                'alamat'  => $request->alamat,
-            ]);
-        }
-        if (!empty($request->kontak)){
-            $lembaga->update([
-                'kontak'  => $request->kontak,
-            ]);
-        }
+        $lembaga->update([
+            'nama'  => $request->nama,
+            'alamat'  => $request->alamat,
+            'kontak'  => $request->kontak
+        ]);
         $lembaga->save();
 
         $resource = new LembagaResource($lembaga);

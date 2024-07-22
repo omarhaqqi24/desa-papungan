@@ -61,40 +61,31 @@ class BeritaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'judul' => 'required',
+            'isi' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+
         $berita = Berita::where('id', $id)->first();
         if (!$berita) {
             return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
-
-        if (!empty($request->judul)){
-            $berita->update([
-                'judul'  => $request->judul,
-            ]);
-        }
-        if (!empty($request->isi)){
-            $berita->update([
-                'isi'  => $request->isi,
-            ]);
-        }
-        if (!empty($request->isAccepted)){
-            $berita->update([
-                'isAccepted'  => intval($request->isAccepted),
-            ]);
-        }
-
-        if ($request->hasFile('foto')) {
-
-            $image = $request->file('foto');
-            $image->storeAs('public/berita', $image->hashName());
-
-            Storage::delete('public/berita/'.$berita->foto);
-
-            $berita->update([
-                'foto' => $image->hashName()
-            ]);
-
-        }
-
+                    
+        $image = $request->file('foto');
+        $image->storeAs('public/berita', $image->hashName());
+        
+        Storage::delete('public/berita/'.$berita->foto);
+        
+        $berita->update([
+            'foto' => $image->hashName(),
+            'judul'  => $request->judul,
+            'isi'  => $request->isi,
+        ]);
         $berita->save();
 
         $resource = new BeritaResource($berita);
