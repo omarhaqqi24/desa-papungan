@@ -23,7 +23,7 @@ class PerangkatDesaController extends Controller
             ->select('perangkat_desas.*')
             ->get();
         
-        $jabatans = Jabatan::orderBy('order', 'ASC')->get(['nama', 'order']);
+        $jabatans = Jabatan::orderBy('order', 'ASC')->get(['id', 'nama', 'order']);
 
         $resource = new PerangkatDesaCollection($perangkats);
         return ApiResponseClass::sendResponse([
