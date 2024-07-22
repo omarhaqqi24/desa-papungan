@@ -13,13 +13,13 @@
         @vite('resources/css/app.css')
         
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
     <x-navbar/>
 
     <div class="mt-28 space-y-20 md:px-0">
     <!-- isi disini-->
 
-<div class="bg-blue-600 text-white w-full py-32 px-10">
+<div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Profil Desa Papungan</div>
             <div class="text-sm font-normal">Home / Profil Desa</div>
         </div>
