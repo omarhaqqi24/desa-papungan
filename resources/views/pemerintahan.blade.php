@@ -31,9 +31,9 @@
         subJudul="PEMERINTAHAN "
         judul="Struktur Organisasi" />
     <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis omnis, inventore accusantium cum quod maiores sint impedit asperiores veritatis similique modi corrupti ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
-     <img src="img/unkown.png" alt="unknown" class="rounded-lg w-full">
+     <img src="{{$struktur->data->foto}}" alt="unknown" class="rounded-lg w-full">
 
-    <div class="text-sm font-normal">Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque. Ut diam quam, semper iaculis condimentum ac, vestibulum eu nisl.</div>
+    <div class="text-sm font-normal">{{$struktur->data->penjelasan}}</div>
 
     <x-cardSubjudul
             jenisJudul="PEMERINTAHAN"
@@ -50,7 +50,7 @@
     -->
     @foreach ($perangkatDesas->data as $perangkatDesa)
     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
-        <img src="/img/kepalaDesa.jpg" alt="kepala Desa" class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
+        <img src="{{$perangkatDesa->foto}}" alt="{{$perangkatDesa->jabatan}}" class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
         <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">{{$perangkatDesa->nama}}</h3>
         <p class="text-gray-700 text-sm overflow-hidden text-ellipsis whitespace-nowrap">{{$perangkatDesa->jabatan}}</p>
     </div>
