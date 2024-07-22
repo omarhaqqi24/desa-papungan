@@ -13,7 +13,7 @@
         @vite('resources/css/app.css')
         
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
     <x-navbar/>
 
     <div class="mt-28 space-y-20 md:px-0">

@@ -1,5 +1,5 @@
 <footer class="flex-row  bg-primary mt-10">
-        <div class="footer  text-white p-10">
+        <div class="footer  text-lightText p-10">
   <aside>
     <div class="flex gap-3">
     <img src="img/logokab.png" alt="lambang" class=" w-14 h-14">
