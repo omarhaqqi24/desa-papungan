@@ -23,8 +23,13 @@ class PerangkatDesaController extends Controller
             ->select('perangkat_desas.*')
             ->get();
         
+        $jabatans = Jabatan::orderBy('order', 'ASC')->get(['nama', 'order']);
+
         $resource = new PerangkatDesaCollection($perangkats);
-        return ApiResponseClass::sendResponse($resource, 'Data perangkat desa berhasil diambil!', 200); 
+        return ApiResponseClass::sendResponse([
+            'list' => $jabatans,
+            'resource' => $resource,
+        ], 'Data perangkat desa berhasil diambil!', 200); 
     }
 
     public function store(Request $request)
