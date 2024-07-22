@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PerangkatDesaResource extends JsonResource
+class JabatanResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +18,7 @@ class PerangkatDesaResource extends JsonResource
         return [
             'id' => $this->id,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan->nama,
-            'foto' => url('storage/perangkat-desa/' . $this->foto),
-            'kontak' => $this->kontak,
+            'order' => $this->order,
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
         ];

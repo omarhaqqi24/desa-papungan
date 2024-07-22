@@ -11,6 +11,7 @@ use App\Http\Controllers\api\PariwisataController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
 use App\Http\Controllers\api\UmkmController;
+use App\Http\Controllers\api\JabatanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,3 +66,5 @@ Route::get('/pariwisata', [PariwisataController::class, 'getAll']);
 Route::post('/pariwisata', [PariwisataController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/pariwisata/{id}', [PariwisataController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/jabatan', [JabatanController::class, 'getAll'])->middleware(['auth:sanctum']);

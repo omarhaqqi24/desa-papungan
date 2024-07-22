@@ -89,7 +89,6 @@ class BeritaController extends Controller
         $berita->save();
 
         $resource = new BeritaResource($berita);
-
         return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
     }
 
