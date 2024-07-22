@@ -66,5 +66,3 @@ Route::get('/pariwisata', [PariwisataController::class, 'getAll']);
 Route::post('/pariwisata', [PariwisataController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/pariwisata/{id}', [PariwisataController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->middleware('auth:sanctum');
-
-Route::get('/jabatan', [JabatanController::class, 'getAll'])->middleware(['auth:sanctum']);
