@@ -37,8 +37,16 @@ class UmkmController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
+            'deskripsi' => 'required',
+            'alamat' => 'required',
+            'kontak' => 'required',
+            'jam_buka' => 'required',
             'lat' => 'required',
             'long' => 'required',
+            'no_nib' => 'reuired',
+            'no_pirt' => 'reuired',
+            'no_halal' => 'reuired',
+            'no_bpom' => 'reuired'
         ]);
 
         if ($validator->fails()) {
@@ -73,6 +81,24 @@ class UmkmController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'alamat' => 'required',
+            'kontak' => 'required',
+            'jam_buka' => 'required',
+            'lat' => 'required',
+            'long' => 'required',
+            'no_nib' => 'reuired',
+            'no_pirt' => 'reuired',
+            'no_halal' => 'reuired',
+            'no_bpom' => 'reuired'
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+
         $umkm = Umkm::where('id', $id)->first();
         if (!$umkm){
             return ApiResponseClass::sendError('Data UMKM tidak ditemukan!', 404);
@@ -90,40 +116,19 @@ class UmkmController extends Controller
             ]);
         }
 
-        if (!empty($request->nama)){
-            $umkm->update(['nama'  => $request->nama]);
-        }
-        if (!empty($request->deskripsi)){
-            $umkm->update(['deskripsi'  => $request->deskripsi]);
-        }
-        if (!empty($request->alamat)){
-            $umkm->update(['alamat'  => $request->alamat]);
-        }
-        if (!empty($request->kontak)){
-            $umkm->update(['kontak'  => $request->kontak]);
-        }
-        if (!empty($request->jam_buka)){
-            $umkm->update(['jam_buka'  => $request->jam_buka]);
-        }
-        if (!empty($request->lat)){
-            $umkm->update(['lat'  => floatval($request->lat)]);
-        }
-        if (!empty($request->long)){
-            $umkm->update(['long'  => floatval($request->long)]);
-        }
-        if (!empty($request->no_nib)){
-            $umkm->update(['no_nib'  => $request->no_nib]);
-        }
-        if (!empty($request->no_pirt)){
-            $umkm->update(['no_pirt'  => $request->no_pirt]);
-        }
-        if (!empty($request->no_halal)){
-            $umkm->update(['no_halal'  => $request->no_halal]);
-        }
-        if (!empty($request->no_bpom)){
-            $umkm->update(['no_bpom'  => $request->no_bpom]);
-        }
-
+        $umkm->update([
+            'nama'  => $request->nama,
+            'deskripsi'  => $request->deskripsi,
+            'alamat'  => $request->alamat,
+            'kontak'  => $request->kontak,
+            'jam_buka'  => $request->jam_buka,
+            'lat'  => floatval($request->lat),
+            'long'  => floatval($request->long),
+            'no_nib'  => $request->no_nib,
+            'no_pirt'  => $request->no_pirt,
+            'no_halal'  => $request->no_halal,
+            'no_bpom'  => $request->no_bpom
+        ]);
         $umkm->save();
 
         $resource = new UmkmResource($umkm->load('jenis_umkm'));
