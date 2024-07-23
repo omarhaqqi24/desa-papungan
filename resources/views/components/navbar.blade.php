@@ -19,6 +19,7 @@
             </div>
 
         </div>
+
         <!--NAVBAR TOP END-->
 
         <!--NAVBAR BELLOW START-->
@@ -112,7 +113,7 @@
                 </div>
 
                 <div class="flex-none hidden lg:block">
-                    <ul class="menu menu-horizontal lg:space-x-6 text-base">
+                    <ul class="menu menu-horizontal text-base lg:space-x-6">
 
                         <!--PROFIL DESA START-->
                         <li>
