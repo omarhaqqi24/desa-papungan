@@ -65,6 +65,7 @@ class BeritaController extends Controller
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul' => 'required',
             'isi' => 'required',
+            'isAccepted' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -85,6 +86,7 @@ class BeritaController extends Controller
             'foto' => $image->hashName(),
             'judul'  => $request->judul,
             'isi'  => $request->isi,
+            'isAccepted'  => $request->isAccepted,
         ]);
         $berita->save();
 
