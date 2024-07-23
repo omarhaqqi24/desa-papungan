@@ -33,9 +33,7 @@
         <div class="">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
         <!-- Tombol Edit-->
         <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan"
-            subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="wertyhjk" valueFoto="" />
-
-
+            subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{$data->data->penjelasan}}" valueFoto="{{$data->data->foto}}" />
 
 
 
@@ -55,7 +53,7 @@
         </div>
 
         <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="test1"
-            subJudulPenjelasan="test2" namaInputFoto='test3' valueTextarea="wertyhjk" valueFoto=""/>
+            subJudulPenjelasan="test2" namaInputFoto='test3' valueTextarea="{{$data->data->penjelasan}}" valueFoto="{{$data->data->foto}}"/>
 
 
     </div>
