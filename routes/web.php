@@ -32,4 +32,6 @@ Route::get('/peta-wilayah', function() {
     return view('peta-wilayah');
 });
 
-
+Route::get('/adminLogin', function () {
+    return view('adminLogin');
+});
