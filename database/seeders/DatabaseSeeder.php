@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::create([
-            'username' => 'papungan123',
-            'password' => Hash::make('papungan123')
+        $this->call([
+            BeritaSeeder::class,
+            JabatanSeeder::class,
+            PengumumanSeeder::class,
+            PerangkatDesaSeeder::class,
+            UserSeeder::class,
+            VisiMisiSeeder::class
         ]);
     }
 }
