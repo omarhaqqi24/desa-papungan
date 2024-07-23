@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DataDesaResource extends JsonResource
+class VisiMisiResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,8 @@ class DataDesaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'penjelasan' => $this->penjelasan,
-            'foto' => url('storage/data_desa/' . $this->foto),
+            'kategori' => $this->kategori,
+            'isi_poin' => $this->isi_poin,
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
         ];

@@ -11,7 +11,7 @@ use App\Http\Controllers\api\PariwisataController;
 use App\Http\Controllers\api\PengumumanController;
 use App\Http\Controllers\api\PerangkatDesaController;
 use App\Http\Controllers\api\UmkmController;
-use App\Http\Controllers\api\JabatanController;
+use App\Http\Controllers\api\VisiMisiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +35,7 @@ Route::get('/unauthorize', function () {
 
 Route::get('/perangkat-desa', [PerangkatDesaController::class, 'getAll']);
 Route::post('/perangkat-desa', [PerangkatDesaController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 Route::delete('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
@@ -43,7 +44,7 @@ Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->middlew
 Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/aspirasi', [AspirasiController::class, 'getAll'])->middleware('auth:sanctum');
-Route::post('/aspirasi', [AspirasiController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/aspirasi', [AspirasiController::class, 'store']);
 
 Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
 Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');
@@ -66,3 +67,7 @@ Route::get('/pariwisata', [PariwisataController::class, 'getAll']);
 Route::post('/pariwisata', [PariwisataController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/pariwisata/{id}', [PariwisataController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/v-misi', [VisiMisiController::class, 'getAll']);
+Route::put('/v-misi', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
+
