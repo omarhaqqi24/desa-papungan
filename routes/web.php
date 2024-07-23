@@ -24,3 +24,12 @@ Route::get('/umkm', function () {
 
 Route::get('/test',[PengumumanController::class,"index"]);
 
+Route::get('/peta-umkm', function() {
+    return view('peta-umkm');
+});
+
+Route::get('/peta-wilayah', function() {
+    return view('peta-wilayah');
+});
+
+
