@@ -35,6 +35,7 @@ Route::get('/unauthorize', function () {
 
 Route::get('/perangkat-desa', [PerangkatDesaController::class, 'getAll']);
 Route::post('/perangkat-desa', [PerangkatDesaController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 Route::delete('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
@@ -43,7 +44,7 @@ Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->middlew
 Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/aspirasi', [AspirasiController::class, 'getAll'])->middleware('auth:sanctum');
-Route::post('/aspirasi', [AspirasiController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/aspirasi', [AspirasiController::class, 'store']);
 
 Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
 Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');
