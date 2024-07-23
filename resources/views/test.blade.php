@@ -18,7 +18,6 @@
 <body class="mytheme font-jakarta antialiased  dark:text-white/50">
     <div class=" w-12 h-screen bg-primary container">
 
-
         <div class="drawer">
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
@@ -40,17 +39,14 @@
                 </ul>
                 <div class="flex items-center  p-4 bg-primary">
                     <img src="img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
-                    <div >Keluar</div>
+                    <div>Keluar</div>
                 </div>
             </div>
-                  
+
         </div>
-
-
 
     </div>
 </body>
-
 
 </html>
 
