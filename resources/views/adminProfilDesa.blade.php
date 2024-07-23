@@ -55,7 +55,7 @@
         </div>
 
         <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="test1"
-            subJudulPenjelasan="test2" namaInputFoto='test3' valueKonten="wertfgyhikl" />
+            subJudulPenjelasan="test2" namaInputFoto='test3' valueTextarea="wertyhjk" valueFoto=""/>
 
 
     </div>
