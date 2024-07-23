@@ -16,26 +16,41 @@
 </head>
 
 <body class="mytheme font-jakarta antialiased  dark:text-white/50">
-    <x-navbar />
-    <div class=" container mx-auto mt-36 space-y-10 px-5 md:px-0 min-h-screen">
+    <div class=" w-12 h-screen bg-primary container">
 
-        <x-table.table :headers="['judul', 'isi', 'createdAt']" jenisTabel="Template Tabel">
-            @php
-                $i = 1;
-            @endphp
-            @foreach ($data->data as $berita)
-                <tr class="border-b">
-                    <td class="p-2 text-left">{{ $i++ }}</td>
-                    <td class="p-2 text-left">{{ $berita->judul }}</td>
-                    <td class="p-2 text-left">{{ $berita->isi }}</td>
-                    <td class="p-2 text-left">{{ $berita->createdAt }}</td>
-                </tr>
-            @endforeach
-        </x-table.table>
 
+        <div class="drawer">
+            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-content">
+                <!-- Page content here -->
+                <label for="my-drawer" class="btn btn-primary drawer-button p-3">
+                    <img src="img/hamburgerLogo.svg" class="w-5 h-5">
+                </label>
+            </div>
+            <div class="drawer-side flex flex-col min-h-screen">
+                <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                <ul class="menu bg-primary font-medium text-lightText w-80 p-6 pt-10 flex-grow">
+                    <!-- Sidebar content here -->
+                    <li class="text-lg font-semibold pt-3">DASHBOARD</li>
+                    <li class="pt-3"><a>Profil Desa</a></li>
+                    <li class="pt-3"><a>Pemerintahan</a></li>
+                    <li class="pt-3"><a>Informasi</a></li>
+                    <li class="pt-3"><a>UMKM Desa</a></li>
+                    <li class="pt-3"><a>Pariwisata Desa</a></li>
+                </ul>
+                <div class="flex items-center  p-4 bg-primary">
+                    <img src="img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
+                    <div >Keluar</div>
+                </div>
+            </div>
+                  
+        </div>
+
+
+
+    </div>
 </body>
 
-<x-footer />
 
 </html>
 
