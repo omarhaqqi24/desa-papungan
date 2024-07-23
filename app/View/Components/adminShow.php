@@ -25,7 +25,13 @@ class adminEditButton extends Component
 
     public $subPenjelasan;
 
-    public function __construct($forValue, $nameTextarea, $nameInputPhoto, $judulPenjelasan, $subPenjelasan)
+    
+    public $valueTextarea;
+    
+
+    public $valueFoto;
+
+    public function __construct($forValue, $nameTextarea, $nameInputPhoto, $judulPenjelasan, $subPenjelasan, $valueTextarea, $valueFoto)
     {
         //
         $this->forValue = $forValue;
@@ -33,6 +39,8 @@ class adminEditButton extends Component
         $this->nameInputPhoto = $nameInputPhoto;
         $this->judulPenjelasan = $judulPenjelasan;
         $this->subPenjelasan = $subPenjelasan;
+        $this->valueTextarea = $valueTextarea;
+        $this->valueFoto = $valueFoto;
     }
 
     /**
@@ -40,6 +48,6 @@ class adminEditButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin-edit-button');
+        return view('components.admin-show');
     }
 }
