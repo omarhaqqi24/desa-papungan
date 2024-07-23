@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PengumumanController;
@@ -35,3 +36,5 @@ Route::get('/peta-wilayah', function() {
 Route::get('/adminLogin', function () {
     return view('adminLogin');
 });
+
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');

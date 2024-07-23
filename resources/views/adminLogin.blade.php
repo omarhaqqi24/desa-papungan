@@ -14,13 +14,16 @@
     @vite('resources/css/app.css')
     <style>
         #bgAdminLogin {
-          background-image: url('img/bgAdminLogin.png');
-          background-size: cover; /* Optional: covers the entire element */
-          background-position: center; /* Optional: centers the background image */
-          background-repeat: no-repeat; /* Optional: prevents repeating the background image */
+            background-image: url('img/bgAdminLogin.png');
+            background-size: cover;
+            /* Optional: covers the entire element */
+            background-position: center;
+            /* Optional: centers the background image */
+            background-repeat: no-repeat;
+            /* Optional: prevents repeating the background image */
         }
-      </style>
-      
+    </style>
+
 </head>
 
 <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50 ">
@@ -33,29 +36,38 @@
                 <div class="text-lg">Admin Login</div>
                 <div class="">lorem ipsum dkdfk dkfdfkk</div>
             </div>
-            <label class="form-control w-full max-w-xs mx-auto">
-                <div class="label">
-                    <span class="label-text">Username</span>
-                    <span class="label-text-alt">Top Right label</span>
-                </div>
-                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-                <div class="label">
-                    <span class="label-text-alt">Bottom Left label</span>
-                    <span class="label-text-alt">Bottom Right label</span>
-                </div>
-            </label>
+            <form action="{{route('auth.login')}}" method="POST">
+                @csrf
+                <label class="form-control w-full max-w-xs mx-auto">
+                    <div class="label">
+                        <span class="label-text">Username</span>
+                        <span class="label-text-alt">Top Right label</span>
+                    </div>
+                    <input name="username" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                    <div class="label">
+                        <span class="label-text-alt">Bottom Left label</span>
+                        <span class="label-text-alt">Bottom Right label</span>
+                    </div>
+                </label>
 
-            <label class="form-control w-full max-w-xs mx-auto">
-                <div class="label">
-                    <span class="label-text">Password</span>
-                    <span class="label-text-alt">Top Right label</span>
-                </div>
-                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-                <div class="label">
-                    <span class="label-text-alt">Bottom Left label</span>
-                    <span class="label-text-alt">Bottom Right label</span>
-                </div>
-            </label>
+                <label class="form-control w-full max-w-xs mx-auto">
+                    <div class="label">
+                        <span class="label-text">Password</span>
+                        <span class="label-text-alt">Top Right label</span>
+                    </div>
+                    <input name="password" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                    <div class="label">
+                        <span class="label-text-alt">Bottom Left label</span>
+                        <span class="label-text-alt">Bottom Right label</span>
+                    </div>
+                </label>
+                <label class="form-control w-full max-w-xs mx-auto">
+                    <button type="submit" class="bg-primary rounded-full py-4 text-white">Masuk</button>
+                </label>
+            </form>
+            @if ($success = Session::get('success'))
+                <h1>{{$success}}</h1>
+            @endif
         </div>
     </div>
 
