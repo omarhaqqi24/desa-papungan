@@ -43,11 +43,12 @@
                         <span class="label-text">Username</span>
                         <span class="label-text-alt">Top Right label</span>
                     </div>
-                    <input name="username" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-                    <div class="label">
-                        <span class="label-text-alt">Bottom Left label</span>
-                        <span class="label-text-alt">Bottom Right label</span>
-                    </div>
+                    <input name="username" type="text" placeholder="Type here" value="{{old('username')}}" class="input input-bordered w-full max-w-xs" />
+                    @if ($errors->has('username'))
+                        <div class="label">
+                            <span class="label-text-alt">{{$errors->first('username')}}</span>
+                        </div>   
+                    @endif
                 </label>
 
                 <label class="form-control w-full max-w-xs mx-auto">
@@ -56,10 +57,11 @@
                         <span class="label-text-alt">Top Right label</span>
                     </div>
                     <input name="password" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-                    <div class="label">
-                        <span class="label-text-alt">Bottom Left label</span>
-                        <span class="label-text-alt">Bottom Right label</span>
-                    </div>
+                    @if ($errors->has('password'))
+                        <div class="label">
+                            <span class="label-text-alt">{{$errors->first('password')}}</span>
+                        </div>   
+                    @endif
                 </label>
                 <label class="form-control w-full max-w-xs mx-auto">
                     <button type="submit" class="bg-primary rounded-full py-4 text-white">Masuk</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -21,15 +22,15 @@ class AuthController extends Controller
             $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/login", [
                 "headers" => ["Content-type" => "application/json"],
                 "body" => $jsonData
-            ]);   
-        } catch (BadResponseException $th) {
-            $response = $th->getResponse();
-            print_r(json_decode($response->getBody())->message->password[0]);
-            return;
-        }
-        
+            ]);
 
-        $resp = json_decode($response->getBody());
-        return redirect('/adminLogin')->with('success', $resp->message);
+            $result = json_decode($response->getBody());
+            Session::put('api-token', $result->data->token);
+            return redirect('/adminLogin')->with('success', $result->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+            return redirect('/adminLogin')->withErrors($result->message)->withInput($request->all());
+        }
     }
 }

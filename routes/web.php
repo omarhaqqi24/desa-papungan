@@ -39,6 +39,6 @@ Route::get('/adminLogin', function () {
 
 Route::get('/adminProfilDesa', function () {
     return view('adminProfilDesa');
-});
+})->middleware('checkToken');
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
