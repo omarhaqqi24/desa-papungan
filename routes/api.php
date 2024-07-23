@@ -70,3 +70,4 @@ Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->mid
 
 Route::get('/v-misi', [VisiMisiController::class, 'getAll']);
 Route::put('/v-misi', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
+
