@@ -35,3 +35,7 @@ Route::get('/peta-wilayah', function() {
 Route::get('/adminLogin', function () {
     return view('adminLogin');
 });
+
+Route::get('/adminProfilDesa', function () {
+    return view('adminProfilDesa');
+});
