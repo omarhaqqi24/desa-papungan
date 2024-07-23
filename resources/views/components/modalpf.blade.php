@@ -10,7 +10,7 @@
                             <span class="label-text font-semibold">{{ $judulPenjelasan }}</span>
                         </div>
                         <textarea name="{{ $namaInputTextarea }}" id="text-area-test" placeholder="Type here"
-                            class="input input-bordered w-full h-36 text-lg resize-none disabled:opacity-50"></textarea>
+                            class="input input-bordered w-full h-36 text-lg resize-none disabled:opacity-50">{{$valueTextarea}}</textarea>
                         <div class="flex-col justify-between w-full">
                             <div class="">{{ $subJudulPenjelasan }} </div>
                         </div>
@@ -22,7 +22,7 @@
                             <span class="label-text font-semibold">Foto</span>
                         </div>
                         <input name="{{ $namaInputFoto }}" id="file-input-test" type="file"
-                            class="file-input file-input-bordered w-full mb-2 disabled:opacity-50" />
+                            class="file-input file-input-bordered w-full mb-2 disabled:opacity-50" value="{{$valueFoto}}" />
                         <div class="flex-col justify-between w-full">
                             <div class="">* file png, jpeg, dan jpg</div>
                         </div>
