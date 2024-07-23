@@ -19,7 +19,12 @@ class UmkmController extends Controller
         $umkms = Umkm::paginate($perPage);
         $resources = (new UmkmCollection($umkms))->response()->getData();
 
-        return ApiResponseClass::sendResponse($resources, '', 200);
+        $jenises = JenisUmkm::select('jenis')->groupBy('jenis')->get();
+
+        return ApiResponseClass::sendResponse([
+            'list' => $jenises,
+            'resource' => $resources
+        ], 'Data UMKM berhasil diambil!', 200);
     }
 
     public function getById($id)
@@ -29,7 +34,7 @@ class UmkmController extends Controller
             return ApiResponseClass::sendError('Data UMKM tidak ditemukan!', 404);
         }
 
-        $resource = new UmkmResource($umkm->load('jenis_umkm', 'foto_umkm'));
+        $resource = new UmkmResource($umkm);
         return ApiResponseClass::sendResponse($resource, 'Data UMKM berhasil diambil!', 200);
     }
 
@@ -43,10 +48,10 @@ class UmkmController extends Controller
             'jam_buka' => 'required',
             'lat' => 'required',
             'long' => 'required',
-            'no_nib' => 'reuired',
-            'no_pirt' => 'reuired',
-            'no_halal' => 'reuired',
-            'no_bpom' => 'reuired'
+            'no_nib' => 'required',
+            'no_pirt' => 'required',
+            'no_halal' => 'required',
+            'no_bpom' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -89,10 +94,10 @@ class UmkmController extends Controller
             'jam_buka' => 'required',
             'lat' => 'required',
             'long' => 'required',
-            'no_nib' => 'reuired',
-            'no_pirt' => 'reuired',
-            'no_halal' => 'reuired',
-            'no_bpom' => 'reuired'
+            'no_nib' => 'required',
+            'no_pirt' => 'required',
+            'no_halal' => 'required',
+            'no_bpom' => 'required'
         ]);
 
         if ($validator->fails()) {

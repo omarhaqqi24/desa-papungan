@@ -29,7 +29,7 @@ class UmkmResource extends JsonResource
             'no_pirt' => $this->no_pirt,
             'no_halal' => $this->no_halal,
             'no_bpom' => $this->no_bpom,
-
+            'foto' => $this->foto_umkm,
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
         ];
