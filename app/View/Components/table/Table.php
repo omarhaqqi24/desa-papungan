@@ -13,13 +13,16 @@ class table extends Component
 
     public array $headers;
 
+    public $jenisTabel;
+
     /**
      * Create a new component instance.
      */
-    public function __construct($headers)
+    public function __construct($headers, $jenisTabel)
     {
         //
         $this->headers = $headers;
+        $this->jenisTabel = $jenisTabel;
     }
 
     /**
