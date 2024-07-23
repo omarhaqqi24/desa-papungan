@@ -14,6 +14,8 @@ class PengumumanSeeder extends Seeder
      */
     public function run(): void
     {
+        Pengumuman::truncate();
+
         $faker = Faker::create('id_ID');
         for ($i=0; $i < 20; $i++) { 
             Pengumuman::create([
