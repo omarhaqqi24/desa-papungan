@@ -37,4 +37,8 @@ Route::get('/adminLogin', function () {
     return view('adminLogin');
 });
 
+Route::get('/adminProfilDesa', function () {
+    return view('adminProfilDesa');
+});
+
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
