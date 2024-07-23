@@ -8,6 +8,7 @@ use App\Http\Resources\DataDesaResource;
 use App\Models\DataDesa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class DataDesaController extends Controller
 {
@@ -24,26 +25,29 @@ class DataDesaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'penjelasan' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+
         $data_desa = DataDesa::where('id', $id)->first();
         if (!$data_desa){
             return ApiResponseClass::sendError('Data tidak ditemukan', 404);
         }
 
-        if (!empty($request->penjelasan)){
-            $data_desa->update([
-                'penjelasan'  => $request->penjelasan,
-            ]);
-        }
+        $image = $request->file('foto');
+        $image->storeAs('public/data_desa', $image->hashName());
 
-        if ($request->hasFile('foto')) {
+        Storage::delete('public/data_desa/'.$data_desa->foto);
 
-            $image = $request->file('foto');
-            $image->storeAs('public/data_desa', $image->hashName());
-
-            Storage::delete('public/data_desa/'.$data_desa->foto);
-
-            $data_desa->update(['foto' => $image->hashName()]);
-        }
+        $data_desa->update([
+            'foto' => $image->hashName(),
+            'penjelasan' => $request->penjelasan
+        ]);
 
         $data_desa->save();
 

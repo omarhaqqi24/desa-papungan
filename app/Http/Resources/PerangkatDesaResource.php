@@ -18,8 +18,9 @@ class PerangkatDesaResource extends JsonResource
         return [
             'id' => $this->id,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan,
+            'jabatan' => $this->jabatan->nama,
             'foto' => url('storage/perangkat-desa/' . $this->foto),
+            'kontak' => $this->kontak,
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
         ];

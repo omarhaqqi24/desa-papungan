@@ -42,30 +42,29 @@ class PengumumanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pengumuman = Pengumuman::findOrFail($id);
+        $validator = FacadesValidator::make($request->all(), [
+            'judul' => 'required',
+            'isi' => 'required',
+            'isAccepted' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+
+        $pengumuman = Pengumuman::where('id', $id)->first();
         if (!$pengumuman) {
             return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
         }
 
-        if (!empty($request->judul)){
-            $pengumuman->update([
-                'judul'  => $request->judul,
-            ]);
-        }
-        if (!empty($request->isi)){
-            $pengumuman->update([
-                'isi'  => $request->isi,
-            ]);
-        }
-        if (!empty($request->isAccepted)){
-            $pengumuman->update([
-                'isAccepted'  => intval($request->isAccepted),
-            ]);
-        }
+        $pengumuman->update([
+            'judul'  => $request->judul,
+            'isi'  => $request->isi,
+            'isAccepted'  => intval($request->isAccepted)
+        ]);
         $pengumuman->save();
 
         $resource = new PengumumanResource($pengumuman);
-
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diperbarui!', 200);
     }
 
