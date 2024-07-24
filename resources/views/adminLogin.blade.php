@@ -36,18 +36,19 @@
                 <div class="text-lg">Admin Login</div>
                 <div class="">lorem ipsum dkdfk dkfdfkk</div>
             </div>
-            <form action="{{route('auth.login')}}" method="POST">
+            <form action="{{ route('auth.login') }}" method="POST">
                 @csrf
                 <label class="form-control w-full max-w-xs mx-auto">
                     <div class="label">
                         <span class="label-text">Username</span>
                         <span class="label-text-alt">Top Right label</span>
                     </div>
-                    <input name="username" type="text" placeholder="Type here" value="{{old('username')}}" class="input input-bordered w-full max-w-xs" />
+                    <input name="username" type="text" placeholder="Type here" value="{{ old('username') }}"
+                        class="input input-bordered w-full max-w-xs" />
                     @if ($errors->has('username'))
                         <div class="label">
-                            <span class="label-text-alt">{{$errors->first('username')}}</span>
-                        </div>   
+                            <span class="label-text-alt">{{ $errors->first('username') }}</span>
+                        </div>
                     @endif
                 </label>
 
@@ -56,11 +57,12 @@
                         <span class="label-text">Password</span>
                         <span class="label-text-alt">Top Right label</span>
                     </div>
-                    <input name="password" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                    <input name="password" type="text" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs" />
                     @if ($errors->has('password'))
                         <div class="label">
-                            <span class="label-text-alt">{{$errors->first('password')}}</span>
-                        </div>   
+                            <span class="label-text-alt">{{ $errors->first('password') }}</span>
+                        </div>
                     @endif
                 </label>
                 <label class="form-control w-full max-w-xs mx-auto">
@@ -68,7 +70,7 @@
                 </label>
             </form>
             @if ($success = Session::get('success'))
-                <h1>{{$success}}</h1>
+                <h1>{{ $success }}</h1>
             @endif
         </div>
     </div>

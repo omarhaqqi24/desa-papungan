@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    public function index() {
+        return view('adminLogin');
+    }
+
     public function login(Request $request)  {
         $client = new Client();
         $parameters = [

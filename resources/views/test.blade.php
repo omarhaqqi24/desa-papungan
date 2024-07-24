@@ -21,10 +21,5 @@
 
 </html>
 
-
 <!-- (bagian) Start -->
 <!-- (bagian) End -->
-
-
-
-
