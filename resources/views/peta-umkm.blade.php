@@ -139,33 +139,32 @@
         });
 
         // data dummy
-        const points = [{
-                lat: -8.095087,
-                lng: 112.204605,
-                text: '<img src="https://banggaikep.go.id/portal/wp-content/uploads/2024/03/jokowi-1-845x321.jpg" style="max-width: 200px"><h1>Ayda Opak Gambir</h1><h4>085604770211 (Bety Wahyuni)</h4><p>Opak gambir mek sepuluh ewu? mawurah cik!Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, totam officia eos dicta ullam fuga ut at eveniet tenetur debitis placeat, harum explicabo impedit architecto.Veniam nihil reiciendis libero sequi! Lorem ipsum, dolor sit amet consectetur adipisicing elit.Ipsa beatae placeat odio vel velit, fugit dicta laborum labore iste asperiores.Quo facere, magni similique id quasi doloremque sapiente assumenda magnam. Fuga quia delectus totam tenetur temporibus aperiam voluptate porro illum doloribus officiis quaerat, praesentium impedit cupiditate possimus id laboriosam quibusdam commodi nostrum sed odio minus consequatur repellat fugiat? Obcaecati, similique.</p> ',
-                title: "Ayda Opak Gambir",
-            },
-            {
-                lat: -8.111467,
-                lng: 112.197807,
-                text: "<h1>Aneska Camilan</h1><h4>Bu Titin</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus vitae felis a aliquam. Fusce in aliquam libero, quis feugiat enim. Quisque ex magna, laoreet vitae venenatis quis, sagittis fringilla urna. Nam dapibus eget augue in vestibulum. Pellentesque quis justo felis. Donec eget libero odio. Sed ut mi orci. Suspendisse potenti. Nulla rhoncus justo sed nibh eleifend laoreet. Integer aliquam varius lacus, eget vestibulum ex iaculis a. In hac habitasse platea dictumst. Mauris eget orci dictum, convallis turpis non, feugiat eros. Praesent tristique libero risus. Mauris laoreet vel eros non finibus. Nunc consectetur hendrerit quam, in iaculis libero consectetur non. Suspendisse at erat ut diam tincidunt semper ac id orci. Donec commodo ex sed efficitur gravida. Curabitur fringilla pulvinar orci quis mollis. Duis ultrices nisl at lorem facilisis sodales. Maecenas vestibulum mollis lacus, ut rhoncus ex volutpat vitae. Donec id placerat leo, id blandit ipsum. Morbi sit amet bibendum sem. Donec nisi libero, maximus vitae velit eget, pulvinar sollicitudin magna. Aliquam mi risus, tincidunt a pellentesque sed, dapibus sed mauris. Vivamus malesuada accumsan molestie. Suspendisse pulvinar odio a quam mattis semper. Nam auctor sapien vitae tellus hendrerit, vel lobortis sapien faucibus. Praesent consequat ullamcorper est. Donec dignissim mattis felis vel rutrum. Aenean pretium nunc quis dolor ultrices aliquam. Quisque faucibus arcu suscipit ante dapibus, nec dignissim orci gravida. Quisque sit amet diam ante. Integer scelerisque magna sed luctus dignissim. Proin eget magna semper, laoreet massa eget, cursus ligula. Integer non nisl velit. Nunc ut ante libero. Aliquam molestie aliquet augue non venenatis. Sed malesuada lobortis mi sed sollicitudin Nam vulputate iaculis mi. Maecenas quis neque felis. Proin lobortis lacus neque. Suspendisse potenti. Nunc sed enim eleifend ex ultrices luctus. Nam ut metus ut lacus tempus mattis nec eu ex. Proin eu neque condimentum, rhoncus diam id, vestibulum metus. Nunc feugiat mi quis neque aliquam viverra. Duis laoreet velit justo, eu imperdiet enim sagittis id. Praesent efficitur a est hendrerit rutrum. Praesent sit amet imperdiet mi.</p>",
-                title: "Aneska Camilan",
-            },
-        ];
+        const points = JSON.parse('<?= json_encode($data->data->resource->resource) ?>')
+        console.log(points)
 
         polygon.addTo(map);
 
-        // create the marker for each data in the data dummy array
+        // create the marker for each data in the data 
         points.map(({
+            id,
+            jenisProduk,
+            foto,
+            alamat,
             lat,
-            lng,
-            text,
-            title
+            long,
+            deskripsi,
+            nama,
+            kontak,
+            jamBuka,
+            pirt,
+            halal,
+            nib,
+            bpom
         }) => {
             // add the marker to the map
-            const marker = L.marker([lat, lng], {
+            const marker = L.marker([lat, long], {
                 icon: icon,
-                titl: title,
+                nama: nama,
             }).addTo(map);
 
             // put the marker to the markers array
@@ -176,7 +175,9 @@
                 pane: "fixed",
                 className: "popup-fixed",
                 autoPan: false,
-            }).setContent(text);
+            }).setContent(
+                
+            );
 
             // add event listener to the marker
             marker.bindPopup(popup).on("click", fitBoundsPadding);
@@ -251,7 +252,7 @@
         setInterval(function() {
             if (map.getZoom() >= 16) {
                 for (const marker of markers) {
-                    marker.bindTooltip(marker.options.titl, {
+                    marker.bindTooltip(marker.options.nama, {
                         permanent: true,
                         direction: "bottom",
                         offset: L.point(0, 0),
@@ -267,3 +268,4 @@
 </body>
 
 </html>
+
