@@ -46,7 +46,6 @@
         <x-admin-edit-button forValue="PD-TK" judulPenjelasan="Penjelasan"
             subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" />
 
-
         <!--Template modal -->
         <div class="flex justify-end px-5 mt-4">
             <!-- You can open the modal using ID.showModal() method -->
