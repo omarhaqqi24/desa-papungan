@@ -50,7 +50,7 @@
         <div class="flex justify-end px-5 mt-4">
             <!-- You can open the modal using ID.showModal() method -->
             <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded flex items-center"
-                onclick="EDITDLU.showModal()">
+                onclick="mtest.showModal()">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="mr-2">
                     <path
@@ -60,8 +60,7 @@
                 Edit
             </button>
         </div>
-
-        <x-modalpf judul="test" idModal="EDITDLU" judulPenjelasan="test" namaInputTextarea="test1"
+        <x-modalpf judul="test" idModal="mtest" judulPenjelasan="test" namaInputTextarea="test1"
             subJudulPenjelasan="test2" namaInputFoto='test3' />
     </div>
 

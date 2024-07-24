@@ -24,5 +24,10 @@ class DataDesaSeeder extends Seeder
                 'penjelasan' => $faker->paragraph(4)
             ]);
         }
+
+        DataDesa::create([
+            'foto' => null,
+            'penjelasan' => 'link here'
+        ]);
     }
 }
