@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\PerangkatDesaController;
@@ -42,3 +43,6 @@ Route::get('/adminProfilDesa', function () {
 })->middleware('checkToken');
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+
+
+Route::get('/adminProfilDesa',[ProfilDesaController::class,"index"]);
