@@ -19,6 +19,9 @@ class AspirasiResource extends JsonResource
             'id' => $this->id,
             'judul' => $this->judul,
             'isi' => $this->isi,
+            'penulis' => $this->penulis,
+            'isChecked' => intval($this->isChecked),
+            'foto' => url('storage/aspirasi/' . $this->foto),
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
         ];
