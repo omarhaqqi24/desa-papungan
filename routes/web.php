@@ -4,7 +4,7 @@ use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\PerangkatDesaController;
-use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\admin\InformasiController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +24,9 @@ Route::get('/umkm', function () {
     return view('umkm');
 });
 
-Route::get('/test',[PengumumanController::class,"index"]);
+Route::get('/test', [InformasiController::class, 'index']);
+
+
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');

@@ -29,7 +29,12 @@ class Modalpf extends Component
 
     public $valueFoto;
 
-    public function __construct($judul, $judulPenjelasan, $namaInputTextarea, $subJudulPenjelasan, $namaInputFoto, $idModal, $valueTextarea, $valueFoto)
+    public $actionUrl;
+    
+
+    public $method;
+
+    public function __construct($judul, $judulPenjelasan, $namaInputTextarea, $subJudulPenjelasan, $namaInputFoto, $idModal, $valueTextarea, $valueFoto, $actionUrl, $method)
     {
         //
         $this->judul = $judul;
@@ -40,6 +45,8 @@ class Modalpf extends Component
         $this->idModal = $idModal;
         $this->valueTextarea = $valueTextarea;
         $this->valueFoto = $valueFoto;
+        $this->actionUrl = $actionUrl;
+        $this->method = $method;
     }
 
     /**
