@@ -23,7 +23,7 @@ class UmkmSeeder extends Seeder
 
         $faker = Faker::create('id_ID');
 
-        for ($i=0; $i < 10; $i++){
+        for ($i=0; $i < 7; $i++){
             $umkm = Umkm::create([
                 'nama' => $faker->name(),
                 'deskripsi' => $faker->sentence(3),

@@ -15,9 +15,8 @@ class UmkmController extends Controller
 {
     public function getAll(Request $request)
     {
-        $perPage = intval($request->query('size'));
-        $umkms = Umkm::paginate($perPage);
-        $resources = (new UmkmCollection($umkms))->response()->getData();
+        $umkms = Umkm::all();
+        $resources = (new UmkmCollection($umkms));
 
         $jenises = JenisUmkm::select('jenis')->groupBy('jenis')->get();
 
