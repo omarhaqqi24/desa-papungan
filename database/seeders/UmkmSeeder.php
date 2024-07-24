@@ -16,6 +16,11 @@ class UmkmSeeder extends Seeder
      */
     public function run(): void
     {
+        function generateRandomFloat($min, $max)
+        {
+            return $min + mt_rand() / mt_getrandmax() * ($max - $min);
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Umkm::truncate();
         JenisUmkm::truncate();
@@ -30,8 +35,8 @@ class UmkmSeeder extends Seeder
                 'alamat' => $faker->address(),
                 'kontak' => $faker->phoneNumber(),
                 'jam_buka' => __($faker->time()." - ".$faker->time()),
-                'lat' => $faker->randomFloat(),
-                'long' => $faker->randomFloat(),
+                'lat' => generateRandomFloat(-8.110000, -8.090000),
+                'long' => generateRandomFloat(112.186000, 112.204000),
                 'no_nib' => $faker->phoneNumber(),
                 'no_pirt' => $faker->phoneNumber(),
                 'no_halal' => $faker->phoneNumber(),
