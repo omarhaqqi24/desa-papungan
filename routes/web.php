@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\ProfilDesaController;
+use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\PerangkatDesaController;
@@ -37,4 +38,8 @@ Route::get('/peta-wilayah', function() {
 Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])->middleware('checkToken');
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/login/index', [AuthController::class, 'index'])->name('auth.index');
+Route::get('/login/index', [AuthController::class, 'index'])->name('auth.index')
+Route::get('/adminProfilDesa',[ProfilDesaController::class,"index"]);
+
+
+Route::get('/adminProfilDesa',[ProfilDesaController::class,"index"]);
