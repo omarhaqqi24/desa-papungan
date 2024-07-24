@@ -36,26 +36,43 @@
 
             <img src="{{ $data1->data->foto }}" alt="balai desa Papungan" class="rounded-lg w-full">
 
-            <div class="text-sm font-normal">{{ $data1->data->penjelasan }}</div>
+            <div class="text-sm font-jakarta">{{ $data1->data->penjelasan }}</div>
 
             <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Visi dan Misi"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
 
-            <div class="text-sm font-normal"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum
-                non erat sed sollicitudin. Nunc id nibh vel risus luctus eleifend. Sed lobortis, massa quis iaculis
-                viverra, erat velit tincidunt lacus, vitae maximus massa risus ac odio. Nulla ornare varius interdum.
-                Integer in erat enim. Morbi ultrices iaculis lobortis. Suspendisse gravida finibus odio, id varius magna
-                cursus vitae. Curabitur in diam id nulla gravida tristique vel et enim. Etiam non sodales augue. Integer
-                quam tellus, suscipit nec pulvinar in, euismod eu mauris. Fusce tristique quis eros et cursus.
-                Vestibulum sit amet neque porttitor lectus elementum euismod quis at leo. Praesent a mollis ante. Ut ac
-                sem aliquet, fermentum neque id, convallis sapien. Mauris luctus consectetur diam quis elementum. Nulla
-                in laoreet eros, vel tristique risus.</div>
+            <div class="container flex flex-col bg-white py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3">
+                <div class="w-full flex justify-center items-center">
+                    <div class="text-4xl font-semibold text-center font-jakarta">VISI</div>
+                </div>
+                <div class="text-base font-normal text-center px-4 md:px-8 lg:px-16 xl:px-80 pb-10 font-jakarta">"{{$data3->data[0]->isi_poin}}"</div>
+            </div>
+
+            <div class="container flex flex-col bg-white py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3">
+                <div class="w-full flex justify-center items-center">
+                    <div class="text-4xl font-semibold text-center font-jakarta">MISI</div>
+                </div>
+                
+                <ul class="list-disc pl-5">
+                    @for($i = 2; $i <= count($data3->data); $i++)
+                        <li class="text-base font-normal px-4 md:px-8 lg:px-16 xl:px-80 pb-10 text-justify font-jakarta">
+                            {{ $data3->data[$i - 1]->isi_poin }}
+                        </li>
+                    @endfor
+                </ul>
+            </div>
+
             <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
 
             <div class="text-sm font-normal"> {{ $data2->data->penjelasan }}</div>
 
         </div>
+    </div>
+
+            
+
+
     </div>
 </body>
 <x-footer />

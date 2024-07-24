@@ -32,4 +32,11 @@ Route::get('/peta-wilayah', function() {
     return view('peta-wilayah');
 });
 
+Route::get('/informasi', function() {
+    return view('informasi');
+});
+
+
+
+
 

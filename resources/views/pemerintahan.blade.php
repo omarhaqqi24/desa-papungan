@@ -29,18 +29,15 @@
 
     <div class=" px-5 md:px-0 mt-10">
         <div class="container items-center mx-auto space-y-10 text-justify">
-            <x-headerArtikel subJudul="PEMERINTAHAN " judul="Struktur Organisasi" />
+            <x-headerArtikel subJudul="PENJELASAN" judul="Struktur Organisasi" />
             <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis
                 omnis, inventore accusantium cum quod maiores sint impedit asperiores veritatis similique modi corrupti
                 ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
-            <img src="img/unkown.png" alt="unknown" class="rounded-lg w-full">
+            <img src="{{$struktur->data->foto}}" alt="struktur desa" class="rounded-lg w-full">
 
-            <div class="text-sm font-normal">Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
-                libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo
-                efficitur neque. Ut diam quam, semper iaculis condimentum ac, vestibulum eu nisl.</div>
+            <div class="text-sm font-normal">{{$struktur->data->penjelasan}}</div>
 
-            <x-cardSubjudul jenisJudul="PEMERINTAHAN" judul="Perangkat Desa"
+            <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
                 <!-- Card 1 BLOM FIX - PERLU DISESUAIKAN -->
