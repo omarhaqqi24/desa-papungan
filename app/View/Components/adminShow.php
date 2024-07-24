@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class adminEditButton extends Component
+class adminShow extends Component
 {
     
     
@@ -30,6 +30,8 @@ class adminEditButton extends Component
     
 
     public $valueFoto;
+
+
 
     public function __construct($forValue, $nameTextarea, $nameInputPhoto, $judulPenjelasan, $subPenjelasan, $valueTextarea, $valueFoto)
     {

@@ -5,7 +5,7 @@
         <div class="drawer-content">
             <!-- Page content here -->
             <label for="my-drawer" class="btn btn-primary drawer-button p-3">
-                <img src="img/hamburgerLogo.svg" class="w-5 h-5">
+                <img src="/img/hamburgerLogo.svg" class="w-5 h-5">
             </label>
         </div>
         <div class="drawer-side">
@@ -22,7 +22,7 @@
                 </ul>
                 <button
                     class="flex items-center  text-lightText p-4 bg-primary hover:bg-blue-900  transition duration-300">
-                    <img src="img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
+                    <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
                     <div class="">Keluar</div>
                 </button>
             </div>
@@ -33,6 +33,6 @@
     <!-- Sidebar content -->
     <button
         class="flex items-center text-lightText p-4 bg-primary hover:bg-blue-900 transition duration-300">
-        <img src="img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
+        <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
     </button>
 </div>
