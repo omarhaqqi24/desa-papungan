@@ -25,42 +25,76 @@
 
     <div class="pl-20 mt-5 space-y-4">
         <div class="w-1/2 flex items-center">
-            <div class="font-medium px-4">Kenali Desa Papungan</div>
+            <div class="font-medium px-6">Kenali Desa Papungan</div>
             <div class="flex-grow border-b-2 border-gray-500"></div>
         </div>
 
-        <div class="text-3xl font-semibold text-darkText">Tentang Kami</div>
-        <div class="">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
+        <div>
+            <div class="text-3xl px-6 font-semibold text-darkText">Tentang Kami</div>
+            <div class="px-6 py-2 text-gray-500">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
+            @if ($success = Session::get('success'))
+                <h1>{{ $success }}</h1>
+            @endif
+            @if ($errors->any())
+                <h1>{{ $errors }}</h1>
+            @endif
+            <!-- Tombol Edit-->
+            <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan" subPenjelasan="(Penjelasan profil organisasi desa)"
+                nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{ $data->data->penjelasan }}"
+                valueFoto="{{ $data->data->foto }}" />
 
-        @if ($success = Session::get('success'))
-            <h1>{{ $success }}</h1>
-        @endif
-        @if ($errors->any())
-            <h1>{{ $errors }}</h1>
-        @endif
-        <!-- Tombol Edit-->
-        <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan" subPenjelasan="(Penjelasan profil organisasi desa)"
-            nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{ $data->data->penjelasan }}"
-            valueFoto="{{ $data->data->foto }}" />
+            <div class="flex justify-end px-5 mt-4">
+                <!-- You can open the modal using ID.showModal() method -->
+                <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
+                    onclick="g.showModal()">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="mr-2">
+                        <path
+                            d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
+                            fill="white" />
+                    </svg>
+                    Edit
+                </button>
+            </div>
 
-        <div class="flex justify-end px-5 mt-4">
-            <!-- You can open the modal using ID.showModal() method -->
-            <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded flex items-center"
-                onclick="g.showModal()">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    class="mr-2">
-                    <path
-                        d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
-                        fill="white" />
-                </svg>
-                Edit
-            </button>
+            <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="penjelasan"
+                subJudulPenjelasan="test2" namaInputFoto='foto' valueTextarea="{{$data->data->penjelasan}}"
+                valueFoto="{{$data->data->foto}}" actionUrl="{{route('data-desa.update')}}" formMethod="PUT"/>
         </div>
 
-        <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="penjelasan"
-            subJudulPenjelasan="test2" namaInputFoto='foto' valueTextarea="{{$data->data->penjelasan}}"
-            valueFoto="{{$data->data->foto}}" actionUrl="{{route('data-desa.update')}}" formMethod="PUT"/>
+        <div>
+            <div class="text-3xl px-6 font-semibold text-darkText">Visi dan Misi</div>
+            <div class="px-6 py-2 text-gray-500">Berikut adalah Visi dan Misi yang ditampilkan</div>
+            @if ($success = Session::get('success'))
+                <h1>{{ $success }}</h1>
+            @endif
+            @if ($errors->any())
+                <h1>{{ $errors }}</h1>
+            @endif
+            <!-- Tombol Edit-->
+            <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan" subPenjelasan="(Penjelasan visi organisasi desa)"
+                nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{ $data->data->penjelasan }}"
+                valueFoto="{{ $data->data->foto }}" />
 
+            <div class="flex justify-end px-5 mt-4">
+                <!-- You can open the modal using ID.showModal() method -->
+                <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
+                    onclick="g.showModal()">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="mr-2">
+                        <path
+                            d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
+                            fill="white" />
+                    </svg>
+                    Edit
+                </button>
+            </div>
+
+            <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="penjelasan"
+                subJudulPenjelasan="test2" namaInputFoto='foto' valueTextarea="{{$data->data->penjelasan}}"
+                valueFoto="{{$data->data->foto}}" actionUrl="{{route('data-desa.update')}}" formMethod="PUT"/>
+        </div>
+        
     </div>
 </body>
 
