@@ -42,7 +42,6 @@
             @endforeach
         </x-table.table>
 
-
         <!--Template Tombol Edit-->
         <x-admin-edit-button forValue="PD-TK" judulPenjelasan="Penjelasan"
             subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" />
