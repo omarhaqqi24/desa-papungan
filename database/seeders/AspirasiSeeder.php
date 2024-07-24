@@ -2,23 +2,23 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pengumuman;
+use App\Models\Aspirasi;
+use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
-class PengumumanSeeder extends Seeder
+class AspirasiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Pengumuman::truncate();
+        Aspirasi::truncate();
 
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 20; $i++) { 
-            Pengumuman::create([
+        for ($i=0; $i < 10; $i++) { 
+            Aspirasi::create([
                 'judul' => $faker->sentence(),
                 'isi' => $faker->paragraph(5),
             ]);

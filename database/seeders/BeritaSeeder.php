@@ -16,6 +16,8 @@ class BeritaSeeder extends Seeder
      */
     public function run(): void
     {
+        Berita::truncate();
+
         $faker = Faker::create('id_ID');
         for ($i=0; $i < 20; $i++) { 
             Berita::create([
