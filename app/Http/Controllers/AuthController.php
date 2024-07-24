@@ -30,11 +30,11 @@ class AuthController extends Controller
 
             $result = json_decode($response->getBody());
             Session::put('api-token', $result->data->token);
-            return redirect('/adminLogin')->with('success', $result->message);
+            return redirect()->route('data-desa.index');
         } catch (BadResponseException $e) {
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
-            return redirect('/adminLogin')->withErrors($result->message)->withInput($request->all());
+            return redirect()->route('auth.index')->withErrors($result->message)->withInput($request->all());
         }
     }
 }
