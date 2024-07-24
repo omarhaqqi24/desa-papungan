@@ -34,11 +34,13 @@ Route::get('/peta-wilayah', function() {
     return view('peta-wilayah');
 })->name('peta-wilayah');
 
-Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])->middleware('checkToken');
+Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('data-desa.index');
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/login/index', [AuthController::class, 'index'])->name('auth.index');
 
-Route::get('/adminProfilDesa',[ProfilDesaController::class,"index"]);
-
 Route::get('peta-umkm',[PetaUmkmController::class, 'index']);
+// Route::get('/adminProfilDesa',[ProfilDesaController::class,"index"])->name('data-desa.index');
+Route::put('/admin/profil-desa', [ProfilDesaController::class, 'update'])->name('data-desa.update');

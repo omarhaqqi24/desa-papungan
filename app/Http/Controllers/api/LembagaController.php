@@ -14,9 +14,8 @@ class LembagaController extends Controller
 {
     public function getAll(Request $request)
     {
-        $perPage = intval($request->query('size'));
-        $lembagas = Lembaga::paginate($perPage);
-        $resources = (new LembagaCollection($lembagas))->response()->getData();
+        $lembagas = Lembaga::orderBy('nama', 'ASC')->get();
+        $resources = (new LembagaCollection($lembagas));
 
         return ApiResponseClass::sendResponse($resources, 'Data lembaga berhasil diambil!', 200);
     }

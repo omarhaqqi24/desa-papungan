@@ -32,12 +32,16 @@
         <div class="text-3xl font-semibold text-darkText">Tentang Kami</div>
         <div class="">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
 
+        @if ($success = Session::get('success'))
+            <h1>{{ $success }}</h1>
+        @endif
+        @if ($errors->any())
+            <h1>{{ $errors }}</h1>
+        @endif
         <!-- Tombol Edit-->
-        <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan"
-            subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{$data->data->penjelasan}}" valueFoto="{{$data->data->foto}}" />
-
-
-
+        <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan" subPenjelasan="(Penjelasan profil organisasi desa)"
+            nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{ $data->data->penjelasan }}"
+            valueFoto="{{ $data->data->foto }}" />
 
         <div class="flex justify-end px-5 mt-4">
             <!-- You can open the modal using ID.showModal() method -->
@@ -53,9 +57,9 @@
             </button>
         </div>
 
-        <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="test1"
-            subJudulPenjelasan="test2" namaInputFoto='test3' valueTextarea="{{$data->data->penjelasan}}" valueFoto="{{$data->data->foto}}"/>
-
+        <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="penjelasan"
+            subJudulPenjelasan="test2" namaInputFoto='foto' valueTextarea="{{$data->data->penjelasan}}"
+            valueFoto="{{$data->data->foto}}" actionUrl="{{route('data-desa.update')}}" formMethod="PUT"/>
 
     </div>
 </body>
