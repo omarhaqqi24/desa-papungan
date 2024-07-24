@@ -32,11 +32,11 @@ class ProfilDesaController extends Controller
                     'Authorization' => 'Bearer ' . $token,
                 ],
                 'multipart' => [
-                    ...(!empty($image) ? [
+                    [
                         'name'     => 'foto',
                         'contents' => fopen($image->getPathname(), 'r'),
                         'filename' => $image->getClientOriginalName(),
-                    ] : []),
+                    ],
                     [
                         'name'     => 'penjelasan',
                         'contents' => $request->penjelasan,

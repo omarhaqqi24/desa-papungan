@@ -35,6 +35,9 @@
         @if ($success = Session::get('success'))
             <h1>{{ $success }}</h1>
         @endif
+        @if ($errors->any())
+            <h1>{{ $errors }}</h1>
+        @endif
         <!-- Tombol Edit-->
         <x-admin-show forValue="PD-01" judulPenjelasan="Penjelasan" subPenjelasan="(Penjelasan profil organisasi desa)"
             nameTextarea="namaInput" nameInputPhoto="namaInput" valueTextarea="{{ $data->data->penjelasan }}"
@@ -55,8 +58,8 @@
         </div>
 
         <x-modalpf judul="test" idModal="g" judulPenjelasan="test" namaInputTextarea="penjelasan"
-            subJudulPenjelasan="test2" namaInputFoto='foto' valueTextarea="{{ $data->data->penjelasan }}"
-            valueFoto="{{ $data->data->foto }}" />
+            subJudulPenjelasan="test2" namaInputFoto='foto' valueTextarea="{{$data->data->penjelasan}}"
+            valueFoto="{{$data->data->foto}}" actionUrl="{{route('data-desa.update')}}" formMethod="PUT"/>
 
     </div>
 </body>

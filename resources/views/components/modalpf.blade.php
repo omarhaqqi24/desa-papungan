@@ -2,10 +2,9 @@
     <div class="modal-box w-11/12 max-w-5xl">
         <h3 class="text-lg font-bold py-4">{{ $judul }}</h3>
 
-        <form id="form-{{ $idModal }}" method="POST" action="{{ $actionUrl }}">
+        <form id="form-{{ $idModal }}" method="POST" action="{{ $actionUrl }}" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="_method" id="form-method-{{ $idModal }}" value="POST">
-            
+            @method("PUT")
             <div class="form-component w-full mx-auto">
                 <label class="form-control w-full px-5 flex flex-col">
                     <div class="label mb-1">
