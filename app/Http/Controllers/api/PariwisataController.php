@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Validator;
 class PariwisataController extends Controller
 {
     public function getAll(Request $request){
-        $perPage = intval($request->query('size'));
-        $pariwisatas = Pariwisata::paginate($perPage);
-        $resources = (new PariwisataCollection($pariwisatas))->response()->getData();
+        $pariwisatas = Pariwisata::all();
+        $resources = (new PariwisataCollection($pariwisatas));
 
         return ApiResponseClass::sendResponse($resources, '', 200);
     }
