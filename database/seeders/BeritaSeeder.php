@@ -19,7 +19,7 @@ class BeritaSeeder extends Seeder
         Berita::truncate();
 
         $faker = Faker::create('id_ID');
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 14; $i++) { 
             Berita::create([
                 'judul' => $faker->sentence(),
                 'isi' => $faker->paragraph(5),

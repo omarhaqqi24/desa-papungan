@@ -3,14 +3,13 @@
 use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataDesaController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PengumumanController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [LandingPageController::class,'index']);
 
 Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
@@ -32,7 +31,7 @@ Route::get('/peta-umkm', function() {
 
 Route::get('/peta-wilayah', function() {
     return view('peta-wilayah');
-});
+})->name('peta-wilayah');
 
 Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
     ->middleware('checkToken')
