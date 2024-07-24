@@ -32,28 +32,13 @@
         <div class="text-3xl font-semibold text-darkText">Tentang Kami</div>
         <div class="">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
 
-
+        <!-- Tombol Edit-->
+        <x-admin-edit-button forValue="PD-01" judulPenjelasan="Penjelasan"
+            subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" />
 
         <!-- Tombol Edit-->
-        <x-admin-edit-button
-         forValue="PD-01"
-         judulPenjelasan="Penjelasan"
-         subPenjelasan="(Penjelasan profil organisasi desa)"
-         nameTextarea="namaInput"
-         nameInputPhoto="namaInput"
-        />
-
-                <!-- Tombol Edit-->
-                <x-admin-edit-button
-                forValue="PD-02"
-                judulPenjelasan="Penjelasan"
-                subPenjelasan="(Penjelasan profil organisasi desa)"
-                nameTextarea="namaInput"
-                nameInputPhoto="namaInput"
-               />
-
-
-
+        <x-admin-edit-button forValue="PD-02" judulPenjelasan="Penjelasan"
+            subPenjelasan="(Penjelasan profil organisasi desa)" nameTextarea="namaInput" nameInputPhoto="namaInput" />
 
 </body>
 
