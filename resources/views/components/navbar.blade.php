@@ -3,7 +3,7 @@
     <nav class="w-screen text-lightText flex flex-col fixed bg-base-100 top-0 z-50 shadow-md">
         <div class="w-screen bg-primary flex">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
-                <div class="flex gap-2">
+                <div class="flex gap-2 px-4">
                     <div class="p-1 justify-start items-center gap-2 flex border-r-2 border-base-100">
                         <img src="img/phoneLogo.svg" alt="phoneLogo" class="w-4 h-4 relative ">
                         <div class="px-2 text-xs font-medium font-jakarta ">(0342) 814031</div>
@@ -23,7 +23,7 @@
         <!--NAVBAR TOP END-->
 
         <!--NAVBAR BELLOW START-->
-        <div class="w-screen flex shadow-lg text-black">
+        <div class=" pl-4 w-screen flex shadow-lg text-black">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
                 <div class="flex gap-2 text-left">
                     <img src="img/logokab.png" alt="papunganLogo" class="w-14 h-14">
