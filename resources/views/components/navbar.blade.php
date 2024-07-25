@@ -31,16 +31,17 @@
                         <div class="text-2xl font-semibold font-jakarta">
                             Papungan
                         </div>
-                        <div class="text-xs font-medium font-jakarta whitespace-nowrap overflow-hidden text-ellipsis inline-block">
+                        <div
+                            class="text-xs font-medium font-jakarta whitespace-nowrap overflow-hidden text-ellipsis inline-block">
                             Portal Resmi Desa Papungan
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <button id="mobile-menu-button"
                     class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:opacity-70 transition duration-300 lg:hidden">
-                    <img src="img/hamburgerLogo.svg" class="w-6 h-6">
+                    <img src="img/hamburgerLogo.svg" class="w-6 h-6"> 
                 </button>
 
                 <!-- Mobile Menu -->
@@ -248,3 +249,4 @@
         });
     </script>
 </div>
+
