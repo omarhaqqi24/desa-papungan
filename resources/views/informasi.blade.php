@@ -20,6 +20,9 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
+
+         <!-- pengumuman-->
+        <div id="pengumuman"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Informasi Seputar Desa Papungan</div>
             <div class="text-sm font-normal">Home / Profil Desa</div>
@@ -42,10 +45,12 @@
                     </div>
                 @endforeach
 
+                    <!-- berita-->
+                <div id="berita"></div>
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
-                @foreach ($berita->data->resource as $item)
+                @foreach ($berita->data as $item)
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -62,6 +67,8 @@
                     </div>
                 @endforeach
 
+                    <!-- aspirasi-->
+                <div id="aspirasi"></div>
                 <div class=" space-y-2">
                     <div class="flex items-center gap-2 text-blue-600 w- md:w-1/2 lg:w-1/4">
                         <div class="text-xl font-medium font-jakarta">FORMULIR</div>
