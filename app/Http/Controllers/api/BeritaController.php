@@ -15,13 +15,15 @@ class BeritaController extends Controller
 {
     public function getAll(Request $request) 
     {
-        if (!empty($request->judul)){
-            $beritas = Berita::where('judul', 'LIKE', "%{$request->judul}%")
-                ->orderBy('created_at', 'DESC')
-                ->get();
-        } else {
-            $beritas = Berita::orderBy('created_at', 'DESC')->get();
+        $beritas = Berita::orderBy('created_at', 'DESC');
+
+        if ($request->pub == '1'){
+            $beritas = $beritas->where('isAccepted', 1);    
         }
+        if (!empty($request->judul)){
+            $beritas = $beritas->where('judul', 'LIKE', "%{$request->judul}%");
+        }
+        $beritas = $beritas->get();
 
         $resources = (new BeritaCollection($beritas));
         return ApiResponseClass::sendResponse($resources, 'Data berita berhasil diambil!', 200);

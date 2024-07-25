@@ -1,22 +1,22 @@
 <footer class="flex-row  bg-primary mt-10">
     <div class="footer  text-lightText p-10">
         <aside>
-            <div class="flex gap-3">
+            <a class="flex gap-3 btn w-fit h-fit text-left pl-0 bg-transparent text-white border-0 hover:bg-blue-900" href="{{route('landingPage.index')}}">
                 <img src="img/logokab.png" alt="lambang" class=" w-14 h-14">
                 <div class="">
                     <div class="text-2xl font-bold">Papungan</div>
                     <div class="text-xs font-medium">Portal Resmi Desa Papungan</div>
                 </div>
-            </div>
+            </a>
             <div class=" mt-5 md:mt-0 max-w-80 text-justify">“Gotong – royong membangun desa Papungan sebagai kawasan agropolitan, Desa yang jujur, transparan, adil, sejahtera, berdaya saing, mandiri, religious dan berbudaya” </div>
         </aside>
         <nav class="font-medium">
             <h6 class="footer-title font-semibold">Tautan</h6>
-            <a class="link link-hover">Profil Desa</a>
-            <a class="link link-hover">Pemerintahan</a>
-            <a class="link link-hover">Informasi</a>
-            <a class="link link-hover">UMKM Desa</a>
-            <a class="link link-hover">Pariwisata Desa</a>
+            <a class="link link-hover" href="{{ route('profilDesa.index') }}">Profil Desa</a>
+            <a class="link link-hover" href="{{route('pemerintahan.index')}}">Pemerintahan</a>
+            <a class="link link-hover" href="{{route('informasi.index')}}">Informasi</a>
+            <a class="link link-hover" href="{{route('umkm.index')}}">UMKM Desa</a>
+            <a class="link link-hover" href="{{route('pariwisata.index')}}">Pariwisata Desa</a>
         </nav>
         <ul class="font-medium">
             <h6 class="footer-title font-semibold">Kontak Kami</h6>
