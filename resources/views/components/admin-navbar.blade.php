@@ -10,7 +10,7 @@
         </div>
         <div class="drawer-side">
             <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-            <div class="flex flex-col min-h-screen">
+            <div class="flex flex-col min-h-screen justify-between">
                 <ul class="menu bg-secondary font-medium text-lightText w-80 p-6 pt-10 flex-grow">
                     <!-- Sidebar content here -->
                     <li class="text-lg font-semibold pt-3">DASHBOARD</li>
@@ -20,21 +20,26 @@
                     <li class="pt-3"><a href="{{route('umkm-desa.index')}}">UMKM Desa</a></li>
                     <li class="pt-3"><a href="{{route('pariwisata-desa.index')}}">Pariwisata Desa</a></li>
                 </ul>
-                <form action="{{route('auth.logout')}}" method="post" class="w-full">
-                    @csrf
-                    <button
-                        class="flex items-center text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
-                        <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
-                        <div class="">Keluar</div>
-                    </button>
-                </form>
+                <ul class="menu bg-secondary font-medium text-lightText w-80 p-6 pt-10">
+                    <form action="{{route('auth.logout')}}" method="post" class="w-full">
+                        @csrf
+                        <button
+                            class="flex items-center text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
+                            <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2 w-full">
+                            <div class="">Keluar</div>
+                        </button>
+                    </form>
+                </ul>
             </div>
         </div>    
     </div>
 
     <!-- Sidebar content -->
-    <a href="{{ route('auth.logout') }}"
-        class="flex items-center text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
-        <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
-    </a>
+    
+    <form action="{{ route('auth.logout') }}" method="post">
+        @csrf
+        <button class="flex items-center text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
+            <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
+        </button>
+    </form>
 </div>
