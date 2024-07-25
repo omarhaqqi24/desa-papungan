@@ -10,18 +10,24 @@ use App\Http\Controllers\PetaUmkmController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [LandingPageController::class,'index']);
 
+Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
+Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]); 
 
+Route::get('/pariwisataDesa', function () {
+    return view('pariwisataDesa');
+});
 
+Route::get('/umkm', function () {
+    return view('umkm');
+});
 
+Route::get('/informasi',[PengumumanController::class,"index"]);
+Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi.store');
 
-
-
-
-
-
-Route::get('/peta-umkm', function () {
+Route::get('/peta-umkm', function() {
     return view('peta-umkm');
 });
 
@@ -72,4 +78,12 @@ Route::get('/admin/pariwisata-desa', function () {
 Route::put('/admin/visi', [ProfilDesaController::class, 'updateVisiDesa'])
     ->middleware('checkToken')
     ->name('visi.update');
-
+Route::put('/admin/misi', [ProfilDesaController::class, 'updateMisiDesa'])
+    ->middleware('checkToken')
+    ->name('misi.update');
+Route::put('/admin/sejarah-desa', [ProfilDesaController::class, 'updateSejarahDesa'])
+    ->middleware('checkToken')
+    ->name('sejarah.update');
+Route::post('/admin/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
+    ->middleware('checkToken')
+    ->name('misi.create');

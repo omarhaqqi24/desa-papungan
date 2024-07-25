@@ -203,13 +203,43 @@
                                     {{ $misi[$i]->isi_poin }}
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                    <button onclick="openModalUpdateMisi('{{ $misi[$i]->id }}', '{{ $misi[$i]->isi_poin }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                                 </td>
                             </tr>
                         @endfor
                     </tbody>
                 </table>
             </div>
+
+            <dialog id="modal_form_ms_up" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Update Misi Desa</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" enctype="multipart/form-data" id="form_up_misi" action="{{ route('misi.update') }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="penjelasan" class="label-text font-semibold">Penjelasan Misi</label>
+                                <textarea name="isi_poin" id="isi_poin_misi"
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-200"></textarea>
+                                <input hidden type="text" name="id" id="id_misi">
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_ms_up.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
             <!-- End -->
 
             <div class="flex justify-end mt-4">
@@ -230,12 +260,13 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Tambah Misi Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="">
+                    <form method="POST" action="{{ route('misi.create') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan Misi</label>
-                                <textarea name="penjelasan" id="penjelasan"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-200">{{ $profilDesa->data->penjelasan }}</textarea>
+                                <textarea name="isi_poin" id="penjelasan"
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-200"></textarea>
                             </div>
                             <div class="relative w-full">
                                 <div class="flex gap-4 justify-end">
@@ -273,7 +304,7 @@
                 <div class="form-control gap-4">
                     <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                     <textarea disabled name="penjelasan" id="penjelasan"
-                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $profilDesa->data->penjelasan }}</textarea>
+                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan }}</textarea>
                 </div>
                 <div class="form-control gap-4">
                     <label for="foto" class="label-text font-semibold">Foto</label>
@@ -285,7 +316,7 @@
 
             <div class="flex justify-end mt-4">
                 <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
-                    onclick="modal_form_pd.showModal()">
+                    onclick="modal_form_sd.showModal()">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="mr-2">
                         <path
@@ -301,12 +332,14 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Sejarah Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="">
+                    <form method="POST" action="{{ route('sejarah.update') }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
-                                <textarea name="penjelasan" id="penjelasan"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $profilDesa->data->penjelasan }}</textarea>
+                                <textarea name="penjelasan" id="penjelasan_sd"
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan }}</textarea>
                             </div>
                             <div class="form-control gap-4">
                                 <label for="foto" class="label-text font-semibold">Foto</label>
@@ -332,6 +365,17 @@
         </div>
         <!-- End -->
     </div>
+
+    <script>
+        function openModalUpdateMisi(id, isi_poin) {
+            const textarea = document.getElementById('isi_poin_misi');
+            textarea.value = isi_poin;
+            const hiddenInput = document.getElementById('id_misi');
+            hiddenInput.value = id;
+
+            document.getElementById('modal_form_ms_up').showModal();
+        }
+    </script>
 
 </body>
 
