@@ -111,7 +111,7 @@
             </div>
             <div class="flex flex-col basis-1/2 space-y-5 mt-5">
                 <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Wilayah Desa Papungan</div>
-                <img src="{{ asset('img/wilayah-desa-papungan.png') }}" alt="" class="w-full h-auto">
+                <img src="{{ asset('img/Peta Administrasi Desa Papungan.png') }}" alt="" class="w-full h-auto">
                 <p class="text-lg">Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et
                     velit interdum, ac
                     aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
@@ -124,4 +124,3 @@
 </body>
 
 </html>
-
