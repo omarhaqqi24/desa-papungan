@@ -24,7 +24,7 @@ Route::get('/umkm', function () {
     return view('umkm');
 });
 
-Route::get('/test',[PengumumanController::class,"index"]);
+Route::get('/informasi',[PengumumanController::class,"index"]);
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
