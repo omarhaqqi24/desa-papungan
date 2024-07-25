@@ -16,12 +16,14 @@
 
 <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
     <div class="absolute h-screen w-screen bg-secondary bg-opacity-60 z-1"></div>
-    <div class="flex items-center justify-center min-h-screen bg-cover bg-center h-screen" 
-         style="background-image: url('/img/bgAdminLogin.png');">
-        <div class="w-[392px] py-10 bg-gradient-to-b from-[#ffffffb4] to-[#ffffff52] rounded-[28px] p-4 backdrop-blur-md border-2 border-white z-10">
+    <div class="flex items-center justify-center min-h-screen bg-cover bg-center h-screen"
+        style="background-image: url('/img/bgAdminLogin.png');">
+        <div
+            class="w-[392px] py-10 bg-gradient-to-b from-[#ffffffb4] to-[#ffffff52] rounded-[28px] p-4 backdrop-blur-md border-2 border-white z-10">
             <div class="flex flex-col gap-4 mx-auto text-center mb-10">
                 <div class="text-4xl font-jakarta font-semibold text-primary">Admin Login</div>
-                <div class="font-medium font-jakarta text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="font-medium font-jakarta text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. </div>
             </div>
             <form action="{{ route('auth.login') }}" method="POST" class="flex flex-col gap-4">
                 @csrf
@@ -53,7 +55,8 @@
                     @endif
                 </label>
                 <label class="form-control w-full max-w-xs mx-auto mt-4">
-                    <button type="submit" class="bg-secondary rounded-full py-4 font-jakarta font-semibold hover:bg-primary text-white">Masuk</button>
+                    <button type="submit"
+                        class="bg-secondary rounded-full py-4 font-jakarta font-semibold hover:bg-primary text-white">Masuk</button>
                 </label>
             </form>
             @if ($success = Session::get('success'))
