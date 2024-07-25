@@ -27,8 +27,9 @@ class UmkmSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker::create('id_ID');
+        $jenises = ['Opak Gambir', 'Matari', 'Catering', 'Rempeyek'];
 
-        for ($i=0; $i < 7; $i++){
+        for ($i=0; $i<7; $i++){
             $umkm = Umkm::create([
                 'nama' => $faker->name(),
                 'deskripsi' => $faker->sentence(3),
@@ -42,11 +43,10 @@ class UmkmSeeder extends Seeder
                 'no_halal' => $faker->phoneNumber(),
                 'no_bpom' => $faker->phoneNumber()
             ]);
-    
-            $jenises = $faker->words($faker->numberBetween(1, 4));
-            foreach ($jenises as $jenis){
+
+            for ($i=0; $i<rand(1,3); $i++){
                 JenisUmkm::create([
-                    'jenis' => $jenis,
+                    'jenis' => $jenises[rand(0, 3)],
                     'umkm_id' => $umkm->id
                 ]);
             }
