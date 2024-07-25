@@ -25,7 +25,7 @@
         <!--NAVBAR BELLOW START-->
         <div class=" pl-4 w-screen flex shadow-lg text-black">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
-                <div class="flex gap-2 text-left">
+                <a class="flex gap-2 text-left" href="{{route('landingPage.index')}}">
                     <img src="img/logokab.png" alt="papunganLogo" class="w-14 h-14">
                     <div class="flex flex-col items-start">
                         <div class="text-2xl font-semibold font-jakarta">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     
-                </div>
+                </a>
 
                 <button id="mobile-menu-button"
                     class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:opacity-70 transition duration-300 lg:hidden">
