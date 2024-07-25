@@ -34,13 +34,13 @@
                 <div class="text-sm font-jakarta">{{ $data1->data->penjelasan }}</div>
 
                 <x-headerArtikel subJudul="PROFIL DESA" judul="Visi dan Misi dari Desa Papungan" />
-                <div class="font-normal font-jakarta max-w-full lg:min-w-2xl mt-1">Berikut adalah Visi dan Misi Desa Papungan dengan visi yang bertujuan untuk menciptakan masyarakat yang maju di bidang industri, pariwisata, pertanian, peternakan, dan perikanan untuk mencapai kehidupan yang rukun dan makmur. Desa Papungan mengimplementasikan visi tersebut melalui misi dengan tujuan jangka pendek yang operatif dan inovatif di berbagai sektor seperti pertanian, peternakan, dan kebudayaan. Upaya ini juga melibatkan penyesuaian terhadap perubahan lingkungan dan situasi untuk mendukung pembangunan desa secara berkelanjutan.</div>
+                <div class="font-normal font-jakarta max-w-full lg:min-w-2xl">Berikut adalah Visi dan Misi Desa Papungan dengan visi yang bertujuan untuk menciptakan masyarakat yang maju di bidang industri, pariwisata, pertanian, peternakan, dan perikanan untuk mencapai kehidupan yang rukun dan makmur. Desa Papungan mengimplementasikan visi tersebut melalui misi dengan tujuan jangka pendek yang operatif dan inovatif di berbagai sektor seperti pertanian, peternakan, dan kebudayaan. Upaya ini juga melibatkan penyesuaian terhadap perubahan lingkungan dan situasi untuk mendukung pembangunan desa secara berkelanjutan.</div>
                     
                 <div class="container flex flex-col bg-white py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3">
                     <div class="w-full flex justify-center items-center">
                         <div class="text-4xl font-semibold text-center font-jakarta">VISI</div>
                     </div>
-                    <div class="text-base font-normal text-center px-4 md:px-8 lg:px-16 xl:px-80 pb-10 font-jakarta">"{{$data3->data[0]->isi_poin}}"</div>
+                    <div class="text-xl font-normal text-center px-4 md:px-8 lg:px-16 xl:px-40 pb-10 font-jakarta">"{{$data3->data[0]->isi_poin}}"</div>
                 </div>
 
                 <div class="container flex flex-col bg-white py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3">
