@@ -8,6 +8,7 @@ use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\PengumumanPageController;
 use App\Http\Controllers\PetaUmkmController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,7 @@ Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
 Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]);
 
+Route::get('/pengumuman/{id}', [PengumumanPageController::class,'index']);
 Route::get('/berita/{id}',[BeritaPageController::class,"index"]);
 
 Route::get('/pariwisataDesa', function () {

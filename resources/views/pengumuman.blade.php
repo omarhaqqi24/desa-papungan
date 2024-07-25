@@ -25,14 +25,14 @@
                 <li><a href="{{ route('home') }}"><img src="{{ asset('/img/home-icon.svg') }}" alt=""
                             class="min-w-[18px] min-h-[18px] "></a></li>
                 <li><a>Informasi</a></li>
-                <li><a>Berita</a></li>
-                <li class="truncate">{{ $berita->data->judul }}</li>
+                <li><a>Pengumuman</a></li>
+                <li class="truncate">{{ $pengumuman->data->judul }}</li>
             </ul>
         </div>
         <div class="flex flex-row items-start">
             <!-- Judul -->
             <div class="space-y-5 md:basis-3/4 text-pretty">
-                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">{{ $berita->data->judul }}
+                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">{{ $pengumuman->data->judul }}
                 </div>
                 <!-- Tanggal and Admin info -->
                 <div
@@ -40,17 +40,15 @@
                     <div class="flex flex-row space-x-3 items-center">
                         <img src="{{ asset('img/calendar-icon.svg') }}" alt=""
                             class="max-h-[18px] max-w-[18px]">
-                        <p class="text-lg">{{ $berita->data->createdAt }}</p>
+                        <p class="text-lg">{{ $pengumuman->data->createdAt }}</p>
                     </div>
                     <div class="flex flex-row space-x-3 items-center grow">
                         <img src="{{ asset('img/avatar-icon.svg') }}" alt="" class="max-h-[18px] max-w-[18px]">
                         <p class="text-lg truncate">Admin Desa Papungan</p>
                     </div>
                 </div>
-                <!-- berita img -->
-                <img src="{{ $berita->data->foto }}" alt="" class="max-h-96 min-w-full object-cover">
-                <!-- isi berita -->
-                <p class="text-lg">{{ $berita->data->isi }}</p>
+                <!-- isi pengumuman -->
+                <p class="text-lg">{{ $pengumuman->data->isi }}</p>
             </div>
             <!-- Side content -->
             <div class="basis-1/4">

@@ -46,7 +46,7 @@
             <!-- Vertical "Carousel" -->
             <div
                 class="carousel carousel-vertical w-full rounded-box h-96 md:hidden flex items-center border border-neutral">
-                @foreach ($berita->data->resource as $item)
+                @foreach ($berita->data as $item)
                     <div class="carousel-item h-full border-b border-neutral">
                         <x-cardBerita :foto="$item->foto" :judul="$item->judul" :isi="$item->isi" :createdAt="$item->createdAt" />
                     </div>
@@ -55,7 +55,7 @@
             <!-- Horizontal Carousel -->
             <div class="hidden md:carousel w-full">
                 @for ($i = 0; $i < 4; $i++)
-                    <div class="carousel-item mx-2"><x-cardBerita :foto="$berita->data->resource[$i]->foto" :judul="$berita->data->resource[$i]->judul" :isi="$berita->data->resource[$i]->isi"
+                    <div class="carousel-item mx-2"><x-cardBerita :foto="$berita->data[$i]->foto" :judul="$berita->data[$i]->judul" :isi="$berita->data[$i]->isi"
                             :createdAt="$item->createdAt" /></div>
                 @endfor
             </div>
@@ -87,9 +87,8 @@
                 <div class="basis-1/2 p-10 px-0 md:px-10 w-full h-96">
                     <div class="carousel h-full w-full rounded-xl">
                         @for ($i = 0; $i < 5; $i++)
-                            <div id="{{ $berita->data->resource[$i]->id }}"
-                                class="carousel-item relative h-full w-full">
-                                <img src="{{ $berita->data->resource[$i]->foto }}" class="w-full h-full object-cover"
+                            <div id="{{ $berita->data[$i]->id }}" class="carousel-item relative h-full w-full">
+                                <img src="{{ $berita->data[$i]->foto }}" class="w-full h-full object-cover"
                                     alt='' />
                             </div>
                         @endfor
