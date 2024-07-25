@@ -18,7 +18,7 @@ class UmkmController extends Controller
         $nama_param = $request->nama;
         $jenis_param = $request->jenis;
 
-        if ($jenis_param == 'Semua'){
+        if (empty($jenis_param)){
             if (!empty($nama_param)){
                 $umkms = Umkm::where('nama', 'LIKE', "%{$nama_param}%")->get();
             } else {
