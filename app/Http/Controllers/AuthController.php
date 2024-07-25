@@ -57,8 +57,6 @@ class AuthController extends Controller
             Session::forget('api-token');
             return redirect('/login');
         } catch (BadResponseException $e) {
-            // return back();
-            dd(json_decode($e->getResponse()->getBody()));
             return;
         }
     }
