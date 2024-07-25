@@ -40,5 +40,16 @@ Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/login/index', [AuthController::class, 'index'])->name('auth.index');
 
-// Route::get('/adminProfilDesa',[ProfilDesaController::class,"index"])->name('data-desa.index');
-Route::put('/admin/profil-desa', [ProfilDesaController::class, 'update'])->name('data-desa.update');
+Route::put('/admin/profil-desa', [ProfilDesaController::class, 'updateProfilDesa'])->name('profil-desa.update');
+Route::get('/admin/pemerintahan', function () {
+    return view('adminPemerintahan');
+})->middleware('checkToken')->name('pemerintahan-desa.index');
+Route::get('/admin/informasi', function () {
+    return view('adminInformasi');
+})->middleware('checkToken')->name('informasi-desa.index');
+Route::get('/admin/umkm', function () {
+    return view('adminUmkm');
+})->middleware('checkToken')->name('umkm-desa.index');
+Route::get('/admin/pariwisata-desa', function () {
+    return view('adminPariwisata');
+})->middleware('checkToken')->name('pariwisata-desa.index');
