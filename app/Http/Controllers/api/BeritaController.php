@@ -15,11 +15,16 @@ class BeritaController extends Controller
 {
     public function getAll(Request $request) 
     {
-        $perPage = intval($request->query('size'));
-        $beritas = Berita::orderBy('created_at', 'DESC')->paginate($perPage);
-        $resources = (new BeritaCollection($beritas))->response()->getData();
+        if (!empty($request->judul)){
+            $beritas = Berita::where('judul', 'LIKE', "%{$request->judul}%")
+                ->orderBy('created_at', 'DESC')
+                ->get();
+        } else {
+            $beritas = Berita::orderBy('created_at', 'DESC')->get();
+        }
 
-        return ApiResponseClass::sendResponse($resources, '', 200);
+        $resources = (new BeritaCollection($beritas));
+        return ApiResponseClass::sendResponse($resources, 'Data berita berhasil diambil!', 200);
     }
 
     public function getById($id) 
