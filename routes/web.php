@@ -60,4 +60,7 @@ Route::get('/admin/umkm', function () {
 Route::get('/admin/pariwisata-desa', function () {
     return view('adminPariwisata');
 })->middleware('checkToken')->name('pariwisata-desa.index');
+Route::put('/admin/visi', [ProfilDesaController::class, 'updateVisiDesa'])
+    ->middleware('checkToken')
+    ->name('visi.update');
 

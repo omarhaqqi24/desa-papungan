@@ -33,9 +33,9 @@
             <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis
                 omnis, inventore accusantium cum quod maiores sint impedit asperiores veritatis similique modi corrupti
                 ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
-            <img src="{{$struktur->data->foto}}" alt="struktur desa" class="rounded-lg w-full">
+            <img src="{{ $struktur->data->foto }}" alt="struktur desa" class="rounded-lg w-full">
 
-            <div class="text-sm font-normal">{{$struktur->data->penjelasan}}</div>
+            <div class="text-sm font-normal">{{ $struktur->data->penjelasan }}</div>
 
             <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
@@ -82,4 +82,3 @@
 <x-footer />
 
 </html>
-

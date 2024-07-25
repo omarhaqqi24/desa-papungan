@@ -27,6 +27,17 @@ class PengumumanController extends Controller
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
     }
 
+    public function getById($id)
+    {
+        $pengumuman = Pengumuman::where('id', $id)->first();
+        if (!$pengumuman){
+            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
+        }
+
+        $resource = new PengumumanResource($pengumuman);
+        return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
+    }
+
     public function store(Request $request)
     {
         $validator = FacadesValidator::make($request->all(), [
