@@ -15,13 +15,38 @@ class UmkmController extends Controller
 {
     public function getAll(Request $request)
     {
-        $umkms = Umkm::all();
+        $nama_param = $request->nama;
+        $jenis_param = $request->jenis;
+
+        if ($jenis_param == 'Semua'){
+            if (!empty($nama_param)){
+                $umkms = Umkm::where('nama', 'LIKE', "%{$nama_param}%")->get();
+            } else {
+                $umkms = Umkm::all();
+            }
+        } else {
+            if (!empty($nama_param)){
+                $umkms = Umkm::with('jenis_umkm')
+                    ->join('jenis_umkms', 'umkms.id', '=', 'jenis_umkms.umkm_id')
+                    ->where('jenis_umkms.jenis', $jenis_param)
+                    ->where('umkms.nama', 'LIKE', "%{$nama_param}%")
+                    ->select('umkms.*')
+                    ->get();
+                } else {
+                    $umkms = Umkm::with('jenis_umkm')
+                    ->join('jenis_umkms', 'umkms.id', '=', 'jenis_umkms.umkm_id')
+                    ->where('jenis_umkms.jenis', $jenis_param)
+                    ->select('umkms.*')
+                    ->get();
+            }
+        }
+
         $resources = (new UmkmCollection($umkms));
 
         $jenises = JenisUmkm::select('jenis')->groupBy('jenis')->get();
 
         return ApiResponseClass::sendResponse([
-            'list' => $jenises,
+            'list' => collect($jenises),
             'resource' => $resources
         ], 'Data UMKM berhasil diambil!', 200);
     }
