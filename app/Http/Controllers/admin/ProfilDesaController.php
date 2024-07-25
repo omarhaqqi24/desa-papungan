@@ -62,4 +62,9 @@ class ProfilDesaController extends Controller
             return redirect()->back()->withErrors($result->message)->withInput($request->all());
         }
     }
+
+    public function updateVisiDesa(Request $request)
+    {
+        
+    }
 }
