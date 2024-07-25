@@ -34,6 +34,9 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
+
+         <!-- pengumuman-->
+        <div id="pengumuman"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Informasi Seputar Desa Papungan</div>
             <div class="text-sm font-normal">Home / Profil Desa</div>
@@ -44,10 +47,7 @@
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="PENGUMUMAN"
                     deskripsi="Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari mendatang!" />
 
-                @foreach ($pengumuman->data as $item)
-                    @if ($item->isAccepted == 0)
-                        @continue
-                    @endif
+                @foreach($pengumuman->data as $item)
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -58,15 +58,12 @@
                         <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     </div>
                 @endforeach
-
-
+                <!-- berita-->
+            <div id="berita"></div>
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Berikut adalah Berita Terkini dari Desa Papungan. Simak informasi terbaru dan penting berikut untuk tetap terhubung dengan perkembangan desa kita!" />
 
                 @foreach ($berita->data as $item)
-                    @if ($item->isAccepted == 0)
-                        @continue
-                    @endif
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -83,6 +80,8 @@
                     </div>
                 @endforeach
 
+                    <!-- aspirasi-->
+                <div id="aspirasi"></div>
                 <div class=" space-y-2">
                     <div class="flex items-center gap-2 text-blue-600 w- md:w-1/2 lg:w-1/4">
                         <div class="text-xl font-medium font-jakarta">FORMULIR</div>

@@ -21,6 +21,9 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
+
+        <!-- struktural-->
+        <div id="struktural"></div>
         <div class="bg-secondary text-base-100 w-full py-32 px-10">
             <div class="text-3xl font-semibold">Pemerintahan Desa Papungan</div>
             <div class="text-sm font-normal">Home / Pemerintahan</div>
@@ -34,7 +37,9 @@
             <img src="{{ $struktur->data->foto }}" alt="struktur desa" class="rounded-lg w-full">
 
             <div class="text-sm font-normal">{{ $struktur->data->penjelasan }}</div>
-
+            
+                <!-- perangkat desa-->
+            <div id="perangkatdesa"></div>
             <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
                 deskripsi="Berikut adalah daftar nama-nama Perangkat Desa beserta dengan foto dan jabatannya:" />
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
@@ -52,6 +57,9 @@
 
             </div>
 
+
+                <!-- lembaga desa-->
+            <div id="lembagadesa"></div>
             <x-cardSubjudul jenisJudul="PEMERINTAHAN" judul="Lembaga Desa"
                 deskripsi="Berikut ini adalah daftar Lembaga Desa yang beroperasi di Desa Papungan beserta alamat kantornya:" />
 
@@ -72,5 +80,6 @@
     </div>
 </body>
 <x-footer />
+
 
 </html>
