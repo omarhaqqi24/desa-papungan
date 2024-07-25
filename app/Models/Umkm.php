@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Umkm extends Model
 {
@@ -15,13 +16,13 @@ class Umkm extends Model
         'no_nib', 'no_pirt', 'no_halal', 'no_bpom'
     ];
 
-    public function foto_umkm()
+    public function foto_umkm(): HasMany
     {
         return $this->hasMany(FotoUmkm::class);
     }
 
-    public function jenis_umkm()
+    public function jenis_umkm(): HasMany
     {
-        return $this->hasMany(JenisUmkm::class);
+        return $this->hasMany(JenisUmkm::class, 'umkm_id');
     }
 }

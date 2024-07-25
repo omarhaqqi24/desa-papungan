@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class AspirasiController extends Controller
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
-        $aspirasis = Aspirasi::orderBy('isChecked', 'ASC')->orderBy('created_at', 'DESC')->get();
+        if (!empty($request->judul)){
+            $aspirasis = Aspirasi::where('judul', 'LIKE', "%{$request->judul}%")
+                ->orderBy('isChecked', 'ASC')
+                ->orderBy('created_at', 'DESC')
+                ->get();
+        } else {
+            $aspirasis = Aspirasi::orderBy('isChecked', 'ASC')->orderBy('created_at', 'DESC')->get();
+        }
+
         $resource = new AspirasiCollection($aspirasis);
         return ApiResponseClass::sendResponse($resource, 'Data aspirasi berhasil diambil!', 200);
     }
