@@ -15,11 +15,16 @@ class BeritaController extends Controller
 {
     public function getAll(Request $request) 
     {
-        $perPage = intval($request->query('size'));
-        $beritas = Berita::orderBy('created_at', 'DESC')->paginate($perPage);
-        $resources = (new BeritaCollection($beritas))->response()->getData();
+        if (!empty($request->judul)){
+            $beritas = Berita::where('judul', 'LIKE', "%{$request->judul}%")
+                ->orderBy('created_at', 'DESC')
+                ->get();
+        } else {
+            $beritas = Berita::orderBy('created_at', 'DESC')->get();
+        }
 
-        return ApiResponseClass::sendResponse($resources, '', 200);
+        $resources = (new BeritaCollection($beritas));
+        return ApiResponseClass::sendResponse($resources, 'Data berita berhasil diambil!', 200);
     }
 
     public function getById($id) 
@@ -62,7 +67,7 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul' => 'required',
             'isi' => 'required',
             'isAccepted' => 'required'
@@ -76,17 +81,20 @@ class BeritaController extends Controller
         if (!$berita) {
             return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
-                    
-        $image = $request->file('foto');
-        $image->storeAs('public/berita', $image->hashName());
-        
-        Storage::delete('public/berita/'.$berita->foto);
+         
+        if (!empty($request->foto)){
+            $image = $request->file('foto');
+            $image->storeAs('public/berita', $image->hashName());
+            
+            Storage::delete('public/berita/'.$berita->foto);
+
+            $berita->update(['foto' => $image->hashName()]);
+        }
         
         $berita->update([
-            'foto' => $image->hashName(),
             'judul'  => $request->judul,
             'isi'  => $request->isi,
-            'isAccepted'  => $request->isAccepted,
+            'isAccepted'  => $request->isAccepted
         ]);
         $berita->save();
 
