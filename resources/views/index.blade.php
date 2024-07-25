@@ -64,9 +64,9 @@
         <!--Pengumuman -->
         <div class="space-y-5">
             <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">Pengumuman</div>
-            <p class="text-lg">Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit
-                interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                per inceptos himenaeos. </p>
+            <p class="text-lg">Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu
+                membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari
+                mendatang!</p>
             <div class="flex flex-col lg:flex-row items-start">
                 <div class="flex flex-col basis-1/2">
                     <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Pengumuman Terkini</div>
@@ -112,11 +112,12 @@
             <div class="flex flex-col basis-1/2 space-y-5 mt-5">
                 <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Wilayah Desa Papungan</div>
                 <img src="{{ asset('img/Peta Administrasi Desa Papungan.png') }}" alt="" class="w-full h-auto">
-                <p class="text-lg">Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et
-                    velit interdum, ac
-                    aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur
-                    neque. Ut diam quam, semper iaculis condimentum ac, vestibulum eu nisl.</p>
+                <p class="text-lg">Peta administrasi Desa Papungan ini menggambarkan batas wilayah, pembagian wilayah
+                    administratif menjadi beberapa RT (Rukun Tetangga) dan RW (Rukun Warga), serta lokasi desa yang
+                    berbatasan dengan desa-desa lain seperti Kuningan, Banggle, Gaprang, dan Tlogo. Peta ini juga
+                    menunjukkan posisi Desa Papungan yang terletak di dekat Kota Blitar. Selain itu, peta ini
+                    mencantumkan sumber data yang digunakan dalam pembuatannya, yaitu Badan Informasi Geospasial (2022)
+                    dan SAS Planet (2023).</p>
             </div>
         </div>
     </div>
