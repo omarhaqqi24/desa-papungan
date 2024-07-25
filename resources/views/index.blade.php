@@ -85,10 +85,9 @@
                         Pengumuman Lainnya >></div>
                 </div>
                 <div class="basis-1/2 p-10 px-0 md:px-10 w-full h-96">
-                    <div class="carousel h-full w-full border-black border rounded-xl">
+                    <div class="carousel h-full w-full rounded-xl">
                         @for ($i = 0; $i < 5; $i++)
-                            <div id="{{ $berita->data[$i]->id }}"
-                                class="carousel-item relative h-full w-full">
+                            <div id="{{ $berita->data[$i]->id }}" class="carousel-item relative h-full w-full">
                                 <img src="{{ $berita->data[$i]->foto }}" class="w-full h-full object-cover"
                                     alt='' />
                             </div>
@@ -96,8 +95,7 @@
                     </div>
                     <div class="flex justify-center mt-4">
                         @for ($i = 0; $i < 5; $i++)
-                            <span
-                                class="w-2 h-2 mr-2 rounded-full bg-gray-400 @if ($i == 0) bg-blue-500 @endif"></span>
+                            <span class="w-2 h-2 mr-2 rounded-full bg-gray-400"></span>
                         @endfor
                     </div>
                 </div>
@@ -127,3 +125,4 @@
 </body>
 
 </html>
+
