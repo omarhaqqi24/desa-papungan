@@ -17,7 +17,7 @@ class CheckTokenSession
     {
         if (!$request->session()->exists('api-token')) {
             // user value cannot be found in session
-            return redirect('/login/index');
+            return redirect()->to('/login');
         }
 
         return $next($request);
