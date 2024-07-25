@@ -130,8 +130,6 @@ class ProfilDesaController extends Controller
 
             return redirect()->back()->with('success', $responseBody->message);
         } catch (BadResponseException $e) {
-            dd($e);
-            return;
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
@@ -172,6 +170,35 @@ class ProfilDesaController extends Controller
                     'Authorization' => 'Bearer ' . $token,
                 ],
                 'multipart' => $multipart
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function tambahMisiDesa(Request $request)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001") . "/api/v-misi", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+                'multipart' => [
+                    [
+                        'name'     => 'isi_poin',
+                        'contents' => $request->isi_poin,
+                    ],
+                ],
             ]);
 
             $responseBody = json_decode($response->getBody());
