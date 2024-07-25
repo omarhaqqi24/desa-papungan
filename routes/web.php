@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\ProfilDesaController;
+use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BeritaPageController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PerangkatDesaController;
@@ -14,7 +16,9 @@ Route::get('/', [LandingPageController::class,'index']);
 
 Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
-Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]); 
+Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]);
+
+Route::get('/berita/{id}',[BeritaPageController::class,"index"]);
 
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
