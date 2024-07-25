@@ -42,7 +42,7 @@
         <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
             <div class="flex-grow mx-10 space-y-6">
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="PENGUMUMAN"
-                deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
+                    deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
                 @foreach($pengumuman->data as $item)
                 @if($item->isAccepted == 0)
@@ -51,7 +51,7 @@
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
-                            <div class="text-gray-700 font-normal font-jakarta">{{$item->createdAt }}</div>
+                            <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
                             <div class="font-normal font-jakarta">{{ $item->isi }}</div>
                         </div>
                         <a href="#" class="px-4 py-2"><img src="img/selengkapnya.svg" alt=""></a>
@@ -59,21 +59,21 @@
                     </div>
                 @endforeach
 
-
+               
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
                 @foreach($berita->data as $item)
-                 @if($item->isAccepted == 0)
+                @if($item->isAccepted == 0)
                     @continue
                 @endif
-                
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
-                            <div class="text-gray-700 font-normal font-jakarta">{{$item->createdAt }}</div>
+                            <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
                             <div class="flex flex-col lg:flex-row gap-4">
-                                <img src="{{ $item->foto }}" alt="fotoberita" class="w-full lg:w-[400px] h-[300px] object-cover">
+                                <img src="{{ $item->foto }}" alt="fotoberita"
+                                    class="w-full lg:w-[400px] h-[300px] object-cover">
                                 <div>{{ $item->isi }}
                                     <div class="text-right text-[#2d68f8] mt-5">Selengkapnya</div>
                                 </div>
@@ -124,24 +124,24 @@
             </div>
             <p class="text-gray-700 text-sm mt-1">* file png atau jpg</p>
 
-                    <div class="flex justify-end mt-4 rounded-[32px]">
+            <div class="flex justify-end mt-4 rounded-[32px]">
                         <button type="submit" class="flex items-center px-6 py-2 bg-[#2d68f8] text-white text-lg font-medium font-jakarta rounded-lg shadow-md hover:bg-[#1a4ebb] focus:outline-none focus:ring-2 focus:ring-[#2d68f8] focus:ring-opacity-50">
                             Kirim
                             <img src="img/arrow-right.svg" alt="" class="ml-2 inline-block">
                         </button>
                     </div>
                 </form>
-                    </div>
+             </div>
             </div>
             <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-96">Lihat Informasi
                 <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64"> 
-                <div class="p-2 flex flex-col">
-                <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
-                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                            </div>
+                <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
+                    <div class="p-2 flex flex-col">
+                        <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
+                            <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                         </div>
-                        <div class="p-2 flex flex-col">
+                    </div>
+                    <div class="p-2 flex flex-col">
                         <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
                             <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                         </div>
@@ -149,7 +149,7 @@
                     <div class="p-2 flex">
                         <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
                     </div>
-                </div>     
+                </div>
             </div>
         </div>  
     </div>
