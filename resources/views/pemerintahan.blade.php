@@ -27,26 +27,18 @@
         </div>
     </div>
 
-    <div class=" px-5 md:px-0 mt-10">
-        <div class="container items-center mx-auto space-y-10 text-justify">
+    <div class=" px-5 md:px-0 ">
+        <div class="container items-center mx-auto space-y-10 text-justify p-10 ">
             <x-headerArtikel subJudul="PENJELASAN" judul="Struktur Organisasi" />
-            <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis
-                omnis, inventore accusantium cum quod maiores sint impedit asperiores veritatis similique modi corrupti
-                ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
+            <div class="text-sm font-normal">Sebagai sebuah desa, sudah tentu struktur kepemimpinan Desa Papungan tidak bisa lepas dari struktur administratif pemerintahan pada level di atasnya. Hal ini dapat dilihat dalam bagan berikut ini:</div>
             <img src="{{ $struktur->data->foto }}" alt="struktur desa" class="rounded-lg w-full">
 
             <div class="text-sm font-normal">{{ $struktur->data->penjelasan }}</div>
 
             <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
-                deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
+                deskripsi="Berikut adalah daftar nama-nama Perangkat Desa beserta dengan foto dan jabatannya:" />
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
-                <!-- Card 1 BLOM FIX - PERLU DISESUAIKAN -->
-                <!--     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
-            <img src="/img/kepalaDesa.jpg" alt="kepala Desa" class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
-            <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">Card Title asdfghfdfgfdfdgbfgbfvbdfdfgfdg fdgfg fg1</h3>
-            <p class="text-gray-700 text-sm overflow-hidden text-ellipsis whitespace-nowrap">Card content goes here.</p>
-        </div>
-    -->
+
                 @foreach ($perangkatDesas->data->resource as $perangkatDesa)
                     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
                         <img src="/img/kepalaDesa.jpg" alt="kepala Desa"
@@ -61,7 +53,7 @@
             </div>
 
             <x-cardSubjudul jenisJudul="PEMERINTAHAN" judul="Lembaga Desa"
-                deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
+                deskripsi="Berikut ini adalah daftar Lembaga Desa yang beroperasi di Desa Papungan beserta alamat kantornya:" />
 
             <x-table.table :headers="['nama', 'alamat']" jenisTabel="Daftar Lembaga">
                 @php
