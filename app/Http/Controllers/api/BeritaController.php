@@ -81,17 +81,20 @@ class BeritaController extends Controller
         if (!$berita) {
             return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
-                    
-        $image = $request->file('foto');
-        $image->storeAs('public/berita', $image->hashName());
-        
-        Storage::delete('public/berita/'.$berita->foto);
+         
+        if (!empty($request->foto)){
+            $image = $request->file('foto');
+            $image->storeAs('public/berita', $image->hashName());
+            
+            Storage::delete('public/berita/'.$berita->foto);
+
+            $berita->update(['foto' => $image->hashName()]);
+        }
         
         $berita->update([
-            'foto' => $image->hashName(),
             'judul'  => $request->judul,
             'isi'  => $request->isi,
-            'isAccepted'  => $request->isAccepted,
+            'isAccepted'  => $request->isAccepted
         ]);
         $berita->save();
 

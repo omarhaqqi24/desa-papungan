@@ -102,10 +102,14 @@ class PerangkatDesaController extends Controller
             return ApiResponseClass::sendError('Data perangkat tidak ditemukan!', 404);
         }
 
-        $image = $request->file('foto');
-        $image->storeAs('public/perangkat-desa', $image->hashName());
+        if (!empty($request->foto)){
+            $image = $request->file('foto');
+            $image->storeAs('public/perangkat-desa', $image->hashName());
+    
+            Storage::delete('public/perangkat-desa/'.$perangkat->foto);
 
-        Storage::delete('public/perangkat-desa/'.$perangkat->foto);
+            $perangkat->update(['foto' => $image->hashName()]);
+        }
 
         if (empty($request->jabatan_id)){
             if ($request->jabatan == 'Kepala Desa'){
@@ -135,7 +139,6 @@ class PerangkatDesaController extends Controller
         }
 
         $perangkat->update([
-            'foto' => $image->hashName(),
             'nama' => $request->nama,
             'jabatan_id' => $jbt_id,
             'kontak' => $request->kontak
