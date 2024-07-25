@@ -260,12 +260,13 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Tambah Misi Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="">
+                    <form method="POST" action="{{ route('misi.create') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan Misi</label>
-                                <textarea name="penjelasan" id="penjelasan"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-200">{{ $profilDesa->data->penjelasan }}</textarea>
+                                <textarea name="isi_poin" id="penjelasan"
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-200"></textarea>
                             </div>
                             <div class="relative w-full">
                                 <div class="flex gap-4 justify-end">
