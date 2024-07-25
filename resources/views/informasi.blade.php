@@ -12,10 +12,24 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     @vite('resources/css/app.css')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('foto');
+            const fileLabel = document.getElementById('file-label');
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    fileLabel.textContent = fileInput.files[0].name;
+                } else {
+                    fileLabel.textContent = "Tidak ada file yang terunggah";
+                }
+            });
+        });
+    </script>
 
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
+<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50 overflow-x-hidden">
     <x-navbar />
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
@@ -33,7 +47,10 @@
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="PENGUMUMAN"
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
-                @foreach ($pengumuman->data as $item)
+                @foreach($pengumuman->data as $item)
+                @if($item->isAccepted == 0)
+                    @continue
+                @endif
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -44,13 +61,15 @@
                         <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     </div>
                 @endforeach
-
-                    <!-- berita-->
-                <div id="berita"></div>
+                <!-- berita-->
+            <div id="berita"></div>
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
-                @foreach ($berita->data as $item)
+                @foreach ($berita->data->resource as $item)
+                @if($item->isAccepted == 0)
+                    @continue
+                @endif
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -75,69 +94,49 @@
                         <div class="border-b-2 border-blue-600 w-full"></div>
                     </div>
                     <div class="text-2xl font-semibold">Berikan Aspirasi mu!</div>
-                    <div class="font-normal font-jakarta max-w-full lg:min-w-2xl">Porem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque. Ut diam quam,
-                        semper iaculis condimentum ac, vestibulum eu nisl.</div>
+                    <div class="font-normal font-jakarta max-w-full lg:min-w-2xl">Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque. Ut diam quam, semper iaculis condimentum ac, vestibulum eu nisl.</div>
+                        
+                    <form method="POST" class="w-full" enctype="multipart/form-data" action="{{ route('informasi.store') }}">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Nama <span class="text-gray-500 font-jakarta">(Optional)</span></label>
+                        <textarea name="nama" id="nama" placeholder="Tuliskan Nama anda" class="w-full h-12 px-4 py-2 font-normal text-gray/700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none" rows="1"></textarea>
+                    </div>
+                    <label for="kategori" class="block text-xl font-medium font-jakarta mb-2">Kategori</label>
+                    <select name="kategori" id="kategori" class="w-full h-12 px-4 py-2 font-normal text-[#3d4350] border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8]">
+                        <option value="" disabled selected>Kategori</option>
+                        <option value="Berita">Berita</option>
+                        <option value="Pengumuman">Pengumuman</option>
+                        <option value="Aspirasi">Aspirasi</option>
+                    </select>
+                    <div class="mb-4 mt-4">
+                        <label for="judul" class="block text-xl font-medium font-jakarta mb-2">Judul</label>
+                        <textarea name="judul" id="judul" placeholder="Tuliskan Judul" class="w-full h-12 px-4 py-2 font-normal text-gray-700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none" rows="1"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="isi" class="block text-xl font-medium font-jakarta mb-2">Isi</label>
+                        <textarea name="isi" id="isi" placeholder="Tuliskan Isi" class="w-full h-32 px-4 py-2 font-normal text-gray-700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none" rows="1"></textarea>
+                    </div>
+                    
+                    <label for="foto" class="block text-xl font-medium font-jakarta mb-2">Foto</label>
+            <div class="flex items-center border border-[#d0d5dd] rounded-md px-4 py-2">
+                <p id="file-label" class="text-gray-700 flex-grow">Tidak ada file yang terunggah</p>
+                <label for="foto" class="bg-blue-600 text-white flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer">
+                    <img src="img/unggah.svg" alt="Unggah" class="w-5 h-5">
+                    Unggah File
+                </label>
+                <input type="file" name="foto" id="foto" class="hidden">
+            </div>
+            <p class="text-gray-700 text-sm mt-1">* file png atau jpg</p>
 
-                    <form method="dialog" class="w-full">
-                        <div class="mb-4">
-                            <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Nama <span
-                                    class="text-gray-500 font-jakarta">(Optional)</span></label>
-                            <textarea name="nama" id="nama"
-                                placeholder="Tuliskan Nama anda"class="w-full h-12 px-4 py-2 font-normal text-gray/700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none"
-                                rows="1"></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Email <span
-                                    class="text-gray-500 font-jakarta">(Optional)</span></label>
-                            <textarea name="email" id="email"
-                                placeholder="Tuliskan Email anda"class="w-full h-12 px-4 py-2 font-normal text-gray/700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none"
-                                rows="1"></textarea>
-                        </div>
-                        <label for="kategori" class="block text-xl font-medium font-jakarta mb-2">Kategori</label>
-                        <select name="kategori"
-                            id="kategori"class="w-full h-12 px-4 py-2 font-normal text-[#3d4350] border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8]">
-                            <option value="" disabled selected>Kategori</option>
-                            <option value="kategori1">Kategori 1</option>
-                            <option value="kategori2">Kategori 2</option>
-                            <option value="kategori3">Kategori 3</option>
-                        </select>
-                        <div class="mb-4 mt-4">
-                            <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Judul</label>
-                            <textarea name="judul" id="judul"
-                                placeholder="Tuliskan Judul"class="w-full h-12 px-4 py-2 font-normal text-gray-700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none"
-                                rows="1"></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Isi</label>
-                            <textarea name="isi" id="isi"
-                                placeholder="Tuliskan Isi"class="w-full h-32 px-4 py-2 font-normal text-gray-700 border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8] resize-none"
-                                rows="1"></textarea>
-                        </div>
-
-                        <label for="foto" class="block text-xl font-medium font-jakarta mb-2">Foto</label>
-                        <div class="flex items-center border border-[#d0d5dd] rounded-md px-4 py-2">
-                            <p class="text-gray-700 flex-grow">Tidak ada file yang terunggah</p>
-                            <label for="foto"
-                                class="bg-blue-600 text-white flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer">
-                                <img src="img/unggah.svg" alt="Unggah" class="w-5 h-5">
-                                Unggah File
-                            </label>
-                            <input type="file" name="foto" id="foto" class="hidden">
-                        </div>
-                        <p class="text-gray-700 text-sm mt-1">* file png atau jpg</p>
-
-                        <div class="flex justify-end mt-4 rounded-[32px]">
-                            <button type="submit"
-                                class="flex items-center px-6 py-2 bg-[#2d68f8] text-white text-lg font-medium font-jakarta rounded-lg shadow-md hover:bg-[#1a4ebb] focus:outline-none focus:ring-2 focus:ring-[#2d68f8] focus:ring-opacity-50">
-                                Kirim
-                                <img src="img/arrow-right.svg" alt="" class="ml-2 inline-block">
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="flex justify-end mt-4 rounded-[32px]">
+                        <button type="submit" class="flex items-center px-6 py-2 bg-[#2d68f8] text-white text-lg font-medium font-jakarta rounded-lg shadow-md hover:bg-[#1a4ebb] focus:outline-none focus:ring-2 focus:ring-[#2d68f8] focus:ring-opacity-50">
+                            Kirim
+                            <img src="img/arrow-right.svg" alt="" class="ml-2 inline-block">
+                        </button>
+                    </div>
+                </form>
+             </div>
             </div>
             <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-96">Lihat Informasi
                 <div class="w-full border-b-2 border-gray-400 my-2"></div>
@@ -157,10 +156,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-</body>
-
+        </div>  
+    </div>
 </body>
 <x-footer />
 

@@ -39,6 +39,7 @@ Route::put('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])-
 Route::delete('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'getById']);
 Route::post('/pengumuman', [PengumumanController::class, 'store']);
 Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->middleware('auth:sanctum');
