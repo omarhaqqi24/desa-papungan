@@ -39,7 +39,8 @@ Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
     ->name('data-desa.index');
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/login/index', [AuthController::class, 'index'])->name('auth.index');
+Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('checkToken')->name('auth.logout');
 
 Route::get('peta-umkm',[PetaUmkmController::class, 'index']);
 Route::put('/admin/profil-desa', [ProfilDesaController::class, 'updateProfilDesa'])->name('profil-desa.update');
