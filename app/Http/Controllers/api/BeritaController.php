@@ -67,7 +67,7 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul' => 'required',
             'isi' => 'required',
             'isAccepted' => 'required'
