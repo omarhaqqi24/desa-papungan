@@ -8,8 +8,7 @@
                     <div class="text-xs font-medium">Portal Resmi Desa Papungan</div>
                 </div>
             </div>
-            <div class=" mt-5 md:mt-0 max-w-80 text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Donec fermentum non erat sed sollicitudin. Nunc id nibh vel risus luctus eleifend. </div>
+            <div class=" mt-5 md:mt-0 max-w-80 text-justify">“Gotong – royong membangun desa Papungan sebagai kawasan agropolitan, Desa yang jujur, transparan, adil, sejahtera, berdaya saing, mandiri, religious dan berbudaya” </div>
         </aside>
         <nav class="font-medium">
             <h6 class="footer-title font-semibold">Tautan</h6>
@@ -21,14 +20,14 @@
         </nav>
         <ul class="font-medium">
             <h6 class="footer-title font-semibold">Kontak Kami</h6>
-            <li class="max-w-96 ">Jl. Stro Jati No. 1, Papungan, Kec. Kanigoro, Kabupaten Blitar, Jawa Timur 66171</li>
+            <li class="max-w-96 ">Jl. Setro Jati No. 1, Papungan, Kec. Kanigoro, Kabupaten Blitar, Jawa Timur 66171</li>
             <li class="p-1 flex items-center text-center gap-3 mt-5">
                 <img src="img/phoneLogo.svg" alt="phoneLogo" class="w-4 h-4">
                 <div class="">(0342) 814031</div>
             </li>
             <li class="p-1 flex items-center text-center gap-3">
                 <img src="img/emailLogo.svg" alt="emailLogo" class="w-4 h-4">
-                <div class="">(0342) 814031</div>
+                <div class="">desapapungan@gmail.com</div>
             </li>
         </ul>
     </div>

@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Validator;
 class LembagaController extends Controller
 {
     public function getAll(Request $request)
-    {
-        $lembagas = Lembaga::orderBy('nama', 'ASC')->get();
+    {    
+        if (!empty($request->nama)){
+            $lembagas = Lembaga::where('nama', 'LIKE', "%{$request->nama}%")
+                ->orderBy('nama', 'ASC')
+                ->get();
+        } else {
+            $lembagas = Lembaga::orderBy('nama', 'ASC')->get();
+        }
         $resources = (new LembagaCollection($lembagas));
 
         return ApiResponseClass::sendResponse($resources, 'Data lembaga berhasil diambil!', 200);

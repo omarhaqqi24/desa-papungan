@@ -86,8 +86,8 @@
                                 <div class="menu-title font-semibold mr-auto">Informasi</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent">Berita</a></li>
                                         <li><a class="hover:bg-accent">Pengumuman</a></li>
+                                        <li><a class="hover:bg-accent">Berita</a></li>
                                         <li><a class="hover:bg-accent">Aspirasi</a></li>
                                     </ul>
                                 </li>
