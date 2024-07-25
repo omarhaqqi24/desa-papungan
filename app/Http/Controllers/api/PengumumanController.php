@@ -15,7 +15,7 @@ class PengumumanController extends Controller
 {
     public function getAll()
     {
-        $pengumumans = Pengumuman::all();
+        $pengumumans = Pengumuman::orderBy('created_at', 'DESC')->get();
         $resource = new PengumumanCollection($pengumumans);
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
     }

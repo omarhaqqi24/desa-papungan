@@ -16,7 +16,7 @@ class BeritaController extends Controller
     public function getAll(Request $request) 
     {
         $perPage = intval($request->query('size'));
-        $beritas = Berita::paginate($perPage);
+        $beritas = Berita::orderBy('created_at', 'DESC')->paginate($perPage);
         $resources = (new BeritaCollection($beritas))->response()->getData();
 
         return ApiResponseClass::sendResponse($resources, '', 200);

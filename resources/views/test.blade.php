@@ -30,20 +30,11 @@
             Edit
         </button>
     </div>
-    <x-modalpf
-    judul="test"
-    idModal="mtest"
-    judulPenjelasan="test"
-    namaInputTextarea="test1"
-    subJudulPenjelasan="test2"
-    namaInputFoto='test3'
+    <x-modalpf judul="test" idModal="mtest" judulPenjelasan="test" namaInputTextarea="test1"
+        subJudulPenjelasan="test2" namaInputFoto='test3' />
 
-    />
-
-    
-
-</div>
-</div>
+    </div>
+    </div>
 </body>
 
 </html>
