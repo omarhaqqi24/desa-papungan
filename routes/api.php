@@ -70,5 +70,7 @@ Route::put('/pariwisata/{id}', [PariwisataController::class, 'update'])->middlew
 Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/v-misi', [VisiMisiController::class, 'getAll']);
-Route::put('/v-misi', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
+Route::post('/v-misi', [VisiMisiController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/v-misi/{id}', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/v-misi/{id}', [VisiMisiController::class, 'destroy'])->middleware('auth:sanctum');
 
