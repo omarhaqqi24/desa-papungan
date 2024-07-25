@@ -26,8 +26,8 @@
             <div class="text-sm font-normal">Home / Profil Desa</div>
         </div>
 
-        <div class=" px-5 md:px-0 mt-10">
-            <div class="container items-center mx-auto space-y-10 text-justify">
+        <div class=" px-5 md:px-0  ">
+            <div class="container items-center mx-auto space-y-10 text-justify p-10 mt-10 ">
                 <x-headerArtikel subJudul="Kenali Desa Papungan " judul="Tentang Kami" />
                 <img src="{{ $data1->data->foto }}" alt="balai desa Papungan" class="rounded-lg w-full">
 
@@ -59,7 +59,7 @@
                 </div>
 
                 <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan"
-                    deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
+                    deskripsi="" />
 
                 <div class="text-sm font-normal"> {{ $data2->data->penjelasan }}</div>
             </div>
