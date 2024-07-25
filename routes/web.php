@@ -12,7 +12,7 @@ use App\Http\Controllers\PetaUmkmController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LandingPageController::class,'index']);
+Route::get('/', [LandingPageController::class,'index'])->name('home');
 
 Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
