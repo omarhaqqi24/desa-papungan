@@ -15,6 +15,7 @@ class PengumumanController extends Controller
 
         $response = $client->request("GET", env("API_BASE_URL", "http://localhost:8001") . "/api/berita");
         $berita = json_decode($response->getBody());
+        
 
         return view("informasi",["pengumuman"=>$pengumuman, "berita"=>$berita]);
     }
