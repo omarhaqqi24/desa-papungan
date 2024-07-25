@@ -20,18 +20,21 @@
                     <li class="pt-3"><a href="{{route('umkm-desa.index')}}">UMKM Desa</a></li>
                     <li class="pt-3"><a href="{{route('pariwisata-desa.index')}}">Pariwisata Desa</a></li>
                 </ul>
-                <button
-                    class="flex items-center  text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
-                    <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
-                    <div class="">Keluar</div>
-                </button>
+                <form action="{{route('auth.logout')}}" method="post" class="w-full">
+                    @csrf
+                    <button
+                        class="flex items-center text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
+                        <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
+                        <div class="">Keluar</div>
+                    </button>
+                </form>
             </div>
         </div>    
     </div>
 
     <!-- Sidebar content -->
-    <button
+    <a href="{{ route('auth.logout') }}"
         class="flex items-center text-lightText p-4 bg-secondary hover:bg-blue-900 transition duration-300">
         <img src="/img/logoLogoutAdmin.svg" alt="logoutButton" class="mr-2">
-    </button>
+    </a>
 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -35,7 +36,12 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         $user = $request->user();
-        $user->currentAccessToken()->delete();
+        if ($user) {
+            $user->currentAccessToken()->delete();
+            return response()->json(['message' => 'Successfully logged out']);
+        } else {
+            return response()->json(['message' => 'User not found'], 403);
+        }
         return ApiResponseClass::sendResponse(null, 'Token berhasil dihapus!', 200);
     }
 }
