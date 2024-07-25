@@ -46,7 +46,7 @@
             <!-- Vertical "Carousel" -->
             <div
                 class="carousel carousel-vertical w-full rounded-box h-96 md:hidden flex items-center border border-neutral">
-                @foreach ($berita->data->resource as $item)
+                @foreach ($berita->data as $item)
                     <div class="carousel-item h-full border-b border-neutral">
                         <x-cardBerita :foto="$item->foto" :judul="$item->judul" :isi="$item->isi" :createdAt="$item->createdAt" />
                     </div>
@@ -55,7 +55,7 @@
             <!-- Horizontal Carousel -->
             <div class="hidden md:carousel w-full">
                 @for ($i = 0; $i < 4; $i++)
-                    <div class="carousel-item mx-2"><x-cardBerita :foto="$berita->data->resource[$i]->foto" :judul="$berita->data->resource[$i]->judul" :isi="$berita->data->resource[$i]->isi"
+                    <div class="carousel-item mx-2"><x-cardBerita :foto="$berita->data[$i]->foto" :judul="$berita->data[$i]->judul" :isi="$berita->data[$i]->isi"
                             :createdAt="$item->createdAt" /></div>
                 @endfor
             </div>
@@ -64,9 +64,9 @@
         <!--Pengumuman -->
         <div class="space-y-5">
             <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">Pengumuman</div>
-            <p class="text-lg">Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit
-                interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                per inceptos himenaeos. </p>
+            <p class="text-lg">Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu
+                membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari
+                mendatang!</p>
             <div class="flex flex-col lg:flex-row items-start">
                 <div class="flex flex-col basis-1/2">
                     <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Pengumuman Terkini</div>
@@ -87,9 +87,9 @@
                 <div class="basis-1/2 p-10 px-0 md:px-10 w-full h-96">
                     <div class="carousel h-full w-full border-black border rounded-xl">
                         @for ($i = 0; $i < 5; $i++)
-                            <div id="{{ $berita->data->resource[$i]->id }}"
+                            <div id="{{ $berita->data[$i]->id }}"
                                 class="carousel-item relative h-full w-full">
-                                <img src="{{ $berita->data->resource[$i]->foto }}" class="w-full h-full object-cover"
+                                <img src="{{ $berita->data[$i]->foto }}" class="w-full h-full object-cover"
                                     alt='' />
                             </div>
                         @endfor
@@ -112,15 +112,18 @@
             <div class="flex flex-col basis-1/2 space-y-5 mt-5">
                 <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Wilayah Desa Papungan</div>
                 <img src="{{ asset('img/Peta Administrasi Desa Papungan.png') }}" alt="" class="w-full h-auto">
-                <p class="text-lg">Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et
-                    velit interdum, ac
-                    aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur
-                    neque. Ut diam quam, semper iaculis condimentum ac, vestibulum eu nisl.</p>
+                <p class="text-lg">Peta administrasi Desa Papungan ini menggambarkan batas wilayah, pembagian wilayah
+                    administratif menjadi beberapa RT (Rukun Tetangga) dan RW (Rukun Warga), serta lokasi desa yang
+                    berbatasan dengan desa-desa lain seperti Kuningan, Banggle, Gaprang, dan Tlogo. Peta ini juga
+                    menunjukkan posisi Desa Papungan yang terletak di dekat Kota Blitar. Selain itu, peta ini
+                    mencantumkan sumber data yang digunakan dalam pembuatannya, yaitu Badan Informasi Geospasial (2022)
+                    dan SAS Planet (2023).</p>
             </div>
         </div>
     </div>
     <x-footer />
+
+
 </body>
 
 </html>
