@@ -48,9 +48,6 @@
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
                 @foreach($pengumuman->data as $item)
-                @if($item->isAccepted == 0)
-                    @continue
-                @endif
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -66,10 +63,7 @@
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." />
 
-                @foreach ($berita->data->resource as $item)
-                @if($item->isAccepted == 0)
-                    @continue
-                @endif
+                @foreach ($berita->data as $item)
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
