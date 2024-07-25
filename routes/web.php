@@ -65,3 +65,6 @@ Route::put('/admin/misi', [ProfilDesaController::class, 'updateMisiDesa'])
 Route::put('/admin/sejarah-desa', [ProfilDesaController::class, 'updateSejarahDesa'])
     ->middleware('checkToken')
     ->name('sejarah.update');
+Route::post('/admin/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
+    ->middleware('checkToken')
+    ->name('misi.create');
