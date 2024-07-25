@@ -24,7 +24,7 @@ Route::get('/umkm', function () {
     return view('umkm');
 });
 
-Route::get('/test',[PengumumanController::class,"index"]);
+Route::get('/informasi',[PengumumanController::class,"index"]);
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
@@ -32,14 +32,6 @@ Route::get('/peta-umkm', function() {
 
 Route::get('/peta-wilayah', function() {
     return view('peta-wilayah');
-});
-
-Route::get('/informasi', function() {
-    return view('informasi');
-});
-
-Route::get('/informasi', function() {
-    return view('informasi');
 });
 
 Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])->middleware('checkToken');
