@@ -25,6 +25,7 @@ Route::get('/umkm', function () {
 });
 
 Route::get('/informasi',[PengumumanController::class,"index"]);
+Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi.store');
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
