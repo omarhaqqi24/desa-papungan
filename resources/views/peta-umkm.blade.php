@@ -176,7 +176,7 @@
                 className: "popup-fixed",
                 autoPan: false,
             }).setContent(
-                
+
             );
 
             // add event listener to the marker
@@ -268,4 +268,3 @@
 </body>
 
 </html>
-
