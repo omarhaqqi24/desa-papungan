@@ -19,8 +19,8 @@
     <x-navbar />
 
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- isi disini-->
-
+        <!-- profil umkm-->
+        <div id="profilumkm"></div>
         <div class="bg-blue-600 text-white w-full py-32 px-10">
             <div class="text-3xl font-semibold">UMKM Desa Papungan</div>
             <div class="text-sm font-normal">Home / UMKM</div>
@@ -40,6 +40,15 @@
 
         </div>
     </div>
+
+
+    <!-- peta umkm-->
+    <div id="petaumkm"></div>
+
+
+
+    <!-- daftar umkm-->
+    <div id="daftarumkm"></div>
 </body>
 <x-footer />
 
