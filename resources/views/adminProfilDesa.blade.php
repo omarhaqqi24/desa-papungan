@@ -72,7 +72,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Profil Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="post" action="{{ route('profil-desa.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('profil-desa.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
@@ -144,12 +144,15 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Visi Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="">
+                    <form method="POST" action="{{ route('visi.update') }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan Visi</label>
                                 <textarea name="isi_poin" id="penjelasan"
                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-200">{{ $visi->isi_poin }}</textarea>
+                                <input hidden type="text" name="id" value="{{ $visi->id }}">
                             </div>
                             <div class="relative w-full">
                                 <div class="flex gap-4 justify-end">
@@ -191,42 +194,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                2
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop PC
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                3
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        @for ($i=1; $i < sizeof($misi); $i++)                            
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $i }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $misi[$i]->isi_poin }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </tr>
+                        @endfor
                     </tbody>
                 </table>
             </div>
