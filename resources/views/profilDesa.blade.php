@@ -21,6 +21,8 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
+         <!-- tentang kami-->
+        <div id="tentangkami"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Profil Desa Papungan</div>
             <div class="text-sm font-normal">Home / Profil Desa</div>
@@ -32,7 +34,10 @@
                 <img src="{{ $data1->data->foto }}" alt="balai desa Papungan" class="rounded-lg w-full">
 
                 <div class="text-sm font-jakarta">{{ $data1->data->penjelasan }}</div>
-
+                
+                
+                 <!-- visi dan misi-->
+                <div id="visidanmisi"></div>
                 <x-headerArtikel subJudul="PROFIL DESA" judul="Visi dan Misi dari Desa Papungan" />
                 <div class="font-normal font-jakarta max-w-full lg:min-w-2xl mt-1">Berikut adalah Visi dan Misi Desa
                     Papungan dengan visi yang bertujuan untuk menciptakan masyarakat yang maju di bidang industri,
@@ -41,7 +46,7 @@
                     operatif dan inovatif di berbagai sektor seperti pertanian, peternakan, dan kebudayaan. Upaya ini
                     juga melibatkan penyesuaian terhadap perubahan lingkungan dan situasi untuk mendukung pembangunan
                     desa secara berkelanjutan.</div>
-
+                
                 <div
                     class="container flex flex-col bg-white py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3">
                     <div class="w-full flex justify-center items-center">
@@ -65,7 +70,8 @@
                         @endfor
                     </ul>
                 </div>
-
+                 <!-- sejarah -->
+                <div id="sejarah"></div>
                 <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan"
                     deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
 
@@ -74,6 +80,14 @@
         </div>
     </div>
 
+
+
+
+
+
+   
+
+    
 </body>
 <x-footer />
 

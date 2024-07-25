@@ -21,6 +21,9 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
+
+        <!-- struktural-->
+        <div id="struktural"></div>
         <div class="bg-secondary text-base-100 w-full py-32 px-10">
             <div class="text-3xl font-semibold">Pemerintahan Desa Papungan</div>
             <div class="text-sm font-normal">Home / Pemerintahan</div>
@@ -36,17 +39,13 @@
             <img src="{{ $struktur->data->foto }}" alt="struktur desa" class="rounded-lg w-full">
 
             <div class="text-sm font-normal">{{ $struktur->data->penjelasan }}</div>
-
+            
+                <!-- perangkat desa-->
+            <div id="perangkatdesa"></div>
             <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
-                <!-- Card 1 BLOM FIX - PERLU DISESUAIKAN -->
-                <!--     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
-            <img src="/img/kepalaDesa.jpg" alt="kepala Desa" class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
-            <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">Card Title asdfghfdfgfdfdgbfgbfvbdfdfgfdg fdgfg fg1</h3>
-            <p class="text-gray-700 text-sm overflow-hidden text-ellipsis whitespace-nowrap">Card content goes here.</p>
-        </div>
-    -->
+
                 @foreach ($perangkatDesas->data->resource as $perangkatDesa)
                     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
                         <img src="/img/kepalaDesa.jpg" alt="kepala Desa"
@@ -60,6 +59,9 @@
 
             </div>
 
+
+                <!-- lembaga desa-->
+            <div id="lembagadesa"></div>
             <x-cardSubjudul jenisJudul="PEMERINTAHAN" judul="Lembaga Desa"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
 
@@ -80,5 +82,6 @@
     </div>
 </body>
 <x-footer />
+
 
 </html>

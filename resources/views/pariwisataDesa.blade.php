@@ -21,6 +21,8 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
+            <!-- profil-->
+    <div id="profil"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Makam Mbah Moedjair Desa Papungan</div>
             <div class="text-sm font-normal">Home / Pariwisata Desa</div>
@@ -35,6 +37,8 @@
                 ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
             <img src="img/unkown.png" alt="unknown" class="rounded-lg w-full">
 
+                <!-- sejarah-->
+    <div id="sejarah"></div>
             <x-cardSubjudul jenisJudul="PARIWISATA DESA" judul="Sejarah Makam Mbah Moedjair Penemu Ikan Moedjair"
                 deskripsi="Menurut sebuah artikel terbaru yang diterbitkan oleh Sapariah Saturi di tahun 2022 tentang sang “pencipta” ikan mujair yang terlupakan . Artikel ini membahas mengenai kisah dan riwayat hidup seorang bernama Modjair yang akrab dipanggil Mbah Moedjair. Beliau menjadi tokoh terkenal dari Desa Papungan, Blitar, Jawa Timur yang berhasil menemukan dan membudidayakan ikan mujair di Indonesia.
 
@@ -47,6 +51,8 @@ Tak cukup sampai disitu, kami Tim 12 MMD Fakultas Ilmu Komputer Universitas Braw
 
             <div class=" my-10 mx-auto font-bold text-3xl">BLOM FIX</div>
 
+                <!-- lokasi-->
+    <div id="lokasi"></div>
             <x-cardSubjudul jenisJudul="LOKASI" judul="Peta Digital Makam Mbah Moedjair Desa Papungan"
                 deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
 

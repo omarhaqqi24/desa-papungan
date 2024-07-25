@@ -10,27 +10,22 @@ use App\Http\Controllers\PetaUmkmController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LandingPageController::class,'index']);
 
-Route::get('/profilDesa', [DataDesaController::class, "index"]);
 
-Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]); 
 
-Route::get('/pariwisataDesa', function () {
-    return view('pariwisataDesa');
-});
 
-Route::get('/umkm', function () {
-    return view('umkm');
-});
 
-Route::get('/informasi',[PengumumanController::class,"index"]);
 
-Route::get('/peta-umkm', function() {
+
+
+
+
+
+Route::get('/peta-umkm', function () {
     return view('peta-umkm');
 });
 
-Route::get('/peta-wilayah', function() {
+Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
 })->name('peta-wilayah');
 
@@ -38,11 +33,29 @@ Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
     ->middleware('checkToken')
     ->name('data-desa.index');
 
+
+//public
+Route::get('/', [LandingPageController::class, 'index'])->name('landingPage.index');
+Route::get('/profilDesa', [DataDesaController::class, "index"])->name('profilDesa.index');
+Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('pemerintahan.index');
+Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
+Route::get('/umkm', function () {
+    return view('umkm');
+})->name('umkm.index');
+Route::get('/pariwisataDesa', function () {
+    return view('pariwisataDesa');
+})->name('pariwisata.index');
+
+
+
+Route::get('peta-umkm', [PetaUmkmController::class, 'index']);
+
+//admin
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('checkToken')->name('auth.logout');
 
-Route::get('peta-umkm',[PetaUmkmController::class, 'index']);
+
 Route::put('/admin/profil-desa', [ProfilDesaController::class, 'updateProfilDesa'])->name('profil-desa.update');
 Route::get('/admin/pemerintahan', function () {
     return view('adminPemerintahan');
