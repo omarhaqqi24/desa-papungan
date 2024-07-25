@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class PengumumanController extends Controller
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
-        $pengumumans = Pengumuman::orderBy('created_at', 'DESC')->get();
+        if (!empty($request->judul)){
+            $pengumumans = Pengumuman::where('judul', 'LIKE', "%{$request->judul}%")
+                ->orderBy('created_at', 'DESC')
+                ->get();
+        } else {
+            $pengumumans = Pengumuman::orderBy('created_at', 'DESC')->get();
+        }
+
         $resource = new PengumumanCollection($pengumumans);
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
     }

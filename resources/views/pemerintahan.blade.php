@@ -47,7 +47,7 @@
             <p class="text-gray-700 text-sm overflow-hidden text-ellipsis whitespace-nowrap">Card content goes here.</p>
         </div>
     -->
-                @foreach ($perangkatDesas->data as $perangkatDesa)
+                @foreach ($perangkatDesas->data->resource as $perangkatDesa)
                     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
                         <img src="/img/kepalaDesa.jpg" alt="kepala Desa"
                             class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
@@ -67,7 +67,7 @@
                 @php
                     $i = 1;
                 @endphp
-                @foreach ($lembagas->data->resource as $lembaga)
+                @foreach ($lembagas->data as $lembaga)
                     <tr class="border-b">
                         <td class="p-2 text-left">{{ $i++ }}</td>
                         <td class="p-2 text-left">{{ $lembaga->nama }}</td>
@@ -82,3 +82,4 @@
 <x-footer />
 
 </html>
+
