@@ -18,11 +18,13 @@ class PariwisataSeeder extends Seeder
 
         $faker = Faker::create('id_ID');
 
-        for ($i=0; $i < 8; $i++){
+        for ($i=0; $i < 5; $i++){
             Pariwisata::create([
                 'foto' => $faker->image(storage_path('app/public/pariwisata'), 500, 500, null, false),
                 'penjelasan' => $faker->sentence()
             ]);
         }
+
+        Pariwisata::where('foto', '0')->delete();
     }
 }

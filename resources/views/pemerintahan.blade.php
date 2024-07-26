@@ -41,12 +41,12 @@
                 <!-- perangkat desa-->
             <div id="perangkatdesa"></div>
             <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
-                deskripsi="Berikut adalah daftar nama-nama Perangkat Desa beserta dengan foto dan jabatannya:" />
+                deskripsi="Berikut adalah daftar nama-nama Perangkat Desa beserta dengan foto dan jabatannya." />
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
 
                 @foreach ($perangkatDesas->data->resource as $perangkatDesa)
                     <div class="bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
-                        <img src="/img/kepalaDesa.jpg" alt="kepala Desa"
+                        <img src="{{$perangkatDesa->foto}}" alt="kepala Desa"
                             class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
                         <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">
                             {{ $perangkatDesa->nama }}</h3>
@@ -63,7 +63,7 @@
             <x-cardSubjudul jenisJudul="PEMERINTAHAN" judul="Lembaga Desa"
                 deskripsi="Berikut ini adalah daftar Lembaga Desa yang beroperasi di Desa Papungan beserta alamat kantornya:" />
 
-            <x-table.table :headers="['nama', 'alamat']" jenisTabel="Daftar Lembaga">
+            <x-table.table :headers="['Nama', 'Alamat']" jenisTabel="Daftar Lembaga">
                 @php
                     $i = 1;
                 @endphp
