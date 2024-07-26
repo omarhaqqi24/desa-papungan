@@ -19,6 +19,8 @@ class PengumumanController extends Controller
 
         if ($request->pub == '1'){
             $pengumumans = $pengumumans->where('isAccepted', 1);
+        } else if ($request->pub == '0'){
+            $pengumumans = $pengumumans->where('isAccepted', 0);
         }
         if (!empty($request->judul)){
             $pengumumans = $pengumumans->where('judul', 'LIKE', "%{$request->judul}%");

@@ -14,8 +14,8 @@
                 <ul class="menu bg-secondary font-medium text-lightText w-80 p-6 pt-10 flex-grow">
                     <!-- Sidebar content here -->
                     <li class="text-lg font-semibold pt-3">DASHBOARD</li>
-                    <li class="pt-3"><a href="{{route('data-desa.index')}}">Profil Desa</a></li>
-                    <li class="pt-3"><a href="{{route('pemerintahan-desa.index')}}">Pemerintahan</a></li>
+                    <li class="pt-3"><a href="{{route('admin.profil-desa.index')}}">Profil Desa</a></li>
+                    <li class="pt-3"><a href="{{route('admin.pemerintahan.index')}}">Pemerintahan</a></li>
                     <li class="pt-3"><a href="{{route('informasi-desa.index')}}">Informasi</a></li>
                     <li class="pt-3"><a href="{{route('umkm-desa.index')}}">UMKM Desa</a></li>
                     <li class="pt-3"><a href="{{route('pariwisata-desa.index')}}">Pariwisata Desa</a></li>

@@ -93,7 +93,7 @@
                                 <div class="menu-title font-semibold mr-auto">UMKM Desa</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'profilumkm']) }}">Profil UMKM dan IKKM</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'profilumkm']) }}">Profil UMKM</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta UMKM</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar UMKM</a></li>
                                     </ul>
@@ -159,10 +159,10 @@
                                 <summary class="hover:text-primary">Informasi</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a href="{{ route('informasi.index', ['targetID' => 'berita']) }}">Berita</a>
+                                        <a href="{{ route('informasi.index', ['targetID' => 'pengumuman']) }}">Pengumuman</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a href="{{ route('informasi.index', ['targetID' => 'pengumuman']) }}">Pengumuman</a>
+                                        <a href="{{ route('informasi.index', ['targetID' => 'berita']) }}">Berita</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
                                         <a href="{{ route('informasi.index', ['targetID' => 'aspirasi']) }}">Aspirasi</a>
@@ -178,8 +178,7 @@
                                 <summary class="hover:text-primary ">UMKM Desa</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch text-xs ">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'profil']) }}">Profil
-                                            UMKM dan
-                                            IKKM</a></li>
+                                            UMKM</a></li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta
                                             UMKM</a>
                                     </li>
