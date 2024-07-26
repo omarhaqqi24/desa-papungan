@@ -52,7 +52,7 @@
                         "{{ $data3->data[0]->isi_poin }}"</div>
                 </div>
                 <div
-                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/misi-bg.png')] bg-cover bg-no-repeat bg-center">
+                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/misi-bg.png')] bg-cover bg-no-repeat bg-top">
                     <div class="w-full flex justify-center items-center">
                         <div class="text-4xl font-semibold text-center font-jakarta">MISI</div>
                     </div>
