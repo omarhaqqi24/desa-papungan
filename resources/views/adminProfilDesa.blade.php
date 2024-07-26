@@ -29,16 +29,47 @@
             <div class="flex-grow border-b-2 border-gray-500"></div>
         </div>
 
+        @if ($success = Session::get('success'))
+            <div role="alert" class="alert alert-success bg-green-200 text-green-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ $success }}</span>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div role="alert" class="alert alert-error bg-red-200 text-red-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                @endforeach
+            </div>
+        @endif
+
         <!-- Show Profil Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Tentang Kami</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil Desa yang ditampilkan</div>
-            @if ($success = Session::get('success'))
-                <h1>{{ $success }}</h1>
-            @endif
-            @if ($errors->any())
-                <h1>{{ $errors }}</h1>
-            @endif
+            
             <!-- Form Show Profil Desa -->
             <div class="form-control gap-6">
                 <div class="form-control gap-4">
@@ -102,6 +133,7 @@
                 </div>
             </dialog>
             <!-- End -->
+
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
         <!-- End -->
@@ -110,12 +142,7 @@
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Visi dan Misi</div>
             <div class="py-2 text-gray-500">Berikut adalah Visi dan Misi yang ditampilkan</div>
-            @if ($success = Session::get('success'))
-                <h1>{{ $success }}</h1>
-            @endif
-            @if ($errors->any())
-                <h1>{{ $errors }}</h1>
-            @endif
+
             <!-- Form Show Visi Desa -->
             <div class="form-control gap-6">
                 <div class="form-control gap-4">
@@ -202,15 +229,30 @@
                                 <td class="px-6 py-4">
                                     {{ $misi[$i]->isi_poin }}
                                 </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button onclick="openModalUpdateMisi('{{ $misi[$i]->id }}', '{{ $misi[$i]->isi_poin }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                <td class="px-6 py-4 text-right flex gap-6 justify-center items-center">
+                                    <form action="{{ route('misi.destroy', $misi[$i]->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="font-medium" type="submit">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                    <button onclick="openModalUpdateMisi('{{ $misi[$i]->id }}', '{{ $misi[$i]->isi_poin }}')" class="font-medium">
+                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
                                 </td>
                             </tr>
                         @endfor
                     </tbody>
                 </table>
             </div>
+            <!-- End -->
 
+            <!-- Show Modal Form Update Misi -->
             <dialog id="modal_form_ms_up" class="modal">
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Misi Desa</h3>
@@ -245,11 +287,8 @@
             <div class="flex justify-end mt-4">
                 <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
                     onclick="modal_form_ms.showModal()">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" class="mr-2">
-                        <path
-                            d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
-                            fill="white" />
+                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.25 7.875H10.625V2.25C10.625 1.629 10.121 1.125 9.5 1.125C8.879 1.125 8.375 1.629 8.375 2.25V7.875H2.75C2.129 7.875 1.625 8.379 1.625 9C1.625 9.621 2.129 10.125 2.75 10.125H8.375V15.75C8.375 16.371 8.879 16.875 9.5 16.875C10.121 16.875 10.625 16.371 10.625 15.75V10.125H16.25C16.871 10.125 17.375 9.621 17.375 9C17.375 8.379 16.871 7.875 16.25 7.875Z" fill="white"/>
                     </svg>
                     Tambahkan
                 </button>
@@ -293,12 +332,7 @@
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Sejarah Desa Papungan</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
-            @if ($success = Session::get('success'))
-                <h1>{{ $success }}</h1>
-            @endif
-            @if ($errors->any())
-                <h1>{{ $errors }}</h1>
-            @endif
+
             <!-- Form Show Sejarah Desa -->
             <div class="form-control gap-6">
                 <div class="form-control gap-4">
@@ -327,7 +361,7 @@
                 </button>
             </div>
 
-            <!-- Modal Form Update Sejarah Desa -->
+            <!-- Show Modal Form Update Sejarah Desa -->
             <dialog id="modal_form_sd" class="modal">
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Sejarah Desa</h3>
