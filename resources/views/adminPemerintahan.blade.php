@@ -29,6 +29,7 @@
             <div class="flex-grow border-b-2 border-gray-500"></div>
         </div>
 
+        <!-- Show Struktur Organisasi -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Struktur Organisasi</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
@@ -38,14 +39,24 @@
             @if ($errors->any())
                 <h1>{{ $errors }}</h1>
             @endif
-            <!-- Tombol Edit-->
-            <x-admin-show forValue="PM-01" judulPenjelasan="Penjelasan Struktural"
-                subPenjelasan="(Penjelasan struktur organisasi desa)" nameTextarea="penjelasan" nameInputPhoto="foto"
-                valueTextarea="" valueFoto="" />
+            <!-- Form Show Struktur Organisasi -->
+            <div class="form-control gap-6">
+                <div class="form-control gap-4">
+                    <label for="penjelasan_st" class="label-text font-semibold">Penjelasan</label>
+                    <textarea disabled name="penjelasan" id="penjelasan_st"
+                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan }}</textarea>
+                </div>
+                <div class="form-control gap-4">
+                    <label for="foto" class="label-text font-semibold">Foto</label>
+                    <input disabled type="file" name="foto" id="foto"
+                        class="file-input file-input-bordered disabled:bg-slate-100">
+                </div>
+            </div>
+            <!-- End -->
 
             <div class="flex justify-end mt-4">
                 <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
-                    onclick="g.showModal()">
+                    onclick="modal_form_st.showModal()">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="mr-2">
                         <path
@@ -56,18 +67,51 @@
                 </button>
             </div>
 
-            <x-modalpf judul="Formulir Update Struktur Organisasi" idModal="g" judulPenjelasan="Penjelasan"
-                namaInputTextarea="penjelasan" subJudulPenjelasan="Penjelasan profil organisasi desa"
-                namaInputFoto="foto" valueTextarea="" valueFoto="" actionUrl="{{ route('profil-desa.update') }}"
-                formMethod="PUT" />
-
+            <!-- Modal Form Update Struktur Organisasi -->
+            <dialog id="modal_form_st" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Update Struktur Organisasi</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" action="{{ route('struktur-desa.update') }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
+                                <textarea name="penjelasan" id="penjelasan"
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan }}</textarea>
+                                <p class="label-text text-gray-500">(penjelasan struktur organisasi desa)</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="foto" class="label-text font-semibold">Foto</label>
+                                <input type="file" name="foto" id="foto"
+                                    class="file-input file-input-bordered disabled:bg-slate-100">
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_st.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
 
+        <!-- Show Perangkat Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Perangkat Desa</div>
             <div class="py-2 text-gray-500">Berikut adalah daftar informasi perangkat desa yang ditampilkan</div>
 
+            <!-- Table Perangkat Desa -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
@@ -93,66 +137,133 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Kepala Desa
-                            </td>
-                            <td class="px-6 py-4">
-                                Qudlori
-                            </td>
-                            <td class="px-6 py-4">
-                                087637846902
-                            </td>
-                            <td class="px-6 py-4">
-                                PD-KP.png
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Sekretaris Desa
-                            </td>
-                            <td class="px-6 py-4">
-                                Bambang
-                            </td>
-                            <td class="px-6 py-4">
-                                083647839239
-                            </td>
-                            <td class="px-6 py-4">
-                                PD-SK.png
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                Kaur Keuangan
-                            </td>
-                            <td class="px-6 py-4">
-                                Bastomi
-                            </td>
-                            <td class="px-6 py-4">
-                                0983764938293
-                            </td>
-                            <td class="px-6 py-4">
-                                PD-KK.png
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($perangkatDesa->data->resource as $item)    
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->jabatan }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->nama }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->kontak }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                   <button onclick="openModalUpdatePerangkatDesa('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+
+            <dialog id="modal_form_pkd_up" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Update Perangkat Desa</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" enctype="multipart/form-data" id="form_up_pkd" action="{{ route('perangkat-desa.update') }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="nama_pkd_up" class="label-text font-semibold">Nama</label>
+                                <input type="text" name="nama" id="nama_pkd_up" class="input input-bordered" placeholder="(Tuliskan Nama)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                                <input hidden type="text" name="id" id="id_pkd">
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="jabatan_pkd_up" class="label-text font-semibold">Jabatan</label>
+                                <select name="jabatan" id="jabatan_pkd_up" class="select select-bordered">
+                                    <option disabled selected>Pilihan Jabatan</option>
+                                    @foreach ($perangkatDesa->data->list as $item)
+                                <option value="{{ ($item->id . '|' . $item->nama) }}">{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="kontak_pkd_up" class="label-text font-semibold">Kontak</label>
+                                <input type="text" name="kontak" id="kontak_pkd_up" class="input input-bordered" placeholder="000000000000">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="foto_pkd_up" class="label-text font-semibold">Foto</label>
+                                <input type="file" name="foto" id="foto_pkd_up" class="file-input file-input-bordered">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau .jpg</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_pkd_up.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
+
+            <!-- Form Tambah Perangkat Desa -->
+            <dialog id="modal_form_pkd" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Tambah Perangkat Desa</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" action="{{ route('perangkat-desa.create') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="nama_pkd" class="label-text font-semibold">Nama</label>
+                                <input type="text" name="nama" id="nama_pkd" class="input input-bordered ">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="jabatan_pkd" class="label-text font-semibold">Jabatan</label>
+                                <select name="jabatan" id="jabatan_pkd" class="select select-bordered">
+                                    <option disabled selected>Pilihan Jabatan</option>
+                                    @foreach ($perangkatDesa->data->list as $item)
+                                        <option value="{{ ($item->id . '|' . $item->nama) }}">{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="kontak_pkd" class="label-text font-semibold">Kontak</label>
+                                <input type="text" name="kontak" id="kontak_pkd" class="input input-bordered" placeholder="000000000000">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="foto_pkd" class="label-text font-semibold">Foto</label>
+                                <input type="file" name="foto" id="foto_pkd" class="file-input file-input-bordered">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau .jpg</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_pkd.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
+
             <div class="flex justify-end mt-4">
                 <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
-                    onclick="i.showModal()">
+                    onclick="modal_form_pkd.showModal()">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="mr-2">
                         <path
@@ -166,6 +277,7 @@
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
 
+        <!-- Show Lembaga Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Lembaga Desa</div>
             <form action="" method="get">
@@ -183,6 +295,7 @@
             </form>
             <div class="py-2 text-gray-500">Berikut adalah daftar informasi lembaga desa yang ditampilkan</div>
 
+            <!-- Table Lembaga Desa -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
@@ -205,51 +318,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($lembagaDesa->data as $item)    
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->nama }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->alamat }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->kontak }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button onclick="openModalUpdateLembaga('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <section class="px-4 py-6 bg-white border-t">
@@ -315,10 +399,53 @@
                 </section>
             </div>
 
+            <dialog id="modal_form_lbd_up" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Update Lembaga Desa</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" enctype="multipart/form-data" id="form_up_lembaga" action="{{ route('lembaga-desa.update') }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="nama_lbd_up" class="label-text font-semibold">Nama</label>
+                                <input type="text" name="nama" id="nama_lbd_up" class="input input-bordered" placeholder="(Tuliskan Nama)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                                <input hidden type="text" name="id" id="id_lbd">
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="alamat_lbd_up" class="label-text font-semibold">Alamat</label>
+                                <input type="text" name="alamat" id="alamat_lbd_up" class="input input-bordered" placeholder="(Tuliskan Alamat)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="kontak_lbd_up" class="label-text font-semibold">Kontak</label>
+                                <input type="text" name="kontak" id="kontak_lbd_up" class="input input-bordered" placeholder="000000000000">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_lbd_up.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
+
+
+
             <div class="flex justify-end mt-4">
                 <button
                     class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
-                    onclick="i.showModal()">
+                    onclick="modal_form_lbd.showModal()">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="mr-2">
                         <path
@@ -328,8 +455,79 @@
                     Tambahkan
                 </button>
             </div>
+
+            <!-- Form Tambah Lembaga Desa -->
+            <dialog id="modal_form_lbd" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Tambah Lembaga Desa</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" action="{{ route('lembaga-desa.create') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="nama_lbd" class="label-text font-semibold">Nama</label>
+                                <input type="text" name="nama" id="nama_lbd" class="input input-bordered" placeholder="(Tuliskan Nama)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="alamat_lbd" class="label-text font-semibold">Alamat</label>
+                                <input type="text" name="alamat" id="alamat_lbd" class="input input-bordered" placeholder="(Tuliskan Alamat)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="kontak_lbd" class="label-text font-semibold">Kontak</label>
+                                <input type="text" name="kontak" id="kontak_lbd" class="input input-bordered" placeholder="000000000000">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_lbd.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
         </div>
     </div>
+
+    <script>
+        function openModalUpdateLembaga(id, data) {
+            data = JSON.parse(data);
+            const namaIn = document.getElementById('nama_lbd_up');
+            namaIn.value = data.nama;
+            const alamatIn = document.getElementById('alamat_lbd_up');
+            alamatIn.value = data.alamat;
+            const kontakIn = document.getElementById('kontak_lbd_up');
+            kontakIn.value = data.kontak;
+            const hiddenInput = document.getElementById('id_lbd');
+            hiddenInput.value = data.id;
+
+            document.getElementById('modal_form_lbd_up').showModal();
+        }
+        
+        function openModalUpdatePerangkatDesa(id, data) {
+            data = JSON.parse(data);
+            const namaIn = document.getElementById('nama_pkd_up');
+            namaIn.value = data.nama;
+            const jabatanIn = document.getElementById('jabatan_pkd_up');
+            jabatanIn.value = data.jabatan_id + "|" + data.jabatan;
+            console.log(jabatanIn);
+            const kontakIn = document.getElementById('kontak_pkd_up');
+            kontakIn.value = data.kontak;
+            const hiddenInput = document.getElementById('id_pkd');
+            hiddenInput.value = data.id;
+
+            document.getElementById('modal_form_pkd_up').showModal();
+        }
+    </script>
 
 </body>
 
