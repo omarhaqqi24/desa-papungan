@@ -34,8 +34,7 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
-
-         <!-- pengumuman-->
+        <!-- pengumuman-->
         <div id="pengumuman"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Informasi Seputar Desa Papungan</div>
@@ -47,7 +46,7 @@
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="PENGUMUMAN"
                     deskripsi="Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari mendatang!" />
 
-                @foreach($pengumuman->data as $item)
+                @foreach ($pengumuman->data as $item)
                     <div class="flex flex-col justify-start items-end gap-1.5">
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
@@ -59,7 +58,7 @@
                     </div>
                 @endforeach
                 <!-- berita-->
-            <div id="berita"></div>
+                <div id="berita"></div>
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Berikut adalah Berita Terkini dari Desa Papungan. Simak informasi terbaru dan penting berikut untuk tetap terhubung dengan perkembangan desa kita!" />
 
@@ -80,7 +79,7 @@
                     </div>
                 @endforeach
 
-                    <!-- aspirasi-->
+                <!-- aspirasi-->
                 <div id="aspirasi"></div>
                 <div class=" space-y-2">
                     <div class="flex items-center gap-2 text-blue-600 w- md:w-1/2 lg:w-1/4">
@@ -150,23 +149,23 @@
 
             <!-- Side content -->
             <div class="basis-1/4">
-                <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-80 sticky top-14">
-                    <div class="text-xl font-semibold font-jakarta py-8 pr-8 max-h-80">Lihat Informasi
-                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                        <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
-                            <div class="p-2 flex flex-col">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">pengumuman
-                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                                </div>
+                <div class="hidden md:block text-xl font-semibold font-jakarta max-h-96 top-40 mt-10 sticky">
+                    Lihat Informasi Lainnya
+                    <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                    <div
+                        class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col p-4 space-y-2 w-full md:w-64">
+                        <div class="px-2 flex flex-col">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </div>
-                            <div class="p-2 flex flex-col">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
-                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                                </div>
+                        </div>
+                        <div class="px-2 flex flex-col">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </div>
-                            <div class="p-2 flex">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
-                            </div>
+                        </div>
+                        <div class="px-2 flex">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
                         </div>
                     </div>
                 </div>
@@ -177,3 +176,4 @@
 <x-footer />
 
 </html>
+
