@@ -40,13 +40,13 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Nama
+                                No
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Alamat
+                                Foto
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nomor Kontak
+                                Keterangan
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -54,51 +54,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($pariwisata->data as $item)                            
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <img src="{{ $item->foto }}" alt="pariwisata-desa" class="w-12 h-12 object-cover rounded-xl">
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->penjelasan }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <section class="px-4 py-6 bg-white border-t">
@@ -165,7 +137,7 @@
             </div>
             <div class="flex justify-end mt-4">
                 <button class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
-                    onclick="i.showModal()">
+                    onclick="modal_form_pariwisata.showModal()">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="mr-2">
                         <path
@@ -175,6 +147,43 @@
                     Tambahkan
                 </button>
             </div>
+
+            <!-- Form Tambah Pariwisata Desa -->
+            <dialog id="modal_form_pariwisata" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Unggah Foto`</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" action="{{ route('lembaga-desa.create') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="foto_pr" class="label-text font-semibold">Foto</label>
+                                <input type="file" name="foto" id="foto_pr" class="file-input file-input-bordered">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau .jpg</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="desc_pr" class="label-text font-semibold">Keterangan</label>
+                                <textarea name="penjelasan" id="desc_pr"
+                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_pariwisata.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
+
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
     </div>

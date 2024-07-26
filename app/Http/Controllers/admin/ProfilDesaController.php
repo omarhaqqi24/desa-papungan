@@ -211,4 +211,27 @@ class ProfilDesaController extends Controller
             return redirect()->back()->withErrors($result->message)->withInput($request->all());
         }
     }
+
+    public function deleteMisiDesa($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("DELETE", env("API_BASE_URL", "http://localhost:8001") . "/api/v-misi/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
+        }
+    }
 }
