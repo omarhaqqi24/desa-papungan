@@ -7,15 +7,17 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class PemerintahanDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $client = new Client();
 
         $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa");
-        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/lembaga");
+        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/lembaga?nama=$request->nama");
         $response3 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/data-desa/3");
 
         $perangkatDesa = json_decode($response1->getBody());
@@ -25,7 +27,8 @@ class PemerintahanDesaController extends Controller
         return view('adminPemerintahan', [
             "perangkatDesa" => $perangkatDesa,
             "lembagaDesa" => $lembagaDesa,
-            "strukturOrg" => $strukturOrg
+            "strukturOrg" => $strukturOrg,
+            "nama" => $request->nama
         ]);
     }
 
@@ -35,8 +38,20 @@ class PemerintahanDesaController extends Controller
             $client = new Client();
             $token = Session::get('api-token');
             $image = $request->file('foto');
+            if (empty($image)) {
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa");
+                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
+
+                throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
+            }
 
             $dataJabatan = explode('|', $request->jabatan);
+            if (empty($dataJabatan[1])) {
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa");
+                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Jabatan harus diisi!']));
+
+                throw new BadResponseException('Jabatan harus diisi!', $guzzleRequest, $guzzleResponse);
+            }
             $jabatan = $dataJabatan[1];
             $jabatanId = $dataJabatan[0];
 
@@ -272,6 +287,52 @@ class PemerintahanDesaController extends Controller
             $result = json_decode($response->getBody());
 
             return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function deletePerangkatDesa($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("DELETE", env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
+        }
+    }
+
+    public function deleteLembagaDesa($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("DELETE", env("API_BASE_URL", "http://localhost:8001") . "/api/lembaga/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
         }
     }
 }
