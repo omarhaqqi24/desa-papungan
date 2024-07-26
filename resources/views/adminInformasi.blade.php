@@ -31,6 +31,7 @@
 
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Daftar Berita dan Pengumuman</div>
+
             <form action="" method="get">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -45,21 +46,26 @@
                 </div>
             </form>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            
+            <!-- Table Berita Desa -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
                         class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                        Daftar Berita dan Pengumaman</caption>
+                        Daftar Berita</caption>
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Nama
+                                Judul
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Alamat
+                                Isi
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nomor Kontak
+                                File Foto
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Terakhir Diupdate
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -67,115 +73,88 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($berita->data as $item)    
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->judul }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    Lihat Isi
+                                </td>
+                                <td class="px-6 py-4">
+                                    <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->updatedAt }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                   <button onclick="openModalUpdatePerangkatDesa('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <section class="px-4 py-6 bg-white border-t">
-                    <div class="flex items-center justify-between w-full">
-                        <button disabled
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                            </svg>
-                            Previous
-                        </button>
-                        <div class="flex items-center gap-2">
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    1
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    2
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    3
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    4
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    5
-                                </span>
-                            </button>
-                        </div>
-                        <button
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            Next
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </section>
             </div>
+            <!-- End -->
+
+            <div class="flex justify-end mt-4">
+                <button
+                    class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
+                    onclick="i.showModal()">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                        <path
+                            d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
+                            fill="white" />
+                    </svg>
+                    Tambahkan
+                </button>
+            </div>
+
+            <!-- Table Pengumuman Desa -->
+            <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <caption
+                        class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                        Daftar Pengumuman</caption>
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Judul
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Isi
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Terakhir Diupdate
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pengumuman->data as $item)    
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->judul }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    Lihat Isi
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->updatedAt }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                   <button onclick="openModalUpdatePerangkatDesa('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- End -->
+
             <div class="flex justify-end mt-4">
                 <button
                     class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
@@ -216,13 +195,16 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Nama
+                                Tanggal
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Alamat
+                                Judul
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nomor Kontak
+                                Isi
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Foto
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -240,36 +222,9 @@
                             <td class="px-6 py-4">
                                 Nomor Kontak
                             </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
+                                    <img src="{{}}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                </td>
                             <td class="px-6 py-4 text-right">
                                 <a href="#"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -366,13 +321,16 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Nama
+                                Tanggal
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Alamat
+                                Judul
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nomor Kontak
+                                Isi
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Foto
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -382,47 +340,23 @@
                     <tbody>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
-                                Lembaga
+                                22-98-2024
                             </td>
                             <td class="px-6 py-4">
-                                Jalan
+                                MMD FILKOM 2024
                             </td>
                             <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
                                 <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</a>
                             </td>
                             <td class="px-6 py-4">
-                                Jalan
+                                File Foto
                             </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <td class="px-6 py-4 text-right flex justify-center items-center gap-4">
+                                 <input
+                                    type="checkbox"
+                                    class="checkbox border-gray-400 [--chkbg:theme(colors.green.300)] [--chkfg:white] checked:border-green-300" />
+                                <button class="btn btn-warning btn-sm">Hapus</button>
                             </td>
                         </tr>
                     </tbody>
