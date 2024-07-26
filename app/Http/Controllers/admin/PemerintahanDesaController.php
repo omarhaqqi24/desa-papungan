@@ -12,12 +12,12 @@ use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class PemerintahanDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $client = new Client();
 
         $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa");
-        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/lembaga");
+        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/lembaga?nama=$request->nama");
         $response3 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/data-desa/3");
 
         $perangkatDesa = json_decode($response1->getBody());
@@ -27,7 +27,8 @@ class PemerintahanDesaController extends Controller
         return view('adminPemerintahan', [
             "perangkatDesa" => $perangkatDesa,
             "lembagaDesa" => $lembagaDesa,
-            "strukturOrg" => $strukturOrg
+            "strukturOrg" => $strukturOrg,
+            "nama" => $request->nama
         ]);
     }
 
