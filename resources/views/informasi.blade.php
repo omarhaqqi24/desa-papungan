@@ -27,6 +27,15 @@
         });
     </script>
 
+    <style>
+    .truncate-multiline {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    </style>
+
 </head>
 
 <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50 overflow-x-hidden">
@@ -48,37 +57,46 @@
                     deskripsi="Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari mendatang!" />
 
                 @foreach($pengumuman->data as $item)
-                    <div class="flex flex-col justify-start items-end gap-1.5">
-                        <div class="self-stretch flex flex-col justify-start items-start gap-1">
-                            <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
-                            <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
-                            <div class="text-ellipsis overflow-hidden font-normal font-jakarta">{{ $item->isi }}</div>
+                <div class="flex flex-col justify-start items-end gap-1.5">
+                    <div class="self-stretch flex flex-col justify-start items-start gap-1">
+                        <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
+                        <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
+                        <div class="relative font-normal font-jakarta">
+                            <div class="truncate-multiline">
+                                {{ $item->isi }}
+                            </div>      
                         </div>
-                        <a href="#" class="px-4 py-2"><img src="img/selengkapnya.svg" alt=""></a>
-                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                        <div class="w-full flex justify-end">
+                            <a href="{{ url('pengumuman/'.$item->id) }}" class="text-blue-500 mt-2 mb-4">Selengkapnya</a>
+                        </div>
                     </div>
+                    <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                </div>
                 @endforeach
 
                 <!-- berita-->
-            <div id="berita"></div>
+                <div id="berita"></div>
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
                     deskripsi="Berikut adalah Berita Terkini dari Desa Papungan. Simak informasi terbaru dan penting berikut untuk tetap terhubung dengan perkembangan desa kita!" />
 
                 @foreach ($berita->data as $item)
-                    <div class="flex flex-col justify-start items-end gap-1.5">
-                        <div class="self-stretch flex flex-col justify-start items-start gap-1">
-                            <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
-                            <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
-                            <div class="flex flex-col lg:flex-row gap-4">
-                                <img src="{{ $item->foto }}" alt="fotoberita"
-                                    class="w-full lg:w-[400px] h-[300px] object-cover">
-                                <div>{{ $item->isi }}
-                                    <div class="text-right text-[#2d68f8] mt-5">Selengkapnya</div>
-                                </div>
+                <div class="flex flex-col justify-start items-end gap-1.5">
+                    <div class="self-stretch flex flex-col justify-start items-start gap-1">
+                        <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
+                        <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
+                        <div class="flex flex-col lg:flex-row gap-4">
+                            <img src="{{ $item->foto }}" alt="fotoberita" class="w-full lg:w-[400px] h-[300px] object-cover">
+                            <div class="font-normal font-jakarta relative w-full truncate-multiline">
+                                {{ $item->isi }}
+                                
                             </div>
-                            <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                            <div class="w-full flex justify-end">
+                                    <a href="{{ url('pengumuman/'.$item->id) }}" class="text-blue-500 mt-2 mb-4">Selengkapnya</a>
+                            </div>
                         </div>
+                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     </div>
+                </div>
                 @endforeach
 
                     <!-- aspirasi-->
