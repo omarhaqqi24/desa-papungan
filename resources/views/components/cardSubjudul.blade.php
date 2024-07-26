@@ -6,7 +6,7 @@
             <div class="border-b-2 border-white w-full"></div>
         </div>
 
-        <div class="text-lightText text-3xl md:4xl font-semibold text-pretty">{{ $judul }}</div>
+        <div class="text-lightText text-3xl md:4xl font-semibold text-pretty text-left">{{ $judul }}</div>
         <div class="text-lightText text-base md:teks-justify">{{ $deskripsi }}</div>
     </div>
 </div>
