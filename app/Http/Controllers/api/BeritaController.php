@@ -19,6 +19,8 @@ class BeritaController extends Controller
 
         if ($request->pub == '1'){
             $beritas = $beritas->where('isAccepted', 1);    
+        } else if ($request->pub == '0'){
+            $beritas = $beritas->where('isAccepted', 0);    
         }
         if (!empty($request->judul)){
             $beritas = $beritas->where('judul', 'LIKE', "%{$request->judul}%");

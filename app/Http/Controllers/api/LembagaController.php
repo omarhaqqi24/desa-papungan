@@ -51,7 +51,8 @@ class LembagaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'kontak' => 'required'
         ]);
 
         if ($validator->fails()) {

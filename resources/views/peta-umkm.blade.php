@@ -4,16 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel</title>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" href="{{ asset('map-style.css') }}">
-    <title>Peta Umkm</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+    @vite('resources/css/app.css')
 </head>
 
 <body>
     <div id="map"></div>
+    <div id='test' class="hidden">
+        <div class="mr-5 px-5">
+            <div id="carousel" class="carousel carousel-center max-h-44 snap-x snap-mandatory">
+            </div>
+            <p id="nama" class="font-bold text-2xl my-0"></p>
+            <p id="jam-buka" class="font-normal text-lg text-gray-500"></p>
+            <div class="space-y-0 my-0">
+                <p class="font-normal text-lg text-gray-500">Jenis Produk:</p>
+                <p id="jenis" class="font-normal text-lg text-black"></p>
+            </div>
+            <div>
+                <p class="font-normal text-lg text-gray-500">Alamat:</p>
+                <p id="alamat" class="font-normal text-lg text-black"></p>
+            </div>
+            <div>
+                <p class="font-normal text-lg text-gray-500">Nomor Kontak:</p>
+                <p id="kontak" class="font-normal text-lg text-black"></p>
+            </div>
+            <div>
+                <p class="font-normal text-lg text-gray-500">Perizinan:</p>
+                <p class="font-normal text-lg text-gray-500">P-IRT <span id='pirt'
+                        class="font-normal text-lg text-black"></span></p>
+                <p class="font-normal text-lg text-gray-500">Halal <span id='halal'
+                        class="font-normal text-lg text-black"></span></p>
+                <p class="font-normal text-lg text-gray-500">NIB <span id='nib'
+                        class="font-normal text-lg text-black"></span></p>
+            </div>
+            <div>
+                <p class="font-normal text-lg text-gray-500">Deskripsi:</p>
+                <p id="deskripsi" class="font-normal text-lg text-black"></p>
+            </div>
+
+        </div>
+    </div>
+    </div>
     <script>
         // map configuration
         let config = {
@@ -139,15 +180,14 @@
         });
 
         // data dummy
-        const points = JSON.parse('<?= json_encode($data->data->resource->resource) ?>')
-        console.log(points)
+        const points = JSON.parse('<?= json_encode($data->data->resource) ?>')
 
         polygon.addTo(map);
 
-        // create the marker for each data in the data 
+        // create the marker for each data in the data
         points.map(({
             id,
-            jenisProduk,
+            jenis,
             foto,
             alamat,
             lat,
@@ -155,11 +195,11 @@
             deskripsi,
             nama,
             kontak,
-            jamBuka,
-            pirt,
-            halal,
-            nib,
-            bpom
+            jam_buka,
+            no_pirt,
+            no_halal,
+            no_nib,
+            no_bpom
         }) => {
             // add the marker to the map
             const marker = L.marker([lat, long], {
@@ -170,14 +210,39 @@
             // put the marker to the markers array
             markers.push(marker);
 
+            const carousel = document.getElementById('carousel');
+            foto.forEach(obj => {
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('carousel-item');
+                // imgContainer.classList.add('mx-2');
+                // imgContainer.classList.add('snap-center');
+                const img = document.createElement('img');
+                img.src = obj.foto;
+                img.classList.add('object-cover');
+                img.classList.add('snap-center');
+                img.classList.add('object-center');
+                img.classList.add('w-11/12');
+                imgContainer.appendChild(img);
+                carousel.appendChild(imgContainer);
+            });
+
+            document.getElementById('nama').innerHTML = nama;
+            document.getElementById('jam-buka').innerHTML = 'Jam buka' + " " + jam_buka;
+            const jenis_name = jenis.map(item => item.jenis)
+            document.getElementById('jenis').innerHTML = jenis_name.join(', ');
+            document.getElementById('alamat').innerHTML = alamat;
+            document.getElementById('kontak').innerHTML = kontak;
+            document.getElementById('pirt').innerHTML = "No. " + no_pirt;
+            document.getElementById('halal').innerHTML = no_halal;
+            document.getElementById('nib').innerHTML = no_nib;
+            document.getElementById('deskripsi').innerHTML = deskripsi;
+
             // create a popup object for each marker / data
             const popup = L.popup({
                 pane: "fixed",
                 className: "popup-fixed",
                 autoPan: false,
-            }).setContent(
-
-            );
+            }).setContent(document.getElementById('test').innerHTML);
 
             // add event listener to the marker
             marker.bindPopup(popup).on("click", fitBoundsPadding);
@@ -268,3 +333,4 @@
 </body>
 
 </html>
+
