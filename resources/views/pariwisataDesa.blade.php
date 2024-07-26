@@ -32,7 +32,7 @@
     <div class=" px-5 md:px-0 ">
         <div class="container p-10 items-center mx-auto space-y-10">
             <x-headerArtikel subJudul="Kenali Pariwisata Desa Papungan  " judul="Profil Makam Mbah Moedjair" />
-            <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Video ini dibuat oleh Kelompok 12 Mahasiswa Membangun Desa Fakultas Ilmu Komputer Universitas Brawijaya. Simak video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!</div>
+            <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Simak video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!</div>
             <img src="img/unkown.png" alt="unknown" class="rounded-lg w-full">
 
                 <!-- sejarah-->
