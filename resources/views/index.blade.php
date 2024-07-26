@@ -46,18 +46,28 @@
             <!-- Vertical "Carousel" -->
             <div
                 class="carousel carousel-vertical w-full rounded-box h-96 md:hidden flex items-center border border-neutral">
+                <?php $iter = 0; ?>
                 @foreach ($berita->data as $item)
                     <div class="carousel-item h-full border-b border-neutral">
                         <x-cardBerita :foto="$item->foto" :judul="$item->judul" :isi="$item->isi" :createdAt="$item->createdAt" />
                     </div>
+                    <?php $iter++; ?>
+                    @if ($iter > 5)
+                        @break
+                    @endif
                 @endforeach
             </div>
             <!-- Horizontal Carousel -->
             <div class="hidden md:carousel w-full">
-                @for ($i = 0; $i < 4; $i++)
-                    <div class="carousel-item mx-2"><x-cardBerita :foto="$berita->data[$i]->foto" :judul="$berita->data[$i]->judul" :isi="$berita->data[$i]->isi"
-                            :createdAt="$item->createdAt" /></div>
-                @endfor
+                <?php $iter = 0; ?>
+                @foreach ($berita->data as $item)
+                    <div class="carousel-item mx-2"><x-cardBerita :foto="$item->foto" :judul="$item->judul" :isi="$item->isi"
+                        :createdAt="$item->createdAt" /></div>
+                    <?php $iter++; ?>
+                    @if ($iter > 4)
+                        @break
+                    @endif
+                @endforeach
             </div>
         </div>
 
@@ -70,28 +80,38 @@
             <div class="flex flex-col lg:flex-row items-start">
                 <div class="flex flex-col basis-1/2">
                     <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Pengumuman Terkini</div>
-                    @for ($i = 0; $i < 3; $i++)
+                    <?php $iter = 0; ?>
+                    @foreach ($pengumuman->data as $item)
                         <div className="CardPengumuman" class="p-10 border-b-2 border-neutral space-y-2">
-                            <h1 class="card-title line-clamp-1">{{ $pengumuman->data[$i]->judul }}</h1>
+                            <h1 class="card-title line-clamp-1">{{ $item->judul }}</h1>
                             <p class="text-neutral font-medium text-lg font-jakarta">
-                                {{ $pengumuman->data[$i]->createdAt }}</p>
+                                {{ $item->createdAt }}</p>
                             <p class="text-black font-medium text-lg font-jakarta line-clamp-3">
-                                {{ $pengumuman->data[$i]->isi }}</p>
+                                {{ $item->isi }}</p>
                             <p class="text-blue-600 font-medium text-right text-lg font-jakarta pt-5">Selengkapnya >>
                             </p>
                         </div>
-                    @endfor
+                        <?php $iter++; ?>
+                        @if ($iter > 3)
+                            @break
+                        @endif
+                    @endforeach
                     <div class=" text-blue-600 text-lg text-right md:text-lg font-medium font-jakarta m-4 mt-5">Baca
                         Pengumuman Lainnya >></div>
                 </div>
                 <div class="basis-1/2 p-10 px-0 md:px-10 w-full h-96">
                     <div class="carousel h-full w-full rounded-xl">
-                        @for ($i = 0; $i < 5; $i++)
-                            <div id="{{ $berita->data[$i]->id }}" class="carousel-item relative h-full w-full">
-                                <img src="{{ $berita->data[$i]->foto }}" class="w-full h-full object-cover"
+                        <?php $iter = 0;?>
+                        @foreach ($berita->data as $item)
+                            <div id="{{ $item->id }}" class="carousel-item relative h-full w-full">
+                                <img src="{{ $item->foto }}" class="w-full h-full object-cover"
                                     alt='' />
                             </div>
-                        @endfor
+                            <?php $iter++; ?>
+                            @if ($iter > 4)
+                                @break
+                            @endif
+                        @endforeach
                     </div>
                     <div class="flex justify-center mt-4">
                         @for ($i = 0; $i < 5; $i++)
