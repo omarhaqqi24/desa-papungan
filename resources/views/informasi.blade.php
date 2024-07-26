@@ -42,7 +42,7 @@
             <div class="text-sm font-normal">Home / Profil Desa</div>
         </div>
 
-        <div class="container  mx-auto flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-6">
+        <div class="container mx-auto flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-6">
             <div class="flex-grow p-10 mx-auto space-y-6">
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="PENGUMUMAN"
                     deskripsi="Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari mendatang!" />
@@ -147,21 +147,27 @@
                     </form>
                 </div>
             </div>
-            <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-96">Lihat Informasi
-                <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
-                    <div class="p-2 flex flex-col">
-                        <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
-                            <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+
+            <!-- Side content -->
+            <div class="basis-1/4">
+                <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-80 sticky top-14">
+                    <div class="text-xl font-semibold font-jakarta py-8 pr-8 max-h-80">Lihat Informasi
+                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                        <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
+                            <div class="p-2 flex flex-col">
+                                <div class="px-2 text-xl font-medium w-full font-jakarta">pengumuman
+                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                                </div>
+                            </div>
+                            <div class="p-2 flex flex-col">
+                                <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
+                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                                </div>
+                            </div>
+                            <div class="p-2 flex">
+                                <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-2 flex flex-col">
-                        <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
-                            <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                        </div>
-                    </div>
-                    <div class="p-2 flex">
-                        <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
                     </div>
                 </div>
             </div>
