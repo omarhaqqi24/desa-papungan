@@ -52,23 +52,23 @@
             </div>
             <!-- Side content -->
             <div class="basis-1/4">
-                <div class="hidden md:block text-xl font-semibold font-jakarta max-h-96 m-20 mt-0 mr-0">Lihat
-                    Informasi Lainnya
-                    <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                    <div
-                        class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col p-4 space-y-2 w-full md:w-64">
-                        <div class="px-2 flex flex-col">
-                            <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
-                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-80 sticky top-14">
+                    <div class="text-xl font-semibold font-jakarta py-8 pr-8 max-h-80">Lihat Informasi
+                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                        <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
+                            <div class="p-2 flex flex-col">
+                                <div class="px-2 text-xl font-medium w-full font-jakarta">pengumuman
+                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="px-2 flex flex-col">
-                            <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
-                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                            <div class="p-2 flex flex-col">
+                                <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
+                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="px-2 flex">
-                            <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
+                            <div class="p-2 flex">
+                                <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
+                            </div>
                         </div>
                     </div>
                 </div>
