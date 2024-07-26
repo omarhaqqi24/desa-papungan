@@ -101,12 +101,17 @@
                 </div>
                 <div class="basis-1/2 p-10 px-0 md:px-10 w-full h-96">
                     <div class="carousel h-full w-full rounded-xl">
-                        @for ($i = 0; $i < 5; $i++)
-                            <div id="{{ $berita->data[$i]->id }}" class="carousel-item relative h-full w-full">
-                                <img src="{{ $berita->data[$i]->foto }}" class="w-full h-full object-cover"
+                        <?php $iter = 0;?>
+                        @foreach ($berita->data as $item)
+                            <div id="{{ $item->id }}" class="carousel-item relative h-full w-full">
+                                <img src="{{ $item->foto }}" class="w-full h-full object-cover"
                                     alt='' />
                             </div>
-                        @endfor
+                            <?php $iter++; ?>
+                            @if ($iter > 4)
+                                @break
+                            @endif
+                        @endforeach
                     </div>
                     <div class="flex justify-center mt-4">
                         @for ($i = 0; $i < 5; $i++)
