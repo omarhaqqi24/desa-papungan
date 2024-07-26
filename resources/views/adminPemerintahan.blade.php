@@ -333,7 +333,7 @@
                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" placeholder="Pencarian" name="cari-lembaga" id="cari-lembaga"
+                    <input type="search" placeholder="Pencarian" name="nama" id="cari-lembaga" value="{{ request()->input('nama') }}"
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
