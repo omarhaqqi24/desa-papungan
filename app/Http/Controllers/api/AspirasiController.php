@@ -46,7 +46,7 @@ class AspirasiController extends Controller
         $aspirasi = Aspirasi::create([
             'judul' => $request->judul,
             'isi' => $request->isi,
-            'penulis' => $request->penulis,
+            'nama' => $request->nama,
             'foto' => (!empty($request->foto))?$image->hashName():''
         ]);
 
