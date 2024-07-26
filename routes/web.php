@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\InformasiDesaController;
+use App\Http\Controllers\admin\PariwisataDesaController;
 use App\Http\Controllers\admin\PemerintahanDesaController;
 use App\Http\Controllers\admin\ProfilDesaController;
+use App\Http\Controllers\admin\UmkmDesaController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaPageController;
@@ -36,7 +39,7 @@ Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
-});
+})->name('peta.umkm');
 
 Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
@@ -76,15 +79,9 @@ Route::post('/admin/lembaga-desa/create', [PemerintahanDesaController::class, 't
 Route::put('/admin/lembaga-desa/update', [PemerintahanDesaController::class, 'updateLembagaDesa'])->middleware('checkToken')->name('lembaga-desa.update');
 Route::put('/admin/struktur-desa/update', [PemerintahanDesaController::class, 'updateStrukturDesa'])->middleware('checkToken')->name('struktur-desa.update');
 Route::put('/admin/perangkat-desa/update', [PemerintahanDesaController::class, 'updatePerangkatDesa'])->middleware('checkToken')->name('perangkat-desa.update');
-Route::get('/admin/informasi', function () {
-    return view('adminInformasi');
-})->middleware('checkToken')->name('informasi-desa.index');
-Route::get('/admin/umkm', function () {
-    return view('adminUmkm');
-})->middleware('checkToken')->name('umkm-desa.index');
-Route::get('/admin/pariwisata-desa', function () {
-    return view('adminPariwisata');
-})->middleware('checkToken')->name('pariwisata-desa.index');
+Route::get('/admin/informasi', [InformasiDesaController::class, 'index'])->middleware('checkToken')->name('informasi-desa.index');
+Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
+Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
 Route::put('/admin/visi', [ProfilDesaController::class, 'updateVisiDesa'])
     ->middleware('checkToken')
     ->name('visi.update');
