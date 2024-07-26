@@ -68,13 +68,32 @@ Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('checkToken')->name('auth.logout');
 
 
+// Halaman Admin Pemerintahan
+Route::get('/admin/pemerintahan', [PemerintahanDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.index');
+Route::post('/admin/perangkat-desa', [PemerintahanDesaController::class, 'tambahPerangkatDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.perangkat-desa.create');
+Route::put('/admin/perangkat-desa', [PemerintahanDesaController::class, 'updatePerangkatDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.perangkat-desa.update');
+Route::delete('/admin/perangkat-desa/{id}', [PemerintahanDesaController::class, 'deletePerangkatDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.perangkat-desa.destroy');
+Route::post('/admin/lembaga', [PemerintahanDesaController::class, 'tambahLembagaDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.lembaga.create');
+Route::delete('/admin/lembaga/{id}', [PemerintahanDesaController::class, 'deleteLembagaDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.lembaga.destroy');
+Route::put('/admin/lembaga', [PemerintahanDesaController::class, 'updateLembagaDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.lembaga.update');
+Route::put('/admin/struktur', [PemerintahanDesaController::class, 'updateStrukturDesa'])
+    ->middleware('checkToken')
+    ->name('admin.pemerintahan.struktur.update');
 
-Route::get('/admin/pemerintahan', [PemerintahanDesaController::class, 'index'])->middleware('checkToken')->name('pemerintahan-desa.index');
-Route::post('/admin/perangkat-desa/create', [PemerintahanDesaController::class, 'tambahPerangkatDesa'])->middleware('checkToken')->name('perangkat-desa.create');
-Route::post('/admin/lembaga-desa/create', [PemerintahanDesaController::class, 'tambahLembagaDesa'])->middleware('checkToken')->name('lembaga-desa.create');
-Route::put('/admin/lembaga-desa/update', [PemerintahanDesaController::class, 'updateLembagaDesa'])->middleware('checkToken')->name('lembaga-desa.update');
-Route::put('/admin/struktur-desa/update', [PemerintahanDesaController::class, 'updateStrukturDesa'])->middleware('checkToken')->name('struktur-desa.update');
-Route::put('/admin/perangkat-desa/update', [PemerintahanDesaController::class, 'updatePerangkatDesa'])->middleware('checkToken')->name('perangkat-desa.update');
 Route::get('/admin/informasi', [InformasiDesaController::class, 'index'])->middleware('checkToken')->name('informasi-desa.index');
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
 Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
