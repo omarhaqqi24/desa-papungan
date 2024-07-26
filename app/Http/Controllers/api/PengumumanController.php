@@ -15,13 +15,15 @@ class PengumumanController extends Controller
 {
     public function getAll(Request $request)
     {
-        if (!empty($request->judul)){
-            $pengumumans = Pengumuman::where('judul', 'LIKE', "%{$request->judul}%")
-                ->orderBy('created_at', 'DESC')
-                ->get();
-        } else {
-            $pengumumans = Pengumuman::orderBy('created_at', 'DESC')->get();
+        $pengumumans = Pengumuman::orderBy('created_at', 'DESC');
+
+        if ($request->pub == '1'){
+            $pengumumans = $pengumumans->where('isAccepted', 1);
         }
+        if (!empty($request->judul)){
+            $pengumumans = $pengumumans->where('judul', 'LIKE', "%{$request->judul}%");
+        }
+        $pengumumans = $pengumumans->get();
 
         $resource = new PengumumanCollection($pengumumans);
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
