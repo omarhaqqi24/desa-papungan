@@ -512,14 +512,13 @@
 
             document.getElementById('modal_form_lbd_up').showModal();
         }
-        
+
         function openModalUpdatePerangkatDesa(id, data) {
             data = JSON.parse(data);
             const namaIn = document.getElementById('nama_pkd_up');
             namaIn.value = data.nama;
             const jabatanIn = document.getElementById('jabatan_pkd_up');
             jabatanIn.value = data.jabatan_id + "|" + data.jabatan;
-            console.log(jabatanIn);
             const kontakIn = document.getElementById('kontak_pkd_up');
             kontakIn.value = data.kontak;
             const hiddenInput = document.getElementById('id_pkd');
