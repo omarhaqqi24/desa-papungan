@@ -8,6 +8,7 @@ use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use OverflowException;
 
 class UmkmSeeder extends Seeder
 {
@@ -44,9 +45,15 @@ class UmkmSeeder extends Seeder
                 'no_bpom' => $faker->phoneNumber()
             ]);
 
-            for ($i=0; $i<rand(1,3); $i++){
+            $indexes = [];
+            $amt = rand(1,3);
+            for ($j=0; $j<$amt; $j++){
+                $indexes[] = $faker->numberBetween(0,3);
+            }
+
+            for ($j=0; $j<$amt; $j++){
                 JenisUmkm::create([
-                    'jenis' => $jenises[rand(0, 3)],
+                    'jenis' => $jenises[$indexes[$j]],
                     'umkm_id' => $umkm->id
                 ]);
             }
