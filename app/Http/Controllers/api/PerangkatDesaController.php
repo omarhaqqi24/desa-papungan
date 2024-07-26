@@ -156,6 +156,6 @@ class PerangkatDesaController extends Controller
         if (!$isDeleted){
             return ApiResponseClass::sendError('Data perangkat desa gagal dihapus!', 400);
         }
-        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 204);
+        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 200);
     }
 }
