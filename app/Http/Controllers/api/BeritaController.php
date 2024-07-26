@@ -60,6 +60,7 @@ class BeritaController extends Controller
 
         $berita = Berita::create([
             'foto' => $image->hashName(),
+            'nama' => $request->nama,
             'judul' => $request->judul,
             'isi' => $request->isi
         ]);
