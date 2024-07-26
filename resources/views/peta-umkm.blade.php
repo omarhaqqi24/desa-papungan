@@ -22,6 +22,8 @@
     <div id="map"></div>
     <div id='test' class="hidden">
         <div class="mr-5 px-5">
+            <div id="carousel" class="carousel carousel-center max-h-44 snap-x snap-mandatory">
+            </div>
             <p id="nama" class="font-bold text-2xl my-0"></p>
             <p id="jam-buka" class="font-normal text-lg text-gray-500"></p>
             <div class="space-y-0 my-0">
@@ -179,7 +181,6 @@
 
         // data dummy
         const points = JSON.parse('<?= json_encode($data->data->resource) ?>')
-        console.log(points)
 
         polygon.addTo(map);
 
@@ -209,6 +210,22 @@
             // put the marker to the markers array
             markers.push(marker);
 
+            const carousel = document.getElementById('carousel');
+            foto.forEach(obj => {
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('carousel-item');
+                // imgContainer.classList.add('mx-2');
+                // imgContainer.classList.add('snap-center');
+                const img = document.createElement('img');
+                img.src = obj.foto;
+                img.classList.add('object-cover');
+                img.classList.add('snap-center');
+                img.classList.add('object-center');
+                img.classList.add('w-11/12');
+                imgContainer.appendChild(img);
+                carousel.appendChild(imgContainer);
+            });
+
             document.getElementById('nama').innerHTML = nama;
             document.getElementById('jam-buka').innerHTML = 'Jam buka' + " " + jam_buka;
             const jenis_name = jenis.map(item => item.jenis)
@@ -219,7 +236,6 @@
             document.getElementById('halal').innerHTML = no_halal;
             document.getElementById('nib').innerHTML = no_nib;
             document.getElementById('deskripsi').innerHTML = deskripsi;
-
 
             // create a popup object for each marker / data
             const popup = L.popup({
