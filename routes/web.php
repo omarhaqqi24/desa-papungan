@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\PemerintahanDesaController;
 use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\AuthController;
@@ -68,10 +69,13 @@ Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('checkToken')->name('auth.logout');
 
 
-Route::put('/admin/profil-desa', [ProfilDesaController::class, 'updateProfilDesa'])->name('profil-desa.update');
-Route::get('/admin/pemerintahan', function () {
-    return view('adminPemerintahan');
-})->middleware('checkToken')->name('pemerintahan-desa.index');
+Route::put('/admin/profil-desa', [ProfilDesaController::class, 'updateProfilDesa'])->middleware('checkToken')->name('profil-desa.update');
+Route::get('/admin/pemerintahan', [PemerintahanDesaController::class, 'index'])->middleware('checkToken')->name('pemerintahan-desa.index');
+Route::post('/admin/perangkat-desa/create', [PemerintahanDesaController::class, 'tambahPerangkatDesa'])->middleware('checkToken')->name('perangkat-desa.create');
+Route::post('/admin/lembaga-desa/create', [PemerintahanDesaController::class, 'tambahLembagaDesa'])->middleware('checkToken')->name('lembaga-desa.create');
+Route::put('/admin/lembaga-desa/update', [PemerintahanDesaController::class, 'updateLembagaDesa'])->middleware('checkToken')->name('lembaga-desa.update');
+Route::put('/admin/struktur-desa/update', [PemerintahanDesaController::class, 'updateStrukturDesa'])->middleware('checkToken')->name('struktur-desa.update');
+Route::put('/admin/perangkat-desa/update', [PemerintahanDesaController::class, 'updatePerangkatDesa'])->middleware('checkToken')->name('perangkat-desa.update');
 Route::get('/admin/informasi', function () {
     return view('adminInformasi');
 })->middleware('checkToken')->name('informasi-desa.index');
