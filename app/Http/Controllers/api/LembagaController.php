@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Validator;
 class LembagaController extends Controller
 {
     public function getAll(Request $request)
-    {
-        $perPage = intval($request->query('size'));
-        $lembagas = Lembaga::paginate($perPage);
-        $resources = (new LembagaCollection($lembagas))->response()->getData();
+    {    
+        if (!empty($request->nama)){
+            $lembagas = Lembaga::where('nama', 'LIKE', "%{$request->nama}%")
+                ->orderBy('nama', 'ASC')
+                ->get();
+        } else {
+            $lembagas = Lembaga::orderBy('nama', 'ASC')->get();
+        }
+        $resources = (new LembagaCollection($lembagas));
 
         return ApiResponseClass::sendResponse($resources, 'Data lembaga berhasil diambil!', 200);
     }
@@ -46,7 +51,8 @@ class LembagaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'kontak' => 'required'
         ]);
 
         if ($validator->fails()) {

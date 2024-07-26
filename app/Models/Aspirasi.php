@@ -9,5 +9,5 @@ class Aspirasi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul', 'isi'];
+    protected $fillable = ['judul', 'isi', 'nama', 'isChecked', 'foto'];
 }

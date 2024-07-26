@@ -3,7 +3,7 @@
     <nav class="w-screen text-lightText flex flex-col fixed bg-base-100 top-0 z-50 shadow-md">
         <div class="w-screen bg-primary flex">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
-                <div class="flex gap-2">
+                <div class="flex gap-2 px-4">
                     <div class="p-1 justify-start items-center gap-2 flex border-r-2 border-base-100">
                         <img src="img/phoneLogo.svg" alt="phoneLogo" class="w-4 h-4 relative ">
                         <div class="px-2 text-xs font-medium font-jakarta ">(0342) 814031</div>
@@ -23,24 +23,24 @@
         <!--NAVBAR TOP END-->
 
         <!--NAVBAR BELLOW START-->
-        <div class="w-screen flex shadow-lg text-black">
+        <div class=" pl-4 w-screen flex shadow-lg text-black">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
-                <div class="flex gap-2 text-left">
+                <a class="flex gap-2 text-left" href="{{route('landingPage.index')}}">
                     <img src="img/logokab.png" alt="papunganLogo" class="w-14 h-14">
                     <div class="flex flex-col items-start">
                         <div class="text-2xl font-semibold font-jakarta">
                             Papungan
                         </div>
-                        <div class="text-xs font-medium font-jakarta whitespace-nowrap overflow-hidden text-ellipsis inline-block">
+                        <div
+                            class="text-xs font-medium font-jakarta whitespace-nowrap overflow-hidden text-ellipsis inline-block">
                             Portal Resmi Desa Papungan
                         </div>
                     </div>
-                    
-                </div>
+                </a>
 
                 <button id="mobile-menu-button"
                     class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:opacity-70 transition duration-300 lg:hidden">
-                    <img src="img/hamburgerLogo.svg" class="w-6 h-6">
+                    <img src="img/hamburgerLogo.svg" class="w-6 h-6"> 
                 </button>
 
                 <!-- Mobile Menu -->
@@ -69,41 +69,41 @@
                                 <div class="menu-title font-semibold mr-auto">Profil Desa</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent">Tentang Kami</a></li>
-                                        <li><a class="hover:bg-accent">Visi dan Misi</a></li>
-                                        <li><a class="hover:bg-accent">Sejarah</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang Kami</a></li>
+                                        <li><a class="hover:bg-accent"href="{{ route('profilDesa.index', ['targetID' => 'visidanmisi']) }}">Visi dan Misi</a></li>
+                                        <li><a class="hover:bg-accent"href="{{ route('profilDesa.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Pemerintahan</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent">Struktural</a></li>
-                                        <li><a class="hover:bg-accent">Perangkat Desa</a></li>
-                                        <li><a class="hover:bg-accent">Lembaga Desa</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('pemerintahan.index', ['targetID' => 'struktural']) }}">Struktural</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('pemerintahan.index', ['targetID' => 'perangkatdesa']) }}">Perangkat Desa</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('pemerintahan.index', ['targetID' => 'lembagadesa']) }}">Lembaga Desa</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Informasi</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent">Berita</a></li>
-                                        <li><a class="hover:bg-accent">Pengumuman</a></li>
-                                        <li><a class="hover:bg-accent">Aspirasi</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('informasi.index', ['targetID' => 'pengumuman']) }}">Pengumuman</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('informasi.index', ['targetID' => 'berita']) }}">Berita</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('informasi.index', ['targetID' => 'aspirasi']) }}">Aspirasi</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">UMKM Desa</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent">Profil UMKM dan IKKM</a></li>
-                                        <li><a class="hover:bg-accent">Peta UMKM</a></li>
-                                        <li><a class="hover:bg-accent">Daftar UMKM</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'profilumkm']) }}">Profil UMKM</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta UMKM</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar UMKM</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Pariwisata Desa</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent">Profil Pariwisata</a></li>
-                                        <li><a class="hover:bg-accent">Sejarah</a></li>
-                                        <li><a class="hover:bg-accent">Lokasi</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('pariwisata.index', ['targetID' => 'profil']) }}">Profil Pariwisata</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
                                 </li>
 
@@ -120,13 +120,13 @@
                             <details>
                                 <summary class="hover:text-primary">Profil Desa</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Tentang
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang
                                             Kami</a></li>
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Visi
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('profilDesa.index', ['targetID' => 'visidanmisi']) }}">Visi
                                             dan
                                             Misi</a></li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Sejarah</a>
+                                        <a href="{{ route('profilDesa.index', ['targetID' => 'sejarah']) }}">Sejarah</a>
                                     </li>
                                 </ul>
 
@@ -140,13 +140,13 @@
                                 <summary class="hover:text-primary">Pemerintahan</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Struktural</a>
+                                        <a href="{{ route('pemerintahan.index', ['targetID' => 'struktural']) }}">Struktural</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Perangkat
+                                        <a href="{{ route('pemerintahan.index', ['targetID' => 'perangkatdesa']) }}">Perangkat
                                             Desa</a>
                                     </li>
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Lembaga
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('pemerintahan.index', ['targetID' => 'lembagadesa']) }}">Lembaga
                                             Desa</a></li>
                                 </ul>
                             </details>
@@ -159,13 +159,13 @@
                                 <summary class="hover:text-primary">Informasi</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Berita</a>
+                                        <a href="{{ route('informasi.index', ['targetID' => 'pengumuman']) }}">Pengumuman</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Pengumuman</a>
+                                        <a href="{{ route('informasi.index', ['targetID' => 'berita']) }}">Berita</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Aspirasi</a>
+                                        <a href="{{ route('informasi.index', ['targetID' => 'aspirasi']) }}">Aspirasi</a>
                                     </li>
                                 </ul>
                             </details>
@@ -177,13 +177,12 @@
                             <details>
                                 <summary class="hover:text-primary ">UMKM Desa</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch text-xs ">
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Profil
-                                            UMKM dan
-                                            IKKM</a></li>
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Peta
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'profil']) }}">Profil
+                                            UMKM</a></li>
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta
                                             UMKM</a>
                                     </li>
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Daftar
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar
                                             UMKM</a>
                                     </li>
                                 </ul>
@@ -196,13 +195,13 @@
                             <details>
                                 <summary class="hover:text-primary">Pariwisata Desa</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a>Profil
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('pariwisata.index', ['targetID' => 'profil']) }}">Profil
                                             Pariwisata</a></li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Sejarah</a>
+                                        <a href="{{ route('pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a>Lokasi</a>
+                                        <a href="{{ route('pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a>
                                     </li>
                                 </ul>
                             </details>
@@ -247,4 +246,26 @@
             mobileMenu.classList.add('hidden');
         });
     </script>
+
+    <!-- Untuk auto Scroll-->
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetID = urlParams.get('targetID');
+            if (targetID) {
+                const targetElement = document.getElementById(targetID);
+                if (targetElement) {
+                    const offset = 120; // Ubah nilai ini sesuai kebutuhan Anda
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    </script>
 </div>
+

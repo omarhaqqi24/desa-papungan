@@ -35,16 +35,18 @@ Route::get('/unauthorize', function () {
 
 Route::get('/perangkat-desa', [PerangkatDesaController::class, 'getAll']);
 Route::post('/perangkat-desa', [PerangkatDesaController::class, 'store'])->middleware('auth:sanctum');
-Route::put('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
+Route::put('/perangkat-desa/{id}', [PerangkatDesaController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/perangkat-desa/{id}', [PerangkatDesaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'getById']);
 Route::post('/pengumuman', [PengumumanController::class, 'store']);
 Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/aspirasi', [AspirasiController::class, 'getAll'])->middleware('auth:sanctum');
 Route::post('/aspirasi', [AspirasiController::class, 'store']);
+Route::put('/aspirasi/{id}', [AspirasiController::class, 'getChecked'])->middleware('auth:sanctum');
 
 Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
 Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');
@@ -69,5 +71,7 @@ Route::put('/pariwisata/{id}', [PariwisataController::class, 'update'])->middlew
 Route::delete('/pariwisata/{id}', [PariwisataController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/v-misi', [VisiMisiController::class, 'getAll']);
-Route::put('/v-misi', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
+Route::post('/v-misi', [VisiMisiController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/v-misi/{id}', [VisiMisiController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/v-misi/{id}', [VisiMisiController::class, 'destroy'])->middleware('auth:sanctum');
 
