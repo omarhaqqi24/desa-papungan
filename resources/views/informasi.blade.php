@@ -52,12 +52,13 @@
                         <div class="self-stretch flex flex-col justify-start items-start gap-1">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
                             <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
-                            <div class="font-normal font-jakarta">{{ $item->isi }}</div>
+                            <div class="text-ellipsis overflow-hidden font-normal font-jakarta">{{ $item->isi }}</div>
                         </div>
                         <a href="#" class="px-4 py-2"><img src="img/selengkapnya.svg" alt=""></a>
                         <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     </div>
                 @endforeach
+
                 <!-- berita-->
             <div id="berita"></div>
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="BERITA"
@@ -148,10 +149,9 @@
                 </div>
             </div>
 
-            <!-- Side content -->
             <div class="basis-1/4">
                 <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-80 sticky top-14">
-                    <div class="text-xl font-semibold font-jakarta py-8 pr-8 max-h-80">Lihat Informasi
+                    <div class="text-xl font-semibold font-jakarta py-8 max-h-80">Lihat Informasi
                         <div class="w-full border-b-2 border-gray-400 my-2"></div>
                         <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
                             <div class="p-2 flex flex-col">

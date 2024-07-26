@@ -69,7 +69,7 @@ class PengumumanController extends Controller
 
                     ]
                 ]);
-            }  else if($request -> kategori=="Pengumuman"){
+            }  else if($request -> kategori=="Aspirasi"){
                 $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001") . "/api/aspirasi", [
                     'multipart' => [
                         [
@@ -95,6 +95,8 @@ class PengumumanController extends Controller
     } catch (BadResponseException $e){
         $response = $e->getResponse();
         $result = json_decode($response->getBody());
+        dd($e);
+        return;
 
         return redirect()->back()->withErrors($result->message)->withInput($request->all());
     }
