@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\InformasiController;
 use App\Http\Controllers\admin\InformasiDesaController;
 use App\Http\Controllers\admin\PariwisataDesaController;
 use App\Http\Controllers\admin\PemerintahanDesaController;
@@ -96,6 +97,15 @@ Route::put('/admin/struktur', [PemerintahanDesaController::class, 'updateStruktu
 
 Route::get('/admin/informasi', [InformasiDesaController::class, 'index'])->middleware('checkToken')->name('informasi-desa.index');
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
+Route::post('/admin/umkm', [UmkmDesaController::class, 'tambahUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.create');
+Route::put('/admin/umkm/{id}', [UmkmDesaController::class, 'updateUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.update');
+Route::delete('/admin/umkm/{id}', [UmkmDesaController::class, 'deleteUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.destroy');
 Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
 
 // Halaman Admin Profil Desa
