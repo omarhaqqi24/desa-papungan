@@ -88,6 +88,7 @@ Route::put('/admin/visi', [ProfilDesaController::class, 'updateVisiDesa'])
 Route::put('/admin/misi', [ProfilDesaController::class, 'updateMisiDesa'])
     ->middleware('checkToken')
     ->name('misi.update');
+Route::delete('/admin/misi/{id}', [ProfilDesaController::class, 'deleteMisiDesa'])->middleware('checkToken')->name('misi.destroy');
 Route::put('/admin/sejarah-desa', [ProfilDesaController::class, 'updateSejarahDesa'])
     ->middleware('checkToken')
     ->name('sejarah.update');
