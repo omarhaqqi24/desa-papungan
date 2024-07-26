@@ -22,8 +22,8 @@
         <!-- Breadcrumbs -->
         <div class="breadcrumbs text-base text-primary rounded-lg w-auto bg-gray-200 mx-auto">
             <ul class="px-5">
-                <li><a href="{{ route('home') }}"><img src="{{ asset('/img/home-icon.svg') }}" alt=""
-                            class="min-w-[18px] min-h-[18px] "></a></li>
+                <li><a href="{{ route('landingPage.index') }}"><img src="{{ asset('/img/home-icon.svg') }}"
+                            alt="" class="min-w-[18px] min-h-[18px] "></a></li>
                 <li><a>Informasi</a></li>
                 <li><a>Pengumuman</a></li>
                 <li class="truncate">{{ $pengumuman->data->judul }}</li>
@@ -51,24 +51,24 @@
                 <p class="text-lg">{{ $pengumuman->data->isi }}</p>
             </div>
             <!-- Side content -->
-            <div class="basis-1/4">
-                <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-80 sticky top-14">
-                    <div class="text-xl font-semibold font-jakarta py-8 pr-8 max-h-80">Lihat Informasi
-                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                        <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
-                            <div class="p-2 flex flex-col">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">pengumuman
-                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                                </div>
+            <div class="basis-1/4 sticky top-40">
+                <div class="hidden md:block text-xl font-semibold font-jakarta max-h-96 m-20 mt-0 mr-0 top-14">
+                    Lihat Informasi Lainnya
+                    <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                    <div
+                        class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col p-4 space-y-2 w-full md:w-64">
+                        <div class="px-2 flex flex-col">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </div>
-                            <div class="p-2 flex flex-col">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
-                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                                </div>
+                        </div>
+                        <div class="px-2 flex flex-col">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </div>
-                            <div class="p-2 flex">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
-                            </div>
+                        </div>
+                        <div class="px-2 flex">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
                         </div>
                     </div>
                 </div>
@@ -84,3 +84,4 @@
 
 <!-- (bagian) Start -->
 <!-- (bagian) End -->
+

@@ -48,14 +48,14 @@
     </script>
 
     <style>
-    /* css for hidden text */
-    .truncate-multiline {
-        display: -webkit-box;
-        -webkit-line-clamp: 10; 
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        /* css for hidden text */
+        .truncate-multiline {
+            display: -webkit-box;
+            -webkit-line-clamp: 10;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 
 </head>
@@ -65,8 +65,7 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
-
-         <!-- pengumuman-->
+        <!-- pengumuman-->
         <div id="pengumuman"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Informasi Seputar Desa Papungan</div>
@@ -78,25 +77,25 @@
                 <x-cardSubjudul class="max-w-sm" jenisJudul="INFORMASI" judul="PENGUMUMAN"
                     deskripsi="Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari mendatang!" />
 
-                @foreach($pengumuman->data as $item)
-                <div class="flex flex-col justify-start items-end gap-1.5">
-                    <div class="self-stretch flex flex-col justify-start items-start gap-1">
-                        <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
-                        <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
-                        <div class="relative font-normal font-jakarta">
-                            <div class="truncate-multiline">
-                                {{ $item->isi }}
-                            </div>      
+                @foreach ($pengumuman->data as $item)
+                    <div class="flex flex-col justify-start items-end gap-1.5">
+                        <div class="self-stretch flex flex-col justify-start items-start gap-1">
+                            <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
+                            <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
+                            <div class="relative font-normal font-jakarta">
+                                <div class="truncate-multiline">
+                                    {{ $item->isi }}
+                                </div>
+                            </div>
+                            <div class="w-full flex justify-end mt-2 mb-2">
+                                <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
+                                    Selengkapnya
+                                    <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
+                                </a>
+                            </div>
                         </div>
-                        <div class="w-full flex justify-end mt-2 mb-2">
-                            <a href="{{ url('pengumuman/'.$item->id) }}" class="text-blue-500 flex items-center">
-                                Selengkapnya 
-                                <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
-                            </a>
-                        </div>
+                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     </div>
-                    <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                </div>
                 @endforeach
 
                 <!-- berita-->
@@ -105,27 +104,29 @@
                     deskripsi="Berikut adalah Berita Terkini dari Desa Papungan. Simak informasi terbaru dan penting berikut untuk tetap terhubung dengan perkembangan desa kita!" />
 
                 @foreach ($berita->data as $item)
-                <div class="flex flex-col justify-start items-end gap-1.5">
-                    <div class="self-stretch flex flex-col justify-start items-start gap-1">
-                        <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
-                        <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
-                        <div class="flex flex-col lg:flex-row gap-4">
-                            <img src="{{ $item->foto }}" alt="fotoberita" class="w-full lg:w-[400px] h-[300px] object-cover">
-                            <div class="font-normal font-jakarta relative w-full flex flex-col justify-between">
-                                <div class="truncate-multiline">{{ $item->isi }}</div>
-                                <div class="w-full flex justify-end mt-2">
-                                    <div class="w-full flex justify-end mt-2 mb-8">
-                                        <a href="{{ url('berita/'.$item->id) }}" class="text-blue-500 flex items-center">
-                                            Selengkapnya
-                                            <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
-                                        </a>
+                    <div class="flex flex-col justify-start items-end gap-1.5">
+                        <div class="self-stretch flex flex-col justify-start items-start gap-1">
+                            <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
+                            <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
+                            <div class="flex flex-col lg:flex-row gap-4">
+                                <img src="{{ $item->foto }}" alt="fotoberita"
+                                    class="w-full lg:w-[400px] h-[300px] object-cover">
+                                <div class="font-normal font-jakarta relative w-full flex flex-col justify-between">
+                                    <div class="truncate-multiline">{{ $item->isi }}</div>
+                                    <div class="w-full flex justify-end mt-2">
+                                        <div class="w-full flex justify-end mt-2 mb-8">
+                                            <a href="{{ url('berita/' . $item->id) }}"
+                                                class="text-blue-500 flex items-center">
+                                                Selengkapnya
+                                                <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="w-full border-b-2 border-gray-400 my-2"></div>
                         </div>
-                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     </div>
-                </div>
                 @endforeach
 
                 <!-- aspirasi-->
@@ -175,18 +176,18 @@
 
                         <div id="foto-upload">
                             <label for="foto" class="block text-xl font-medium font-jakarta mb-2">Foto</label>
-                                <div class="flex items-center border border-[#d0d5dd] rounded-md px-4 py-2">
-                                    <p id="file-label" class="text-gray-700 flex-grow">Tidak ada file yang terunggah</p>
-                                    <label for="foto"
-                                        class="bg-blue-600 text-white flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer">
-                                        <img src="img/unggah.svg" alt="Unggah" class="w-5 h-5">
-                                        Unggah File
-                                    </label>
-                                    <input type="file" name="foto" id="foto" class="hidden">
-                                </div>
+                            <div class="flex items-center border border-[#d0d5dd] rounded-md px-4 py-2">
+                                <p id="file-label" class="text-gray-700 flex-grow">Tidak ada file yang terunggah</p>
+                                <label for="foto"
+                                    class="bg-blue-600 text-white flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer">
+                                    <img src="img/unggah.svg" alt="Unggah" class="w-5 h-5">
+                                    Unggah File
+                                </label>
+                                <input type="file" name="foto" id="foto" class="hidden">
+                            </div>
                             <p class="text-gray-700 text-sm mt-1">* file png atau jpg</p>
                         </div>
-                        
+
                         <div class="flex justify-end mt-4 rounded-[32px]">
                             <button type="submit"
                                 class="flex items-center px-6 py-2 bg-[#2d68f8] text-white text-lg font-medium font-jakarta rounded-lg shadow-md hover:bg-[#1a4ebb] focus:outline-none focus:ring-2 focus:ring-[#2d68f8] focus:ring-opacity-50">
@@ -199,23 +200,23 @@
             </div>
 
             <div class="basis-1/4">
-                <div class="hidden md:block text-xl font-semibold font-jakarta py-8 pr-8 max-h-80 sticky top-14">
-                    <div class="text-xl font-semibold font-jakarta py-8 max-h-80">Lihat Informasi
-                        <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                        <div class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col space-y-2 w-full md:w-64">
-                            <div class="p-2 flex flex-col">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">pengumuman
-                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                                </div>
+                <div class="hidden md:block text-xl font-semibold font-jakarta max-h-96 sticky top-40">
+                    Lihat Informasi Lainnya
+                    <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                    <div
+                        class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col p-4 space-y-2 w-full md:w-64">
+                        <div class="px-2 flex flex-col">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </div>
-                            <div class="p-2 flex flex-col">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
-                                    <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                                </div>
+                        </div>
+                        <div class="px-2 flex flex-col">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </div>
-                            <div class="p-2 flex">
-                                <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
-                            </div>
+                        </div>
+                        <div class="px-2 flex">
+                            <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
                         </div>
                     </div>
                 </div>
@@ -226,3 +227,4 @@
 <x-footer />
 
 </html>
+
