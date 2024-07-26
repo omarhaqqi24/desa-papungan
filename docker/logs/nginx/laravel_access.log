@@ -4010,3 +4010,8 @@
 172.28.0.1 - - [26/Jul/2024:04:09:01 +0000] "GET /api/data-desa/3 HTTP/1.1" 200 448 "-" "GuzzleHttp/7"
 172.28.0.1 - - [26/Jul/2024:04:09:01 +0000] "GET /admin/pemerintahan HTTP/1.1" 200 7845 "http://localhost/admin/pemerintahan" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 192.168.43.219 - - [26/Jul/2024:04:09:01 +0000] "GET /storage/perangkat-desa/0 HTTP/1.1" 404 2311 "http://localhost/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+172.28.0.1 - - [26/Jul/2024:04:10:03 +0000] "GET /api/perangkat-desa HTTP/1.1" 200 2474 "-" "GuzzleHttp/7"
+172.28.0.1 - - [26/Jul/2024:04:10:03 +0000] "GET /api/lembaga HTTP/1.1" 200 1655 "-" "GuzzleHttp/7"
+172.28.0.1 - - [26/Jul/2024:04:10:03 +0000] "GET /api/data-desa/3 HTTP/1.1" 200 448 "-" "GuzzleHttp/7"
+172.28.0.1 - - [26/Jul/2024:04:10:03 +0000] "GET /admin/pemerintahan HTTP/1.1" 200 7828 "http://localhost/admin/pemerintahan" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+192.168.43.219 - - [26/Jul/2024:04:10:03 +0000] "GET /storage/perangkat-desa/0 HTTP/1.1" 404 2311 "http://localhost/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
