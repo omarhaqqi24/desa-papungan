@@ -45,14 +45,10 @@ Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
 })->name('peta-wilayah');
 
-Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
-    ->middleware('checkToken')
-    ->name('data-desa.index');
 
 
 //public
 Route::get('/', [LandingPageController::class, 'index'])->name('landingPage.index');
-Route::get('/profilDesa', [DataDesaController::class, "index"])->name('profilDesa.index');
 Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('pemerintahan.index');
 Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
 Route::get('/umkm', function () {
@@ -72,7 +68,7 @@ Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('checkToken')->name('auth.logout');
 
 
-Route::put('/admin/profil-desa', [ProfilDesaController::class, 'updateProfilDesa'])->middleware('checkToken')->name('profil-desa.update');
+
 Route::get('/admin/pemerintahan', [PemerintahanDesaController::class, 'index'])->middleware('checkToken')->name('pemerintahan-desa.index');
 Route::post('/admin/perangkat-desa/create', [PemerintahanDesaController::class, 'tambahPerangkatDesa'])->middleware('checkToken')->name('perangkat-desa.create');
 Route::post('/admin/lembaga-desa/create', [PemerintahanDesaController::class, 'tambahLembagaDesa'])->middleware('checkToken')->name('lembaga-desa.create');
@@ -82,16 +78,27 @@ Route::put('/admin/perangkat-desa/update', [PemerintahanDesaController::class, '
 Route::get('/admin/informasi', [InformasiDesaController::class, 'index'])->middleware('checkToken')->name('informasi-desa.index');
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
 Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
-Route::put('/admin/visi', [ProfilDesaController::class, 'updateVisiDesa'])
+
+// Halaman Admin Profil Desa
+Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
     ->middleware('checkToken')
-    ->name('visi.update');
-Route::put('/admin/misi', [ProfilDesaController::class, 'updateMisiDesa'])
+    ->name('admin.profil-desa.index');
+Route::put('/admin/profil-desa/profil', [ProfilDesaController::class, 'updateProfilDesa'])
     ->middleware('checkToken')
-    ->name('misi.update');
-Route::delete('/admin/misi/{id}', [ProfilDesaController::class, 'deleteMisiDesa'])->middleware('checkToken')->name('misi.destroy');
-Route::put('/admin/sejarah-desa', [ProfilDesaController::class, 'updateSejarahDesa'])
+    ->name('admin.profil-desa.profil.update');
+Route::get('/p', [DataDesaController::class, "index"])->name('profilDesa.index');
+Route::put('/admin/profil-desa/visi', [ProfilDesaController::class, 'updateVisiDesa'])
     ->middleware('checkToken')
-    ->name('sejarah.update');
-Route::post('/admin/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
+    ->name('admin.profil-desa.visi.update');
+Route::put('/admin/profil-desa/misi', [ProfilDesaController::class, 'updateMisiDesa'])
     ->middleware('checkToken')
-    ->name('misi.create');
+    ->name('admin.profil-desa.misi.update');
+Route::delete('/admin/profil-desa/misi/{id}', [ProfilDesaController::class, 'deleteMisiDesa'])
+    ->middleware('checkToken')
+    ->name('admin.profil-desa.misi.destroy');
+Route::put('/admin/profil-desa/sejarah', [ProfilDesaController::class, 'updateSejarahDesa'])
+    ->middleware('checkToken')
+    ->name('admin.profil-desa.sejarah.update');
+Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
+    ->middleware('checkToken')
+    ->name('admin.profil-desa.misi.create');

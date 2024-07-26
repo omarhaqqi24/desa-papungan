@@ -103,7 +103,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Profil Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('profil-desa.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.profil-desa.profil.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
@@ -171,7 +171,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Visi Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('visi.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.profil-desa.visi.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
@@ -230,7 +230,7 @@
                                     {{ $misi[$i]->isi_poin }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex gap-6 justify-center items-center">
-                                    <form action="{{ route('misi.destroy', $misi[$i]->id) }}" method="POST">
+                                    <form action="{{ route('admin.profil-desa.misi.destroy', $misi[$i]->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="font-medium" type="submit">
@@ -257,7 +257,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Misi Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" enctype="multipart/form-data" id="form_up_misi" action="{{ route('misi.update') }}">
+                    <form method="POST" enctype="multipart/form-data" id="form_up_misi" action="{{ route('admin.profil-desa.misi.update') }}">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
@@ -299,7 +299,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Tambah Misi Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('misi.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.profil-desa.misi.create') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
@@ -366,7 +366,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Sejarah Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('sejarah.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.profil-desa.sejarah.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
