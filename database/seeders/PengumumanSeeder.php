@@ -21,6 +21,7 @@ class PengumumanSeeder extends Seeder
             Pengumuman::create([
                 'judul' => $faker->sentence(),
                 'isi' => $faker->paragraph(5),
+                'isAccepted' => $faker->numberBetween(0,1)
             ]);
         }
     }

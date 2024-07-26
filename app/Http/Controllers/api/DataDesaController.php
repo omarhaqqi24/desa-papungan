@@ -26,7 +26,7 @@ class DataDesaController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'penjelasan' => 'required'
         ]);
 
@@ -39,15 +39,16 @@ class DataDesaController extends Controller
             return ApiResponseClass::sendError('Data tidak ditemukan', 404);
         }
 
-        $image = $request->file('foto');
-        $image->storeAs('public/data_desa', $image->hashName());
+        if (!empty($request->foto)){
+            $image = $request->file('foto');
+            $image->storeAs('public/data_desa', $image->hashName());
+    
+            Storage::delete('public/data_desa/'.$data_desa->foto);
 
-        Storage::delete('public/data_desa/'.$data_desa->foto);
+            $data_desa->update(['foto' => $image->hashName()]);
+        }
 
-        $data_desa->update([
-            'foto' => $image->hashName(),
-            'penjelasan' => $request->penjelasan
-        ]);
+        $data_desa->update(['penjelasan' => $request->penjelasan]);
 
         $data_desa->save();
 

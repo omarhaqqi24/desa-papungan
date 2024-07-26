@@ -21,6 +21,8 @@ class AspirasiSeeder extends Seeder
             Aspirasi::create([
                 'judul' => $faker->sentence(),
                 'isi' => $faker->paragraph(5),
+                'nama' => $faker->name(),
+                // 'foto' => $faker->image(storage_path('app/public/aspirasi'), 500, 500, null, false)
             ]);
         }
     }

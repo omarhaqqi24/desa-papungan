@@ -88,7 +88,7 @@ class PerangkatDesaController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama' => 'required',
             'jabatan' => 'required',
         ]);
@@ -102,10 +102,14 @@ class PerangkatDesaController extends Controller
             return ApiResponseClass::sendError('Data perangkat tidak ditemukan!', 404);
         }
 
-        $image = $request->file('foto');
-        $image->storeAs('public/perangkat-desa', $image->hashName());
+        if (!empty($request->foto)){
+            $image = $request->file('foto');
+            $image->storeAs('public/perangkat-desa', $image->hashName());
+    
+            Storage::delete('public/perangkat-desa/'.$perangkat->foto);
 
-        Storage::delete('public/perangkat-desa/'.$perangkat->foto);
+            $perangkat->update(['foto' => $image->hashName()]);
+        }
 
         if (empty($request->jabatan_id)){
             if ($request->jabatan == 'Kepala Desa'){
@@ -135,7 +139,6 @@ class PerangkatDesaController extends Controller
         }
 
         $perangkat->update([
-            'foto' => $image->hashName(),
             'nama' => $request->nama,
             'jabatan_id' => $jbt_id,
             'kontak' => $request->kontak
@@ -153,6 +156,6 @@ class PerangkatDesaController extends Controller
         if (!$isDeleted){
             return ApiResponseClass::sendError('Data perangkat desa gagal dihapus!', 400);
         }
-        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 204);
+        return ApiResponseClass::sendResponse(null, 'Data perangkat desa berhasil dihapus!', 200);
     }
 }
