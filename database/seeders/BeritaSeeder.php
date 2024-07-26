@@ -23,7 +23,8 @@ class BeritaSeeder extends Seeder
             Berita::create([
                 'judul' => $faker->sentence(),
                 'isi' => $faker->paragraph(5),
-                'foto' => $faker->image(storage_path('app/public/berita'), 500, 500, null, false)
+                'foto' => $faker->image(storage_path('app/public/berita'), 500, 500, null, false),
+                'isAccepted' => $faker->numberBetween(0,1)
             ]);
         }
     }
