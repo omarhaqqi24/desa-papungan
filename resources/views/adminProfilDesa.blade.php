@@ -29,16 +29,47 @@
             <div class="flex-grow border-b-2 border-gray-500"></div>
         </div>
 
+        @if ($success = Session::get('success'))
+            <div role="alert" class="alert alert-success bg-green-200 text-green-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ $success }}</span>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div role="alert" class="alert alert-error bg-red-200 text-red-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                @endforeach
+            </div>
+        @endif
+
         <!-- Show Profil Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Tentang Kami</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil Desa yang ditampilkan</div>
-            @if ($success = Session::get('success'))
-                <h1>{{ $success }}</h1>
-            @endif
-            @if ($errors->any())
-                <h1>{{ $errors }}</h1>
-            @endif
+            
             <!-- Form Show Profil Desa -->
             <div class="form-control gap-6">
                 <div class="form-control gap-4">
@@ -102,6 +133,7 @@
                 </div>
             </dialog>
             <!-- End -->
+
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
         <!-- End -->
@@ -110,12 +142,7 @@
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Visi dan Misi</div>
             <div class="py-2 text-gray-500">Berikut adalah Visi dan Misi yang ditampilkan</div>
-            @if ($success = Session::get('success'))
-                <h1>{{ $success }}</h1>
-            @endif
-            @if ($errors->any())
-                <h1>{{ $errors }}</h1>
-            @endif
+
             <!-- Form Show Visi Desa -->
             <div class="form-control gap-6">
                 <div class="form-control gap-4">
@@ -210,7 +237,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- End -->
 
+            <!-- Show Modal Form Update Misi -->
             <dialog id="modal_form_ms_up" class="modal">
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Misi Desa</h3>
@@ -293,12 +322,7 @@
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Sejarah Desa Papungan</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
-            @if ($success = Session::get('success'))
-                <h1>{{ $success }}</h1>
-            @endif
-            @if ($errors->any())
-                <h1>{{ $errors }}</h1>
-            @endif
+
             <!-- Form Show Sejarah Desa -->
             <div class="form-control gap-6">
                 <div class="form-control gap-4">
@@ -327,7 +351,7 @@
                 </button>
             </div>
 
-            <!-- Modal Form Update Sejarah Desa -->
+            <!-- Show Modal Form Update Sejarah Desa -->
             <dialog id="modal_form_sd" class="modal">
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Sejarah Desa</h3>
