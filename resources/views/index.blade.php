@@ -35,12 +35,12 @@
             <div class="flex flex-row justify-between items-center">
                 <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">Berita Terkini</div>
                 <div class=" py-3 rounded-[32px] justify-center items-center gap-2.5 inline-flex">
-                    <div class="py-0.5 justify-center items-center gap-2.5 flex">
-                        <div
-                            class="text-center text-blue-600 text-lg font-semibold md:font-medium font-jakarta leading-normal">
-                            <span class="hidden md:inline">Baca Berita Lainnya </span>>>
-                        </div>
-                    </div>
+                <div class="flex justify-end text-blue-600 text-lg font-medium font-jakarta m-4 mt-5">
+                    <a href="{{ route('informasi.index', ['targetID' => 'berita']) }}" class="flex items-center w-full justify-end gap-2">
+                        <span class="hidden md:inline">Baca Berita Lainnya</span>
+                        <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2 md:ml-0">
+                    </a>
+                </div>
                 </div>
             </div>
             <!-- Vertical "Carousel" -->
@@ -82,24 +82,31 @@
                     <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Pengumuman Terkini</div>
                     <?php $iter = 0; ?>
                     @foreach ($pengumuman->data as $item)
-                        <div className="CardPengumuman" class="p-10 border-b-2 border-neutral space-y-2">
-                            <h1 class="card-title line-clamp-1">{{ $item->judul }}</h1>
-                            <p class="text-neutral font-medium text-lg font-jakarta">
-                                {{ $item->createdAt }}</p>
-                            <p class="text-black font-medium text-lg font-jakarta line-clamp-3">
-                                {{ $item->isi }}</p>
-                            <p class="text-blue-600 font-medium text-right text-lg font-jakarta pt-5">Selengkapnya >>
-                            </p>
+                    <div class="CardPengumuman p-10">
+                        <h1 class="card-title ">{{ $item->judul }}</h1>
+                        <p class="text-neutral font-medium text-lg font-jakarta">{{ $item->createdAt }}</p>
+                        <p class="text-black font-medium text-lg font-jakarta line-clamp-3 mt-4">{{ $item->isi }}</p>
+                        <div class="w-full flex justify-end mt-8 mb-4 pr-2">
+                            <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
+                                Selengkapnya
+                                <img src="img/arrow-selengkapnya.svg" alt="" class="hidden md:block ml-2">
+                            </a>
                         </div>
+                        <div class="w-full border-b-2 border-gray-400"></div>
+                    </div>
                         <?php $iter++; ?>
                         @if ($iter > 3)
                             @break
                         @endif
                     @endforeach
-                    <div class=" text-blue-600 text-lg text-right md:text-lg font-medium font-jakarta m-4 mt-5">Baca
-                        Pengumuman Lainnya >></div>
+                    <div class="flex justify-end text-blue-600 text-lg text-right md:text-lg font-medium font-jakarta m-4 mt-5 pr-8">
+                        <a href="{{ route('informasi.index', ['targetID' => 'pengumuman']) }}" class="hidden md:flex items-center">
+                            Baca Pengumuman Lainnya 
+                            <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
+                        </a>
+                    </div>
                 </div>
-                <div class="basis-1/2 p-10 px-0 md:px-10 w-full h-96">
+                <div class="basis-1/2 mt-5 pb-10 px-0 md:px-10 w-full h-96">
                     <div class="carousel h-full w-full rounded-xl">
                         <?php $iter = 0;?>
                         @foreach ($berita->data as $item)
