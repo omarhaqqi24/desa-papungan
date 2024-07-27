@@ -103,10 +103,10 @@ Route::post('/admin/informasi/berita', [InformasiDesaController::class, 'tambahB
 Route::post('/admin/informasi/pengumuman', [InformasiDesaController::class, 'tambahPengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.create');
-Route::put('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'updateBerita'])
+Route::put('/admin/informasi/berita', [InformasiDesaController::class, 'updateBerita'])
     ->middleware('checkToken')
     ->name('admin.informasi.berita.update');
-Route::put('/admin/informasi/pengumuman/{id}', [InformasiDesaController::class, 'updatePengumuman'])
+Route::put('/admin/informasi/pengumuman', [InformasiDesaController::class, 'updatePengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.update');
     

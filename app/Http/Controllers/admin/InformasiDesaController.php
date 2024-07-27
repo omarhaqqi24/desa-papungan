@@ -15,16 +15,30 @@ class InformasiDesaController extends Controller
     public function index() 
     {
         $client = new Client();
+        $token = Session::get('api-token');
 
         $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=1");
         $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=1");
+        $response3 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=0");
+        $response4 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=0");
+        $response5 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/aspirasi", [
+            'headers' => [
+                'Authorization' => 'Bearer '.$token
+            ],
+        ]);
 
         $berita = json_decode($response1->getBody());
         $pengumuman = json_decode($response2->getBody());
+        $beritaReq = json_decode($response3->getBody());
+        $pengumumanReq = json_decode($response4->getBody());
+        $aspirasi = json_decode($response5->getBody());
 
         return view('adminInformasi', [
             "berita" => $berita,
             "pengumuman" => $pengumuman,
+            "beritaReq" => $beritaReq,
+            "pengumumanReq" => $pengumumanReq,
+            "aspirasi" => $aspirasi
         ]);
     }
 
@@ -48,6 +62,10 @@ class InformasiDesaController extends Controller
                 ],
                 'multipart' => [
                     [
+                        'name' => 'nama',
+                        'contents' => $request->nama
+                    ],
+                    [
                         'name' => 'judul',
                         'contents' => $request->judul
                     ],
@@ -67,8 +85,6 @@ class InformasiDesaController extends Controller
             return redirect()->back()->with('success', $responseBody->message);
 
         } catch (BadResponseException $e){
-            dd($e);
-            return;
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
@@ -113,25 +129,23 @@ class InformasiDesaController extends Controller
         }
     }
 
-    public function updateBerita(Request $request, $id)
+    public function updateBerita(Request $request)
     {
         try {
             $client = new Client();
             $token = Session::get('api-token');
 
             $image = $request->file('foto');
-            if (empty($image)) {
-                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita");
-                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
-
-                throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
-            }
-            
-            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$id?_method=PUT", [
-                'headers' => [
-                    'Authorization' => 'Bearer '.$token
-                ],
-                'multipart' => [
+            if (!empty($image)) {
+                $multipart = [
+                    [
+                        'name' => 'nama',
+                        'contents' => $request->nama
+                    ],
+                    [
+                        'name' => 'isAccepted',
+                        'contents' => $request->isAccepted
+                    ],
                     [
                         'name' => 'judul',
                         'contents' => $request->judul
@@ -145,7 +159,33 @@ class InformasiDesaController extends Controller
                         'contents' => fopen($image->getPathname(), 'r'),
                         'filename' => $image->getClientOriginalName(),
                     ],
-                ]
+                ];
+            } else {
+                $multipart = [
+                    [
+                        'name' => 'nama',
+                        'contents' => $request->nama
+                    ],
+                    [
+                        'name' => 'isAccepted',
+                        'contents' => $request->isAccepted
+                    ],
+                    [
+                        'name' => 'judul',
+                        'contents' => $request->judul
+                    ],
+                    [
+                        'name' => 'isi',
+                        'contents' => $request->isi
+                    ],
+                ];
+            }
+            
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$request->id?_method=PUT", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ],
+                'multipart' => $multipart
             ]);
 
             $responseBody = json_decode($response->getBody());
@@ -159,17 +199,25 @@ class InformasiDesaController extends Controller
         }
     }
 
-    public function updatePengumuman(Request $request, $id)
+    public function updatePengumuman(Request $request)
     {
         try {
             $client = new Client();
             $token = Session::get('api-token');
             
-            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman/$id?_method=PUT", [
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman/$request->id?_method=PUT", [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token
                 ],
                 'multipart' => [
+                    [
+                        'name' => 'nama',
+                        'contents' => $request->nama
+                    ],
+                    [
+                        'name' => 'isAccepted',
+                        'contents' => $request->isAccepted
+                    ],
                     [
                         'name' => 'judul',
                         'contents' => $request->judul

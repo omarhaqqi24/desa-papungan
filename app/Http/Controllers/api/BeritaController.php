@@ -99,6 +99,7 @@ class BeritaController extends Controller
         $berita->update([
             'judul'  => $request->judul,
             'isi'  => $request->isi,
+            'nama' => $request->nama,
             'isAccepted'  => $request->isAccepted
         ]);
         $berita->save();

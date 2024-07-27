@@ -19,6 +19,7 @@ class BeritaResource extends BaseResource
             'id' => $this->id,
             'judul' => $this->judul,
             'isi' => $this->isi,
+            'penulis' => $this->nama,
             'foto' => url('storage/berita/' . $this->foto),
             'isAccepted' => intval($this->isAccepted),
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),

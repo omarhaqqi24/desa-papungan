@@ -55,7 +55,8 @@ class PengumumanController extends Controller
 
         $pengumuman = Pengumuman::create([
             'judul' => $request->judul,
-            'isi' => $request->isi
+            'isi' => $request->isi,
+            'nama' => $request->nama
         ]);
         $resource = new PengumumanResource($pengumuman);
 
@@ -82,6 +83,7 @@ class PengumumanController extends Controller
         $pengumuman->update([
             'judul'  => $request->judul,
             'isi'  => $request->isi,
+            'nama' => $request->nama,
             'isAccepted'  => intval($request->isAccepted)
         ]);
         $pengumuman->save();
