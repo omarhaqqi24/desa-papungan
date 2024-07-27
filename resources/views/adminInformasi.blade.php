@@ -77,7 +77,7 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" placeholder="Pencarian" name="cari-lembaga" id="cari-lembaga"
+                    <input type="search" placeholder="Pencarian" name="qBerita" id="cari-berita" value="{{ request()->input('qBerita')}}"
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
@@ -131,7 +131,7 @@
                                     {{ $item->updatedAt }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex gap-6 justify-center items-cente">
-                                     <form action="{{ route('admin.pemerintahan.lembaga.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('admin.informasi.berita.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="font-medium" type="submit">
@@ -140,11 +140,11 @@
                                             </svg>
                                         </button>
                                     </form>
-                                   <button onclick="openModalUpdateBerita('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <button onclick="openModalUpdateBerita('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                   </button>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -310,6 +310,21 @@
                 </button>
             </div>
 
+            <form action="" method="get">
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="search" placeholder="Pencarian" name="qPengumuman" id="cari-pengumuman" value="{{ request()->input('qPengumuman')}}"
+                        class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
+                </div>
+            </form>
+            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+
             <!-- Table Pengumuman Desa -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -352,7 +367,7 @@
                                     {{ $item->updatedAt }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex gap-6 justify-center items-cente">
-                                     <form action="{{ route('admin.pemerintahan.lembaga.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('admin.informasi.pengumuman.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="font-medium" type="submit">
@@ -361,11 +376,11 @@
                                             </svg>
                                         </button>
                                     </form>
-                                   <button onclick="openModalUpdatePengumuman('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <button onclick="openModalUpdatePengumuman('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                   </button>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -530,7 +545,7 @@
                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" placeholder="Pencarian" name="cari-lembaga" id="cari-lembaga"
+                    <input type="search" placeholder="Pencarian" name="qBeritaReq" id="cari-berita-req" value="{{ request()->input('qBeritaReq') }}"
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
@@ -583,8 +598,16 @@
                                     <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
                                 </td>
                                 <td class="px-6 py-4 text-right flex gap-4 justify-end">
-                                    <button class="btn btn-warning btn-sm">Hapus</button>
-                                    <button class="btn btn-success btn-sm">Publikasi</button>
+                                    <form action="{{ route('admin.informasi.berita.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
+                                    </form>
+                                    <form action="{{ route('admin.informasi.berita.getAccepted', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success btn-sm bg-green-400 text-white border-0">Publikasi</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -654,6 +677,20 @@
             </div>
             <!-- End -->
 
+            <form action="" method="get" class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="search" placeholder="Pencarian" name="qPengumumanReq" id="cari-pengumuman-req" value="{{ request()->input('qPengumumanReq') }}"
+                        class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
+                </div>
+            </form>
+            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
              <!-- Table Permintaan Pengumuman -->
              <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -696,8 +733,16 @@
                                     {{ $item->penulis }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex gap-4 justify-end">
-                                    <button class="btn btn-warning btn-sm">Hapus</button>
-                                    <button class="btn btn-success btn-sm">Publikasi</button>
+                                    <form action="{{ route('admin.informasi.pengumuman.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
+                                    </form>
+                                    <form action="{{ route('admin.informasi.pengumuman.getAccepted', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success btn-sm bg-green-400 text-white border-0">Publikasi</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -780,13 +825,13 @@
                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" placeholder="Pencarian" name="cari-lembaga" id="cari-lembaga"
+                    <input type="search" placeholder="Pencarian" name="qAspirasi" id="cari-aspirasi" value="{{ request()->input('qAspirasi') }}"
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="table-aspirasi">
                     <caption
                         class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                         Daftar Aspirasi</caption>
@@ -825,11 +870,15 @@
                                 <td class="px-6 py-4">
                                     {{ $item->penulis }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex justify-center items-center gap-4">
+                                <td class="px-6 py-4 text-right flex justify-end items-center gap-4">
                                     <input
                                         type="checkbox"
                                         class="checkbox border-gray-400 [--chkbg:theme(colors.green.300)] [--chkfg:white] checked:border-green-300" />
-                                    <button class="btn btn-warning btn-sm">Hapus</button>
+                                    <form action="{{ route('admin.informasi.aspirasi.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -938,6 +987,7 @@
         </div>
     </div>
     <script>
+        const baseUrl = '{{ env("API_BASE_URL", "http://localhost:8001") }}';
         function openModalUpdateBerita(id, data) {
             data = JSON.parse(data);
             const judulIn = document.getElementById('judul_brt_up');

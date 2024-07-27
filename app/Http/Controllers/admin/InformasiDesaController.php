@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Redis;
 
 class InformasiDesaController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
         $client = new Client();
         $token = Session::get('api-token');
 
-        $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=1");
-        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=1");
-        $response3 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=0");
-        $response4 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=0");
-        $response5 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/aspirasi", [
+        $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=1&judul=$request->qBerita");
+        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=1&judul=$request->qPengumuman");
+        $response3 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=0&judul=$request->qBeritaReq");
+        $response4 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=0&judul=$request->qPengumumanReq");
+        $response5 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/aspirasi?judul=$request->qAspirasi", [
             'headers' => [
                 'Authorization' => 'Bearer '.$token
             ],
@@ -280,6 +280,75 @@ class InformasiDesaController extends Controller
             return redirect()->back()->with('success', $responseBody->message);
 
         } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
+        }
+    }
+
+    public function deleteBerita($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("DELETE", env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
+        }
+    }
+
+    public function deletePengumuman($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("DELETE", env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
+        }
+    }
+
+    public function deleteAspirasi($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request("DELETE", env("API_BASE_URL", "http://localhost:8001") . "/api/aspirasi/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ],
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+
+            return redirect()->back()->with('success', $responseBody->message);
+        } catch (BadResponseException $e) {
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 

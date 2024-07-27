@@ -115,6 +115,15 @@ Route::put('/admin/informasi/berita/{id}/ceklis', [InformasiDesaController::clas
 Route::put('/admin/informasi/pengumuman/{id}/ceklis', [InformasiDesaController::class, 'acceptPengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.getAccepted');
+Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'deleteBerita'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.berita.destroy');
+Route::delete('/admin/informasi/pengumuman/{id}', [InformasiDesaController::class, 'deletePengumuman'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.pengumuman.destroy');
+    Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.aspirasi.destroy');
     
 // Halaman Admin UMKM Desa
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
