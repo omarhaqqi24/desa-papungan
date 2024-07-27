@@ -48,10 +48,6 @@ class InformasiDesaController extends Controller
                 ],
                 'multipart' => [
                     [
-                        'name' => 'nama',
-                        'contents' => $request->nama
-                    ],
-                    [
                         'name' => 'judul',
                         'contents' => $request->judul
                     ],
@@ -95,6 +91,85 @@ class InformasiDesaController extends Controller
                         'name' => 'nama',
                         'contents' => $request->nama
                     ],
+                    [
+                        'name' => 'judul',
+                        'contents' => $request->judul
+                    ],
+                    [
+                        'name' => 'isi',
+                        'contents' => $request->isi
+                    ]
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function updateBerita(Request $request, $id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $image = $request->file('foto');
+            if (empty($image)) {
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita");
+                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
+
+                throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
+            }
+            
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$id?_method=PUT", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ],
+                'multipart' => [
+                    [
+                        'name' => 'judul',
+                        'contents' => $request->judul
+                    ],
+                    [
+                        'name' => 'isi',
+                        'contents' => $request->isi
+                    ],
+                    [
+                        'name' => 'foto',
+                        'contents' => fopen($image->getPathname(), 'r'),
+                        'filename' => $image->getClientOriginalName(),
+                    ],
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function updatePengumuman(Request $request, $id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+            
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman/$id?_method=PUT", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ],
+                'multipart' => [
                     [
                         'name' => 'judul',
                         'contents' => $request->judul
