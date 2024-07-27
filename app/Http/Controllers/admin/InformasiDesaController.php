@@ -71,6 +71,8 @@ class InformasiDesaController extends Controller
             return redirect()->back()->with('success', $responseBody->message);
 
         } catch (BadResponseException $e){
+            dd($e);
+            return;
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
@@ -89,6 +91,10 @@ class InformasiDesaController extends Controller
                     'Authorization' => 'Bearer '.$token
                 ],
                 'multipart' => [
+                    [
+                        'name' => 'nama',
+                        'contents' => $request->nama
+                    ],
                     [
                         'name' => 'judul',
                         'contents' => $request->judul
