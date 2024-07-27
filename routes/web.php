@@ -15,6 +15,7 @@ use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PengumumanPageController;
 use App\Http\Controllers\PetaUmkmController;
+use App\Http\Controllers\umkmController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
@@ -31,9 +32,6 @@ Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
 });
 
-Route::get('/umkm', function () {
-    return view('umkm');
-});
 
 Route::get('/informasi',[PengumumanController::class,"index"]);
 Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi.store');
@@ -52,9 +50,7 @@ Route::get('/peta-wilayah', function () {
 Route::get('/', [LandingPageController::class, 'index'])->name('landingPage.index');
 Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('pemerintahan.index');
 Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
-Route::get('/umkm', function () {
-    return view('umkm');
-})->name('umkm.index');
+Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
 })->name('pariwisata.index');
