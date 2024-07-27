@@ -13,10 +13,32 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class PengumumanController extends Controller
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
-        $pengumumans = Pengumuman::all();
+        $pengumumans = Pengumuman::orderBy('created_at', 'DESC');
+
+        if ($request->pub == '1'){
+            $pengumumans = $pengumumans->where('isAccepted', 1);
+        } else if ($request->pub == '0'){
+            $pengumumans = $pengumumans->where('isAccepted', 0);
+        }
+        if (!empty($request->judul)){
+            $pengumumans = $pengumumans->where('judul', 'LIKE', "%{$request->judul}%");
+        }
+        $pengumumans = $pengumumans->get();
+
         $resource = new PengumumanCollection($pengumumans);
+        return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
+    }
+
+    public function getById($id)
+    {
+        $pengumuman = Pengumuman::where('id', $id)->first();
+        if (!$pengumuman){
+            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
+        }
+
+        $resource = new PengumumanResource($pengumuman);
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diambil!', 200);
     }
 
@@ -42,30 +64,43 @@ class PengumumanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pengumuman = Pengumuman::findOrFail($id);
-        if (!$pengumuman) {
-            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 400);
+        $validator = FacadesValidator::make($request->all(), [
+            'judul' => 'required',
+            'isi' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
         }
 
-        if (!empty($request->judul)){
-            $pengumuman->update([
-                'judul'  => $request->judul,
-            ]);
+        $pengumuman = Pengumuman::where('id', $id)->first();
+        if (!$pengumuman) {
+            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
         }
-        if (!empty($request->isi)){
-            $pengumuman->update([
-                'isi'  => $request->isi,
-            ]);
-        }
-        if (!empty($request->isAccepted)){
-            $pengumuman->update([
-                'isAccepted'  => intval($request->isAccepted),
-            ]);
-        }
+
+        $pengumuman->update([
+            'judul'  => $request->judul,
+            'isi'  => $request->isi
+        ]);
         $pengumuman->save();
 
         $resource = new PengumumanResource($pengumuman);
+        return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diperbarui!', 200);
+    }
 
+    public function getAccepted($id)
+    {   
+        $pengumuman = Pengumuman::where('id', $id)->first();
+        if (!$pengumuman){
+            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
+        }
+
+        $pengumuman->update([
+            'isAccepted' => 1
+        ]);
+        $pengumuman->save();
+
+        $resource = new PengumumanResource($pengumuman);
         return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diperbarui!', 200);
     }
 
