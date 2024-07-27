@@ -44,6 +44,10 @@ Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
 })->name('peta-wilayah');
 
+Route::get('/peta-makam-mbah-moedjair', function() {
+    return view('peta-makam-mbah-moedjair');
+})->name('peta-makam-mbah-moedjair');
+
 
 
 //public
@@ -119,7 +123,7 @@ Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, '
 Route::delete('/admin/informasi/pengumuman/{id}', [InformasiDesaController::class, 'deletePengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.destroy');
-    Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
+Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
     ->middleware('checkToken')
     ->name('admin.informasi.aspirasi.destroy');
     
@@ -136,7 +140,24 @@ Route::put('/admin/umkm', [UmkmDesaController::class, 'updateUmkm'])
 Route::delete('/admin/umkm/{id}', [UmkmDesaController::class, 'deleteUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.destroy');
-Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
+Route::post('/admin/umkm/foto', [UmkmDesaController::class, 'tambahFotoUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.foto.create');
+Route::delete('/admin/umkm/foto', [UmkmDesaController::class, 'deleteFotoUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.foto.destroy');
+    
+    
+Route::get('/admin/pariwisata', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata.index');
+Route::post('/admin/pariwisata', [PariwisataDesaController::class, 'tambahPariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.create');
+Route::put('/admin/pariwisata', [PariwisataDesaController::class, 'updatePariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.update');
+Route::delete('/admin/pariwisata/{id}', [PariwisataDesaController::class, 'deletePariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.destroy');
 
 // Halaman Admin Profil Desa
 Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
