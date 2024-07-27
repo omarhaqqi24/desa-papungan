@@ -130,7 +130,7 @@ Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])
 Route::post('/admin/umkm', [UmkmDesaController::class, 'tambahUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.create');
-Route::put('/admin/umkm/{id}', [UmkmDesaController::class, 'updateUmkm'])
+Route::put('/admin/umkm', [UmkmDesaController::class, 'updateUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.update');
 Route::delete('/admin/umkm/{id}', [UmkmDesaController::class, 'deleteUmkm'])
