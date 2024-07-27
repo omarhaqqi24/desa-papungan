@@ -47,6 +47,7 @@
             </form>
 
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            <!-- Table UMKM -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
@@ -180,6 +181,7 @@
                     </div>
                 </section>
             </div>
+            <!-- End -->
 
             <div class="flex justify-end mt-4">
                 <button
@@ -200,7 +202,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Detail UMKM Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('perangkat-desa.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
@@ -291,7 +293,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update UMKM Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('perangkat-desa.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
@@ -387,7 +389,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Tambah UMKM Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('perangkat-desa.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">

@@ -96,7 +96,9 @@ Route::put('/admin/struktur', [PemerintahanDesaController::class, 'updateStruktu
     ->name('admin.pemerintahan.struktur.update');
 
 // Halaman Admin Informasi Desa
-Route::get('/admin/informasi', [InformasiDesaController::class, 'index'])->middleware('checkToken')->name('informasi-desa.index');
+Route::get('/admin/informasi', [InformasiDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.index');
 Route::post('/admin/informasi/berita', [InformasiDesaController::class, 'tambahBerita'])
     ->middleware('checkToken')
     ->name('admin.informasi.berita.create');
@@ -126,7 +128,9 @@ Route::delete('/admin/informasi/pengumuman/{id}', [InformasiDesaController::clas
     ->name('admin.informasi.aspirasi.destroy');
     
 // Halaman Admin UMKM Desa
-Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
+Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.umkm.index');
 Route::post('/admin/umkm', [UmkmDesaController::class, 'tambahUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.create');
