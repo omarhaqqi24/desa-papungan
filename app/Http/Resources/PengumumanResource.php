@@ -19,6 +19,7 @@ class PengumumanResource extends JsonResource
             'id' => $this->id,
             'judul' => $this->judul,
             'isi' => $this->isi,
+            'penulis' => $this->nama,
             'isAccepted' => intval($this->isAccepted),
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')

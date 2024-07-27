@@ -29,6 +29,42 @@
             <div class="flex-grow border-b-2 border-gray-500"></div>
         </div>
 
+        @if ($success = Session::get('success'))
+            <div role="alert" class="alert alert-success bg-green-200 text-green-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ $success }}</span>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div role="alert" class="alert alert-error bg-red-200 text-red-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                @endforeach
+            </div>
+        @endif
+
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Daftar Berita dan Pengumuman</div>
 
@@ -62,6 +98,9 @@
                                 Isi
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Penulis
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Foto
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -81,6 +120,9 @@
                                 <td class="px-6 py-4">
                                     <button onclick="openModalShowBerita('{{ $item->id }}', '{{ json_encode($item) }}')"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</a>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->penulis }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
@@ -116,7 +158,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Berita</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" enctype="multipart/form-data" id="form_up_brt" action="{{ route('admin.pemerintahan.perangkat-desa.update') }}">
+                    <form method="POST" enctype="multipart/form-data" id="form_up_brt" action="{{ route('admin.informasi.berita.update') }}">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
@@ -130,6 +172,16 @@
                                 <label for="isi_brt_up" class="label-text font-semibold">Isi</label>
                                 <textarea name="isi" id="isi_brt_up"
                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="nama_brt_up" class="label-text font-semibold">Penulis</label>
+                                <input type="text" name="nama" id="nama_brt_up" class="input input-bordered" placeholder="(Tuliskan Nama)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="hidden form-control gap-4">
+                                <label hidden for="isacc_brt_up" class="label-text font-semibold">isAccepted</label>
+                                <input hidden type="text" name="isAccepted" id="isacc_brt_up" class="input input-bordered"/>
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
                             </div>
                             <div class="form-control gap-4">
@@ -223,6 +275,11 @@
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
                             </div>
                             <div class="form-control gap-4">
+                                <label for="nama_brt_sh" class="label-text font-semibold">Penulis</label>
+                                <input disabled type="text" name="nama" id="nama_brt_sh" class="input input-bordered disabled:bg-slate-100">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
                                 <label for="foto_brt_sh" class="label-text font-semibold">Foto</label>
                                 <input disabled type="file" name="foto" id="foto_brt_sh" class="file-input file-input-bordered disabled:bg-slate-100">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau .jpg</p>
@@ -268,6 +325,9 @@
                                 Isi
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Penulis
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Terakhir Diupdate
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -284,6 +344,9 @@
                                 <td class="px-6 py-4">
                                     <button onclick="openModalShowPengumuman('{{ $item->id }}', '{{ json_encode($item) }}')"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</button>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->penulis }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $item->updatedAt }}
@@ -316,7 +379,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Pengumuman</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" enctype="multipart/form-data" id="form_up_png" action="{{ route('admin.pemerintahan.perangkat-desa.update') }}">
+                    <form method="POST" enctype="multipart/form-data" id="form_up_png" action="{{ route('admin.informasi.pengumuman.update') }}">
                         @csrf
                         @method('PUT')
                         <div class="form-control gap-6">
@@ -330,6 +393,16 @@
                                 <label for="isi_png_up" class="label-text font-semibold">Isi</label>
                                 <textarea name="isi" id="isi_png_up"
                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="nama_png_up" class="label-text font-semibold">Penulis</label>
+                                <input type="text" name="nama" id="nama_png_up" class="input input-bordered" placeholder="(Tuliskan Nama)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="hidden form-control gap-4">
+                                <label for="isacc_png_up" class="label-text font-semibold">isAccepted</label>
+                                <input type="text" name="isAccepted" id="isacc_png_up" class="input input-bordered" placeholder="(Tuliskan Nama)">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
                             </div>
                             <div class="relative w-full">
@@ -370,6 +443,11 @@
                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
                             </div>
+                            <div class="form-control gap-4">
+                                <label for="nama_png_sh" class="label-text font-semibold">Penulis</label>
+                                <input disabled type="text" name="nama" id="nama_png_sh" class="input input-bordered disabled:bg-gray-100">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
                             <div class="relative w-full">
                                 <div class="flex gap-4 justify-end">
                                     <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
@@ -400,6 +478,11 @@
                                 <label for="isi_png" class="label-text font-semibold">Isi</label>
                                 <textarea name="isi" id="isi_png"
                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="nama_png" class="label-text font-semibold">Penulis</label>
+                                <input type="text" name="nama" id="nama_png" class="input input-bordered" placeholder="(Tuliskan Nama)">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
                             </div>
                             <div class="relative w-full">
@@ -470,6 +553,9 @@
                                 Isi
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Penulis
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Foto
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -478,24 +564,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4">
-                                    <img src="{{}}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                        @foreach ($beritaReq->data as $item)    
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->createdAt }}
                                 </td>
-                            <td class="px-6 py-4 text-right flex gap-4 justify-end">
-                                <button class="btn btn-warning btn-sm">Hapus</button>
-                                <button class="btn btn-success btn-sm">Publikasi</button>
-                            </td>
-                        </tr>
+                                <td class="px-6 py-4">
+                                    {{ $item->judul }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button onclick="openModalShowBerita('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</button>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->penulis }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                </td>
+                                <td class="px-6 py-4 text-right flex gap-4 justify-end">
+                                    <button class="btn btn-warning btn-sm">Hapus</button>
+                                    <button class="btn btn-success btn-sm">Publikasi</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <section class="px-4 py-6 bg-white border-t">
@@ -580,26 +672,35 @@
                                 Isi
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Penulis
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                Lembaga
-                            </td>
-                            <td class="px-6 py-4">
-                                Jalan
-                            </td>
-                            <td class="px-6 py-4">
-                                Nomor Kontak
-                            </td>
-                            <td class="px-6 py-4 text-right flex gap-4 justify-end">
-                                <button class="btn btn-warning btn-sm">Hapus</button>
-                                <button class="btn btn-success btn-sm">Publikasi</button>
-                            </td>
-                        </tr>
+                        @foreach ($pengumumanReq->data as $item)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->createdAt }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->judul }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button onclick="openModalShowPengumuman('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</button>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->penulis }}
+                                </td>
+                                <td class="px-6 py-4 text-right flex gap-4 justify-end">
+                                    <button class="btn btn-warning btn-sm">Hapus</button>
+                                    <button class="btn btn-success btn-sm">Publikasi</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <section class="px-4 py-6 bg-white border-t">
@@ -701,7 +802,7 @@
                                 Isi
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Foto
+                                Penulis
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -709,27 +810,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-6 py-4">
-                                22-98-2024
-                            </td>
-                            <td class="px-6 py-4">
-                                MMD FILKOM 2024
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                File Foto
-                            </td>
-                            <td class="px-6 py-4 text-right flex justify-center items-center gap-4">
-                                 <input
-                                    type="checkbox"
-                                    class="checkbox border-gray-400 [--chkbg:theme(colors.green.300)] [--chkfg:white] checked:border-green-300" />
-                                <button class="btn btn-warning btn-sm">Hapus</button>
-                            </td>
-                        </tr>
+                        @foreach ($aspirasi->data as $item)                            
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                    {{ $item->createdAt }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->judul }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button onclick="openModalShowAspirasi('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Isi</button>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->penulis }}
+                                </td>
+                                <td class="px-6 py-4 text-right flex justify-center items-center gap-4">
+                                    <input
+                                        type="checkbox"
+                                        class="checkbox border-gray-400 [--chkbg:theme(colors.green.300)] [--chkfg:white] checked:border-green-300" />
+                                    <button class="btn btn-warning btn-sm">Hapus</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <section class="px-4 py-6 bg-white border-t">
@@ -794,6 +897,44 @@
                     </div>
                 </section>
             </div>
+
+            <!-- Modal Form Show Aspirasi -->
+            <dialog id="modal_form_aspirasi_sh" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Detail Aspirasi</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" enctype="multipart/form-data" id="form_asr_sh" action="{{ route('admin.pemerintahan.perangkat-desa.update') }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="judul_asr_sh" class="label-text font-semibold">Judul</label>
+                                <input disabled type="text" name="judul" id="judul_asr_sh" class="input input-bordered disabled:bg-slate-100" placeholder="(Tuliskan Nama)">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                                <input hidden type="text" name="id" id="id_asr_sh">
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="isi_asr_sh" class="label-text font-semibold">Isi</label>
+                                <textarea disabled name="isi" id="isi_asr_sh"
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="nama_asr_sh" class="label-text font-semibold">Penulis</label>
+                                <input disabled type="text" name="nama" id="nama_asr_sh" class="input input-bordered disabled:bg-slate-100">
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_aspirasi_sh.close()">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
         </div>
     </div>
     <script>
@@ -803,6 +944,10 @@
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_brt_up');
             isiIn.value = data.isi;
+            const namaIn = document.getElementById('nama_brt_up');
+            namaIn.value = data.penulis;
+            const isaccIn = document.getElementById('isacc_brt_up');
+            isaccIn.value = data.isAccepted;
             const hiddenInput = document.getElementById('id_brt');
             hiddenInput.value = data.id;
 
@@ -815,6 +960,8 @@
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_brt_sh');
             isiIn.value = data.isi;
+            const namaIn = document.getElementById('nama_brt_sh');
+            namaIn.value = data.penulis;
             const hiddenInput = document.getElementById('id_brt_sh');
             hiddenInput.value = data.id;
 
@@ -827,6 +974,8 @@
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_png_sh');
             isiIn.value = data.isi;
+            const namaIn = document.getElementById('nama_png_sh');
+            namaIn.value = data.penulis;
             const hiddenInput = document.getElementById('id_png_sh');
             hiddenInput.value = data.id;
 
@@ -839,10 +988,28 @@
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_png_up');
             isiIn.value = data.isi;
+            const namaIn = document.getElementById('nama_png_up');
+            namaIn.value = data.penulis;
+            const isaccIn = document.getElementById('isacc_png_up');
+            isaccIn.value = data.isAccepted;
             const hiddenInput = document.getElementById('id_png');
             hiddenInput.value = data.id;
 
             document.getElementById('modal_form_pengumuman_up').showModal();
+        }
+
+        function openModalShowAspirasi(id, data) {
+            data = JSON.parse(data);
+            const judulIn = document.getElementById('judul_asr_sh');
+            judulIn.value = data.judul;
+            const isiIn = document.getElementById('isi_asr_sh');
+            isiIn.value = data.isi;
+            const namaIn = document.getElementById('nama_asr_sh');
+            namaIn.value = data.penulis;
+            const hiddenInput = document.getElementById('id_asr_sh');
+            hiddenInput.value = data.id;
+
+            document.getElementById('modal_form_aspirasi_sh').showModal();
         }
     </script>
 </body>
