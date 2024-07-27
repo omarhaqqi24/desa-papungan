@@ -29,6 +29,42 @@
             <div class="flex-grow border-b-2 border-gray-500"></div>
         </div>
 
+        @if ($success = Session::get('success'))
+            <div role="alert" class="alert alert-success bg-green-200 text-green-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ $success }}</span>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div role="alert" class="alert alert-error bg-red-200 text-red-800">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                @endforeach
+            </div>
+        @endif
+
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Daftar Foto Pariwisata</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
@@ -65,9 +101,21 @@
                                 <td class="px-6 py-4">
                                     {{ $item->penjelasan }}
                                 </td>
-                                <td class="px-6 py-4 text-right">
-                                    <a href="#"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <td class="px-6 py-4 text-right flex gap-4">
+                                    <form action="{{ route('admin.pariwisata.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="font-medium" type="submit">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                    <button onclick="openModalUpdatePariwisata('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button> 
                                 </td>
                             </tr>
                         @endforeach
@@ -153,7 +201,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Unggah Foto`</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('lembaga-desa.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.pariwisata.create') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">
@@ -184,9 +232,58 @@
             </dialog>
             <!-- End -->
 
+             <!-- Form Update Pariwisata Desa -->
+             <dialog id="modal_form_pariwisata_up" class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 class="text-lg font-bold">Formulir Update Foto`</h3>
+                    <hr class="h-px my-8 bg-gray-300 border-0">
+                    <form method="POST" action="{{ route('admin.pariwisata.update') }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-control gap-6">
+                            <div class="form-control gap-4">
+                                <label for="foto_pr_up" class="label-text font-semibold">Foto</label>
+                                <input type="file" name="foto" id="foto_pr_up" class="file-input file-input-bordered">
+                                <input type="text" name="id" id="id_pr_up" hidden>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau .jpg</p>
+                            </div>
+                            <div class="form-control gap-4">
+                                <label for="penjelasan_pr_up" class="label-text font-semibold">Keterangan</label>
+                                <textarea name="penjelasan" id="penjelasan_pr_up"
+                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi</p>
+                            </div>
+                            <div class="relative w-full">
+                                <div class="flex gap-4 justify-end">
+                                    <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                        onclick="modal_form_pariwisata_up.close()">Tutup</button>
+                                    <button id="edit-btn-test" type="submit"
+                                        class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                        <img src="/img/saveLogo.svg" alt="">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+            <!-- End -->
+
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
     </div>
+    <script>
+        function openModalUpdatePariwisata(id, data) {
+            data = JSON.parse(data);
+            const penjelasanIn = document.getElementById('penjelasan_pr_up');
+            penjelasanIn.value = data.penjelasan;
+            const hiddenInput = document.getElementById('id_pr_up');
+            hiddenInput.value = data.id;
+
+            document.getElementById('modal_form_pariwisata_up').showModal();
+        }
+    </script>
 </body>
 
 </html>

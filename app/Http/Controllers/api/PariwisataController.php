@@ -46,8 +46,7 @@ class PariwisataController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'penjelasan' => 'required',
+            'penjelasan' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -59,13 +58,18 @@ class PariwisataController extends Controller
             return ApiResponseClass::sendError('Data pariwisata tidak ditemukan!', 404);
         }
 
-        $image = $request->file('foto');
-        $image->storeAs('public/pariwisata', $image->hashName());
+        if (!empty($request->foto)){
+            $image = $request->file('foto');
+            $image->storeAs('public/pariwisata', $image->hashName());
+            
+            Storage::delete('/public/pariwisata/'.$pariwisata->foto);
 
-        Storage::delete('/public/pariwisata/'.$pariwisata->foto);
+            $pariwisata->update([
+                'foto' => $image->hashName()
+            ]);
+        }
 
         $pariwisata->update([
-            'foto' => $image->hashName(),
             'penjelasan' => $request->penjelasan
         ]);
         $pariwisata->save();

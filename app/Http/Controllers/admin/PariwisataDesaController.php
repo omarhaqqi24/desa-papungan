@@ -75,28 +75,32 @@ class PariwisataDesaController extends Controller
             $token = Session::get('api-token');
 
             $image = $request->file('foto');
-            if (empty($image)) {
-                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pariwisata");
-                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
-
-                throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
+            if (!empty($image)) {
+                $multipart = [
+                    [
+                        'name'     => 'foto',
+                        'contents' => fopen($image->getPathname(), 'r'),
+                        'filename' => $image->getClientOriginalName(),
+                    ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $request->penjelasan,
+                    ],
+                ];
+            } else {
+                $multipart = [
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $request->penjelasan,
+                    ],
+                ];
             }
 
             $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001")."/api/pariwisata/$request->id?_method=PUT", [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $token
                 ],
-                'multipart' => [
-                    [
-                        'name' => 'foto',
-                        'contents' => fopen($image->getPathname(), 'r'),
-                        'filename' => $image->getClientOriginalName()
-                    ],
-                    [
-                        'name' => 'penjelasan',
-                        'contents' => $request->penjelasan
-                    ]
-                ]
+                'multipart' => $multipart
             ]);
 
             $responseBody = json_decode($response->getBody());

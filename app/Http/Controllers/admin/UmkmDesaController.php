@@ -8,20 +8,41 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Session;
 
 class UmkmDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $client = new Client();
 
-        $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm");
+        $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm?nama=$request->qUmkm");
 
         $umkm = json_decode($response1->getBody());
 
+
+        $collection = collect($umkm->data->resource);
+
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+
+        $perPage = 5;
+
+
+        $currentPageItems = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+
+        $paginatedItems = new LengthAwarePaginator($currentPageItems, $collection->count(), $perPage);
+
+        $paginatedItems->setPath($request->url());
+
+
         return view('adminUmkm', [
             "umkm" => $umkm,
+            "qUmkm" => $request->qUmkm,
+            'paginatedItems' => $paginatedItems,
         ]);
     }
 
@@ -30,24 +51,24 @@ class UmkmDesaController extends Controller
         try {
             $client = new Client();
             $token = Session::get('api-token');
-    
-            foreach ($request->jenis as $jns){
-                $jenises[] = $jns;
+
+            foreach ($request->jenis as $jns) {
+                $jenises[] = [
+                    'name' => 'jenis[]',
+                    'contents' => $jns
+                ];
             }
 
-            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm", [
+            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001") . "/api/umkm", [
                 'headers' => [
-                    'Authorization' => 'Bearer '.$token
+                    'Authorization' => 'Bearer ' . $token
                 ],
                 'multipart' => [
                     [
                         'name' => 'nama',
                         'contents' => $request->nama
                     ],
-                    [
-                        'name' => 'jenis',
-                        'contents' => $jenises
-                    ],
+                    ...$jenises,
                     [
                         'name' => 'deskripsi',
                         'contents' => $request->deskripsi
@@ -107,24 +128,24 @@ class UmkmDesaController extends Controller
         try {
             $client = new Client();
             $token = Session::get('api-token');
-    
-            foreach ($request->jenis as $jns){
-                $jenises[] = $jns;
+
+            foreach ($request->jenis as $jns) {
+                $jenises[] = [
+                    'name' => 'jenis[]',
+                    'contents' => $jns
+                ];
             }
-    
-            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$request->id?_method=PUT", [
+
+            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001") . "/api/umkm/$request->id?_method=PUT", [
                 'headers' => [
-                    'Authorization' => 'Bearer '.$token
+                    'Authorization' => 'Bearer ' . $token
                 ],
                 'multipart' => [
                     [
                         'name' => 'nama',
                         'contents' => $request->nama
                     ],
-                    [
-                        'name' => 'jenis',
-                        'contents' => $jenises
-                    ],
+                    ...$jenises,
                     [
                         'name' => 'deskripsi',
                         'contents' => $request->deskripsi
@@ -167,10 +188,10 @@ class UmkmDesaController extends Controller
                     ],
                 ]
             ]);
-    
+
             $responseBody = json_decode($response->getBody());
             return redirect()->back()->with('success', $responseBody->message);
-            
+
         } catch (BadResponseException $e) {
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
@@ -193,13 +214,13 @@ class UmkmDesaController extends Controller
                 throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
             }
 
-            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$request->id/foto", [
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm/$request->id/foto", [
                 'headers' => [
-                    'Authorization' => 'Bearer '.$token
+                    'Authorization' => 'Bearer ' . $token
                 ],
                 'multipart' => [
                     [
-                        'name'     => 'foto',
+                        'name' => 'foto',
                         'contents' => fopen($image->getPathname(), 'r'),
                         'filename' => $image->getClientOriginalName()
                     ]
@@ -209,7 +230,7 @@ class UmkmDesaController extends Controller
             $responseBody = json_decode($response->getBody());
             return redirect()->back()->with('success', $responseBody->message);
 
-        } catch (BadResponseException $e){
+        } catch (BadResponseException $e) {
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
