@@ -23,6 +23,7 @@ Route::get('/berita', [BeritaController::class, 'getAll']);
 Route::get('/berita/{id}', [BeritaController::class, 'getById']);
 Route::post('/berita', [BeritaController::class, 'store']);
 Route::put('/berita/{id}', [BeritaController::class, 'update'])->middleware('auth:sanctum');
+Route::put('/berita/{id}/ceklis', [BeritaController::class, 'getAccepted'])->middleware('auth:sanctum');
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -42,6 +43,7 @@ Route::get('/pengumuman', [PengumumanController::class, 'getAll']);
 Route::get('/pengumuman/{id}', [PengumumanController::class, 'getById']);
 Route::post('/pengumuman', [PengumumanController::class, 'store']);
 Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->middleware('auth:sanctum');
+Route::put('/pengumuman/{id}/ceklis', [PengumumanController::class, 'getAccepted'])->middleware('auth:sanctum');
 Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/aspirasi', [AspirasiController::class, 'getAll'])->middleware('auth:sanctum');
