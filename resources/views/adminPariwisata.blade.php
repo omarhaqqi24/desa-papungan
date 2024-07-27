@@ -153,7 +153,7 @@
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Unggah Foto`</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
-                    <form method="POST" action="{{ route('lembaga-desa.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="form-control gap-6">
                             <div class="form-control gap-4">

@@ -10,16 +10,17 @@ use Illuminate\Support\Facades\Session;
 
 class UmkmDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $client = new Client();
 
-        $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm");
+        $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm?nama=$request->qUmkm");
 
         $umkm = json_decode($response1->getBody());
 
         return view('adminUmkm', [
             "umkm" => $umkm,
+            "qUmkm" => $request->qUmkm
         ]);
     }
 
@@ -30,7 +31,10 @@ class UmkmDesaController extends Controller
             $token = Session::get('api-token');
     
             foreach ($request->jenis as $jns){
-                $jenises[] = $jns;
+                $jenises[] = [
+                    'name' => 'jenis[]',
+                    'contents' => $jns
+                ];
             }
 
             $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm", [
@@ -42,10 +46,7 @@ class UmkmDesaController extends Controller
                         'name' => 'nama',
                         'contents' => $request->nama
                     ],
-                    [
-                        'name' => 'jenis',
-                        'contents' => $jenises
-                    ],
+                    ...$jenises,
                     [
                         'name' => 'deskripsi',
                         'contents' => $request->deskripsi
@@ -100,17 +101,20 @@ class UmkmDesaController extends Controller
         }
     }
 
-    public function updateUmkm(Request $request, $id)
+    public function updateUmkm(Request $request)
     {
         try {
             $client = new Client();
             $token = Session::get('api-token');
     
             foreach ($request->jenis as $jns){
-                $jenises[] = $jns;
+                $jenises[] = [
+                    'name' => 'jenis[]',
+                    'contents' => $jns
+                ];
             }
     
-            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$id?_method=PUT", [
+            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$request->id?_method=PUT", [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token
                 ],
@@ -119,10 +123,7 @@ class UmkmDesaController extends Controller
                         'name' => 'nama',
                         'contents' => $request->nama
                     ],
-                    [
-                        'name' => 'jenis',
-                        'contents' => $jenises
-                    ],
+                    ...$jenises,
                     [
                         'name' => 'deskripsi',
                         'contents' => $request->deskripsi
