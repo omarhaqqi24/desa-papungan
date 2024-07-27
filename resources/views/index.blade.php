@@ -38,7 +38,7 @@
                 <div class="flex justify-end text-blue-600 text-lg font-medium font-jakarta m-4 mt-5">
                     <a href="{{ route('informasi.index', ['targetID' => 'berita']) }}" class="flex items-center w-full justify-end gap-2">
                         <span class="hidden md:inline">Baca Berita Lainnya</span>
-                        <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2 md:ml-0">
+                        <img src="{{ asset('/img/arrow-selengkapnya.svg')}}" alt="" class="ml-2 md:ml-0">
                     </a>
                 </div>
                 </div>
@@ -89,7 +89,7 @@
                         <div class="w-full flex justify-end mt-8 mb-4 pr-2">
                             <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
                                 Selengkapnya
-                                <img src="img/arrow-selengkapnya.svg" alt="" class="hidden md:block ml-2">
+                                <img src="{{ asset('/img/arrow-selengkapnya.svg')}}" alt="" class="hidden md:block ml-2">
                             </a>
                         </div>
                         <div class="w-full border-b-2 border-gray-400"></div>
@@ -102,7 +102,7 @@
                     <div class="flex justify-end text-blue-600 text-lg text-right md:text-lg font-medium font-jakarta m-4 mt-5 pr-8">
                         <a href="{{ route('informasi.index', ['targetID' => 'pengumuman']) }}" class="hidden md:flex items-center">
                             Baca Pengumuman Lainnya 
-                            <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
+                            <img src="{{ asset('/img/arrow-selengkapnya.svg')}}" alt="" class="ml-2">
                         </a>
                     </div>
                 </div>

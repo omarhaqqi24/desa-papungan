@@ -50,13 +50,13 @@
                             <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
                             <div class="relative font-normal font-jakarta">
                                 <div class="truncate-multiline">
-                                    {{ $item->isi }}
+                                    {!! nl2br(e($item->isi)) !!}
                                 </div>
                             </div>
                             <div class="w-full flex justify-end mt-4 mb-2 pr-2">
                                 <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
                                     Selengkapnya
-                                    <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
+                                    <img src="{{ asset('/img/arrow-selengkapnya.svg')}}" alt="" class="ml-2">
                                 </a>
                             </div>
                         </div>
@@ -78,13 +78,15 @@
                                 <img src="{{ $item->foto }}" alt="fotoberita"
                                     class="w-full lg:w-[400px] h-[300px] object-cover">
                                 <div class="font-normal font-jakarta relative w-full flex flex-col justify-between">
-                                    <div class="truncate-multiline">{{ $item->isi }}</div>
+                                    <div class="truncate-multiline">
+                                        {!! nl2br(e($item->isi)) !!}
+                                    </div>
                                     <div class="w-full flex justify-end mt-2">
                                         <div class="w-full flex justify-end mt-6 mb-4 pr-2">
                                             <a href="{{ url('berita/' . $item->id) }}"
                                                 class="text-blue-500 flex items-center">
                                                 Selengkapnya
-                                                <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
+                                                <img src="{{ asset('/img/arrow-selengkapnya.svg')}}" alt="" class="ml-2">
                                             </a>
                                         </div>
                                     </div>
@@ -146,7 +148,7 @@
                                 <p id="file-label" class="text-gray-700 flex-grow">Tidak ada file yang terunggah</p>
                                 <label for="foto"
                                     class="bg-blue-600 text-white flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer">
-                                    <img src="img/unggah.svg" alt="Unggah" class="w-5 h-5">
+                                    <img src="{{ asset('/img/unggah.svg')}}" alt="Unggah" class="w-5 h-5">
                                     Unggah File
                                 </label>
                                 <input type="file" name="foto" id="foto" class="hidden">
@@ -158,7 +160,7 @@
                             <button type="submit"
                                 class="flex items-center px-6 py-2 bg-[#2d68f8] text-white text-lg font-medium font-jakarta rounded-lg shadow-md hover:bg-[#1a4ebb] focus:outline-none focus:ring-2 focus:ring-[#2d68f8] focus:ring-opacity-50">
                                 Kirim
-                                <img src="img/arrow-right.svg" alt="" class="ml-2 inline-block">
+                                <img src="{{ asset('/img/arrow-right.svg')}}" alt="" class="ml-2 inline-block">
                             </button>
                         </div>
                     </form>

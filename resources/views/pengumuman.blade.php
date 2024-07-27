@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <!-- isi pengumuman -->
-                <p class="text-lg">{{ $pengumuman->data->isi }}</p>
+                <p class="text-lg">{!! nl2br(e($pengumuman->data->isi)) !!}</p>
             </div>
             <!-- Side content -->
             <div class="basis-1/4 pl-10 sticky top-40">

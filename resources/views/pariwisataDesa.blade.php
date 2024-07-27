@@ -35,7 +35,7 @@
             <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Simak
                 video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!
             </div>
-            <img src="img/unkown.png" alt="unknown" class="rounded-lg w-full">
+            <img src="{{ asset('/img/unkown.png')}}" alt="unknown" class="rounded-lg w-full">
 
             <!-- sejarah-->
             <div id="sejarah"></div>
