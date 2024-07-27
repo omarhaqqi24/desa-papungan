@@ -17,7 +17,7 @@
         /* css for hidden text */
         .truncate-multiline {
             display: -webkit-box;
-            -webkit-line-clamp: 10;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -53,7 +53,7 @@
                                     {{ $item->isi }}
                                 </div>
                             </div>
-                            <div class="w-full flex justify-end mt-2 mb-2">
+                            <div class="w-full flex justify-end mt-4 mb-2 pr-2">
                                 <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
                                     Selengkapnya
                                     <img src="img/arrow-selengkapnya.svg" alt="" class="ml-2">
@@ -80,7 +80,7 @@
                                 <div class="font-normal font-jakarta relative w-full flex flex-col justify-between">
                                     <div class="truncate-multiline">{{ $item->isi }}</div>
                                     <div class="w-full flex justify-end mt-2">
-                                        <div class="w-full flex justify-end mt-2 mb-8">
+                                        <div class="w-full flex justify-end mt-6 mb-4 pr-2">
                                             <a href="{{ url('berita/' . $item->id) }}"
                                                 class="text-blue-500 flex items-center">
                                                 Selengkapnya
