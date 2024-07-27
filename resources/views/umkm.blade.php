@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class=" px-5 md:px-0 mt-10">
+    <div class="space-y-10 px-5 md:px-10 mt-10">
         <div class="container items-center mx-auto space-y-10 text-justify">
             <x-headerArtikel subJudul="Kenali UMKM " judul="Profil UMKM Desa Papungan" />
             <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis
@@ -39,7 +39,7 @@
                 deskripsi="lorem" />
 
         </div>
-    </div>
+
 
 
     <!-- peta umkm-->
@@ -49,6 +49,54 @@
 
     <!-- daftar umkm-->
     <div id="daftarumkm"></div>
+
+    <x-table.table :headers="['Nama UMKM', 'Jenis Produk', 'Alamat', 'Ijin Label', 'Detail UMKM']" jenisTabel="Daftar UMKM">
+        @php
+            $i = 1;
+        @endphp
+        @foreach ($data->data->resource as $umkm)
+            <tr class="border-b">
+                <td class="p-2 text-center">{{ $i++ }}</td>
+                <td class="p-2 text-left">{{ $umkm->nama }}</td>
+                <td class="p-2 text-left">
+                    @php
+                        
+                        $jenisCollection = collect($umkm->jenis);
+                        
+                        $jenisString = $jenisCollection->pluck('jenis')->unique()->implode(', ');
+                    @endphp
+                    {{ $jenisString }}
+                </td>
+                <td class="p-2 text-left">{{ $umkm->alamat }}</td>
+                <td class="p-2 text-center lg:text-left ">
+                    @if ($umkm->no_pirt != '-')
+                    <div class="badge bg-indigo-100 text-indigo-400 font-semibold border-0 text-xs " >P-IRT</div>
+                @endif
+                @if ($umkm->no_nib != '-')
+                    <div class="badge bg-blue-100 text-blue-400 font-semibold border-0 text-xs " >NIB</div>
+                @endif
+                @if ($umkm->no_bpom != '-')
+                    <div class="badge bg-pink-100 text-pink-400 font-semibold border-0 text-xs " >BPOM</div>
+                @endif
+                @if ($umkm->no_halal != '-')
+                    <div class="badge bg-green-100 text-green-400 font-semibold border-0 text-xs " >HALAL</div>
+                @endif
+                </td>
+                <td class="p-2 "><a class="btn btn-link" href="">Detail UMKM</a></td>
+
+            </tr>
+        @endforeach
+    </x-table.table>
+
+
+</div>
+
+
+
+
+
+
+
 </body>
 <x-footer />
 
