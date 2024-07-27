@@ -27,16 +27,13 @@
         </div>
     </div>
 
-    <div class="space-y-10 px-5 md:px-10 mt-10">
+    <div class=" px-5 md:px-10 mt-10">
         <div class="container items-center mx-auto space-y-10 text-justify">
             <x-headerArtikel subJudul="Kenali UMKM " judul="Profil UMKM Desa Papungan" />
-            <div class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reiciendis
-                omnis, inventore accusantium cum quod maiores sint impedit asperiores veritatis similique modi corrupti
-                ducimus, vitae dolorem? Cum ut repudiandae quis!</div>
-            <img src="img/unkown.png" alt="unknown" class="rounded-lg w-full">
-
-            <x-cardSubjudul jenisJudul="PARIWISATA DESA" judul="Sejarah Makam Mbah Moedjair Penemu Ikan Moedjair"
-                deskripsi="lorem" />
+            <div class="text-sm font-normal ">Berikut adalah video singkat mengenai UMKM di Desa Papungan. Simak video berikut untuk mengetahui bagaimana masyarakat Desa Papungan mengembangkan potensi usaha mereka!/div>
+     
+            <x-cardSubjudul jenisJudul="Kenali UMKM" judul="Peta Digital UMKM Desa Papungan"
+                deskripsi="Berikut adalah Peta UMKM dari Desa Papungan. Simak informasi berikut untuk mengetahui lokasi dan jenis usaha yang ada di desa  kita, serta bagaimana UMKM ini berkontribusi dalam perekonomian lokal!" />
 
         </div>
 
