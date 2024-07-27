@@ -15,11 +15,20 @@ class BeritaController extends Controller
 {
     public function getAll(Request $request) 
     {
-        $perPage = intval($request->query('size'));
-        $beritas = Berita::paginate($perPage);
-        $resources = (new BeritaCollection($beritas))->response()->getData();
+        $beritas = Berita::orderBy('created_at', 'DESC');
 
-        return ApiResponseClass::sendResponse($resources, '', 200);
+        if ($request->pub == '1'){
+            $beritas = $beritas->where('isAccepted', 1);    
+        } else if ($request->pub == '0'){
+            $beritas = $beritas->where('isAccepted', 0);    
+        }
+        if (!empty($request->judul)){
+            $beritas = $beritas->where('judul', 'LIKE', "%{$request->judul}%");
+        }
+        $beritas = $beritas->get();
+
+        $resources = (new BeritaCollection($beritas));
+        return ApiResponseClass::sendResponse($resources, 'Data berita berhasil diambil!', 200);
     }
 
     public function getById($id) 
@@ -51,6 +60,7 @@ class BeritaController extends Controller
 
         $berita = Berita::create([
             'foto' => $image->hashName(),
+            'nama' => $request->nama,
             'judul' => $request->judul,
             'isi' => $request->isi
         ]);
@@ -61,47 +71,55 @@ class BeritaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $berita = Berita::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required',
+            'isi' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+        
+        $berita = Berita::where('id', $id)->first();
         if (!$berita) {
-            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 400);
+            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
-
-        if (!empty($request->judul)){
-            $berita->update([
-                'judul'  => $request->judul,
-            ]);
-        }
-        if (!empty($request->isi)){
-            $berita->update([
-                'isi'  => $request->isi,
-            ]);
-        }
-        if (!empty($request->isAccepted)){
-            $berita->update([
-                'isAccepted'  => intval($request->isAccepted),
-            ]);
-        }
-
-        if ($request->hasFile('foto')) {
-
+        
+        if (!empty($request->foto)){
             $image = $request->file('foto');
             $image->storeAs('public/berita', $image->hashName());
-
+            
             Storage::delete('public/berita/'.$berita->foto);
-
-            $berita->update([
-                'foto' => $image->hashName()
-            ]);
-
+            
+            $berita->update(['foto' => $image->hashName()]);
+        }
+        
+        $berita->update([
+            'judul'  => $request->judul,
+            'isi'  => $request->isi
+        ]);
+        $berita->save();
+        
+        $resource = new BeritaResource($berita);
+        return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
+    }
+    
+    public function getAccepted($id)
+    {   
+        $berita = Berita::where('id', $id)->first();
+        if (!$berita){
+            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
 
+        $berita->update([
+            'isAccepted' => 1
+        ]);
         $berita->save();
 
         $resource = new BeritaResource($berita);
-
         return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
     }
-
+    
     public function destroy(string $id)
     {
         $isDeleted = Berita::destroy(intval($id));

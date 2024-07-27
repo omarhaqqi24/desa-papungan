@@ -1,0 +1,125 @@
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body,
+html,
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+.popup-fixed {
+    max-height: 50%;
+    width: 100%;
+    position: fixed;
+    top: auto;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    margin: 0;
+    border-radius: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-wrap: pretty;
+    padding: 0 !important;
+}
+
+.leaflet-popup-tip-container {
+    display: none;
+}
+
+.leaflet-popup-close-button {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 0;
+    width: 100%;
+    padding: 25px;
+}
+
+.leaflet-popup-content {
+    font-size: 16px;
+    width: 100% !important;
+    margin: 0 auto;
+}
+
+.leaflet-tooltip {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    box-shadow: none;
+    font-weight: bold;
+}
+
+.leaflet-tooltip::before {
+    display: none;
+}
+
+@media (min-width: 767px) {
+    .leaflet-pane,
+    .leaflet-fixed-pane {
+        width: auto;
+        max-width: 40%;
+        height: 100%;
+        background-color: white;
+    }
+
+    .popup-fixed {
+        min-width: 25%;
+        position: relative;
+        min-height: 100% !important;
+        right: auto !important;
+        left: 0 !important;
+        overflow-y: auto;
+    }
+
+    .leaflet-popup-content-wrapper {
+        min-height: 100%;
+        padding: 25px;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .popup-fixed::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .popup-fixed::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .popup-fixed::-webkit-scrollbar-thumb {
+        background: #aaaaaa;
+    }
+}
+
+.popup-fixed::-webkit-scrollbar {
+    width: 2px;
+}
+
+.popup-fixed::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.popup-fixed::-webkit-scrollbar-thumb {
+    background: #aaaaaa;
+}

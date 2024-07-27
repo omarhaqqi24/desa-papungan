@@ -9,5 +9,5 @@ class Berita extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul', 'teks', 'foto', 'isAccepted'];
+    protected $fillable = ['judul', 'isi', 'nama', 'foto', 'isAccepted'];
 }
