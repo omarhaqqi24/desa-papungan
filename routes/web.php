@@ -117,6 +117,9 @@ Route::put('/admin/informasi/berita/{id}/ceklis', [InformasiDesaController::clas
 Route::put('/admin/informasi/pengumuman/{id}/ceklis', [InformasiDesaController::class, 'acceptPengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.getAccepted');
+Route::put('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'checkAspirasi'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.aspirasi.getChecked');
 Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'deleteBerita'])
     ->middleware('checkToken')
     ->name('admin.informasi.berita.destroy');

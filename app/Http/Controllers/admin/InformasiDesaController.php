@@ -287,6 +287,29 @@ class InformasiDesaController extends Controller
         }
     }
 
+    public function checkAspirasi($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request('PUT', env("API_BASE_URL", "http://localhost:8001") . "/api/aspirasi/$id", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
+        }
+    }
+
     public function deleteBerita($id)
     {
         try {
