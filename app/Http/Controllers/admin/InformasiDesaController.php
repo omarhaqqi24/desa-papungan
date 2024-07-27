@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Illuminate\Support\Facades\Redis;
 
 class InformasiDesaController extends Controller
 {
@@ -227,6 +228,54 @@ class InformasiDesaController extends Controller
                         'contents' => $request->isi
                     ]
                 ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function acceptBerita(Request $request, $id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request('PUT', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$id/ceklis", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ],
+                'json' => ['isAccepted' => intval($request->isAccepted)]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function acceptPengumuman(Request $request, $id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request('PUT', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman/$id/ceklis", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ],
+                'json' => ['isAccepted' => intval($request->isAccepted)]
             ]);
 
             $responseBody = json_decode($response->getBody());

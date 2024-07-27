@@ -72,27 +72,25 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul' => 'required',
-            'isi' => 'required',
-            'isAccepted' => 'required'
+            'isi' => 'required'
         ]);
 
         if ($validator->fails()) {
             return ApiResponseClass::sendError($validator->errors(), 422);
         }
-
+        
         $berita = Berita::where('id', $id)->first();
         if (!$berita) {
             return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
-         
+        
         if (!empty($request->foto)){
             $image = $request->file('foto');
             $image->storeAs('public/berita', $image->hashName());
             
             Storage::delete('public/berita/'.$berita->foto);
-
+            
             $berita->update(['foto' => $image->hashName()]);
         }
         
@@ -103,11 +101,35 @@ class BeritaController extends Controller
             'isAccepted'  => $request->isAccepted
         ]);
         $berita->save();
+        
+        $resource = new BeritaResource($berita);
+        return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
+    }
+    
+    public function getAccepted(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'isAccepted' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+        
+        $berita = Berita::where('id', $id)->first();
+        if (!$berita){
+            return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
+        }
+
+        $berita->update([
+            'isAccepted' => intval($request->isAccepted)
+        ]);
+        $berita->save();
 
         $resource = new BeritaResource($berita);
         return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
     }
-
+    
     public function destroy(string $id)
     {
         $isDeleted = Berita::destroy(intval($id));

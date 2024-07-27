@@ -67,8 +67,7 @@ class PengumumanController extends Controller
     {
         $validator = FacadesValidator::make($request->all(), [
             'judul' => 'required',
-            'isi' => 'required',
-            'isAccepted' => 'required'
+            'isi' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -85,6 +84,30 @@ class PengumumanController extends Controller
             'isi'  => $request->isi,
             'nama' => $request->nama,
             'isAccepted'  => intval($request->isAccepted)
+        ]);
+        $pengumuman->save();
+
+        $resource = new PengumumanResource($pengumuman);
+        return ApiResponseClass::sendResponse($resource, 'Data pengumuman berhasil diperbarui!', 200);
+    }
+
+    public function getAccepted(Request $request, $id)
+    {
+        $validator = FacadesValidator::make($request->all(), [
+            'isAccepted' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+            return ApiResponseClass::sendError($validator->errors(), 422);
+        }
+        
+        $pengumuman = Pengumuman::where('id', $id)->first();
+        if (!$pengumuman){
+            return ApiResponseClass::sendError('Data pengumuman tidak ditemukan!', 404);
+        }
+
+        $pengumuman->update([
+            'isAccepted' => intval($request->isAccepted)
         ]);
         $pengumuman->save();
 
