@@ -46,7 +46,7 @@ Route::get('/peta-wilayah', function () {
 
 Route::get('/peta-makam-mbah-moedjair', function() {
     return view('peta-makam-mbah-moedjair');
-});
+})->name('peta-makam-mbah-moedjair');
 
 
 
@@ -146,9 +146,18 @@ Route::post('/admin/umkm/foto', [UmkmDesaController::class, 'tambahFotoUmkm'])
 Route::delete('/admin/umkm/foto', [UmkmDesaController::class, 'deleteFotoUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.foto.destroy');
-
-
-Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
+    
+    
+Route::get('/admin/pariwisata', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata.index');
+Route::post('/admin/pariwisata', [PariwisataDesaController::class, 'tambahPariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.create');
+Route::put('/admin/pariwisata', [PariwisataDesaController::class, 'updatePariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.update');
+Route::delete('/admin/pariwisata/{id}', [PariwisataDesaController::class, 'deletePariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.destroy');
 
 // Halaman Admin Profil Desa
 Route::get('/admin/profil-desa', [ProfilDesaController::class, 'index'])
