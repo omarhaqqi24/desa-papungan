@@ -46,7 +46,7 @@ Route::get('/peta-wilayah', function () {
 
 Route::get('/peta-makam-mbah-moedjair', function() {
     return view('peta-makam-mbah-moedjair');
-});
+})->name('peta-makam-mbah-moedjair');
 
 
 
