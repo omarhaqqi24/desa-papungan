@@ -5,12 +5,12 @@
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
                 <div class="flex gap-2 px-4">
                     <div class="p-1 justify-start items-center gap-2 flex border-r-2 border-base-100">
-                        <img src="img/phoneLogo.svg" alt="phoneLogo" class="w-4 h-4 relative ">
+                        <img src="{{asset('img/phoneLogo.svg')}}" alt="phoneLogo" class="w-4 h-4 relative ">
                         <div class="px-2 text-xs font-medium font-jakarta ">(0342) 814031</div>
                     </div>
 
                     <div class="p-1 justify-start items-center gap-2 flex ">
-                        <img src="img/emailLogo.svg" alt="phoneLogo" class="w-4 h-4 relative ">
+                        <img src="{{asset('img/emailLogo.svg')}}" alt="phoneLogo" class="w-4 h-4 relative ">
                         <div class="px-2 text-xs font-medium font-jakarta ">desapapungan@gmail.com</div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
         <div class=" pl-4 w-screen flex shadow-lg text-black">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
                 <a class="flex gap-2 text-left" href="{{route('landingPage.index')}}">
-                    <img src="img/logokab.png" alt="papunganLogo" class="w-14 h-14">
+                    <img src="{{ asset('img/logokab.png') }}" alt="papunganLogo" class="w-14 h-14">
                     <div class="flex flex-col items-start">
                         <div class="text-2xl font-semibold font-jakarta">
                             Papungan
