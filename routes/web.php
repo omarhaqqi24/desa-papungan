@@ -119,7 +119,7 @@ Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, '
 Route::delete('/admin/informasi/pengumuman/{id}', [InformasiDesaController::class, 'deletePengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.destroy');
-    Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
+Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
     ->middleware('checkToken')
     ->name('admin.informasi.aspirasi.destroy');
     
@@ -130,12 +130,20 @@ Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])
 Route::post('/admin/umkm', [UmkmDesaController::class, 'tambahUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.create');
-Route::put('/admin/umkm/{id}', [UmkmDesaController::class, 'updateUmkm'])
+Route::put('/admin/umkm', [UmkmDesaController::class, 'updateUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.update');
 Route::delete('/admin/umkm/{id}', [UmkmDesaController::class, 'deleteUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.destroy');
+Route::post('/admin/umkm/foto', [UmkmDesaController::class, 'tambahFotoUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.foto.create');
+Route::delete('/admin/umkm/foto', [UmkmDesaController::class, 'deleteFotoUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.foto.destroy');
+
+
 Route::get('/admin/pariwisata-desa', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata-desa.index');
 
 // Halaman Admin Profil Desa
