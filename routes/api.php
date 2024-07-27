@@ -49,6 +49,7 @@ Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->mid
 Route::get('/aspirasi', [AspirasiController::class, 'getAll'])->middleware('auth:sanctum');
 Route::post('/aspirasi', [AspirasiController::class, 'store']);
 Route::put('/aspirasi/{id}', [AspirasiController::class, 'getChecked'])->middleware('auth:sanctum');
+Route::delete('/aspirasi/{id}', [AspirasiController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/data-desa/{id}', [DataDesaController::class, 'getById']);
 Route::put('/data-desa/{id}', [DataDesaController::class, 'update'])->middleware('auth:sanctum');

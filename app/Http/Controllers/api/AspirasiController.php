@@ -78,4 +78,14 @@ class AspirasiController extends Controller
         $resource = new AspirasiResource($aspirasi);
         return ApiResponseClass::sendResponse($resource, 'Data aspirasi berhasil diperbarui!', 200);
     }
+
+    public function destroy(string $id)
+    {
+        $isDeleted = Aspirasi::destroy(intval($id));
+        if(!$isDeleted){
+            return ApiResponseClass::sendError('Data aspirasi gagal dihapus!', 400);
+        }
+
+        return ApiResponseClass::sendResponse(null, 'Data aspirasi berhasil dihapus!', 200);
+    }
 }
