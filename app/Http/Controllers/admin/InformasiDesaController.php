@@ -241,7 +241,7 @@ class InformasiDesaController extends Controller
         }
     }
 
-    public function acceptBerita(Request $request, $id)
+    public function acceptBerita($id)
     {
         try {
             $client = new Client();
@@ -250,8 +250,7 @@ class InformasiDesaController extends Controller
             $response = $client->request('PUT', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$id/ceklis", [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token
-                ],
-                'json' => ['isAccepted' => intval($request->isAccepted)]
+                ]
             ]);
 
             $responseBody = json_decode($response->getBody());
@@ -261,11 +260,11 @@ class InformasiDesaController extends Controller
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
-            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+            return redirect()->back()->withErrors($result->message);
         }
     }
 
-    public function acceptPengumuman(Request $request, $id)
+    public function acceptPengumuman($id)
     {
         try {
             $client = new Client();
@@ -274,8 +273,7 @@ class InformasiDesaController extends Controller
             $response = $client->request('PUT', env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman/$id/ceklis", [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token
-                ],
-                'json' => ['isAccepted' => intval($request->isAccepted)]
+                ]
             ]);
 
             $responseBody = json_decode($response->getBody());
@@ -285,7 +283,7 @@ class InformasiDesaController extends Controller
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
-            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+            return redirect()->back()->withErrors($result->message);
         }
     }
 }
