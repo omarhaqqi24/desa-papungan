@@ -198,29 +198,61 @@
                     </form>
                 </div>
             </div>
-
-            <div class="basis-1/4">
-                <div class="hidden md:block text-xl font-semibold font-jakarta max-h-96 sticky top-40">
+<!-- Side Bar start-->
+            <div class="basis-1/4 pr-5">
+                <div class="hidden md:block text-lg font-semibold font-jakarta max-h-96 sticky top-40">
                     Lihat Informasi Lainnya
                     <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     <div
                         class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col p-4 space-y-2 w-full md:w-64">
                         <div class="px-2 flex flex-col">
-                            <div class="px-2 text-xl font-medium w-full font-jakarta">Pengumuman
+                            <button id="pengumumanLink" class="text-left px-2 text-base font-medium w-full font-jakarta hover:bg-primary hover:text-lightText rounded-lg transition duration-300">Pengumuman
                                 <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                            </div>
+                            </button>
                         </div>
                         <div class="px-2 flex flex-col">
-                            <div class="px-2 text-xl font-medium w-full font-jakarta">Berita
+                            <button id="beritaLink" class="text-left px-2 text-base font-medium w-full font-jakarta hover:bg-primary hover:text-lightText rounded-lg transition duration-300">Berita
                                 <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
-                            </div>
+                            </button>
                         </div>
                         <div class="px-2 flex">
-                            <div class="px-2 text-xl font-medium w-full font-jakarta">Aspirasi</div>
+                            <button id="aspirasiLink" class="text-left px-2 text-base font-medium w-full font-jakarta hover:bg-primary hover:text-lightText rounded-lg transition duration-300">Aspirasi
+                                <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
+                            </button>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+
+            <script>
+                function scrollToElement(elementId, offset = 120) {
+                    const targetElement = document.getElementById(elementId);
+                    if (targetElement) {
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+            
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            
+                document.getElementById('pengumumanLink').addEventListener('click', function() {
+                    scrollToElement('pengumuman');
+                });
+            
+                document.getElementById('beritaLink').addEventListener('click', function() {
+                    scrollToElement('berita');
+                });
+            
+                document.getElementById('aspirasiLink').addEventListener('click', function() {
+                    scrollToElement('aspirasi');
+                });
+            </script>
+
+<!-- Side Bar Ends-->
         </div>
     </div>
 </body>
