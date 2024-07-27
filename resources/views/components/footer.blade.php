@@ -2,7 +2,7 @@
     <div class="footer  text-lightText p-10">
         <aside>
             <a class="flex gap-3 btn w-fit h-fit text-left pl-0 bg-transparent text-white border-0 hover:bg-blue-900" href="{{route('landingPage.index')}}">
-                <img src="img/logokab.png" alt="lambang" class=" w-14 h-14">
+                <img src="{{asset('img/logokab.png')}}" alt="lambang" class=" w-14 h-14">
                 <div class="">
                     <div class="text-2xl font-bold">Papungan</div>
                     <div class="text-xs font-medium">Portal Resmi Desa Papungan</div>
@@ -22,11 +22,11 @@
             <h6 class="footer-title font-semibold">Kontak Kami</h6>
             <li class="max-w-96 ">Jl. Setro Jati No. 1, Papungan, Kec. Kanigoro, Kabupaten Blitar, Jawa Timur 66171</li>
             <li class="p-1 flex items-center text-center gap-3 mt-5">
-                <img src="img/phoneLogo.svg" alt="phoneLogo" class="w-4 h-4">
+                <img src="{{asset('img/phoneLogo.svg')}}" alt="phoneLogo" class="w-4 h-4">
                 <div class="">(0342) 814031</div>
             </li>
             <li class="p-1 flex items-center text-center gap-3">
-                <img src="img/emailLogo.svg" alt="emailLogo" class="w-4 h-4">
+                <img src="{{asset('img/emailLogo.svg')}}" alt="emailLogo" class="w-4 h-4">
                 <div class="">desapapungan@gmail.com</div>
             </li>
         </ul>

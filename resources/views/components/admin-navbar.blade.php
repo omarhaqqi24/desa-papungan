@@ -18,7 +18,7 @@
                     <li class="pt-3"><a href="{{route('admin.pemerintahan.index')}}">Pemerintahan</a></li>
                     <li class="pt-3"><a href="{{route('admin.informasi.index')}}">Informasi</a></li>
                     <li class="pt-3"><a href="{{route('admin.umkm.index')}}">UMKM Desa</a></li>
-                    <li class="pt-3"><a href="{{route('pariwisata-desa.index')}}">Pariwisata Desa</a></li>
+                    <li class="pt-3"><a href="{{route('pariwisata.index')}}">Pariwisata Desa</a></li>
                 </ul>
                 <ul class="menu bg-secondary font-medium text-lightText w-80 p-6 pt-10">
                     <form action="{{route('auth.logout')}}" method="post" class="w-full">
