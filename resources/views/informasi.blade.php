@@ -12,40 +12,6 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     @vite('resources/css/app.css')
-    <script>
-        // js for change text on button upload file
-        document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('foto');
-            const fileLabel = document.getElementById('file-label');
-
-            fileInput.addEventListener('change', function() {
-                if (fileInput.files.length > 0) {
-                    fileLabel.textContent = fileInput.files[0].name;
-                } else {
-                    fileLabel.textContent = "Tidak ada file yang terunggah";
-                }
-            });
-        });
-
-        // js for hidden form ungah file if user select kategori pengumuman & aspirasi
-        document.addEventListener('DOMContentLoaded', function() {
-            const kategoriSelect = document.getElementById('kategori');
-            const fotoUploadDiv = document.getElementById('foto-upload');
-
-            function checkKategori() {
-                const selectedValue = kategoriSelect.value;
-                if (selectedValue === 'Aspirasi' || selectedValue === 'Pengumuman') {
-                    fotoUploadDiv.style.display = 'none';
-                } else {
-                    fotoUploadDiv.style.display = 'block';
-                }
-            }
-
-            checkKategori();
-
-            kategoriSelect.addEventListener('change', checkKategori);
-        });
-    </script>
 
     <style>
         /* css for hidden text */
@@ -157,8 +123,8 @@
                         <select name="kategori" id="kategori"
                             class="w-full h-12 px-4 py-2 font-normal text-[#3d4350] border border-[#d0d5dd] rounded-md shadow-sm focus:outline-none focus:ring focus:ring-[#2d68f8] focus:border-[#2d68f8]">
                             <option value="" disabled selected>Kategori</option>
-                            <option value="Berita">Pengumuman</option>
-                            <option value="Pengumuman">Berita</option>
+                            <option value="Pengumuman">Pengumuman</option>
+                            <option value="Berita">Berita</option>
                             <option value="Aspirasi">Aspirasi</option>
                         </select>
                         <div class="mb-4 mt-4">
@@ -198,10 +164,11 @@
                     </form>
                 </div>
             </div>
-<!-- Side Bar start-->
-            <div class="basis-1/4 pr-5">
+
+            <!-- Side Bar start-->
+            <div class="basis-1/4 pr-5 pt-8">
                 <div class="hidden md:block text-lg font-semibold font-jakarta max-h-96 sticky top-40">
-                    Lihat Informasi Lainnya
+                    Lihat Informasi
                     <div class="w-full border-b-2 border-gray-400 my-2"></div>
                     <div
                         class="bg-white rounded-lg shadow border border-[#e0e2e7] flex flex-col p-4 space-y-2 w-full md:w-64">
@@ -219,7 +186,6 @@
                             <button id="aspirasiLink" class="text-left px-2 text-base font-medium w-full font-jakarta hover:bg-primary hover:text-lightText rounded-lg transition duration-300">Aspirasi
                                 <div class="w-full border-b-2 border-[#e0e2e7] my-2"></div>
                             </button>
-                            
                         </div>
                     </div>
                 </div>
@@ -250,9 +216,42 @@
                 document.getElementById('aspirasiLink').addEventListener('click', function() {
                     scrollToElement('aspirasi');
                 });
+
+                 // js for change text on button upload file
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('foto');
+            const fileLabel = document.getElementById('file-label');
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    fileLabel.textContent = fileInput.files[0].name;
+                } else {
+                    fileLabel.textContent = "Tidak ada file yang terunggah";
+                }
+            });
+        });
+
+        // js for hidden form ungah file if user select kategori pengumuman & aspirasi
+        document.addEventListener('DOMContentLoaded', function() {
+            const kategoriSelect = document.getElementById('kategori');
+            const fotoUploadDiv = document.getElementById('foto-upload');
+
+            function checkKategori() {
+                const selectedValue = kategoriSelect.value;
+                if (selectedValue === 'Aspirasi' || selectedValue === 'Pengumuman') {
+                    fotoUploadDiv.style.display = 'none';
+                } else {
+                    fotoUploadDiv.style.display = 'block';
+                }
+            }
+
+            checkKategori();
+
+            kategoriSelect.addEventListener('change', checkKategori);
+        });
             </script>
 
-<!-- Side Bar Ends-->
+            <!-- Side Bar Ends-->
         </div>
     </div>
 </body>
