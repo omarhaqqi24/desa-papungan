@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -100,7 +102,7 @@ class UmkmDesaController extends Controller
         }
     }
 
-    public function updateUmkm(Request $request, $id)
+    public function updateUmkm(Request $request)
     {
         try {
             $client = new Client();
@@ -110,7 +112,7 @@ class UmkmDesaController extends Controller
                 $jenises[] = $jns;
             }
     
-            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$id?_method=PUT", [
+            $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$request->id?_method=PUT", [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token
                 ],
@@ -174,6 +176,67 @@ class UmkmDesaController extends Controller
             $result = json_decode($response->getBody());
 
             return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function tambahFotoUmkm(Request $request)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $image = $request->file('foto');
+            if (empty($image)) {
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa");
+                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
+
+                throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
+            }
+
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001")."/api/umkm/$request->id/foto", [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ],
+                'multipart' => [
+                    [
+                        'name'     => 'foto',
+                        'contents' => fopen($image->getPathname(), 'r'),
+                        'filename' => $image->getClientOriginalName()
+                    ]
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e){
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+
+    public function deleteFotoUmkm($id)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $response = $client->request('DELETE', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm/$id/foto", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token,
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+
+            return redirect()->back()->withErrors($result->message);
         }
     }
 

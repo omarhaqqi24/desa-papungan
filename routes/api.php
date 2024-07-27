@@ -66,7 +66,7 @@ Route::put('/umkm/{id}', [UmkmController::class, 'update'])->middleware('auth:sa
 Route::delete('/umkm/{id}', [UmkmController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::post('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'store'])->middleware('auth:sanctum');
-Route::delete('/umkm/{umkm_id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('/umkm/{id}/foto', [FotoUmkmController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/pariwisata', [PariwisataController::class, 'getAll']);
 Route::post('/pariwisata', [PariwisataController::class, 'store'])->middleware('auth:sanctum');
