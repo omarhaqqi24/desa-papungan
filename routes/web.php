@@ -109,6 +109,12 @@ Route::put('/admin/informasi/berita', [InformasiDesaController::class, 'updateBe
 Route::put('/admin/informasi/pengumuman', [InformasiDesaController::class, 'updatePengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.update');
+Route::put('/admin/informasi/berita/{id}/ceklis', [InformasiDesaController::class, 'acceptBerita'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.berita.getAccepted');
+Route::put('/admin/informasi/pengumuman/{id}/ceklis', [InformasiDesaController::class, 'acceptPengumuman'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.pengumuman.getAccepted');
     
 // Halaman Admin UMKM Desa
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
