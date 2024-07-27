@@ -104,23 +104,15 @@ class BeritaController extends Controller
         return ApiResponseClass::sendResponse($resource, 'Data berita berhasil diperbarui!', 200);
     }
     
-    public function getAccepted(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'isAccepted' => 'required'
-        ]);
-    
-        if ($validator->fails()) {
-            return ApiResponseClass::sendError($validator->errors(), 422);
-        }
-        
+    public function getAccepted($id)
+    {   
         $berita = Berita::where('id', $id)->first();
         if (!$berita){
             return ApiResponseClass::sendError('Data berita tidak ditemukan!', 404);
         }
 
         $berita->update([
-            'isAccepted' => intval($request->isAccepted)
+            'isAccepted' => 1
         ]);
         $berita->save();
 
