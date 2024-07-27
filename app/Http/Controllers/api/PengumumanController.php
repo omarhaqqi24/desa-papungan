@@ -66,8 +66,7 @@ class PengumumanController extends Controller
     {
         $validator = FacadesValidator::make($request->all(), [
             'judul' => 'required',
-            'isi' => 'required',
-            'isAccepted' => 'required'
+            'isi' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -81,8 +80,7 @@ class PengumumanController extends Controller
 
         $pengumuman->update([
             'judul'  => $request->judul,
-            'isi'  => $request->isi,
-            'isAccepted'  => intval($request->isAccepted)
+            'isi'  => $request->isi
         ]);
         $pengumuman->save();
 
