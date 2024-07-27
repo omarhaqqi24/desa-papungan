@@ -9,5 +9,5 @@ class Pengumuman extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul', 'isi', 'isAccepted'];
+    protected $fillable = ['judul', 'isi', 'nama', 'isAccepted'];
 }

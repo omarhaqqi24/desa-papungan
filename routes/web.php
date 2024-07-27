@@ -103,7 +103,13 @@ Route::post('/admin/informasi/berita', [InformasiDesaController::class, 'tambahB
 Route::post('/admin/informasi/pengumuman', [InformasiDesaController::class, 'tambahPengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.create');
-
+Route::put('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'updateBerita'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.berita.update');
+Route::put('/admin/informasi/pengumuman/{id}', [InformasiDesaController::class, 'updatePengumuman'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.pengumuman.update');
+    
 // Halaman Admin UMKM Desa
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])->middleware('checkToken')->name('umkm-desa.index');
 Route::post('/admin/umkm', [UmkmDesaController::class, 'tambahUmkm'])
