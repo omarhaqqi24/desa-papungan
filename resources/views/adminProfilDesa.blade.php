@@ -366,14 +366,7 @@
                     <textarea disabled name="penjelasan" id="penjelasan"
                         class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan_raw }}</textarea>
                 </div>
-                <div class="form-control gap-4">
-                    <div tabindex="0" class="collapse collapse-arrow bg-slate-100 border border-gray-200 rounded-xl">
-                        <div class="collapse-title text-sm font-semibold font-jakarta">Lihat foto</div>
-                        <div class="collapse-content flex rounded-xl max-h-96">
-                            <img onclick="preview_sejarah_image.showModal()" src="{{ $sejarahDesa->data->foto }}" alt="foto-sejarah-desa" class="object-cover rounded-lg w-full">
-                        </div>
-                    </div>
-                </div>
+                
                 <dialog id="preview_sejarah_image" class="modal">
                     <div class="modal-box">
                         <img src="{{ $sejarahDesa->data->foto }}" alt="foto-sejarah-desa" class="object-cover rounded-lg">
@@ -412,11 +405,7 @@
                                 <textarea name="penjelasan" id="penjelasan_sd"
                                     class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan_raw }}</textarea>
                             </div>
-                            <div class="form-control gap-4">
-                                <label for="foto" class="label-text font-semibold">Foto</label>
-                                <input type="file" name="foto" id="foto"
-                                    class="file-input file-input-bordered disabled:bg-slate-100">
-                            </div>
+                            
                             <div class="relative w-full">
                                 <div class="flex gap-4 justify-end">
                                     <button type="button" class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
