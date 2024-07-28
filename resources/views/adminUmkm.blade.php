@@ -482,14 +482,6 @@
                                         diisi
                                     </p>
                                 </div>
-                                <div class="form-control gap-4">
-                                    <div class="carousel w-full" id="carousel-container">
-
-                                    </div>
-                                    <div class="flex w-full justify-center gap-2 py-2" id="button-container">
-
-                                    </div>
-                                </div>
                                 <div class="relative w-full">
                                     <div class="flex gap-4 justify-end">
                                         <button type="button"
@@ -769,7 +761,7 @@
             <div class="w-full h-screen">
                 <div class="text-3xl font-semibold text-darkText">Peta UMKM</div>
                 <div class="py-2 text-gray-500">Berikut adalah peta umkm terbaru</div>
-                <iframe src="{{ route('peta-wilayah') }}" frameborder="0"
+                <iframe src="{{ url('/peta-umkm') }}" frameborder="0"
                     class="w-full h-full p-4 rounded-xl border border-gray-300 mt-6"></iframe>
             </div>
         </div>
@@ -868,33 +860,7 @@
                 const hiddenInput = document.getElementById('id_umkm');
                 hiddenInput.value = data.id;
 
-                const carouselContainer = document.getElementById('carousel-container');
-                const buttonContainer = document.getElementById('button-container');
-
-                images = data.foto.map(item => item.foto);
-                images.forEach((image, index) => {
-                    const itemId = `item${index + 1}`;
-
-                    // Create carousel item
-                    const carouselItem = document.createElement('div');
-                    carouselItem.id = itemId;
-                    carouselItem.className = 'carousel-item w-full';
-                    carouselItem.innerHTML = `<img src="${image}" class="w-full object-cover max-h-96 rounded-xl" />`;
-
-                    // Append carousel item to container
-                    carouselContainer.appendChild(carouselItem);
-
-                    // Create navigation button
-                    const button = document.createElement('a');
-                    button.href = `#${itemId}`;
-                    button.className = 'btn btn-xs';
-                    button.innerText = index + 1;
-
-                    // Append button to button container
-                    buttonContainer.appendChild(button);
-
-                    document.getElementById('modal_form_umkm_show').showModal();
-                });
+                document.getElementById('modal_form_umkm_show').showModal();
             }
 
             function openModalDeleteUmkmDesa(id) {

@@ -32,7 +32,7 @@
     <div class="mt-28 space-y-20 md:px-0">
         <!-- isi disini-->
 
-         <!-- tentang kami-->
+        <!-- tentang kami-->
         <div id="tentangkami"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
             <div class="text-3xl font-semibold">Profil Desa Papungan</div>
@@ -57,7 +57,7 @@
                 </div>
 
                 <div
-                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/visi-bg.png')] bg-cover bg-no-repeat bg-center">
+                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/visi-bg.png')] bg-cover bg-no-repeat bg-left">
                     <div class="w-full flex justify-center items-center">
                         <div class="text-4xl font-semibold text-center font-jakarta">VISI</div>
                     </div>
@@ -65,7 +65,7 @@
                         "{{ $data3->data[0]->isi_poin }}"</div>
                 </div>
                 <div
-                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/misi-bg.png')] bg-cover bg-no-repeat bg-top">
+                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/misi-bg.png')] bg-cover bg-no-repeat bg-left-top">
                     <div class="w-full flex justify-center items-center">
                         <div class="text-4xl font-semibold text-center font-jakarta">MISI</div>
                     </div>
@@ -78,16 +78,15 @@
                         @endfor
                     </ul>
                 </div>
-                 <!-- sejarah -->
+                <!-- sejarah -->
                 <div id="sejarah"></div>
-                <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan"
-                    deskripsi="" />
+                <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan" deskripsi="" />
 
                 <div class="text-sm font-normal markdown-content"> {!! $data2->data->penjelasan !!}</div>
             </div>
         </div>
     </div>
-    
+
 </body>
 <x-footer />
 
