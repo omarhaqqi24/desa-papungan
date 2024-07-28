@@ -146,7 +146,7 @@ Route::delete('/admin/umkm/{id}', [UmkmDesaController::class, 'deleteUmkm'])
 Route::post('/admin/umkm/foto', [UmkmDesaController::class, 'tambahFotoUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.foto.create');
-Route::delete('/admin/umkm/foto', [UmkmDesaController::class, 'deleteFotoUmkm'])
+Route::delete('/admin/umkm/foto/{id}', [UmkmDesaController::class, 'deleteFotoUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.foto.destroy');
     

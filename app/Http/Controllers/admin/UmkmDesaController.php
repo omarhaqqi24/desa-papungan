@@ -208,7 +208,7 @@ class UmkmDesaController extends Controller
 
             $image = $request->file('foto');
             if (empty($image)) {
-                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/perangkat-desa");
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm/$request->id/foto");
                 $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
 
                 throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
@@ -231,6 +231,8 @@ class UmkmDesaController extends Controller
             return redirect()->back()->with('success', $responseBody->message);
 
         } catch (BadResponseException $e) {
+            dd($e);
+            return;
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 

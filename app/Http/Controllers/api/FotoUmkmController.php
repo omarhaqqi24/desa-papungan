@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Classes\ApiResponseClass;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FotoUmkmCollection;
+use App\Http\Resources\FotoUmkmResource;
 use App\Models\FotoUmkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -31,7 +32,7 @@ class FotoUmkmController extends Controller
             'umkm_id'   => $umkm_id
         ]);
 
-        $resource = new FotoUmkmCollection($foto_umkm);
+        $resource = new FotoUmkmResource($foto_umkm);
         return ApiResponseClass::sendResponse($resource, 'Data foto UMKM berhasil ditambahkan', 201);
     }
 
