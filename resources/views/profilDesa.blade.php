@@ -9,12 +9,17 @@
 
     <style>
         .markdown-content ul {
-            list-style-type: disc; /* Bullet points */
-            margin-left: 20px; /* Indentasi */
-            padding-left: 20px; /* Padding */
+            list-style-type: disc;
+            /* Bullet points */
+            margin-left: 20px;
+            /* Indentasi */
+            padding-left: 20px;
+            /* Padding */
         }
+
         .markdown-content li {
-            margin-bottom: 5px; /* Jarak antar item list */
+            margin-bottom: 5px;
+            /* Jarak antar item list */
         }
     </style>
 
@@ -57,7 +62,7 @@
                 </div>
 
                 <div
-                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/visi-bg.png')] bg-cover bg-no-repeat bg-left">
+                    class="container flex flex-col py-5 px-10 rounded-lg shadow-md md:mx-auto items-center space-y-3 bg-[url('/public/img/visi-bg.png')] bg-cover bg-no-repeat bg-left md:bg-center">
                     <div class="w-full flex justify-center items-center">
                         <div class="text-4xl font-semibold text-center font-jakarta">VISI</div>
                     </div>
