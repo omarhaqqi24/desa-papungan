@@ -66,6 +66,69 @@
         @endif
 
         <div class="w-full">
+            <div class="text-3xl font-semibold text-darkText">Video Profil Makam Mbah Moedjair</div>
+            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil Desa yang ditampilkan</div>
+
+            <!-- Form Show Lnk Makam -->
+            <div class="form-control gap-6">
+                <div class="form-control gap-4">
+                    <label for="penjelasan_lk" class="label-text font-semibold">Link Video Youtube</label>
+                    <input disabled name="penjelasan" id="penjelasan_lk"
+                        class="input input-bordered w-full disabled:bg-slate-100" />
+                </div>
+                <!-- End -->
+
+                <div class="flex justify-end mt-4">
+                    <button
+                        class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
+                        onclick="modal_form_lv.showModal()">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                            <path
+                                d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
+                                fill="white" />
+                        </svg>
+                        Edit
+                    </button>
+                </div>
+
+                <!-- Modal Form Update Link Video -->
+                <dialog id="modal_form_lv" class="modal">
+                    <div class="modal-box w-11/12 max-w-5xl">
+                        <h3 class="text-lg font-bold">Formulir Update Link Video</h3>
+                        <hr class="h-px my-8 bg-gray-300 border-0">
+                        <form method="POST" action="{{ route('admin.profil-desa.profil.update') }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-control gap-6">
+                                <div class="form-control gap-4">
+                                    <label for="penjelasan_lk" class="label-text font-semibold">Link Video
+                                        Youtube</label>
+                                    <input name="penjelasan" id="penjelasan_lk"
+                                        class="input input-bordered w-full disabled:bg-slate-100" />
+                                </div>
+                                <div class="relative w-full">
+                                    <div class="flex gap-4 justify-end">
+                                        <button type="button"
+                                            class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                            onclick="modal_form_lv.close()">Tutup</button>
+                                        <button id="edit-btn-test" type="submit"
+                                            class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
+                                            <img src="/img/saveLogo.svg" alt="">
+                                            Simpan
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+                <hr class="h-px my-8 bg-gray-300 border-0">
+                <!-- End -->
+            </div>
+
+        <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Daftar Foto Pariwisata</div>
             <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
@@ -311,8 +374,6 @@
                 </div>
             </dialog>
             <!-- End -->
-
-            <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
     </div>
     <script>
