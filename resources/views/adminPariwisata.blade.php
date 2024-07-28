@@ -96,7 +96,18 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ $item->foto }}" alt="pariwisata-desa" class="w-12 h-12 object-cover rounded-xl">
+                                    <img onclick="openModalPreviewImagePariwisata('{{ $item->id }}')"
+                                        src="{{ $item->foto }}" alt="berita-desa"
+                                        class="w-12 h-12 object-cover rounded-xl">
+                                    <dialog id="preview_prw_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <img src="{{ $item->foto }}" alt="foto-aspirasi-desa"
+                                                class="object-cover rounded-lg">
+                                        </div>
+                                        <form method="dialog" class="modal-backdrop">
+                                            <button>close</button>
+                                        </form>
+                                    </dialog>
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $item->penjelasan }}
@@ -317,6 +328,10 @@
 
         function openModalDeletePariwisata(id) {
             document.getElementById('mdpr_'+id).showModal();
+        }
+
+        function openModalPreviewImagePariwisata(id) {
+            document.getElementById('preview_prw_'+id).showModal();
         }
     </script>
 </body>
