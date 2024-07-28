@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Parsedown;
 
 class PemerintahanDesaController extends Controller
 {
@@ -196,6 +197,8 @@ class PemerintahanDesaController extends Controller
             $image = $request->file('foto');
             $token = Session::get('api-token');
 
+            $parsedown = new Parsedown();
+
             if (!empty($image)) {
                 $multipart = [
                     [
@@ -204,16 +207,24 @@ class PemerintahanDesaController extends Controller
                         'filename' => $image->getClientOriginalName(),
                     ],
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             } else {
                 $multipart = [
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             }
 
