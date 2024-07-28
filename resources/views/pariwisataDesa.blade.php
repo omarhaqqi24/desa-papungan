@@ -35,7 +35,10 @@
             <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Simak
                 video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!
             </div>
-            <img src="{{ asset('/img/unkown.png')}}" alt="unknown" class="rounded-lg w-full">
+            <iframe src="https://www.youtube.com/embed/jEVjgFkpzt4?si=1d6zlUw35n-E13-O" title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                class="mx-auto w-full md:w-[560px] h-[315px]"></iframe>
 
             <!-- sejarah-->
             <div id="sejarah"></div>

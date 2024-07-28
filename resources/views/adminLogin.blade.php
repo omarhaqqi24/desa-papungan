@@ -22,8 +22,7 @@
             class="w-[392px] py-10 bg-gradient-to-b from-[#ffffffb4] to-[#ffffff52] rounded-[28px] p-4 backdrop-blur-md border-2 border-white z-10">
             <div class="flex flex-col gap-4 mx-auto text-center mb-10">
                 <div class="text-4xl font-jakarta font-semibold text-primary">Admin Login</div>
-                <div class="font-medium font-jakarta text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. </div>
+                <div class="font-medium font-jakarta text-gray-600">Masukkan detail akun Anda</div>
             </div>
             <form action="{{ route('auth.login') }}" method="POST" class="flex flex-col gap-4">
                 @csrf
@@ -71,3 +70,4 @@
 
 <!-- (bagian) Start -->
 <!-- (bagian) End -->
+
