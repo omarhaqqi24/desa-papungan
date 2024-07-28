@@ -35,10 +35,26 @@
             <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Simak
                 video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!
             </div>
-            <iframe src="https://www.youtube.com/embed/jEVjgFkpzt4?si=1d6zlUw35n-E13-O" title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-                class="mx-auto w-full md:w-[560px] h-[315px]"></iframe>
+
+            {{-- Video --}}
+            <div class="relative" style="padding-bottom: 56.25%;">
+                <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/jEVjgFkpzt4" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+
+            {{-- Carrousel foto --}}
+            <div class="carousel carousel-center rounded-box space-x-3 w-full ">
+
+                @foreach ($pariwisata->data as $foto)
+                    <div class="carousel-item w-44 h-32 md:w-44 md:h-40 border-2">
+                        <img src="{{ $foto->foto }}" alt="-" />
+                    </div>
+                @endforeach
+
+
+            </div>
 
             <!-- sejarah-->
             <div id="sejarah"></div>
@@ -52,13 +68,16 @@
                     wajah perikanan di tanah air. Mbah Moedjair, atau yang lebih dikenal dengan nama aslinya Modjair,
                     merupakan sosok pembudidaya ikan air tawar dari Desa Papungan, Blitar, Jawa Timur. Berkat
                     dedikasinya yang luar biasa, ia berhasil mengubah wajah perikanan di Indonesia melalui penemuannya.
-                    Tak cukup sampai di situ, kami, Tim 12 MMD Fakultas Ilmu Komputer Universitas Brawijaya, yang
-                    berkesempatan melaksanakan MMD (Mahasiswa Membangun Desa) atau yang biasa disebut KKN (Kuliah Kerja
-                    Nyata) di Desa Papungan kami tidak hanya melihat langsung dampak dari kontribusi Mbah Moedjair,
-                    tetapi juga berinteraksi dengan keturunannya untuk mendapatkan informasi lebih mendalam tentang
-                    riwayat hidup dan jasa-jasanya. Saat kami mengunjungi kediaman cucu dan cicit Mbah Moedjair, kami
-                    diberitahu bukti otentik berupa sertifikat penghargaan dari tahun 1951 yang ditulis dengan ejaan
-                    lama, sebuah bukti nyata dari pengakuan atas jasa-jasanya.
+                    Tahun 2024 ini, kami, Tim 12 MMD Fakultas Ilmu Komputer Universitas Brawijaya, yang berkesempatan
+                    melaksanakan MMD (Mahasiswa Membangun Desa) atau yang biasa disebut KKN (Kuliah Kerja Nyata) di Desa
+                    Papungan kami tidak hanya melihat langsung dampak dari kontribusi Mbah Moedjair, tetapi juga
+                    berkunjung ke kediaman keturunan Mbah Moedjair untuk mendapatkan informasi lebih mendalam tentang
+                    riwayat hidup dan jasa-jasanya. Kami ditunjukkan bukti otentik berupa piagam penghargaan dari tahun
+                    1951 yang ditulis dengan ejaan lama. Dalam piagam tersebut tertulis, “Bahwa kami Menteri Pertanian
+                    atas nama Pemerintah Republik Indonesia memberi surat tanda djasa kepada Sdr. Moedjair, tempat
+                    tinggal Desa Papungan, Kabupaten Blitar, Jawa Timur, sebagai penghargaan menemukan suatu djenis ikan
+                    jang diberi nama ikan mudjair, yang ternjata memberi manfaat besar bagi masyarakat Indonesia,”. Dan
+                    itulah, sebuah bukti nyata dari pengakuan atas jasa-jasanya.
 
                     <br>
                     <br>
@@ -239,9 +258,11 @@
                 class="btn btn-secondary" target='blank'>Lihat di Google Maps</a>
             <iframe src="{{ route('peta-makam-mbah-moedjair') }}" title="" class="w-full min-h-96"></iframe>
         </div>
+
+
+
     </div>
 </body>
 <x-footer />
 
 </html>
-
