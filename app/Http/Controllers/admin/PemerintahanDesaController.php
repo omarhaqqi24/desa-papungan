@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PemerintahanDesaController extends Controller
 {
@@ -24,8 +25,26 @@ class PemerintahanDesaController extends Controller
         $lembagaDesa = json_decode($response2->getBody());
         $strukturOrg = json_decode($response3->getBody());
 
+
+        $collection = collect($lembagaDesa->data);
+
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+
+        $perPage = 5;
+
+
+        $currentPageItems = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+
+        $paginatedItems = new LengthAwarePaginator($currentPageItems, $collection->count(), $perPage);
+
+        $paginatedItems->setPath($request->url());
+
         return view('adminPemerintahan', [
             "perangkatDesa" => $perangkatDesa,
+            'paginatedItems' => $paginatedItems,
             "lembagaDesa" => $lembagaDesa,
             "strukturOrg" => $strukturOrg,
             "nama" => $request->nama

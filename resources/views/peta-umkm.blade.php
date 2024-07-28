@@ -146,6 +146,7 @@
 
         // array to store all of the markers in the map
         const markers = [];
+        let isPopupOpen = false;
 
         // Used to load and display tile layers on the map
         // Most tile servers require attribution, which you can set under `Layer`
@@ -205,6 +206,7 @@
             const marker = L.marker([lat, long], {
                 icon: icon,
                 nama: nama,
+                id: id,
             }).addTo(map);
 
             // put the marker to the markers array
@@ -249,6 +251,7 @@
         });
 
         map.on("popupclose", function(e) {
+            isPopupOpen = false;
             removeAllAnimationClassFromMap();
         });
 
@@ -270,6 +273,7 @@
         let paddingTopLeft = 0;
 
         function fitBoundsPadding() {
+            isPopupOpen = true;
             removeAllAnimationClassFromMap();
             // Get width of info div
             const boxInfoWith = document.querySelector(".popup-fixed").offsetWidth;
@@ -312,6 +316,16 @@
                 marker.on("click", fitBoundsPadding);
             });
             map.setView([lat, lng], zoom);
+        }
+
+        function clickMarker(id) {
+            if (isPopupOpen) {
+                map.closePopup();
+                return;
+            }
+            removeAllAnimationClassFromMap();
+            const selectedMarker = markers.find(marker => marker.options.id === parseInt(id));
+            selectedMarker.fire('click');
         }
 
         setInterval(function() {

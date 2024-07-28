@@ -130,21 +130,36 @@
                                 <td class="px-6 py-4">
                                     {{ $item->updatedAt }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-6 justify-center items-cente">
-                                    <form action="{{ route('admin.informasi.berita.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="font-medium" type="submit">
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-6 justify-center items-center">
+                                        <button onclick="openModalDeleteBerita('{{ $item->id }}')" class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </button>
-                                    </form>
-                                    <button onclick="openModalUpdateBerita('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
+                                        
+                                        
+                                        <button onclick="openModalUpdateBerita('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <dialog id="mdbr_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.informasi.berita.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdbr_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>   
                                 </td>
                             </tr>
                         @endforeach
@@ -366,21 +381,36 @@
                                 <td class="px-6 py-4">
                                     {{ $item->updatedAt }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-6 justify-center items-cente">
-                                    <form action="{{ route('admin.informasi.pengumuman.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="font-medium" type="submit">
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-6 justify-center items-center">
+                                        <button onclick="openModalDeletePengumuman('{{ $item->id }}')" class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </button>
-                                    </form>
-                                    <button onclick="openModalUpdatePengumuman('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
+                                        
+                                        
+                                        <button onclick="openModalUpdatePengumuman('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <dialog id="mdpg_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.informasi.pengumuman.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdpg_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </td>
                             </tr>
                         @endforeach
@@ -579,7 +609,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($beritaReq->data as $item)    
+                        @foreach ($paginatedItemsBerita as $item)    
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4">
                                     {{ $item->createdAt }}
@@ -597,83 +627,117 @@
                                 <td class="px-6 py-4">
                                     <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-4 justify-end">
-                                    <form action="{{ route('admin.informasi.berita.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
-                                    </form>
-                                    <form action="{{ route('admin.informasi.berita.getAccepted', $item->id) }}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-success btn-sm bg-green-400 text-white border-0">Publikasi</button>
-                                    </form>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-4 justify-end">
+                                        <button onclick="openModalDeleteBerita('{{ $item->id }}')" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
+                                        
+                                        <form action="{{ route('admin.informasi.berita.getAccepted', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success btn-sm bg-green-400 text-white border-0">Publikasi</button>
+                                        </form>
+                                    </div>
+
+                                    <dialog id="mdbr_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.informasi.berita.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdbr_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <section class="px-4 py-6 bg-white border-t">
+
+              <!-- Pagination Section -->
+  <section class="px-4 py-6 bg-white border-t">
+                @if ($paginatedItemsBerita->hasPages())
                     <div class="flex items-center justify-between w-full">
-                        <button disabled
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                            </svg>
-                            Previous
-                        </button>
+                        @if ($paginatedItemsBerita->onFirstPage())
+                            <button disabled
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Previous
+                            </button>
+                        @else
+                            <a href="{{ $paginatedItemsBerita->appends(request()->query())->previousPageUrl() }}"
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Previous
+                            </a>
+                        @endif
+            
                         <div class="flex items-center gap-2">
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    1
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    2
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    3
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    4
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    5
-                                </span>
-                            </button>
+                            @foreach ($paginatedItemsBerita->appends(request()->query())->getUrlRange(1, $paginatedItemsBerita->lastPage()) as $page => $url)
+                                @if ($page == $paginatedItemsBerita->currentPage())
+                                    <button
+                                        class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        type="button">
+                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            {{ $page }}
+                                        </span>
+                                    </button>
+                                @else
+                                    <a href="{{ $url }}"
+                                        class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
+                                        type="button">
+                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            {{ $page }}
+                                        </span>
+                                    </a>
+                                @endif
+                            @endforeach
                         </div>
-                        <button
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            Next
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                            </svg>
-                        </button>
+            
+                        @if ($paginatedItemsBerita->hasMorePages())
+                            <a href="{{ $paginatedItemsBerita->appends(request()->query())->nextPageUrl() }}"
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                    class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                                </svg>
+                            </a>
+                        @else
+                            <button disabled
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                    class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                                </svg>
+                            </button>
+                        @endif
                     </div>
-                </section>
+                @endif
+            </section>
+            
+
             </div>
             <!-- End -->
 
@@ -717,7 +781,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pengumumanReq->data as $item)
+                        @foreach ($paginatedItemsPengumuman as $item)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4">
                                     {{ $item->createdAt }}
@@ -732,83 +796,116 @@
                                 <td class="px-6 py-4">
                                     {{ $item->penulis }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-4 justify-end">
-                                    <form action="{{ route('admin.informasi.pengumuman.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
-                                    </form>
-                                    <form action="{{ route('admin.informasi.pengumuman.getAccepted', $item->id) }}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-success btn-sm bg-green-400 text-white border-0">Publikasi</button>
-                                    </form>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-4 justify-end">
+                                        <button onclick="openModalDeletePengumuman('{{ $item->id }}')" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
+                                        
+                                        <form action="{{ route('admin.informasi.pengumuman.getAccepted', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success btn-sm bg-green-400 text-white border-0">Publikasi</button>
+                                        </form>
+                                    </div>
+
+                                    <dialog id="mdpg_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.informasi.pengumuman.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdpg_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <section class="px-4 py-6 bg-white border-t">
+
+              <!-- Pagination Section -->
+              <section class="px-4 py-6 bg-white border-t">
+                @if ($paginatedItemsPengumuman->hasPages())
                     <div class="flex items-center justify-between w-full">
-                        <button disabled
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                            </svg>
-                            Previous
-                        </button>
+                        @if ($paginatedItemsPengumuman->onFirstPage())
+                            <button disabled
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Previous
+                            </button>
+                        @else
+                            <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->previousPageUrl() }}"
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Previous
+                            </a>
+                        @endif
+            
                         <div class="flex items-center gap-2">
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    1
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    2
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    3
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    4
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    5
-                                </span>
-                            </button>
+                            @foreach ($paginatedItemsPengumuman->appends(request()->query())->getUrlRange(1, $paginatedItemsPengumuman->lastPage()) as $page => $url)
+                                @if ($page == $paginatedItemsPengumuman->currentPage())
+                                    <button
+                                        class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        type="button">
+                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            {{ $page }}
+                                        </span>
+                                    </button>
+                                @else
+                                    <a href="{{ $url }}"
+                                        class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
+                                        type="button">
+                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            {{ $page }}
+                                        </span>
+                                    </a>
+                                @endif
+                            @endforeach
                         </div>
-                        <button
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            Next
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                            </svg>
-                        </button>
+            
+                        @if ($paginatedItemsPengumuman->hasMorePages())
+                            <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->nextPageUrl() }}"
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                    class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                                </svg>
+                            </a>
+                        @else
+                            <button disabled
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                    class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                                </svg>
+                            </button>
+                        @endif
                     </div>
-                </section>
+                @endif
+            </section>
+
             </div>
             <!-- End -->
             <hr class="h-px my-8 bg-gray-300 border-0">
@@ -855,7 +952,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($aspirasi->data as $item)                            
+                        @foreach ($paginatedItemsAspirasi as $item)                            
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4">
                                     {{ $item->createdAt }}
@@ -870,81 +967,114 @@
                                 <td class="px-6 py-4">
                                     {{ $item->penulis }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex justify-end items-center gap-4">
-                                    <input
-                                        type="checkbox"
-                                        class="checkbox border-gray-400 [--chkbg:theme(colors.green.300)] [--chkfg:white] checked:border-green-300" />
-                                    <form action="{{ route('admin.informasi.aspirasi.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
-                                    </form>
+                                <td class="px-6 py-4">
+                                    <div class="flex justify-end items-center gap-4">
+                                        <input
+                                            type="checkbox"
+                                            class="checkbox border-gray-400 [--chkbg:theme(colors.green.300)] [--chkfg:white] checked:border-green-300" />
+                                        <button onclick="openModalDeleteAspirasi('{{ $item->id }}')" class="btn btn-warning btn-sm bg-red-400 text-white border-0">Hapus</button>
+                                    </div>
+
+                                    <dialog id="mdas_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.informasi.aspirasi.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdas_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <section class="px-4 py-6 bg-white border-t">
+
+              <!-- Pagination Section -->
+              <section class="px-4 py-6 bg-white border-t">
+                @if ($paginatedItemsAspirasi->hasPages())
                     <div class="flex items-center justify-between w-full">
-                        <button disabled
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                            </svg>
-                            Previous
-                        </button>
+                        @if ($paginatedItemsAspirasi->onFirstPage())
+                            <button disabled
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Previous
+                            </button>
+                        @else
+                            <a href="{{ $paginatedItemsAspirasi->appends(request()->query())->previousPageUrl() }}"
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Previous
+                            </a>
+                        @endif
+            
                         <div class="flex items-center gap-2">
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    1
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    2
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    3
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    4
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    5
-                                </span>
-                            </button>
+                            @foreach ($paginatedItemsAspirasi->appends(request()->query())->getUrlRange(1, $paginatedItemsAspirasi->lastPage()) as $page => $url)
+                                @if ($page == $paginatedItemsAspirasi->currentPage())
+                                    <button
+                                        class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        type="button">
+                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            {{ $page }}
+                                        </span>
+                                    </button>
+                                @else
+                                    <a href="{{ $url }}"
+                                        class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
+                                        type="button">
+                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            {{ $page }}
+                                        </span>
+                                    </a>
+                                @endif
+                            @endforeach
                         </div>
-                        <button
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            Next
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                            </svg>
-                        </button>
+            
+                        @if ($paginatedItemsAspirasi->hasMorePages())
+                            <a href="{{ $paginatedItemsAspirasi->appends(request()->query())->nextPageUrl() }}"
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                    class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                                </svg>
+                            </a>
+                        @else
+                            <button disabled
+                                class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true"
+                                    class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                                </svg>
+                            </button>
+                        @endif
                     </div>
-                </section>
+                @endif
+            </section>
+            
+
             </div>
 
             <!-- Modal Form Show Aspirasi -->
@@ -1060,6 +1190,18 @@
             hiddenInput.value = data.id;
 
             document.getElementById('modal_form_aspirasi_sh').showModal();
+        }
+
+        function openModalDeleteBerita(id) {
+            document.getElementById('mdbr_' + id).showModal();
+        }
+
+        function openModalDeletePengumuman(id) {
+            document.getElementById('mdpg_' + id).showModal();
+        }
+
+        function openModalDeleteAspirasi(id) {
+            document.getElementById('mdas_' + id).showModal();
         }
     </script>
 </body>
