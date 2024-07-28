@@ -38,7 +38,7 @@ Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
-})->name('peta.umkm');
+});
 
 Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
@@ -57,7 +57,7 @@ Route::get('/informasi', [PengumumanController::class, "index"])->name('informas
 Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
-})->name('pariwisata.index');
+})->name('publc.pariwisata.index');
 
 
 

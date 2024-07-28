@@ -9,11 +9,12 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Session;
 
 class PariwisataDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $client = new Client();
 
@@ -21,8 +22,26 @@ class PariwisataDesaController extends Controller
 
         $pariwisata = json_decode($response1->getBody());
 
+
+        //Paginator
+        $collection = collect($pariwisata->data);
+
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+
+        $perPage = 5;
+
+
+        $currentPageItems = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+
+        $paginatedItems = new LengthAwarePaginator($currentPageItems, $collection->count(), $perPage);
+
+        $paginatedItems->setPath($request->url());
         return view('adminPariwisata', [
-            "pariwisata" => $pariwisata
+            "pariwisata" => $pariwisata,
+            "paginatedItems" => $paginatedItems
         ]);
     }
 
