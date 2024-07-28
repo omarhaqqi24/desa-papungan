@@ -37,22 +37,21 @@
             </div>
 
             {{-- Video --}}
-            <div class="relative" style="padding-bottom: 56.25%;">
-                <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/jEVjgFkpzt4" frameborder="0"
+            <div class="relative">
+                <iframe class="mx-auto w-full md:w-[560px] h-[315px]" src="https://www.youtube.com/embed/jEVjgFkpzt4"
+                    title=""
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
 
             {{-- Carrousel foto --}}
-            <div class="carousel carousel-center rounded-box space-x-3 w-full ">
+            <div class="carousel carousel-center rounded-box space-x-3 w-full border border-neutral">
 
                 @foreach ($pariwisata->data as $foto)
-                    <div class="carousel-item w-44 h-32 md:w-44 md:h-40 border-2">
+                    <div class="carousel-item w-44 h-32 md:w-44 md:h-40 ">
                         <img src="{{ $foto->foto }}" alt="-" />
                     </div>
                 @endforeach
-
 
             </div>
 
@@ -253,16 +252,15 @@
             <!-- lokasi-->
             <div id="lokasi"></div>
             <x-cardSubjudul jenisJudul="LOKASI" judul="Peta Digital Makam Mbah Moedjair Desa Papungan"
-                deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
+                deskripsi="Berikut adalah peta lokasi keberadaan Makam Mbah Moedjair. Peta tersebut interaktif, Anda dapat menyesuaikan tergantung dimana lokasi Anda. Selamat Berkunjung!" />
             <a href="https://www.google.com/maps/place/Makam+Moedjair+(Penemu+Ikan+Mujair)/@-8.1117038,112.1910492,1495m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e78ec8428e3dd43:0xba394b22de9e75f5!2sPapungan,+Kec.+Kanigoro,+Kabupaten+Blitar,+Jawa+Timur!3b1!8m2!3d-8.1060475!4d112.199654!16s%2Fg%2F12hhgw8cl!3m5!1s0x2e78eb778accc645:0x31909f880a684183!8m2!3d-8.1111685!4d112.1931771!16s%2Fg%2F11ckvknb79?entry=ttu"
                 class="btn btn-secondary" target='blank'>Lihat di Google Maps</a>
             <iframe src="{{ route('peta-makam-mbah-moedjair') }}" title="" class="w-full min-h-96"></iframe>
         </div>
-
-
 
     </div>
 </body>
 <x-footer />
 
 </html>
+
