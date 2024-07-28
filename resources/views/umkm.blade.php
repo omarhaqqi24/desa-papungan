@@ -32,6 +32,11 @@
             <x-headerArtikel subJudul="Kenali UMKM " judul="Profil UMKM Desa Papungan" />
             <div class="text-sm font-normal ">Berikut adalah video singkat mengenai UMKM di Desa Papungan. Simak video
                 berikut untuk mengetahui bagaimana masyarakat Desa Papungan mengembangkan potensi usaha mereka!</div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0qdpec8USmA?si=aCLVXLXC3n8n3fUf"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                class="mx-auto w-full md:w-[560px] h-[315px]"></iframe>
 
             <x-cardSubjudul jenisJudul="Kenali UMKM" judul="Peta Digital UMKM Desa Papungan"
                 deskripsi="Berikut adalah Peta UMKM dari Desa Papungan. Simak informasi berikut untuk mengetahui lokasi dan jenis usaha yang ada di desa  kita, serta bagaimana UMKM ini berkontribusi dalam perekonomian lokal!" />
@@ -41,7 +46,7 @@
         <!-- peta umkm-->
         <div id="peta"></div>
         <div class="my-5 mb-5">
-            <iframe src="/peta-umkm" title="" class="w-full h-screen md:h-96 py-20 md:p-0"
+            <iframe src="/peta-umkm" title="" class="w-full h-screen md:h-96 py-20 md:p-0 px-5 md:px-0"
                 id="petaumkm"></iframe>
         </div>
 
@@ -131,7 +136,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
                             </svg>
-                            Sebelumnya
+                            <div class="hidden md:block">Sebelumnya</div>
                         </button>
                     @else
                         <a href="{{ $paginatedItems->previousPageUrl() }}"
@@ -142,7 +147,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
                             </svg>
-                            Sebelumnya
+                            <div class="hidden md:block">Sebelumnya</div>
                         </a>
                     @endif
 
@@ -152,7 +157,8 @@
                                 <button
                                     class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                    <span
+                                        class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                                         {{ $page }}
                                     </span>
                                 </button>
@@ -160,7 +166,8 @@
                                 <a href="{{ $url }}"
                                     class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
                                     type="button">
-                                    <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                    <span
+                                        class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                                         {{ $page }}
                                     </span>
                                 </a>
@@ -172,7 +179,7 @@
                         <a href="{{ $paginatedItems->nextPageUrl() }}"
                             class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                             type="button">
-                            Berikutnya
+                            <div class="hidden md:block">Berikutnya</div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -183,7 +190,7 @@
                         <button disabled
                             class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
-                            Berikutnya
+                            <div class="hidden md:block">Berikutnya</div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
