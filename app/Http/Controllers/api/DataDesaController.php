@@ -26,7 +26,9 @@ class DataDesaController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'penjelasan' => 'required'
+            // 'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'penjelasan' => 'required',
+            'penjelasan_raw' => 'required'
         ]);
 
         if ($validator->fails()) {
