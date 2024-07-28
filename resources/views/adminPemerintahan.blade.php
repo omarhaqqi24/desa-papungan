@@ -78,10 +78,21 @@
                         class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan }}</textarea>
                 </div>
                 <div class="form-control gap-4">
-                    <label for="foto" class="label-text font-semibold">Foto</label>
-                    <input disabled type="file" name="foto" id="foto"
-                        class="file-input file-input-bordered disabled:bg-slate-100">
+                    <div tabindex="0" class="collapse collapse-arrow bg-slate-100 border border-gray-200 rounded-xl">
+                        <div class="collapse-title text-sm font-semibold font-jakarta">Lihat foto</div>
+                        <div class="collapse-content flex rounded-xl max-h-96">
+                            <img onclick="preview_struktur_image.showModal()" src="{{ $strukturOrg->data->foto }}" alt="foto-struktur-desa" class="object-cover rounded-lg w-full">
+                        </div>
+                    </div>
                 </div>
+                <dialog id="preview_struktur_image" class="modal">
+                    <div class="modal-box">
+                        <img src="{{ $strukturOrg->data->foto }}" alt="foto-struktur-desa" class="object-cover rounded-lg">
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
             <!-- End -->
 
@@ -180,7 +191,15 @@
                                     {{ $item->kontak }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                    <img onclick="openModalPreviewImageJabatan('{{ $item->id }}')" src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                    <dialog id="preview_jbt_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <img src="{{ $item->foto }}" alt="foto-sejarah-desa" class="object-cover rounded-lg">
+                                        </div>
+                                        <form method="dialog" class="modal-backdrop">
+                                            <button>close</button>
+                                        </form>
+                                    </dialog>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-6 justify-center items-center">
@@ -639,6 +658,10 @@
 
         function openModalDeleteLembagaDesa(id) {
             document.getElementById('mdld_' + id).showModal();
+        }
+
+        function openModalPreviewImageJabatan(id) {
+            document.getElementById('preview_jbt_'+id).showModal();
         }
     </script>
 
