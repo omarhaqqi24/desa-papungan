@@ -13,8 +13,10 @@ class umkmController extends Controller
         $client = new Client();
 
         $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm?nama=$request->nama&jenis=$request->jenis");
+        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/data-desa/4");
 
         $data = json_decode($response1->getBody());
+        $dataVideo = json_decode($response2->getBody());
 
         // Convert API data to collection
         $collection = collect($data->data->resource);
@@ -37,6 +39,7 @@ class umkmController extends Controller
         return view('umkm', [
             'data' => $data,
             'paginatedItems' => $paginatedItems,
+            'videoUmkm' => $dataVideo
         ]);
     }
 }
