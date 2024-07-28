@@ -72,7 +72,7 @@
                 <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan"
                     deskripsi="" />
 
-                <div class="text-sm font-normal"> {{ $data2->data->penjelasan }}</div>
+                <div class="text-sm font-normal"> {!! $data2->data->penjelasan !!}</div>
             </div>
         </div>
     </div>
