@@ -101,9 +101,9 @@
                                 <div class="menu-title font-semibold mr-auto">Pariwisata Desa</div>
                                 <li>
                                     <ul>
-                                        <li><a class="hover:bg-accent" href="{{ route('pariwisata.index', ['targetID' => 'profil']) }}">Profil Pariwisata</a></li>
-                                        <li><a class="hover:bg-accent" href="{{ route('pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
-                                        <li><a class="hover:bg-accent" href="{{ route('pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'profil']) }}">Profil Pariwisata</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
                                 </li>
 
@@ -195,13 +195,13 @@
                             <details>
                                 <summary class="hover:text-primary">Pariwisata Desa</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('pariwisata.index', ['targetID' => 'profil']) }}">Profil
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('publc.pariwisata.index', ['targetID' => 'profil']) }}">Profil
                                             Pariwisata</a></li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a href="{{ route('pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a>
+                                        <a href="{{ route('publc.pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a>
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700">
-                                        <a href="{{ route('pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a>
+                                        <a href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a>
                                     </li>
                                 </ul>
                             </details>
