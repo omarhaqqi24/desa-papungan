@@ -57,7 +57,7 @@ Route::get('/informasi', [PengumumanController::class, "index"])->name('informas
 Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
-})->name('pariwisata.index');
+})->name('publc.pariwisata.index');
 
 
 
