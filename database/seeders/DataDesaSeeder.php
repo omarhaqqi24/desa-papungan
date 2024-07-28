@@ -21,13 +21,15 @@ class DataDesaSeeder extends Seeder
         for ($i=0; $i<3; $i++){
             DataDesa::create([
                 'foto' => $faker->image(storage_path('app/public/data_desa'), 500, 500, null, false),
-                'penjelasan' => $faker->paragraph(4)
+                'penjelasan' => $faker->paragraph(4),
+                'penjelasan_raw' => $faker->paragraph(4)
             ]);
         }
 
         DataDesa::create([
             'foto' => null,
-            'penjelasan' => 'link here'
+            'penjelasan' => 'link here',
+            'penjelasan_raw' => 'link here'
         ]);
     }
 }
