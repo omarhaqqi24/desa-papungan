@@ -35,7 +35,25 @@
             <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Simak
                 video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!
             </div>
-            <img src="{{ asset('/img/unkown.png')}}" alt="unknown" class="rounded-lg w-full">
+
+            {{-- Video --}}
+            <div class="relative">
+                <iframe class="mx-auto w-full md:w-[560px] h-[315px]" src="https://www.youtube.com/embed/jEVjgFkpzt4"
+                    title=""
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+
+            {{-- Carrousel foto --}}
+            <div class="carousel carousel-center rounded-box space-x-3 w-full border border-neutral">
+
+                @foreach ($pariwisata->data as $foto)
+                    <div class="carousel-item w-44 h-32 md:w-44 md:h-40 ">
+                        <img src="{{ $foto->foto }}" alt="-" />
+                    </div>
+                @endforeach
+
+            </div>
 
             <!-- sejarah-->
             <div id="sejarah"></div>
@@ -49,13 +67,16 @@
                     wajah perikanan di tanah air. Mbah Moedjair, atau yang lebih dikenal dengan nama aslinya Modjair,
                     merupakan sosok pembudidaya ikan air tawar dari Desa Papungan, Blitar, Jawa Timur. Berkat
                     dedikasinya yang luar biasa, ia berhasil mengubah wajah perikanan di Indonesia melalui penemuannya.
-                    Tak cukup sampai di situ, kami, Tim 12 MMD Fakultas Ilmu Komputer Universitas Brawijaya, yang
-                    berkesempatan melaksanakan MMD (Mahasiswa Membangun Desa) atau yang biasa disebut KKN (Kuliah Kerja
-                    Nyata) di Desa Papungan kami tidak hanya melihat langsung dampak dari kontribusi Mbah Moedjair,
-                    tetapi juga berinteraksi dengan keturunannya untuk mendapatkan informasi lebih mendalam tentang
-                    riwayat hidup dan jasa-jasanya. Saat kami mengunjungi kediaman cucu dan cicit Mbah Moedjair, kami
-                    diberitahu bukti otentik berupa sertifikat penghargaan dari tahun 1951 yang ditulis dengan ejaan
-                    lama, sebuah bukti nyata dari pengakuan atas jasa-jasanya.
+                    Tahun 2024 ini, kami, Tim 12 MMD Fakultas Ilmu Komputer Universitas Brawijaya, yang berkesempatan
+                    melaksanakan MMD (Mahasiswa Membangun Desa) atau yang biasa disebut KKN (Kuliah Kerja Nyata) di Desa
+                    Papungan kami tidak hanya melihat langsung dampak dari kontribusi Mbah Moedjair, tetapi juga
+                    berkunjung ke kediaman keturunan Mbah Moedjair untuk mendapatkan informasi lebih mendalam tentang
+                    riwayat hidup dan jasa-jasanya. Kami ditunjukkan bukti otentik berupa piagam penghargaan dari tahun
+                    1951 yang ditulis dengan ejaan lama. Dalam piagam tersebut tertulis, “Bahwa kami Menteri Pertanian
+                    atas nama Pemerintah Republik Indonesia memberi surat tanda djasa kepada Sdr. Moedjair, tempat
+                    tinggal Desa Papungan, Kabupaten Blitar, Jawa Timur, sebagai penghargaan menemukan suatu djenis ikan
+                    jang diberi nama ikan mudjair, yang ternjata memberi manfaat besar bagi masyarakat Indonesia,”. Dan
+                    itulah, sebuah bukti nyata dari pengakuan atas jasa-jasanya.
 
                     <br>
                     <br>
@@ -231,11 +252,12 @@
             <!-- lokasi-->
             <div id="lokasi"></div>
             <x-cardSubjudul jenisJudul="LOKASI" judul="Peta Digital Makam Mbah Moedjair Desa Papungan"
-                deskripsi="Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. " />
+                deskripsi="Berikut adalah peta lokasi keberadaan Makam Mbah Moedjair. Peta tersebut interaktif, Anda dapat menyesuaikan tergantung dimana lokasi Anda. Selamat Berkunjung!" />
             <a href="https://www.google.com/maps/place/Makam+Moedjair+(Penemu+Ikan+Mujair)/@-8.1117038,112.1910492,1495m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e78ec8428e3dd43:0xba394b22de9e75f5!2sPapungan,+Kec.+Kanigoro,+Kabupaten+Blitar,+Jawa+Timur!3b1!8m2!3d-8.1060475!4d112.199654!16s%2Fg%2F12hhgw8cl!3m5!1s0x2e78eb778accc645:0x31909f880a684183!8m2!3d-8.1111685!4d112.1931771!16s%2Fg%2F11ckvknb79?entry=ttu"
                 class="btn btn-secondary" target='blank'>Lihat di Google Maps</a>
             <iframe src="{{ route('peta-makam-mbah-moedjair') }}" title="" class="w-full min-h-96"></iframe>
         </div>
+
     </div>
 </body>
 <x-footer />
