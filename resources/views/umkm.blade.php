@@ -32,7 +32,7 @@
             <x-headerArtikel subJudul="Kenali UMKM " judul="Profil UMKM Desa Papungan" />
             <div class="text-sm font-normal ">Berikut adalah video singkat mengenai UMKM di Desa Papungan. Simak video
                 berikut untuk mengetahui bagaimana masyarakat Desa Papungan mengembangkan potensi usaha mereka!</div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/G0H84IdFoJI?si=iDhzuJ2czjGp9J6O"
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0qdpec8USmA?si=aCLVXLXC3n8n3fUf"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
