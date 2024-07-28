@@ -231,6 +231,8 @@ class UmkmDesaController extends Controller
             return redirect()->back()->with('success', $responseBody->message);
 
         } catch (BadResponseException $e) {
+            dd($e);
+            return;
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
