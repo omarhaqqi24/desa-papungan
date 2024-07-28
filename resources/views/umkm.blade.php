@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class=" px-5 md:px-10 mt-10 space-y-10">
+    <div class=" px-5 md:px-10 mt-10 space-y-5 md:space-y-10">
         <div class="container items-center mx-auto space-y-10 text-justify">
             <x-headerArtikel subJudul="Kenali UMKM " judul="Profil UMKM Desa Papungan" />
             <div class="text-sm font-normal ">Berikut adalah video singkat mengenai UMKM di Desa Papungan. Simak video
@@ -243,4 +243,3 @@
 </script>
 
 </html>
-

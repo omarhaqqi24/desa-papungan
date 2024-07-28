@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\BadResponseException;
+use Parsedown;
 
 class ProfilDesaController extends Controller
 {
@@ -38,6 +39,8 @@ class ProfilDesaController extends Controller
             $image = $request->file('foto');
             $token = Session::get('api-token');
 
+            $parsedown = new Parsedown();
+
             if (!empty($image)) {
                 $multipart = [
                     [
@@ -46,16 +49,24 @@ class ProfilDesaController extends Controller
                         'filename' => $image->getClientOriginalName(),
                     ],
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             } else {
                 $multipart = [
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             }
 
@@ -144,6 +155,8 @@ class ProfilDesaController extends Controller
             $image = $request->file('foto');
             $token = Session::get('api-token');
 
+            $parsedown = new Parsedown();
+
             if (!empty($image)) {
                 $multipart = [
                     [
@@ -152,16 +165,24 @@ class ProfilDesaController extends Controller
                         'filename' => $image->getClientOriginalName(),
                     ],
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             } else {
                 $multipart = [
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             }
 

@@ -75,13 +75,24 @@
                 <div class="form-control gap-4">
                     <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                     <textarea disabled name="penjelasan" id="penjelasan"
-                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $profilDesa->data->penjelasan }}</textarea>
+                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $profilDesa->data->penjelasan_raw }}</textarea>
                 </div>
                 <div class="form-control gap-4">
-                    <label for="foto" class="label-text font-semibold">Foto</label>
-                    <input disabled type="file" name="foto" id="foto"
-                        class="file-input file-input-bordered disabled:bg-slate-100">
+                    <div tabindex="0" class="collapse collapse-arrow bg-slate-100 border border-gray-200 rounded-xl">
+                        <div class="collapse-title text-sm font-semibold font-jakarta">Lihat foto</div>
+                        <div class="collapse-content flex rounded-xl max-h-96">
+                            <img onclick="preview_profil_image.showModal()" src="{{ $profilDesa->data->foto }}" alt="foto-profil-desa" class="object-cover rounded-lg w-full">
+                        </div>
+                    </div>
                 </div>
+                <dialog id="preview_profil_image" class="modal">
+                    <div class="modal-box">
+                        <img src="{{ $profilDesa->data->foto }}" alt="foto-profil-desa" class="object-cover rounded-lg">
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
             <!-- End -->
 
@@ -110,7 +121,7 @@
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                                 <textarea name="penjelasan" id="penjelasan"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $profilDesa->data->penjelasan }}</textarea>
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $profilDesa->data->penjelasan_raw }}</textarea>
                             </div>
                             <div class="form-control gap-4">
                                 <label for="foto" class="label-text font-semibold">Foto</label>
@@ -353,13 +364,24 @@
                 <div class="form-control gap-4">
                     <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                     <textarea disabled name="penjelasan" id="penjelasan"
-                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan }}</textarea>
+                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan_raw }}</textarea>
                 </div>
                 <div class="form-control gap-4">
-                    <label for="foto" class="label-text font-semibold">Foto</label>
-                    <input disabled type="file" name="foto" id="foto"
-                        class="file-input file-input-bordered disabled:bg-slate-100">
+                    <div tabindex="0" class="collapse collapse-arrow bg-slate-100 border border-gray-200 rounded-xl">
+                        <div class="collapse-title text-sm font-semibold font-jakarta">Lihat foto</div>
+                        <div class="collapse-content flex rounded-xl max-h-96">
+                            <img onclick="preview_sejarah_image.showModal()" src="{{ $sejarahDesa->data->foto }}" alt="foto-sejarah-desa" class="object-cover rounded-lg w-full">
+                        </div>
+                    </div>
                 </div>
+                <dialog id="preview_sejarah_image" class="modal">
+                    <div class="modal-box">
+                        <img src="{{ $sejarahDesa->data->foto }}" alt="foto-sejarah-desa" class="object-cover rounded-lg">
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
             <!-- End -->
 
@@ -388,7 +410,7 @@
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                                 <textarea name="penjelasan" id="penjelasan_sd"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan }}</textarea>
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan_raw }}</textarea>
                             </div>
                             <div class="form-control gap-4">
                                 <label for="foto" class="label-text font-semibold">Foto</label>
