@@ -38,7 +38,7 @@ Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
-})->name('peta.umkm');
+});
 
 Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
@@ -57,7 +57,7 @@ Route::get('/informasi', [PengumumanController::class, "index"])->name('informas
 Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
-})->name('pariwisata.index');
+})->name('publc.pariwisata.index');
 
 
 
@@ -117,6 +117,9 @@ Route::put('/admin/informasi/berita/{id}/ceklis', [InformasiDesaController::clas
 Route::put('/admin/informasi/pengumuman/{id}/ceklis', [InformasiDesaController::class, 'acceptPengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.getAccepted');
+Route::put('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'checkAspirasi'])
+    ->middleware('checkToken')
+    ->name('admin.informasi.aspirasi.getChecked');
 Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'deleteBerita'])
     ->middleware('checkToken')
     ->name('admin.informasi.berita.destroy');
@@ -143,7 +146,7 @@ Route::delete('/admin/umkm/{id}', [UmkmDesaController::class, 'deleteUmkm'])
 Route::post('/admin/umkm/foto', [UmkmDesaController::class, 'tambahFotoUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.foto.create');
-Route::delete('/admin/umkm/foto', [UmkmDesaController::class, 'deleteFotoUmkm'])
+Route::delete('/admin/umkm/foto/{id}', [UmkmDesaController::class, 'deleteFotoUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.foto.destroy');
     

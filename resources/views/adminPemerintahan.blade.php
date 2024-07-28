@@ -78,10 +78,21 @@
                         class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan }}</textarea>
                 </div>
                 <div class="form-control gap-4">
-                    <label for="foto" class="label-text font-semibold">Foto</label>
-                    <input disabled type="file" name="foto" id="foto"
-                        class="file-input file-input-bordered disabled:bg-slate-100">
+                    <div tabindex="0" class="collapse collapse-arrow bg-slate-100 border border-gray-200 rounded-xl">
+                        <div class="collapse-title text-sm font-semibold font-jakarta">Lihat foto</div>
+                        <div class="collapse-content flex rounded-xl max-h-96">
+                            <img onclick="preview_struktur_image.showModal()" src="{{ $strukturOrg->data->foto }}" alt="foto-struktur-desa" class="object-cover rounded-lg w-full">
+                        </div>
+                    </div>
                 </div>
+                <dialog id="preview_struktur_image" class="modal">
+                    <div class="modal-box">
+                        <img src="{{ $strukturOrg->data->foto }}" alt="foto-struktur-desa" class="object-cover rounded-lg">
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
             <!-- End -->
 
@@ -180,31 +191,54 @@
                                     {{ $item->kontak }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                    <img onclick="openModalPreviewImageJabatan('{{ $item->id }}')" src="{{ $item->foto }}" alt="perangkat-desa" class="w-12 h-12 object-cover rounded-xl">
+                                    <dialog id="preview_jbt_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <img src="{{ $item->foto }}" alt="foto-sejarah-desa" class="object-cover rounded-lg">
+                                        </div>
+                                        <form method="dialog" class="modal-backdrop">
+                                            <button>close</button>
+                                        </form>
+                                    </dialog>
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-6 justify-center items-center">
-                                    <form action="{{ route('admin.pemerintahan.perangkat-desa.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="font-medium" type="submit">
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-6 justify-center items-center">
+                                        <button onclick="openModalDeletePerangkatDesa('{{ $item->id }}')" class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </button>
-                                    </form>
-                                    <button onclick="openModalUpdatePerangkatDesa('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
+                                        
+                                        
+                                        <button onclick="openModalUpdatePerangkatDesa('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <dialog id="mdpd_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.pemerintahan.perangkat-desa.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdpd_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-            <dialog id="modal_form_pkd_up" class="modal">
+                <dialog id="modal_form_pkd_up" class="modal">
                 <div class="modal-box w-11/12 max-w-5xl">
                     <h3 class="text-lg font-bold">Formulir Update Perangkat Desa</h3>
                     <hr class="h-px my-8 bg-gray-300 border-0">
@@ -362,7 +396,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($lembagaDesa->data as $item)    
+                        @foreach ($paginatedItems as $item)    
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="px-6 py-4">
                                     {{ $item->nama }}
@@ -373,88 +407,122 @@
                                 <td class="px-6 py-4">
                                     {{ $item->kontak }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-6 justify-center items-cente">
-                                     <form action="{{ route('admin.pemerintahan.lembaga.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="font-medium" type="submit">
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-6 justify-center items-center">
+                                        <button onclick="openModalDeleteLembagaDesa('{{ $item->id }}')" class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </button>
-                                    </form>
-                                    <button onclick="openModalUpdateLembaga('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
+                                        
+                                        
+                                        <button onclick="openModalUpdatelembagaDesa('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <dialog id="mdld_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.pemerintahan.lembaga.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdld_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <section class="px-4 py-6 bg-white border-t">
-                    <div class="flex items-center justify-between w-full">
-                        <button disabled
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                            </svg>
-                            Previous
-                        </button>
-                        <div class="flex items-center gap-2">
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    1
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    2
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    3
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    4
-                                </span>
-                            </button>
-                            <button
-                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                    5
-                                </span>
-                            </button>
-                        </div>
+   <!-- Pagination Section -->
+   <section class="px-4 py-6 bg-white border-t">
+    @if ($paginatedItems->hasPages())
+        <div class="flex items-center justify-between w-full">
+            @if ($paginatedItems->onFirstPage())
+                <button disabled
+                    class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                    </svg>
+                    Previous
+                </button>
+            @else
+                <a href="{{ $paginatedItems->previousPageUrl() }}"
+                    class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                    type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                    </svg>
+                    Previous
+                </a>
+            @endif
+
+            <div class="flex items-center gap-2">
+                @foreach ($paginatedItems->getUrlRange(1, $paginatedItems->lastPage()) as $page => $url)
+                    @if ($page == $paginatedItems->currentPage())
                         <button
-                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
-                            Next
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                            </svg>
+                            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                {{ $page }}
+                            </span>
                         </button>
-                    </div>
-                </section>
+                    @else
+                        <a href="{{ $url }}"
+                            class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
+                            type="button">
+                            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                {{ $page }}
+                            </span>
+                        </a>
+                    @endif
+                @endforeach
             </div>
+
+            @if ($paginatedItems->hasMorePages())
+                <a href="{{ $paginatedItems->nextPageUrl() }}"
+                    class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                    type="button">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" aria-hidden="true"
+                        class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </a>
+            @else
+                <button disabled
+                    class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" aria-hidden="true"
+                        class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </button>
+            @endif
+        </div>
+    @endif
+</section>
+</div>
+
+
 
             <dialog id="modal_form_lbd_up" class="modal">
                 <div class="modal-box w-11/12 max-w-5xl">
@@ -582,6 +650,18 @@
             hiddenInput.value = data.id;
 
             document.getElementById('modal_form_pkd_up').showModal();
+        }
+
+        function openModalDeletePerangkatDesa(id) {
+            document.getElementById('mdpd_' + id).showModal();
+        }
+
+        function openModalDeleteLembagaDesa(id) {
+            document.getElementById('mdld_' + id).showModal();
+        }
+
+        function openModalPreviewImageJabatan(id) {
+            document.getElementById('preview_jbt_'+id).showModal();
         }
     </script>
 
