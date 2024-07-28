@@ -36,7 +36,7 @@
             <div class="text-sm font-normal">Sebagai sebuah desa, sudah tentu struktur kepemimpinan Desa Papungan tidak bisa lepas dari struktur administratif pemerintahan pada level di atasnya. Hal ini dapat dilihat dalam bagan berikut ini:</div>
             <img src="{{ $struktur->data->foto }}" alt="struktur desa" class="rounded-lg w-full">
 
-            <div class="text-sm font-normal">{{ $struktur->data->penjelasan }}</div>
+            <div class="text-sm font-normal">{!! $struktur->data->penjelasan !!}</div>
             
                 <!-- perangkat desa-->
             <div id="perangkatdesa"></div>

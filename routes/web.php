@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaPageController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PariwisataController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PengumumanPageController;
@@ -55,9 +56,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landingPage.inde
 Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('pemerintahan.index');
 Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
 Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
-Route::get('/pariwisataDesa', function () {
-    return view('pariwisataDesa');
-})->name('publc.pariwisata.index');
+Route::get('/pariwisataDesa',[PariwisataController::class, "index"])->name('publc.pariwisata.index');
 
 
 
