@@ -5,14 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{ env("APP_NAME") . " | Admin Profil Desa" }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     @vite('resources/css/app.css')
-
 </head>
 
 <body class="mytheme font-jakarta antialiased dark:text-white/50">
@@ -428,11 +427,7 @@
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                                 <textarea name="penjelasan" id="penjelasan_sd" class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan_raw }}</textarea>
                             </div>
-                            <div class="form-control gap-4">
-                                <label for="foto" class="label-text font-semibold">Foto</label>
-                                <input type="file" name="foto" id="foto"
-                                    class="file-input file-input-bordered disabled:bg-slate-100">
-                            </div>
+                            
                             <div class="relative w-full">
                                 <div class="flex gap-4 justify-end">
                                     <button type="button"
