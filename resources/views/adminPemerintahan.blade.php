@@ -75,7 +75,7 @@
                 <div class="form-control gap-4">
                     <label for="penjelasan_st" class="label-text font-semibold">Penjelasan</label>
                     <textarea disabled name="penjelasan" id="penjelasan_st"
-                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan }}</textarea>
+                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan_raw }}</textarea>
                 </div>
                 <div class="form-control gap-4">
                     <div tabindex="0" class="collapse collapse-arrow bg-slate-100 border border-gray-200 rounded-xl">
@@ -121,7 +121,7 @@
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                                 <textarea name="penjelasan" id="penjelasan"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan }}</textarea>
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $strukturOrg->data->penjelasan_raw }}</textarea>
                                 <p class="label-text text-gray-500">(penjelasan struktur organisasi desa)</p>
                             </div>
                             <div class="form-control gap-4">
