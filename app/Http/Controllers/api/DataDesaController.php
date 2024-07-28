@@ -27,7 +27,8 @@ class DataDesaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'penjelasan' => 'required'
+            'penjelasan' => 'required',
+            'penjelasan_raw' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -48,7 +49,10 @@ class DataDesaController extends Controller
             $data_desa->update(['foto' => $image->hashName()]);
         }
 
-        $data_desa->update(['penjelasan' => $request->penjelasan]);
+        $data_desa->update([
+            'penjelasan' => $request->penjelasan,
+            'penjelasan_raw' => $request->penjelasan_raw
+        ]);
 
         $data_desa->save();
 

@@ -9,5 +9,5 @@ class DataDesa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['foto', 'penjelasan'];
+    protected $fillable = ['foto', 'penjelasan', 'penjelasan_raw'];
 }

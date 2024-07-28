@@ -388,7 +388,7 @@
                             <div class="form-control gap-4">
                                 <label for="penjelasan" class="label-text font-semibold">Penjelasan</label>
                                 <textarea name="penjelasan" id="penjelasan_sd"
-                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan }}</textarea>
+                                    class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100">{{ $sejarahDesa->data->penjelasan_raw }}</textarea>
                             </div>
                             <div class="form-control gap-4">
                                 <label for="foto" class="label-text font-semibold">Foto</label>

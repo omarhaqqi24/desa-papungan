@@ -18,6 +18,7 @@ class DataDesaResource extends JsonResource
         return [
             'id' => $this->id,
             'penjelasan' => $this->penjelasan,
+            'penjelasan_raw' => $this->penjelasan_raw,
             'foto' => url('storage/data_desa/' . $this->foto),
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
