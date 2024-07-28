@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class PengumumanController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $client = new Client();
 
         $response = $client->request("GET", env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman?pub=1");
@@ -19,7 +20,24 @@ class PengumumanController extends Controller
         $response = $client->request("GET", env("API_BASE_URL", "http://localhost:8001") . "/api/berita?pub=1");
         $berita = json_decode($response->getBody());
 
-        return view("informasi",["pengumuman"=>$pengumuman, "berita"=>$berita]);
+                // Paginator Daftar Permintaan Berita
+                $collectionBerita = collect($berita->data);
+                $currentPageBerita = LengthAwarePaginator::resolveCurrentPage('beritas');
+                $perPageBerita = 5;
+                $currentPageItemsBerita = $collectionBerita->slice(($currentPageBerita - 1) * $perPageBerita, $perPageBerita)->all();
+                $paginatedItemsBerita = new LengthAwarePaginator($currentPageItemsBerita, $collectionBerita->count(), $perPageBerita,$currentPageBerita);
+                $paginatedItemsBerita->setPath($request->url())->setPageName('beritas');
+        
+                // Paginator Daftar Permintaan Pengumuman
+                $collectionPengumuman = collect($pengumuman->data);
+                $currentPagePengumuman = LengthAwarePaginator::resolveCurrentPage('pengumumans');
+                $perPagePengumuman = 3;
+                $currentPageItemsPengumuman = $collectionPengumuman->slice(($currentPagePengumuman - 1) * $perPagePengumuman, $perPagePengumuman)->all();
+                $paginatedItemsPengumuman = new LengthAwarePaginator($currentPageItemsPengumuman, $collectionPengumuman->count(), $perPagePengumuman,$currentPagePengumuman);
+                $paginatedItemsPengumuman->setPath($request->url())->setPageName('pengumumans');
+        
+
+        return view("informasi",["pengumuman"=>$pengumuman, "berita"=>$berita,"paginatedItemsPengumuman"=>$paginatedItemsPengumuman,"paginatedItemsBerita"=>$paginatedItemsBerita]);
     }
     public function store(Request $request)
     {
