@@ -101,21 +101,36 @@
                                 <td class="px-6 py-4">
                                     {{ $item->penjelasan }}
                                 </td>
-                                <td class="px-6 py-4 text-right flex gap-4">
-                                    <form action="{{ route('admin.pariwisata.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="font-medium" type="submit">
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-6 justify-center items-center">
+                                        <button onclick="openModalDeletePariwisata('{{ $item->id }}')" class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3 5.00033H4.66667M4.66667 5.00033H18M4.66667 5.00033V16.667C4.66667 17.109 4.84226 17.5329 5.15482 17.8455C5.46738 18.1581 5.89131 18.3337 6.33333 18.3337H14.6667C15.1087 18.3337 15.5326 18.1581 15.8452 17.8455C16.1577 17.5329 16.3333 17.109 16.3333 16.667V5.00033H4.66667ZM7.16667 5.00033V3.33366C7.16667 2.89163 7.34226 2.46771 7.65482 2.15515C7.96738 1.84259 8.39131 1.66699 8.83333 1.66699H12.1667C12.6087 1.66699 13.0326 1.84259 13.3452 2.15515C13.6577 2.46771 13.8333 2.89163 13.8333 3.33366V5.00033M8.83333 9.16699V14.167M12.1667 9.16699V14.167" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </button>
-                                    </form>
-                                    <button onclick="openModalUpdatePariwisata('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button> 
+                                        
+                                        
+                                        <button onclick="openModalUpdatePariwisata('{{ $item->id }}', '{{ json_encode($item) }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.6665 2.49993C14.8854 2.28106 15.1452 2.10744 15.4312 1.98899C15.7171 1.87054 16.0236 1.80957 16.3332 1.80957C16.6427 1.80957 16.9492 1.87054 17.2352 1.98899C17.5211 2.10744 17.781 2.28106 17.9998 2.49993C18.2187 2.7188 18.3923 2.97863 18.5108 3.2646C18.6292 3.55057 18.6902 3.85706 18.6902 4.16659C18.6902 4.47612 18.6292 4.78262 18.5108 5.06859C18.3923 5.35455 18.2187 5.61439 17.9998 5.83326L6.74984 17.0833L2.1665 18.3333L3.4165 13.7499L14.6665 2.49993Z" stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <dialog id="mdpr_{{ $item->id }}" class="modal">
+                                        <div class="modal-box">
+                                            <h3 class="text-lg font-bold">Peringatan!</h3>
+                                            <p class="py-4">Apakah anda yakin ingin menghapus?</p>
+                                            <div class="modal-action">
+                                                <form action="{{ route('admin.pariwisata.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bg-red-400 text-white">Iya</button>
+                                                </form>
+                                                <button onclick="document.getElementById('mdpr_' + '{{ $item->id }}').close()" class="btn bg-secondary text-white">Tidak</button>
+                                            </div>
+                                        </div>
+                                    </dialog>    
                                 </td>
                             </tr>
                         @endforeach
@@ -282,6 +297,10 @@
             hiddenInput.value = data.id;
 
             document.getElementById('modal_form_pariwisata_up').showModal();
+        }
+
+        function openModalDeletePariwisata(id) {
+            document.getElementById('mdpr_'+id).showModal();
         }
     </script>
 </body>
