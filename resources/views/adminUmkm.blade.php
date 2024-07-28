@@ -192,6 +192,127 @@
                                             onclick="openModalShowUmkmDesa('{{ $item->id }}', '{{ json_encode($item) }}')"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tekan
                                             Disini</button>
+
+                                                <!-- Form Show UMKM Desa -->
+                                                <dialog id="modal_form_umkm_show_{{ $item->id }}" class="modal">
+                                                    <div class="modal-box w-11/12 max-w-5xl">
+                                                        <h3 class="text-lg font-bold">Detail UMKM Desa</h3>
+                                                        <hr class="h-px my-8 bg-gray-300 border-0">
+                                                        <form method="POST" action="" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="form-control gap-6">
+                                                                <div class="form-control gap-4">
+                                                                    <label for="nama_umkm_show" class="label-text font-semibold">Nama UMKM</label>
+                                                                    <input type="text" name="nama" id="nama_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <input type="text" name="id" id="id_umkm_show"
+                                                                        class="input input-bordered " hidden>
+                                                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                        diisi
+                                                                    </p>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="alamat_umkm_show" class="label-text font-semibold">Alamat UMKM</label>
+                                                                    <input type="text" name="alamat" id="alamat_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                        diisi
+                                                                    </p>
+                                                                </div>
+                                                                <div class="flex gap-4 w-full">
+                                                                    <div class="form-control gap-4 w-full">
+                                                                        <label for="jenis_umkm_show" class="label-text font-semibold">Jenis
+                                                                            UMKM</label>
+                                                                        <input type="text" name="jenis" id="jenis_umkm_show"
+                                                                            class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                            diisi</p>
+                                                                    </div>
+                                                                    <div class="form-control gap-4 w-full">
+                                                                        <label for="jam_buka_umkm_show" class="label-text font-semibold">Jam
+                                                                            Buka</label>
+                                                                        <input type="text" name="jam_buka" id="jam_buka_umkm_show"
+                                                                            class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                            diisi</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="kontak_umkm_show" class="label-text font-semibold">Kontak</label>
+                                                                    <input type="text" name="kontak" id="kontak_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                        diisi
+                                                                    </p>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="bpom_umkm_show" class="label-text font-semibold">Nomor BPOM</label>
+                                                                    <input type="text" name="no_bpom" id="bpom_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <p class="label-text text-gray-500">opsional</p>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="halal_umkm_show" class="label-text font-semibold">Nomor Halal</label>
+                                                                    <input type="text" name="no_halal" id="halal_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <p class="label-text text-gray-500">opsional</p>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="nib_umkm_show" class="label-text font-semibold">Nomor NIB</label>
+                                                                    <input type="text" name="no_nib" id="nib_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <p class="label-text text-gray-500">opsional</p>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="pirt_umkm_show" class="label-text font-semibold">Nomor P-IRT</label>
+                                                                    <input type="text" name="no_pirt" id="pirt_umkm_show"
+                                                                        class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                    <p class="label-text text-gray-500">opsional</p>
+                                                                </div>
+                                                                <div class="flex gap-4 w-full">
+                                                                    <div class="form-control gap-4 w-full">
+                                                                        <label for="lat_umkm_show" class="label-text font-semibold">Latitude</label>
+                                                                        <input type="text" name="lat" id="lat_umkm_show"
+                                                                            class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                            diisi</p>
+                                                                    </div>
+                                                                    <div class="form-control gap-4 w-full">
+                                                                        <label for="long_umkm_show"
+                                                                            class="label-text font-semibold">Longtitude</label>
+                                                                        <input type="text" name="long" id="long_umkm_show"
+                                                                            class="input input-bordered disabled:bg-slate-100" disabled>
+                                                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                            diisi</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <label for="desc_umkm_show" class="label-text font-semibold">Deskripsi</label>
+                                                                    <textarea name="deskripsi" id="desc_umkm_show" disabled
+                                                                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                                                                        diisi
+                                                                    </p>
+                                                                </div>
+                                                                <div class="form-control gap-4">
+                                                                    <div class="carousel w-full" id="carousel_container_{{$item->id}}">
+                                                                    </div>
+                                                                    <div class="flex w-full justify-center gap-2 py-2" id="button_container_{{$item->id}}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="relative w-full">
+                                                                    <div class="flex gap-4 justify-end">
+                                                                        <button type="button"
+                                                                            class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                                                            onclick="document.getElementById('modal_form_umkm_show_'+'{{ $item->id }}').close()">Tutup</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </dialog>
+                                                <!-- End -->
+
                                     </td>
                                     <td class="px-6 py-4">
 
@@ -380,128 +501,6 @@
                         Tambahkan
                     </button>
                 </div>
-
-                <!-- Form Show UMKM Desa -->
-                <dialog id="modal_form_umkm_show" class="modal">
-                    <div class="modal-box w-11/12 max-w-5xl">
-                        <h3 class="text-lg font-bold">Detail UMKM Desa</h3>
-                        <hr class="h-px my-8 bg-gray-300 border-0">
-                        <form method="POST" action="" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-control gap-6">
-                                <div class="form-control gap-4">
-                                    <label for="nama_umkm_show" class="label-text font-semibold">Nama UMKM</label>
-                                    <input type="text" name="nama" id="nama_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <input type="text" name="id" id="id_umkm"
-                                        class="input input-bordered " hidden>
-                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                        diisi
-                                    </p>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="alamat_umkm_show" class="label-text font-semibold">Alamat UMKM</label>
-                                    <input type="text" name="alamat" id="alamat_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                        diisi
-                                    </p>
-                                </div>
-                                <div class="flex gap-4 w-full">
-                                    <div class="form-control gap-4 w-full">
-                                        <label for="jenis_umkm_show" class="label-text font-semibold">Jenis
-                                            UMKM</label>
-                                        <input type="text" name="jenis" id="jenis_umkm_show"
-                                            class="input input-bordered disabled:bg-slate-100" disabled>
-                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                            diisi</p>
-                                    </div>
-                                    <div class="form-control gap-4 w-full">
-                                        <label for="jam_buka_umkm_show" class="label-text font-semibold">Jam
-                                            Buka</label>
-                                        <input type="text" name="jam_buka" id="jam_buka_umkm_show"
-                                            class="input input-bordered disabled:bg-slate-100" disabled>
-                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                            diisi</p>
-                                    </div>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="kontak_umkm_show" class="label-text font-semibold">Kontak</label>
-                                    <input type="text" name="kontak" id="kontak_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                        diisi
-                                    </p>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="bpom_umkm_show" class="label-text font-semibold">Nomor BPOM</label>
-                                    <input type="text" name="no_bpom" id="bpom_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <p class="label-text text-gray-500">opsional</p>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="halal_umkm_show" class="label-text font-semibold">Nomor Halal</label>
-                                    <input type="text" name="no_halal" id="halal_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <p class="label-text text-gray-500">opsional</p>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="nib_umkm_show" class="label-text font-semibold">Nomor NIB</label>
-                                    <input type="text" name="no_nib" id="nib_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <p class="label-text text-gray-500">opsional</p>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="pirt_umkm_show" class="label-text font-semibold">Nomor P-IRT</label>
-                                    <input type="text" name="no_pirt" id="pirt_umkm_show"
-                                        class="input input-bordered disabled:bg-slate-100" disabled>
-                                    <p class="label-text text-gray-500">opsional</p>
-                                </div>
-                                <div class="flex gap-4 w-full">
-                                    <div class="form-control gap-4 w-full">
-                                        <label for="lat_umkm_show" class="label-text font-semibold">Latitude</label>
-                                        <input type="text" name="lat" id="lat_umkm_show"
-                                            class="input input-bordered disabled:bg-slate-100" disabled>
-                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                            diisi</p>
-                                    </div>
-                                    <div class="form-control gap-4 w-full">
-                                        <label for="long_umkm_show"
-                                            class="label-text font-semibold">Longtitude</label>
-                                        <input type="text" name="long" id="long_umkm_show"
-                                            class="input input-bordered disabled:bg-slate-100" disabled>
-                                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                            diisi</p>
-                                    </div>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <label for="desc_umkm_show" class="label-text font-semibold">Deskripsi</label>
-                                    <textarea name="deskripsi" id="desc_umkm_show" disabled
-                                        class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
-                                    <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                                        diisi
-                                    </p>
-                                </div>
-                                <div class="form-control gap-4">
-                                    <div class="carousel w-full" id="carousel-container">
-
-                                    </div>
-                                    <div class="flex w-full justify-center gap-2 py-2" id="button-container">
-
-                                    </div>
-                                </div>
-                                <div class="relative w-full">
-                                    <div class="flex gap-4 justify-end">
-                                        <button type="button"
-                                            class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
-                                            onclick="modal_form_umkm_show.close()">Tutup</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </dialog>
-                <!-- End -->
 
                 <!-- Form Update UMKM Desa -->
                 <dialog id="modal_form_umkm_up" class="modal">
@@ -865,36 +864,39 @@
                 longIn.value = data.long;
                 const descIn = document.getElementById('desc_umkm_show');
                 descIn.value = data.deskripsi;
-                const hiddenInput = document.getElementById('id_umkm');
+                const hiddenInput = document.getElementById('id_umkm_show');
                 hiddenInput.value = data.id;
 
-                const carouselContainer = document.getElementById('carousel-container');
-                const buttonContainer = document.getElementById('button-container');
+                const carouselContainer = document.getElementById(`carousel_container_${data.id}`);
+                const buttonContainer = document.getElementById(`button_container_${data.id}`);
 
                 images = data.foto.map(item => item.foto);
-                images.forEach((image, index) => {
-                    const itemId = `item${index + 1}`;
-
-                    // Create carousel item
-                    const carouselItem = document.createElement('div');
-                    carouselItem.id = itemId;
-                    carouselItem.className = 'carousel-item w-full';
-                    carouselItem.innerHTML = `<img src="${image}" class="w-full object-cover max-h-96 rounded-xl" />`;
-
-                    // Append carousel item to container
-                    carouselContainer.appendChild(carouselItem);
-
-                    // Create navigation button
-                    const button = document.createElement('a');
-                    button.href = `#${itemId}`;
-                    button.className = 'btn btn-xs';
-                    button.innerText = index + 1;
-
-                    // Append button to button container
-                    buttonContainer.appendChild(button);
-
-                    document.getElementById('modal_form_umkm_show').showModal();
-                });
+                console.log(images.length);
+                
+                    images.forEach((image, index) => {
+                        const itemId = `item${index + 1}`;
+                        
+                        // Create carousel item
+                        const carouselItem = document.createElement('div');
+                        carouselItem.id = itemId;
+                        carouselItem.className = 'carousel-item w-full';
+                        carouselItem.innerHTML = `<img src="${image}" class="w-full object-cover max-h-96 rounded-xl" />`;
+                        
+                        // Append carousel item to container
+                        carouselContainer.appendChild(carouselItem);
+    
+                        // Create navigation button
+                        const button = document.createElement('a');
+                        button.href = `#${itemId}`;
+                        button.className = 'btn btn-xs';
+                        button.innerText = index + 1;
+    
+                        // Append button to button container
+                        buttonContainer.appendChild(button);
+    
+                    });
+             
+                document.getElementById(`modal_form_umkm_show_${data.id}`).showModal();
             }
 
             function openModalDeleteUmkmDesa(id) {
