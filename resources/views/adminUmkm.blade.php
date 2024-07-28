@@ -56,7 +56,7 @@
 
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Video Profil UMKM</div>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil Desa yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil UMKM Desa yang ditampilkan</div>
 
             <!-- Form Show Profil Desa -->
             <div class="form-control gap-6">
@@ -86,7 +86,7 @@
                     <div class="modal-box w-11/12 max-w-5xl">
                         <h3 class="text-lg font-bold">Formulir Update Link Video</h3>
                         <hr class="h-px my-8 bg-gray-300 border-0">
-                        <form method="POST" action="{{ route('admin.profil-desa.profil.update') }}"
+                        <form method="POST" action="{{ route('admin.umkm-desa.video.update') }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -94,8 +94,8 @@
                                 <div class="form-control gap-4">
                                     <label for="penjelasan_lk" class="label-text font-semibold">Link Video
                                         Youtube</label>
-                                    <input name="penjelasan" id="penjelasan_lk"
-                                        class="input input-bordered w-full disabled:bg-slate-100" />
+                                    <textarea name="penjelasan" id="penjelasan_lk"
+                                        class="input input-bordered w-full disabled:bg-slate-100">{{ $dataVideo->data->penjelasan }}</textarea>
                                 </div>
                                 <div class="relative w-full">
                                     <div class="flex gap-4 justify-end">

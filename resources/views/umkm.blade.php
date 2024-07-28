@@ -33,6 +33,14 @@
             <div class="text-sm font-normal ">Berikut adalah video singkat mengenai UMKM di Desa Papungan. Simak video
                 berikut untuk mengetahui bagaimana masyarakat Desa Papungan mengembangkan potensi usaha mereka!</div>
 
+                {{-- Video --}}
+            <div class="relative mx-auto" style="width: 600px; height: 337.5px;">
+                <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    src="{{ $videoUmkm->data->penjelasan }}" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+
             <x-cardSubjudul jenisJudul="Kenali UMKM" judul="Peta Digital UMKM Desa Papungan"
                 deskripsi="Berikut adalah Peta UMKM dari Desa Papungan. Simak informasi berikut untuk mengetahui lokasi dan jenis usaha yang ada di desa  kita, serta bagaimana UMKM ini berkontribusi dalam perekonomian lokal!" />
 

@@ -28,8 +28,14 @@ class DataDesaSeeder extends Seeder
 
         DataDesa::create([
             'foto' => null,
-            'penjelasan' => 'link here',
-            'penjelasan_raw' => 'link here'
+            'penjelasan' => 'https://youtu.be/0qdpec8USmA?si=hO9OTfeMU8kaULFL',
+            'penjelasan_raw' => ''
+        ]);
+
+        DataDesa::create([
+            'foto' => null,
+            'penjelasan' => 'https://youtu.be/jEVjgFkpzt4?si=8xM0kaesTec7sOPK',
+            'penjelasan_raw' => ''
         ]);
     }
 }
