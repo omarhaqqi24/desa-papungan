@@ -39,6 +39,8 @@ class ProfilDesaController extends Controller
             $image = $request->file('foto');
             $token = Session::get('api-token');
 
+            $parsedown = new Parsedown();
+
             if (!empty($image)) {
                 $multipart = [
                     [
@@ -47,16 +49,24 @@ class ProfilDesaController extends Controller
                         'filename' => $image->getClientOriginalName(),
                     ],
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             } else {
                 $multipart = [
                     [
-                        'name'     => 'penjelasan',
-                        'contents' => $request->penjelasan,
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
                     ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             }
 
@@ -161,18 +171,18 @@ class ProfilDesaController extends Controller
                     [
                         'name'     => 'penjelasan',
                         'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
-                        ]
-                    ];
-                } else {
-                    $multipart = [
-                        [
-                            'name'     => 'penjelasan_raw',
-                            'contents' => $request->penjelasan
-                        ],
-                        [
-                            'name'     => 'penjelasan',
-                            'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
-                        ]
+                    ]
+                ];
+            } else {
+                $multipart = [
+                    [
+                        'name'     => 'penjelasan_raw',
+                        'contents' => $request->penjelasan
+                    ],
+                    [
+                        'name'     => 'penjelasan',
+                        'contents' => $parsedown->text(nl2br(htmlspecialchars($request->penjelasan))),
+                    ]
                 ];
             }
 

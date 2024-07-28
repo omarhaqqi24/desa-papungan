@@ -7,6 +7,17 @@
 
     <title>Laravel</title>
 
+    <style>
+        .markdown-content ul {
+            list-style-type: disc; /* Bullet points */
+            margin-left: 20px; /* Indentasi */
+            padding-left: 20px; /* Padding */
+        }
+        .markdown-content li {
+            margin-bottom: 5px; /* Jarak antar item list */
+        }
+    </style>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -33,7 +44,7 @@
                 <x-headerArtikel subJudul="Kenali Desa Papungan " judul="Tentang Kami" />
                 <img src="{{ $data1->data->foto }}" alt="balai desa Papungan" class="rounded-lg w-full">
 
-                <div class="text-sm font-jakarta">{{ $data1->data->penjelasan }}</div>
+                <div class="text-sm font-jakarta markdown-content">{!! $data1->data->penjelasan !!}</div>
 
                 <x-headerArtikel subJudul="PROFIL DESA" judul="Visi dan Misi dari Desa Papungan" />
                 <div class="font-normal font-jakarta max-w-full lg:min-w-2xl" style="margin-top: 0.5rem;">
@@ -72,7 +83,7 @@
                 <x-cardSubjudul jenisJudul="PROFIL DESA" judul="Sejarah Desa Papungan"
                     deskripsi="" />
 
-                <div class="text-sm font-normal"> {!! $data2->data->penjelasan !!}</div>
+                <div class="text-sm font-normal markdown-content"> {!! $data2->data->penjelasan !!}</div>
             </div>
         </div>
     </div>
