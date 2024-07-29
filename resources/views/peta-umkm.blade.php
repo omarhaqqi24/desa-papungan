@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ env("APP_NAME") . " | Umkm Papungan" }}</title>
+    <title>{{ env('APP_NAME') . ' | Umkm Papungan' }}</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -21,8 +21,8 @@
 <body>
     <div id="map"></div>
     <div id='test' class="hidden">
-        <div class="mr-5 px-5">
-            <div id="carousel" class="carousel carousel-center max-h-44 snap-x snap-mandatory">
+        <div class="">
+            <div id="carousel" class="carousel carousel-center max-h-44 snap-x snap-mandatory rounded-2xl">
             </div>
             <p id="nama" class="font-bold text-2xl my-0"></p>
             <p id="jam-buka" class="font-normal text-lg text-gray-500"></p>
@@ -216,14 +216,13 @@
             foto.forEach(obj => {
                 const imgContainer = document.createElement('div');
                 imgContainer.classList.add('carousel-item');
-                // imgContainer.classList.add('mx-2');
-                // imgContainer.classList.add('snap-center');
+                imgContainer.classList.add('w-full');
+                imgContainer.classList.add('h-auto');
                 const img = document.createElement('img');
                 img.src = obj.foto;
+                img.classList.add('w-full');
+                img.classList.add('h-full');
                 img.classList.add('object-cover');
-                img.classList.add('snap-center');
-                img.classList.add('object-center');
-                img.classList.add('w-11/12');
                 imgContainer.appendChild(img);
                 carousel.appendChild(imgContainer);
             });
