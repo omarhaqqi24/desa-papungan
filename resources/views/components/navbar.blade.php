@@ -176,7 +176,7 @@
                         <li>
                             <details>
                                 <summary class="hover:text-primary ">UMKM Desa</summary>
-                                <ul class="bg-base-100 rounded-t-none p-2 self-stretch text-xs ">
+                                <ul class="bg-base-100 rounded-t-none p-2 self-stretch ">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'profil']) }}">Profil
                                             UMKM</a></li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta

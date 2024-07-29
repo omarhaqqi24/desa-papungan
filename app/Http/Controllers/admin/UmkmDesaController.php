@@ -18,7 +18,9 @@ class UmkmDesaController extends Controller
         $client = new Client();
 
         $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm?nama=$request->qUmkm");
+        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/data-desa/4");
 
+        $dataVideo = json_decode($response2->getBody());
         $umkm = json_decode($response1->getBody());
 
 
@@ -46,9 +48,50 @@ class UmkmDesaController extends Controller
                 'Rengginang', 'Jamu', 'Susu', 'Cenil', 'Sermier', 'Bakpia', 'Durian', 'lainnya'],
             "qUmkm" => $request->qUmkm,
             'paginatedItems' => $paginatedItems,
+            'dataVideo' => $dataVideo
         ]);
     }
 
+    public function updateVideoUmkm(Request $request)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $lastSlashPosition = strrpos($request->penjelasan, '/');
+            if ($lastSlashPosition !== false) {
+                $urlPart = substr($request->penjelasan, $lastSlashPosition);
+            } else {
+                $urlPart = $request->penjelasan;
+            }
+            
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001")."/api/data-desa/4?_method=PUT", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token
+                ],
+                'multipart' => [
+                    [
+                        'name' => 'penjelasan',
+                        'contents' => "https://www.youtube.com/embed".$urlPart
+                    ],
+                    [
+                        'name' => 'penjelasan_raw',
+                        'contents' => '-'
+                    ]
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+            
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
+    }
+    
     public function tambahUmkm(Request $request)
     {
         try {

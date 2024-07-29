@@ -79,7 +79,7 @@
                                 <div class="hidden md:block">Sebelumnya</div>
                             </button>
                         @else
-                            <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->previousPageUrl() }}"
+                            <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->previousPageUrl() }} #pengumuman"
                                 class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                 type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -102,7 +102,7 @@
                                         </span>
                                     </button>
                                 @else
-                                    <a href="{{ $url }}"
+                                    <a href="{{ $url }} #pengumuman"
                                         class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
                                         type="button">
                                         <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -114,7 +114,7 @@
                         </div>
             
                         @if ($paginatedItemsPengumuman->hasMorePages())
-                            <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->nextPageUrl() }}"
+                            <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->nextPageUrl() }} #pengumuman"
                                 class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                 type="button">
                                 <div class="hidden md:block">Berikutnya</div>
@@ -190,7 +190,7 @@
                                 <div class="hidden md:block">Sebelumnya</div>
                             </button>
                         @else
-                            <a href="{{ $paginatedItemsBerita->appends(request()->query())->previousPageUrl() }}"
+                            <a href="{{ $paginatedItemsBerita->appends(request()->query())->previousPageUrl() }} #berita"
                                 class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                 type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -213,7 +213,7 @@
                                         </span>
                                     </button>
                                 @else
-                                    <a href="{{ $url }}"
+                                    <a href="{{ $url }} #berita"
                                         class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
                                         type="button">
                                         <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -225,7 +225,7 @@
                         </div>
             
                         @if ($paginatedItemsBerita->hasMorePages())
-                            <a href="{{ $paginatedItemsBerita->appends(request()->query())->nextPageUrl() }}"
+                            <a href="{{ $paginatedItemsBerita->appends(request()->query())->nextPageUrl() }} #berita"
                                 class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                 type="button">
                                 <div class="hidden md:block">Berikutnya</div>

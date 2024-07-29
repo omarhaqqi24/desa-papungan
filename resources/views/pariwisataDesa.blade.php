@@ -37,9 +37,9 @@
             </div>
 
             {{-- Video --}}
-            <div class="relative">
-                <iframe class="mx-auto w-full md:w-[560px] h-[315px]" src="https://www.youtube.com/embed/jEVjgFkpzt4"
-                    title=""
+            <div class="relative" style="padding-bottom: 56.25%;">
+                <iframe class="mx-auto absolute top-0 left-0 w-full h-full rounded-lg"
+                    src="{{ $dataVideo->data->penjelasan }}" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
