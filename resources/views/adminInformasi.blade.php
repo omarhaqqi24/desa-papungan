@@ -5,12 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ env("APP_NAME") . " | Admin Informasi Desa" }}</title>
+    <title>{{ env('APP_NAME') . ' | Admin Informasi Desa' }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 
 </head>
@@ -1236,7 +1239,6 @@
         </div>
     </div>
     <script>
-
         function openModalUpdateBerita(id, data) {
             data = JSON.parse(data);
             const judulIn = document.getElementById('judul_brt_up');
