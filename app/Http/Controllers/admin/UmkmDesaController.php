@@ -41,6 +41,9 @@ class UmkmDesaController extends Controller
 
         return view('adminUmkm', [
             "umkm" => $umkm,
+            "jenises" => [
+                'Opak Gambir', 'Rempeyek', 'Kue Kering', 'Matari', 'Sambel Pecel', 'Warung Makan', 'Keripik',
+                'Rengginang', 'Jamu', 'Susu', 'Cenil', 'Sermier', 'Bakpia', 'Durian', 'lainnya'],
             "qUmkm" => $request->qUmkm,
             'paginatedItems' => $paginatedItems,
         ]);
@@ -51,6 +54,14 @@ class UmkmDesaController extends Controller
         try {
             $client = new Client();
             $token = Session::get('api-token');
+
+            $dataJenis = $request->jenis;
+            if (empty($dataJenis)) {
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm/$request->id/foto");
+                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Jenis UMKM harus diisi!']));
+
+                throw new BadResponseException('Jenis UMKM harus diisi!', $guzzleRequest, $guzzleResponse);
+            }
 
             foreach ($request->jenis as $jns) {
                 $jenises[] = [
@@ -128,6 +139,14 @@ class UmkmDesaController extends Controller
         try {
             $client = new Client();
             $token = Session::get('api-token');
+
+            $dataJenis = $request->jenis;
+            if (empty($dataJenis)) {
+                $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/umkm/$request->id/foto");
+                $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Jenis UMKM harus diisi!']));
+
+                throw new BadResponseException('Jenis UMKM harus diisi!', $guzzleRequest, $guzzleResponse);
+            }
 
             foreach ($request->jenis as $jns) {
                 $jenises[] = [
@@ -223,6 +242,10 @@ class UmkmDesaController extends Controller
                         'name' => 'foto',
                         'contents' => fopen($image->getPathname(), 'r'),
                         'filename' => $image->getClientOriginalName()
+                    ],
+                    [
+                        'name' => 'umkm_id',
+                        'contents' => $request->id
                     ]
                 ]
             ]);
@@ -231,8 +254,6 @@ class UmkmDesaController extends Controller
             return redirect()->back()->with('success', $responseBody->message);
 
         } catch (BadResponseException $e) {
-            dd($e);
-            return;
             $response = $e->getResponse();
             $result = json_decode($response->getBody());
 
