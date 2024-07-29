@@ -259,7 +259,7 @@
                             <div class="form-control gap-4">
                                 <label for="judul_brt" class="label-text font-semibold">Judul</label>
                                 <input type="text" name="judul" id="judul_brt" class="input input-bordered"
-                                    placeholder="(Tuliskan Judul)">
+                                    placeholder="Tuliskan judul">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                                 <input hidden type="text" name="id" id="id_brt">
@@ -267,7 +267,7 @@
                             <div class="form-control gap-4">
                                 <label for="nama_brt" class="label-text font-semibold">Penulis</label>
                                 <input type="text" name="nama" id="nama_brt" class="input input-bordered"
-                                    placeholder="(Tuliskan Nama)">
+                                    placeholder="Tuliskan Nama">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                             </div>
@@ -585,7 +585,7 @@
                             <div class="form-control gap-4">
                                 <label for="judul_png" class="label-text font-semibold">Judul</label>
                                 <input type="text" name="judul" id="judul_png" class="input input-bordered"
-                                    placeholder="(Tuliskan Nama)">
+                                    placeholder="Tuliskan judul">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                                 <input hidden type="text" name="id" id="id_png">
@@ -599,7 +599,7 @@
                             <div class="form-control gap-4">
                                 <label for="nama_png" class="label-text font-semibold">Penulis</label>
                                 <input type="text" name="nama" id="nama_png" class="input input-bordered"
-                                    placeholder="(Tuliskan Nama)">
+                                    placeholder="Tuliskan nama">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                             </div>

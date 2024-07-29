@@ -538,8 +538,8 @@
                                         }'
                                             class="">
                                             <option value="">Choose</option>
-                                            @foreach ($umkm->data->list as $item)
-                                                <option value="{{ $item->jenis }}">{{ $item->jenis }}</option>
+                                            @foreach ($jenises as $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
                                             @endforeach
                                         </select>
                                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
@@ -595,7 +595,7 @@
                                             diisi</p>
                                     </div>
                                     <div class="form-control gap-4 w-full">
-                                        <label for="long_umkm_up" class="label-text font-semibold">Longtitude</label>
+                                        <label for="long_umkm_up" class="label-text font-semibold">Longitude</label>
                                         <input type="text" name="long" id="long_umkm_up"
                                             class="input input-bordered">
                                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
@@ -638,7 +638,7 @@
                             <div class="form-control gap-6">
                                 <div class="form-control gap-4">
                                     <label for="nama_umkm" class="label-text font-semibold">Nama UMKM</label>
-                                    <input type="text" name="nama" id="nama_umkm"
+                                    <input type="text" name="nama" id="nama_umkm" value="{{ old('nama') }}"
                                         class="input input-bordered ">
                                     <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                         diisi
@@ -646,7 +646,7 @@
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="alamat_umkm" class="label-text font-semibold">Alamat UMKM</label>
-                                    <input type="text" name="alamat" id="alamat_umkm"
+                                    <input type="text" name="alamat" id="alamat_umkm" value="{{ old('alamat') }}"
                                         class="input input-bordered ">
                                     <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                         diisi
@@ -667,8 +667,8 @@
                                         }'
                                             class="">
                                             <option value="">Choose</option>
-                                            @foreach ($umkm->data->list as $item)
-                                                <option value="{{ $item->jenis }}">{{ $item->jenis }}</option>
+                                            @foreach ($jenises as $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
                                             @endforeach
                                         </select>
                                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
@@ -676,7 +676,7 @@
                                     </div>
                                     <div class="form-control gap-4 w-full">
                                         <label for="jam_buka_umkm" class="label-text font-semibold">Jam Buka</label>
-                                        <input type="text" name="jam_buka" id="jam_buka_umkm"
+                                        <input type="text" name="jam_buka" id="jam_buka_umkm" value="{{ old('jam_buka') }}"
                                             class="input input-bordered">
                                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                             diisi</p>
@@ -684,7 +684,7 @@
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="kontak_umkm" class="label-text font-semibold">Kontak</label>
-                                    <input type="text" name="kontak" id="kontak_umkm"
+                                    <input type="text" name="kontak" id="kontak_umkm" value="{{ old('kontak') }}"
                                         class="input input-bordered">
                                     <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                         diisi
@@ -692,39 +692,39 @@
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="bpom_umkm" class="label-text font-semibold">Nomor BPOM</label>
-                                    <input type="text" name="no_bpom" id="bpom_umkm"
+                                    <input type="text" name="no_bpom" id="bpom_umkm" value="{{ old('no_bpom') }}"
                                         class="input input-bordered">
                                     <p class="label-text text-gray-500">opsional</p>
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="halal_umkm" class="label-text font-semibold">Nomor Halal</label>
-                                    <input type="text" name="no_halal" id="halal_umkm"
+                                    <input type="text" name="no_halal" id="halal_umkm" value="{{ old('no_halal') }}"
                                         class="input input-bordered">
                                     <p class="label-text text-gray-500">opsional</p>
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="nib_umkm" class="label-text font-semibold">Nomor NIB</label>
-                                    <input type="text" name="no_nib" id="nib_umkm"
+                                    <input type="text" name="no_nib" id="nib_umkm" value="{{ old('no_nib') }}"
                                         class="input input-bordered">
                                     <p class="label-text text-gray-500">opsional</p>
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="pirt_umkm" class="label-text font-semibold">Nomor P-IRT</label>
-                                    <input type="text" name="no_pirt" id="pirt_umkm"
+                                    <input type="text" name="no_pirt" id="pirt_umkm" value="{{ old('no_pirt') }}"
                                         class="input input-bordered">
                                     <p class="label-text text-gray-500">opsional</p>
                                 </div>
                                 <div class="flex gap-4 w-full">
                                     <div class="form-control gap-4 w-full">
                                         <label for="lat_umkm" class="label-text font-semibold">Latitude</label>
-                                        <input type="text" name="lat" id="lat_umkm"
+                                        <input type="text" name="lat" id="lat_umkm" value="{{ old('lat') }}"
                                             class="input input-bordered">
                                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                             diisi</p>
                                     </div>
                                     <div class="form-control gap-4 w-full">
-                                        <label for="long_umkm" class="label-text font-semibold">Longtitude</label>
-                                        <input type="text" name="long" id="long_umkm"
+                                        <label for="long_umkm" class="label-text font-semibold">Longitude</label>
+                                        <input type="text" name="long" id="long_umkm" value="{{ old('long') }}"
                                             class="input input-bordered">
                                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                             diisi</p>
@@ -732,7 +732,7 @@
                                 </div>
                                 <div class="form-control gap-4">
                                     <label for="desc_umkm" class="label-text font-semibold">Deskripsi</label>
-                                    <textarea name="deskripsi" id="desc_umkm" class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                                    <textarea name="deskripsi" id="desc_umkm" value="{{ old('deskripsi') }}" class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
                                     <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                                         diisi
                                     </p>
