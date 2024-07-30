@@ -369,7 +369,7 @@
         <!-- Show Sejarah Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Sejarah Desa Papungan</div>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari sejarah desa yang ditampilkan</div>
 
             <!-- Form Show Sejarah Desa -->
             <div class="form-control gap-6">

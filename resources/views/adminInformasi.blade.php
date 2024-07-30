@@ -56,7 +56,7 @@
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Daftar Berita dan Pengumuman</div>
 
-            <form action="" method="get">
+            <form action="#cari-berita" method="get">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -70,7 +70,7 @@
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah daftar berita ditampilkan</div>
 
             <!-- Table Berita Desa -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
@@ -361,7 +361,7 @@
                 </button>
             </div>
 
-            <form action="" method="get">
+            <form action="#cari-pengumuman" method="get">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -375,10 +375,10 @@
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah daftar pengumuman ditampilkan</div>
 
             <!-- Table Pengumuman Desa -->
-            <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
+            <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6" >
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
                         class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -640,7 +640,7 @@
 
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Daftar Permintaan</div>
-            <form action="" method="get">
+            <form action="#cari-berita-req" method="get">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -654,9 +654,9 @@
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah daftar permintaan berita yang akan ditampilkan</div>
             <!-- Table Permintaan Berita -->
-            <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
+            <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6" >
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption
                         class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -835,7 +835,7 @@
             </div>
             <!-- End -->
 
-            <form action="" method="get" class="mt-6">
+            <form action="#cari-pengumuman-req" method="get" class="mt-6">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -849,7 +849,7 @@
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah daftar permintaan pengumuman yang akan ditampilkan</div>
             <!-- Table Permintaan Pengumuman -->
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -1016,9 +1016,9 @@
             <hr class="h-px my-8 bg-gray-300 border-0">
         </div>
 
-        <div class="w-full">
+        <div class="w-full" >
             <div class="text-3xl font-semibold text-darkText">Daftar Aspirasi</div>
-            <form action="" method="get">
+            <form action="#cari-aspirasi" method="get">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -1032,7 +1032,7 @@
                         class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                 </div>
             </form>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah daftar aspirasi</div>
             <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     id="table-aspirasi">
