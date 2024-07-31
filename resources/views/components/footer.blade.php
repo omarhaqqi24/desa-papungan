@@ -12,7 +12,7 @@
         </aside>
         <nav class="font-medium">
             <h6 class="footer-title font-semibold">Tautan</h6>
-            <a class="link link-hover" href="{{ route('profilDesa.index') }}">Profil Desa</a>
+            <a class="link link-hover" href="{{route('profilDesa.index') }}">Profil Desa</a>
             <a class="link link-hover" href="{{route('pemerintahan.index')}}">Pemerintahan</a>
             <a class="link link-hover" href="{{route('informasi.index')}}">Informasi</a>
             <a class="link link-hover" href="{{route('umkm.index')}}">UMKM Desa</a>
@@ -28,6 +28,9 @@
             <li class="p-1 flex items-center text-center gap-3">
                 <img src="{{asset('img/emailLogo.svg')}}" alt="emailLogo" class="w-4 h-4">
                 <div class="">desapapungan@gmail.com</div>
+            </li>
+            <li class="p-1 flex items-center text-center gap-3">
+                <a class="link link-hover" target="_blank" href="https://wa.me/+6285755939969">Hubungi kami di WhatsApp</a>
             </li>
         </ul>
     </div>
