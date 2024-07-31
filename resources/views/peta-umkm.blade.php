@@ -22,7 +22,7 @@
     <div id="map"></div>
     <div id='test' class="hidden">
         <div class="">
-            <div id="carousel" class="carousel carousel-center max-h-44 snap-x snap-mandatory rounded-2xl">
+            <div id="carousel" class="carousel carousel-center aspect-square snap-x snap-mandatory rounded-2xl">
             </div>
             <p id="nama" class="font-bold text-2xl my-0"></p>
             <p id="jam-buka" class="font-normal text-lg text-gray-500"></p>
@@ -222,7 +222,8 @@
                 img.src = obj.foto;
                 img.classList.add('w-full');
                 img.classList.add('h-full');
-                img.classList.add('object-cover');
+                img.classList.add('bg-black');
+                img.classList.add('object-contain');
                 imgContainer.appendChild(img);
                 carousel.appendChild(imgContainer);
             });
