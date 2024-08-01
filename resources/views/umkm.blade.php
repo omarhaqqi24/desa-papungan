@@ -34,8 +34,7 @@
                 berikut untuk mengetahui bagaimana masyarakat Desa Papungan mengembangkan potensi usaha mereka!</div>
 
             {{-- Video --}}
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/0qdpec8USmA?si=aCLVXLXC3n8n3fUf"
-                title="YouTube video player"
+            <iframe width="560" height="315" src="{{ $videoUmkm->data->penjelasan }}" title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                 class="mx-auto w-full md:w-[560px] aspect-video rounded-lg "></iframe>
