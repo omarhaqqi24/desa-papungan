@@ -255,7 +255,7 @@
             removeAllAnimationClassFromMap();
         });
 
-        const mediaQueryList = window.matchMedia("(min-width: 767px)");
+        const mediaQueryList = window.matchMedia("(min-width: 687px)");
 
         mediaQueryList.addEventListener("change", (event) => onMediaQueryChange(event));
 
@@ -286,7 +286,7 @@
             const popupContainer = document.querySelector(".leaflet-popup");
 
             // Check screen width for responsiveness
-            const isSmallScreen = window.innerWidth <= 767;
+            const isSmallScreen = window.innerWidth <= 687;
 
             let paddingLeft = 0;
             let paddingTop = 10;
