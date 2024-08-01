@@ -73,7 +73,7 @@ body {
     display: none;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 687px) {
     .leaflet-pane,
     .leaflet-fixed-pane {
         width: auto;
