@@ -46,11 +46,12 @@
                 class="mx-auto w-full md:w-[560px] aspect-video rounded-lg "></iframe>
 
             {{-- Carrousel foto --}}
-            <div class="carousel carousel-center rounded-box space-x-3 w-full border border-neutral">
+            <div
+                class="carousel carousel-center rounded-box space-x-1 w-full border border-neutral flex justify-items-center">
 
                 @foreach ($pariwisata->data as $foto)
-                    <div class="carousel-item w-44 h-auto md:w-44 object-cover object-center">
-                        <img src="{{ $foto->foto }}" alt="-" class="" />
+                    <div class="carousel-item w-44 h-32 md:h-40">
+                        <img src="{{ $foto->foto }}" alt="-" class="object-contain mx-auto" />
                     </div>
                 @endforeach
 
