@@ -10,7 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
@@ -56,7 +59,7 @@
 
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Video Profil UMKM</div>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil UMKM Desa yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah tautan dari Video Profil UMKM Desa Papungan</div>
 
             <!-- Form Show Profil Desa -->
             <div class="form-control gap-6">
@@ -117,10 +120,10 @@
                 <hr class="h-px my-8 bg-gray-300 border-0">
             </div>
 
-            <div class="w-full">
+            <div class="w-full" id="cari-umkm">
                 <div class="text-3xl font-semibold text-darkText">Data UMKM</div>
 
-                <form action="" method="get">
+                <form action="#cari-umkm" method="get">
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -129,13 +132,13 @@
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" placeholder="Pencarian" name="qUmkm" id="cari-umkm"
+                        <input type="search" placeholder="Pencarian" name="qUmkm" 
                             value="{{ request()->input('qUmkm') }}"
                             class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
                     </div>
                 </form>
 
-                <div class="py-2 text-gray-500">Berikut adalah penjelasan dari struktur organisasi yang ditampilkan
+                <div class="py-2 text-gray-500" id="daftar-umkm">Berikut adalah data UMKM yang ditampilkan
                 </div>
                 <!-- Table UMKM -->
                 <div class="relative overflow-x-auto border border-gray-300 rounded-2xl mt-6">
@@ -158,9 +161,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @php
+                            $i = 1 + ($paginatedItems->currentPage() - 1) * $paginatedItems->perPage();
+                        @endphp
                             @foreach ($paginatedItems as $item)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4">{{ $i++ }}</td>
                                     <td class="px-6 py-4">{{ $item->nama }}</td>
                                     <td class="px-6 py-4">
                                         @foreach ($item->jenis as $jenis)
@@ -298,7 +304,7 @@
                                         Previous
                                     </button>
                                 @else
-                                    <a href="{{ $paginatedItems->previousPageUrl() }}"
+                                    <a href="{{ $paginatedItems->previousPageUrl() }} #daftar-umkm"
                                         class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                         type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -323,7 +329,7 @@
                                                 </span>
                                             </button>
                                         @else
-                                            <a href="{{ $url }}"
+                                            <a href="{{ $url }} #daftar-umkm"
                                                 class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
                                                 type="button">
                                                 <span
@@ -336,7 +342,7 @@
                                 </div>
 
                                 @if ($paginatedItems->hasMorePages())
-                                    <a href="{{ $paginatedItems->nextPageUrl() }}"
+                                    <a href="{{ $paginatedItems->nextPageUrl() }} #daftar-umkm"
                                         class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                         type="button">
                                         Next
