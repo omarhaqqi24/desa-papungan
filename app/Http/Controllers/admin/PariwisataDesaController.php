@@ -19,7 +19,9 @@ class PariwisataDesaController extends Controller
         $client = new Client();
 
         $response1 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/pariwisata");
+        $response2 = $client->request('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/data-desa/5");
 
+        $dataVideo = json_decode($response2->getBody());
         $pariwisata = json_decode($response1->getBody());
 
 
@@ -41,8 +43,49 @@ class PariwisataDesaController extends Controller
         $paginatedItems->setPath($request->url());
         return view('adminPariwisata', [
             "pariwisata" => $pariwisata,
-            "paginatedItems" => $paginatedItems
+            "paginatedItems" => $paginatedItems,
+            "dataVideo" => $dataVideo
         ]);
+    }
+
+    public function updateVideoPariwisata(Request $request)
+    {
+        try {
+            $client = new Client();
+            $token = Session::get('api-token');
+
+            $lastSlashPosition = strrpos($request->penjelasan, '/');
+            if ($lastSlashPosition !== false) {
+                $urlPart = substr($request->penjelasan, $lastSlashPosition);
+            } else {
+                $urlPart = $request->penjelasan;
+            }
+            
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001")."/api/data-desa/5?_method=PUT", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token
+                ],
+                'multipart' => [
+                    [
+                        'name' => 'penjelasan',
+                        'contents' => "https://www.youtube.com/embed".$urlPart
+                    ],
+                    [
+                        'name' => 'penjelasan_raw',
+                        'contents' => '-'
+                    ]
+                ]
+            ]);
+
+            $responseBody = json_decode($response->getBody());
+            return redirect()->back()->with('success', $responseBody->message);
+
+        } catch (BadResponseException $e) {
+            $response = $e->getResponse();
+            $result = json_decode($response->getBody());
+            
+            return redirect()->back()->withErrors($result->message)->withInput($request->all());
+        }
     }
 
     public function tambahPariwisata(Request $request)

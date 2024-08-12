@@ -14,9 +14,9 @@ class JabatanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Jabatan::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         Jabatan::create([
             'nama' => 'Kepala Desa',
@@ -48,6 +48,10 @@ class JabatanSeeder extends Seeder
         ]);
         Jabatan::create([
             'nama' => 'Staf Perencanaan dan Umum',
+            'order' => 5
+        ]);
+        Jabatan::create([
+            'nama' => 'Staf Kesejahteraan dan Pelayanan',
             'order' => 5
         ]);
     }

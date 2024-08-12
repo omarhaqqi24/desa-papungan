@@ -39,7 +39,7 @@ Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi
 
 Route::get('/peta-umkm', function() {
     return view('peta-umkm');
-});
+})->name('peta.umkm');
 
 Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
@@ -122,7 +122,8 @@ Route::put('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'c
 Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'deleteBerita'])
     ->middleware('checkToken')
     ->name('admin.informasi.berita.destroy');
-Route::delete('/admin/informasi/pengumuman/{id}', [InformasiDesaController::class, 'deletePengumuman'])
+Route::delete('/admin/informasi/pengumuman/{id}',
+ [InformasiDesaController::class, 'deletePengumuman'])
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.destroy');
 Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
@@ -136,6 +137,9 @@ Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])
 Route::post('/admin/umkm', [UmkmDesaController::class, 'tambahUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.create');
+Route::put('/admin/umkm/video', [UmkmDesaController::class, 'updateVideoUmkm'])
+    ->middleware('checkToken')
+    ->name('admin.umkm-desa.video.update');
 Route::put('/admin/umkm', [UmkmDesaController::class, 'updateUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.update');
@@ -154,6 +158,9 @@ Route::get('/admin/pariwisata', [PariwisataDesaController::class, 'index'])->mid
 Route::post('/admin/pariwisata', [PariwisataDesaController::class, 'tambahPariwisata'])
     ->middleware('checkToken')
     ->name('admin.pariwisata.create');
+Route::put('/admin/pariwisata/video', [PariwisataDesaController::class, 'updateVideoPariwisata'])
+    ->middleware('checkToken')
+    ->name('admin.pariwisata.video.update');
 Route::put('/admin/pariwisata', [PariwisataDesaController::class, 'updatePariwisata'])
     ->middleware('checkToken')
     ->name('admin.pariwisata.update');
