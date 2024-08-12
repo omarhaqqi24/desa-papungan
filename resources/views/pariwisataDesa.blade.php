@@ -10,7 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 
 </head>
@@ -37,12 +40,10 @@
             </div>
 
             {{-- Video --}}
-            <div class="relative" style="padding-bottom: 56.25%;">
-                <iframe class="mx-auto absolute top-0 left-0 w-full h-full rounded-lg"
-                    src="{{ $dataVideo->data->penjelasan }}" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
+            <iframe width="560" height="315" src="{{ $dataVideo->data->penjelasan }}" title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                class="mx-auto w-full md:w-[560px] aspect-video rounded-lg "></iframe>
 
             {{-- Carrousel foto --}}
             <div
