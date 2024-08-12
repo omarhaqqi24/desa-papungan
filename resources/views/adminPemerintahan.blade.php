@@ -361,7 +361,7 @@
         <!-- Show Lembaga Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Lembaga Desa</div>
-            <form action="" method="get">
+            <form action="#cari-lembaga" method="get">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
