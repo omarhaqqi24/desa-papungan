@@ -5,12 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{ env('APP_NAME') . ' | Admin Informasi Desa' }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 
 </head>
@@ -259,7 +262,7 @@
                             <div class="form-control gap-4">
                                 <label for="judul_brt" class="label-text font-semibold">Judul</label>
                                 <input type="text" name="judul" id="judul_brt" class="input input-bordered"
-                                    placeholder="(Tuliskan Judul)">
+                                    placeholder="Tuliskan judul">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                                 <input hidden type="text" name="id" id="id_brt">
@@ -267,7 +270,7 @@
                             <div class="form-control gap-4">
                                 <label for="nama_brt" class="label-text font-semibold">Penulis</label>
                                 <input type="text" name="nama" id="nama_brt" class="input input-bordered"
-                                    placeholder="(Tuliskan Nama)">
+                                    placeholder="Tuliskan Nama">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                             </div>
@@ -585,7 +588,7 @@
                             <div class="form-control gap-4">
                                 <label for="judul_png" class="label-text font-semibold">Judul</label>
                                 <input type="text" name="judul" id="judul_png" class="input input-bordered"
-                                    placeholder="(Tuliskan Nama)">
+                                    placeholder="Tuliskan judul">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                                 <input hidden type="text" name="id" id="id_png">
@@ -599,7 +602,7 @@
                             <div class="form-control gap-4">
                                 <label for="nama_png" class="label-text font-semibold">Penulis</label>
                                 <input type="text" name="nama" id="nama_png" class="input input-bordered"
-                                    placeholder="(Tuliskan Nama)">
+                                    placeholder="Tuliskan nama">
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib diisi
                                 </p>
                             </div>
@@ -1236,7 +1239,6 @@
         </div>
     </div>
     <script>
-
         function openModalUpdateBerita(id, data) {
             data = JSON.parse(data);
             const judulIn = document.getElementById('judul_brt_up');
