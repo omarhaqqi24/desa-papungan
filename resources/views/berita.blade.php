@@ -10,7 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 
 </head>
@@ -29,10 +32,10 @@
                 <li class="truncate">{{ $berita->data->judul }}</li>
             </ul>
         </div>
-        <div class="flex flex-row items-start">
+        <div class="flex flex-row items-center ">
             <!-- Judul -->
-            <div class="space-y-5 md:basis-3/4 text-pretty">
-                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">{{ $berita->data->judul }}
+            <div class="space-y-5 md:basis-3/4 text-pretty ">
+                <div class=" text-black text-2xl md:text-4xl font-semibold text-left font-jakarta">{{ $berita->data->judul }}
                 </div>
                 <!-- Tanggal and Admin info -->
                 <div
@@ -48,13 +51,13 @@
                     </div>
                 </div>
                 <!-- berita img -->
-                <img src="{{ $berita->data->foto }}" alt="" class="max-h-96 min-w-full object-cover">
+                <img src="{{ $berita->data->foto }}" alt="" class="max-h-96 min-w-full object-cover rounded-lg ">
                 <!-- isi berita -->
                 <p class="text-lg">{!! nl2br(e($berita->data->isi)) !!}</p>
             </div>
 
             <!-- Side content -->
-            <div class="basis-1/4 pl-10 sticky top-40">
+            <div class="basis-1/4 md:pl-10 sticky top-40">
                 <div class="hidden md:block text-lg font-semibold font-jakarta max-h-96">
                     Lihat Informasi Lainnya
                     <div class="w-full border-b-2 border-gray-400 my-2"></div>

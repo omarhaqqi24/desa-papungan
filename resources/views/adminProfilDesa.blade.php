@@ -10,7 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 
@@ -368,7 +371,7 @@
         <!-- Show Sejarah Desa -->
         <div class="w-full">
             <div class="text-3xl font-semibold text-darkText">Sejarah Desa Papungan</div>
-            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari Profil desa yang ditampilkan</div>
+            <div class="py-2 text-gray-500">Berikut adalah penjelasan dari sejarah desa yang ditampilkan</div>
 
             <!-- Form Show Sejarah Desa -->
             <div class="form-control gap-6">

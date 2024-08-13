@@ -10,7 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 
 </head>
@@ -62,7 +65,7 @@
             <div
                 class="flex flex-wrap md:flex-nowrap space-y-2 md:space-y-0 items-center space-x-2 md:w-1/2 lg:w-1/4 hover:border-gray-400">
                 <label class="input input-bordered flex items-center gap-2 border-gray-400 bg-white">
-                    <input name="nama" type="search" class="grow" placeholder="Search" />
+                    <input name="nama" type="search" class="grow" placeholder="Search"/>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                         class="h-4 w-4 opacity-70">
                         <path fill-rule="evenodd"
@@ -141,7 +144,7 @@
                             <div class="hidden md:block">Sebelumnya</div>
                         </button>
                     @else
-                        <a href="{{ $paginatedItems->previousPageUrl() }}"
+                        <a href="{{ $paginatedItems->previousPageUrl() }} #daftarumkm"
                             class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                             type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -165,7 +168,7 @@
                                     </span>
                                 </button>
                             @else
-                                <a href="{{ $url }}"
+                                <a href="{{ $url }} #daftarumkm"
                                     class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
                                     type="button">
                                     <span
@@ -178,7 +181,7 @@
                     </div>
 
                     @if ($paginatedItems->hasMorePages())
-                        <a href="{{ $paginatedItems->nextPageUrl() }}"
+                        <a href="{{ $paginatedItems->nextPageUrl() }} #daftarumkm"
                             class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                             type="button">
                             <div class="hidden md:block">Berikutnya</div>

@@ -10,7 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 
 </head>
@@ -43,11 +46,12 @@
                 class="mx-auto w-full md:w-[560px] aspect-video rounded-lg "></iframe>
 
             {{-- Carrousel foto --}}
-            <div class="carousel carousel-center rounded-box space-x-3 w-full border border-neutral">
+            <div
+                class="carousel carousel-center rounded-box space-x-1 w-full border border-neutral flex justify-items-center">
 
                 @foreach ($pariwisata->data as $foto)
-                    <div class="carousel-item w-44 h-auto md:w-44 object-cover object-center">
-                        <img src="{{ $foto->foto }}" alt="-" class="" />
+                    <div class="carousel-item w-44 h-32 md:h-40">
+                        <img src="{{ $foto->foto }}" alt="-" class="object-contain mx-auto" />
                     </div>
                 @endforeach
 
