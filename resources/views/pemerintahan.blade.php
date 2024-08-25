@@ -10,10 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
+
     @vite('resources/css/app.css')
 
 </head>
@@ -45,10 +42,10 @@
             <div id="perangkatdesa"></div>
             <x-cardSubjudul jenisJudul="DAFTAR" judul="Perangkat Desa"
                 deskripsi="Berikut adalah daftar nama-nama Perangkat Desa beserta dengan foto dan jabatannya." />
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
+            <div class="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-auto p-4">
 
                 @foreach ($perangkatDesas->data->resource as $perangkatDesa)
-                    <div class="bg-white rounded-lg shadow-md p-5 h-64 w-40 text-center xl:w-64 xl:h-80">
+                    <div class=" mx-auto bg-white rounded-lg shadow-md p-5 h-64 w-48 text-center xl:w-64 xl:h-80">
                         <img src="{{$perangkatDesa->foto}}" alt="kepala Desa"
                             class="w-40 h-40 object-cover mx-auto rounded-lg xl:w-56 xl:h-60">
                         <h3 class="text-lg font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap">
