@@ -90,43 +90,63 @@
         </form>
 
         <!-- Tabel umkm -->
-        <x-table.table :headers="['Nama UMKM', 'Jenis Produk', 'Alamat', 'Ijin Label', 'Detail UMKM']" jenisTabel="Daftar UMKM">
-            @php
-                $i = 1 + ($paginatedItems->currentPage() - 1) * $paginatedItems->perPage();
-            @endphp
-            @foreach ($paginatedItems as $umkm)
-                <tr class="border-b">
-                    <td class="p-2 text-center">{{ $i++ }}</td>
-                    <td class="p-2 text-left">{{ $umkm->nama }}</td>
-                    <td class="p-2 text-left">
-                        @php
-                            $jenisCollection = collect($umkm->jenis);
-                            $jenisString = $jenisCollection->pluck('jenis')->unique()->implode(', ');
-                        @endphp
-                        {{ $jenisString }}
-                    </td>
-                    <td class="p-2 text-left">{{ $umkm->alamat }}</td>
-                    <td class="p-2 text-center lg:text-left ">
-                        @if ($umkm->no_pirt != '-')
-                            <div class="badge bg-indigo-100 text-indigo-400 font-semibold border-0 text-xs ">P-IRT
-                            </div>
-                        @endif
-                        @if ($umkm->no_nib != '-')
-                            <div class="badge bg-blue-100 text-blue-400 font-semibold border-0 text-xs ">NIB</div>
-                        @endif
-                        @if ($umkm->no_bpom != '-')
-                            <div class="badge bg-pink-100 text-pink-400 font-semibold border-0 text-xs ">BPOM</div>
-                        @endif
-                        @if ($umkm->no_halal != '-')
-                            <div class="badge bg-green-100 text-green-400 font-semibold border-0 text-xs ">HALAL
-                            </div>
-                        @endif
-                    </td>
-                    <td class="p-2 "> <a class="btn btn-link" href="#petaumkm"
-                            data-umkm-id="{{ $umkm->id }}">Detail UMKM</a></td>
-                </tr>
-            @endforeach
-        </x-table.table>
+        <div class=" md:hidden">
+            <x-table.table :headers="['Nama UMKM', 'Detail UMKM']" jenisTabel="Daftar UMKM">
+                @php
+                    $i = 1 + ($paginatedItems->currentPage() - 1) * $paginatedItems->perPage();
+                @endphp
+                @foreach ($paginatedItems as $umkm)
+                    <tr class="border-b">
+                        <td class="p-2 text-center">{{ $i++ }}</td>
+                        <td class="p-2 text-left">{{ $umkm->nama }}</td>
+                        
+                        
+                        <td class="p-2 "> <a class="btn btn-link" href="#petaumkm"
+                                data-umkm-id="{{ $umkm->id }}">Detail UMKM</a></td>
+                    </tr>
+                @endforeach
+            </x-table.table>
+        </div>
+
+        <div class="hidden md:block">
+            <x-table.table :headers="['Nama UMKM', 'Jenis Produk', 'Alamat', 'Ijin Label', 'Detail UMKM']" jenisTabel="Daftar UMKM">
+                @php
+                    $i = 1 + ($paginatedItems->currentPage() - 1) * $paginatedItems->perPage();
+                @endphp
+                @foreach ($paginatedItems as $umkm)
+                    <tr class="border-b">
+                        <td class="p-2 text-center">{{ $i++ }}</td>
+                        <td class="p-2 text-left">{{ $umkm->nama }}</td>
+                        <td class="p-2 text-left">
+                            @php
+                                $jenisCollection = collect($umkm->jenis);
+                                $jenisString = $jenisCollection->pluck('jenis')->unique()->implode(', ');
+                            @endphp
+                            {{ $jenisString }}
+                        </td>
+                        <td class="p-2 text-left">{{ $umkm->alamat }}</td>
+                        <td class="p-2 text-center lg:text-left ">
+                            @if ($umkm->no_pirt != '-')
+                                <div class="badge bg-indigo-100 text-indigo-400 font-semibold border-0 text-xs ">P-IRT
+                                </div>
+                            @endif
+                            @if ($umkm->no_nib != '-')
+                                <div class="badge bg-blue-100 text-blue-400 font-semibold border-0 text-xs ">NIB</div>
+                            @endif
+                            @if ($umkm->no_bpom != '-')
+                                <div class="badge bg-pink-100 text-pink-400 font-semibold border-0 text-xs ">BPOM</div>
+                            @endif
+                            @if ($umkm->no_halal != '-')
+                                <div class="badge bg-green-100 text-green-400 font-semibold border-0 text-xs ">HALAL
+                                </div>
+                            @endif
+                        </td>
+                        <td class="p-2 "> <a class="btn btn-link" href="#petaumkm"
+                                data-umkm-id="{{ $umkm->id }}">Detail UMKM</a></td>
+                    </tr>
+                @endforeach
+            </x-table.table>
+        </div>
 
         <!-- Pagination Links -->
         <section class="px-4 py-6 bg-white border-t">
