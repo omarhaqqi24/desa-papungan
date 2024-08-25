@@ -30,7 +30,7 @@
                 <div class="">desapapungan@gmail.com</div>
             </li>
             <li class="p-1 flex items-center text-center gap-3">
-                <a class="link link-hover" target="_blank" href="https://wa.me/+6285755939969">Hubungi kami di WhatsApp</a>
+                <a class="link link-hover" target="_blank" href="https://wa.me/+6285856665522">Hubungi kami di WhatsApp</a>
             </li>
         </ul>
     </div>
