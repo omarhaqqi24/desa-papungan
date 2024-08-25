@@ -47,8 +47,8 @@
                     deskripsi="Berikut pengumuman penting bagi seluruh warga Desa Papungan. Jangan lupa untuk selalu membaca pengumuman dan menandai kalender Anda agar tidak melewatkan informasi penting di hari-hari mendatang!" />
                 
                 @foreach ($paginatedItemsPengumuman as $item)
-                    <div class="flex flex-col justify-start items-end gap-1.5">
-                        <div class="self-stretch flex flex-col justify-start items-start gap-1">
+                    <a href="{{ url('pengumuman/' . $item->id) }}" class="flex flex-col justify-start items-end gap-1.5 hover:bg-gray-300 rounded-md p-2  ">
+                        <div class="self-stretch flex flex-col justify-start items-start gap-1 ">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
                             <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
                             <div class="relative font-normal font-jakarta">
@@ -57,14 +57,14 @@
                                 </div>
                             </div>
                             <div class="w-full flex justify-end mt-4 mb-2 pr-2">
-                                <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
+                                <div  class="text-blue-500 flex items-center">
                                     Selengkapnya
                                     <img src="{{ asset('/img/arrow-selengkapnya.svg') }}" alt="" class="ml-2">
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <div class="w-full border-b-2 border-gray-400 my-2"></div>
-                    </div>
+                    </a>
                 @endforeach
                 <!-- Pagination Section -->
                 <section class="px-4 py-6  border-t">
@@ -82,7 +82,7 @@
                                     <div class="hidden md:block">Sebelumnya</div>
                                 </button>
                             @else
-                                <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->previousPageUrl() }} #pengumuman"
+                                <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->previousPageUrl() }}#pengumuman"
                                     class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                     type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -118,7 +118,7 @@
                                 @endforeach
                             </div>
                             <div class="flex-col text-center items-center gap-2 lg:hidden">
-                                <div class="">{{ $paginatedItemsBerita->currentPage() }} dari {{ $paginatedItemsBerita->lastPage() }}</div>
+                                <div class="">{{ $paginatedItemsPengumuman->currentPage() }} dari {{ $paginatedItemsPengumuman->lastPage() }}</div>
                        </div>
                             @if ($paginatedItemsPengumuman->hasMorePages())
                                 <a href="{{ $paginatedItemsPengumuman->appends(request()->query())->nextPageUrl() }} #pengumuman"
@@ -153,8 +153,8 @@
                     deskripsi="Berikut adalah Berita Terkini dari Desa Papungan. Simak informasi terbaru dan penting berikut untuk tetap terhubung dengan perkembangan desa kita!" />
 
                 @foreach ($paginatedItemsBerita as $item)
-                    <div class="flex flex-col justify-start items-end gap-1.5">
-                        <div class="self-stretch flex flex-col justify-start items-start gap-1">
+                    <a href="{{ url('berita/' . $item->id) }}" class="flex flex-col justify-start items-end gap-1.5 border  hover:bg-gray-300 rounded-md shadow-md">
+                        <div class="self-stretch flex flex-col justify-start items-start gap-1 p-2">
                             <div class="text-xl font-semibold font-jakarta">{{ $item->judul }}</div>
                             <div class="text-gray-700 font-normal font-jakarta">{{ $item->createdAt }}</div>
                             <div class="flex flex-col lg:flex-row gap-4">
@@ -166,19 +166,19 @@
                                     </div>
                                     <div class="w-full flex justify-end mt-2">
                                         <div class="w-full flex justify-end mt-6 mb-4 pr-2">
-                                            <a href="{{ url('berita/' . $item->id) }}"
+                                            <div
                                                 class="text-blue-500 flex items-center">
                                                 Selengkapnya
                                                 <img src="{{ asset('/img/arrow-selengkapnya.svg') }}" alt=""
                                                     class="ml-2">
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full border-b-2 border-gray-400 my-2"></div>
+                            <div class="w-full border-b-2 border-gray-400 my-2 "></div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
                 <!-- Pagination Section -->
                 <section class="px-4 py-6 border-t">
@@ -196,7 +196,7 @@
                                     <div class="hidden md:block">Sebelumnya</div>
                                 </button>
                             @else
-                                <a href="{{ $paginatedItemsBerita->appends(request()->query())->previousPageUrl() }} #berita"
+                                <a href="{{ $paginatedItemsBerita->appends(request()->query())->previousPageUrl() }}#berita"
                                     class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                     type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
