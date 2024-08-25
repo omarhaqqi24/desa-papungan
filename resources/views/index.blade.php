@@ -90,20 +90,20 @@
             <div class=" text-black text-xl md:text-2xl font-semibold font-jakarta">Pengumuman Terkini</div>
             <?php $iter = 0; ?>
             @foreach ($pengumuman->data as $item)
-                <div class="CardPengumuman p-10">
+                <a href="{{ url('pengumuman/' . $item->id) }}" class="CardPengumuman p-10 hover:bg-gray-300 duration-200 rounded-md">
                     <h1 class="card-title ">{{ $item->judul }}</h1>
                     <p class="text-neutral font-medium text-lg font-jakarta">{{ $item->createdAt }}</p>
                     <p class="text-black font-medium text-lg font-jakarta line-clamp-3 mt-4">{{ $item->isi }}
                     </p>
                     <div class="w-full flex justify-end mt-8 mb-4 pr-2">
-                        <a href="{{ url('pengumuman/' . $item->id) }}" class="text-blue-500 flex items-center">
+                        <div class="text-blue-500 flex items-center">
                             Selengkapnya
                             <img src="{{ asset('/img/arrow-selengkapnya.svg') }}" alt=""
                                 class="hidden md:block ml-2">
-                        </a>
+                        </div>
                     </div>
                     <div class="w-full border-b-2 border-gray-400"></div>
-                </div>
+                </a>
                 <?php $iter++; ?>
                 @if ($iter > 3)
                 @break

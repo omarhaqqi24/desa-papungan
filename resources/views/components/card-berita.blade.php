@@ -1,4 +1,4 @@
-<div class="mt-4 card flex flex-col justify-start space-y-5 h-auto bg-white shadow-sm">
+<div class="mt-4 hover:bg-gray-300 transition duration-200 card flex flex-col justify-start space-y-5 h-auto bg-white shadow-sm">
     <figure class="h-52">
         <img src="{{ $foto }}" alt="" class="rounded-xl h-full w-full object-cover" />
     </figure>
