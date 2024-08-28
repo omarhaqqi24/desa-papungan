@@ -35,7 +35,7 @@
         <div class="flex flex-row items-start">
             <!-- Judul -->
             <div class="space-y-5 md:basis-3/4 text-pretty">
-                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">{{ $pengumuman->data->judul }}
+                <div class=" text-black text-2xl md:text-4xl text-left font-semibold font-jakarta">{{ $pengumuman->data->judul }}
                 </div>
                 <!-- Tanggal and Admin info -->
                 <div

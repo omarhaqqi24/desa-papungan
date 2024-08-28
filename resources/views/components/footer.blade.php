@@ -16,7 +16,7 @@
             <a class="link link-hover" href="{{route('pemerintahan.index')}}">Pemerintahan</a>
             <a class="link link-hover" href="{{route('informasi.index')}}">Informasi</a>
             <a class="link link-hover" href="{{route('umkm.index')}}">UMKM Desa</a>
-            <a class="link link-hover" href="{{route('pariwisata.index')}}">Pariwisata Desa</a>
+            <a class="link link-hover" href="{{route('publc.pariwisata.index')}}">Pariwisata Desa</a>
         </nav>
         <ul class="font-medium">
             <h6 class="footer-title font-semibold">Kontak Kami</h6>
