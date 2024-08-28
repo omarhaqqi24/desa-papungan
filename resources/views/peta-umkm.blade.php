@@ -216,6 +216,9 @@
             markers.push(marker);
 
             const carousel = document.getElementById('carousel');
+            while (carousel.firstChild) {
+                carousel.removeChild(carousel.firstChild)
+            }
             foto.forEach(obj => {
                 const imgContainer = document.createElement('div');
                 imgContainer.classList.add('carousel-item');
