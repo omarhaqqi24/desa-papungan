@@ -27,7 +27,7 @@
         <div class=" flex absolute flex-col justify-center items-center h-screen w-full bg-blue-600 bg-opacity-60">
             <div
                 class="self-stretch text-center mx-4 text-zinc-100 text-4xl md:text-6xl mb-3 font-semibold font-jakarta ">
-                Selamat Datang di Website<br />Desa</div>
+                Selamat Datang di Website<br />Desa wawd</div>
             <div class="self-stretch text-center mx-4 text-zinc-100 text-lg md:text-xl font-jakarta ">Temukan semua
                 informasi terbaru terkait Desa Papungan!</div>
         </div>
