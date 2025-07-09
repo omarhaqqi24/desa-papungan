@@ -5887,3 +5887,8 @@
 172.28.0.1 - - [29/Jul/2024:20:34:34 +0000] "GET /api/data-desa/2 HTTP/1.1" 200 3730 "-" "GuzzleHttp/7"
 172.28.0.1 - - [29/Jul/2024:20:34:34 +0000] "GET /api/v-misi HTTP/1.1" 200 3612 "-" "GuzzleHttp/7"
 172.28.0.1 - - [29/Jul/2024:20:34:34 +0000] "GET /p?targetID=tentangkami HTTP/1.1" 200 7814 "http://localhost/p?targetID=tentangkami" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+172.18.0.1 - - [09/Jul/2025:07:52:12 +0000] "GET /api/berita?pub=1 HTTP/1.1" 499 0 "-" "GuzzleHttp/7"
+172.18.0.1 - - [09/Jul/2025:07:53:44 +0000] "GET / HTTP/1.1" 500 317802 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+172.18.0.1 - - [09/Jul/2025:07:54:34 +0000] "GET /api/berita?pub=1 HTTP/1.1" 200 79 "-" "GuzzleHttp/7"
+172.18.0.1 - - [09/Jul/2025:07:54:34 +0000] "GET /api/pengumuman?pub=1 HTTP/1.1" 200 83 "-" "GuzzleHttp/7"
+172.18.0.1 - - [09/Jul/2025:07:54:52 +0000] "GET / HTTP/1.1" 500 338986 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
