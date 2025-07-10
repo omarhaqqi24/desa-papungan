@@ -6284,3 +6284,7 @@
 172.18.0.1 - - [10/Jul/2025:03:58:54 +0000] "GET /api/pengumuman?pub=1 HTTP/1.1" 200 923 "-" "GuzzleHttp/7"
 172.18.0.1 - - [10/Jul/2025:03:58:55 +0000] "GET / HTTP/1.1" 200 9060 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
 172.18.0.1 - - [10/Jul/2025:03:58:55 +0000] "GET /peta-wilayah HTTP/1.1" 200 1684 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+172.18.0.1 - - [10/Jul/2025:04:00:51 +0000] "GET /api/berita?pub=1 HTTP/1.1" 200 28550 "-" "GuzzleHttp/7"
+172.18.0.1 - - [10/Jul/2025:04:00:56 +0000] "GET /api/pengumuman?pub=1 HTTP/1.1" 200 923 "-" "GuzzleHttp/7"
+172.18.0.1 - - [10/Jul/2025:04:00:57 +0000] "GET / HTTP/1.1" 200 9063 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+172.18.0.1 - - [10/Jul/2025:04:01:00 +0000] "GET /peta-wilayah HTTP/1.1" 200 1684 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
