@@ -96,6 +96,7 @@
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'profilumkm']) }}">Profil UMKM</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta UMKM</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar UMKM</a></li>
+                                        <li><a class="hover:bg-accent">Produk Papungan</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Pariwisata Desa</div>
@@ -107,6 +108,9 @@
                                     </ul>
                                 </li>
 
+                                
+                                <div class="menu-title font-semibold mr-auto">Produk Papungan</div>
+                                
                             </ul>
                         </div>
                     </div>
@@ -118,7 +122,7 @@
                         <!--PROFIL DESA START-->
                         <li>
                             <details>
-                                <summary class="hover:text-primary">Profil Desa</summary>
+                                <summary class="hover:text-primary">Profil DesaE</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang
                                             Kami</a></li>
@@ -185,6 +189,9 @@
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar
                                             UMKM</a>
                                     </li>
+                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Produk
+                                            Papungan</a>
+                                    </li>
                                 </ul>
                             </details>
                         </li>
@@ -208,6 +215,10 @@
                         </li>
                         <!--Pariwisata Desa END-->
 
+                        <!--Produk Papungan-->
+                        <li>
+                            <div>Produk Papungan</div>
+                        </li>
                     </ul>
                 </div>
 
