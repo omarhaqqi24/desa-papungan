@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\PariwisataDesaController;
 use App\Http\Controllers\admin\PemerintahanDesaController;
 use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\admin\UmkmDesaController;
+use App\Http\Controllers\admin\ProdukDesaController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaPageController;
@@ -191,3 +192,9 @@ Route::put('/admin/profil-desa/sejarah', [ProfilDesaController::class, 'updateSe
 Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
     ->middleware('checkToken')
     ->name('admin.profil-desa.misi.create');
+
+
+//halaman admin produk desa
+Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.produk.index');

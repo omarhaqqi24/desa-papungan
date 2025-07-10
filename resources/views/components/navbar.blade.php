@@ -96,7 +96,6 @@
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'profilumkm']) }}">Profil UMKM</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'petaumkm']) }}">Peta UMKM</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar UMKM</a></li>
-                                        <li><a class="hover:bg-accent">Produk Papungan</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Pariwisata Desa</div>
@@ -106,11 +105,7 @@
                                         <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
                                         <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
-                                </li>
-
-                                
-                                <div class="menu-title font-semibold mr-auto">Produk Papungan</div>
-                                
+                                </li>  
                             </ul>
                         </div>
                     </div>
@@ -188,9 +183,6 @@
                                     </li>
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Daftar
                                             UMKM</a>
-                                    </li>
-                                    <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('umkm.index', ['targetID' => 'daftarumkm']) }}">Produk
-                                            Papungan</a>
                                     </li>
                                 </ul>
                             </details>
