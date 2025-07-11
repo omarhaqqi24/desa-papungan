@@ -57,9 +57,7 @@ Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('
 Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
 Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
 Route::get('/pariwisataDesa',[PariwisataController::class, "index"])->name('publc.pariwisata.index');
-
-
-
+Route::get('/belanja', [BelanjaDesaController::class, 'index'])->name('publc.belanja.index');
 Route::get('peta-umkm', [PetaUmkmController::class, 'index']);
 
 //admin

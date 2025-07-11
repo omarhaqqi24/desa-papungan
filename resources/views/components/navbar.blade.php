@@ -106,7 +106,7 @@
                                         <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
                                 </li>
-
+                                <div class="menu-title font-semibold mr-auto"> <a href="{{ route('publc.belanja.index') }}">Belanja Desa</a></div>
                             </ul>
                         </div>
                     </div>
@@ -208,6 +208,11 @@
                         </li>
                         <!--Pariwisata Desa END-->
 
+                        <!--Belanja Desa START-->
+                        <li>
+                            <a class="hover:text-primary" href="{{ route('publc.belanja.index') }}">Belanja Desa</a>
+                        </li>
+                        <!--Belanja Desa END-->
                     </ul>
                 </div>
 

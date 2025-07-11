@@ -36,7 +36,7 @@
     </div>
     <div
         class="w-auto border-t-2 p-1 mx-10 text-center gap-2 items-center space-y-5 md:space-y-0 md:py-3 text-white md:flex justify-center">
-        <div class="py-2 md:py-0">© 2024 MAHASISWA MEMBANGUN DESA FAKULTAS ILMU KOMPUTER UNIVERSITAS BRAWIJAYA</div>
+        <div class="py-2 md:py-0">© 2025 Mahasiswa Membangun Desa Fakultas Ilmu Komputer Universitas Brawijaya</div>
         <div class="border-r-2 h-auto p-2 hidden md:block"></div>
         <div class="py-2 md:py-0 border-t-2 mt-2 md:border-0 md:mt-0">Made with ♡ by Kelompok 12 Pasukan Papungan</div>
     </div>
