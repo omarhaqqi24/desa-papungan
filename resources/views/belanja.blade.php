@@ -44,14 +44,101 @@
             </div> -->
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative bg-[#f0f5fe]">
+                        <h3 class="font-semibold text-xl text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
                             17.000
                         </div>
-                        <p class="text-gray-500 text-sm mb-2 line-clamp-2 font-jakarta">ini asli dah enak banget</p>
+                        <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+                            Berdiri sejak 2021
+                        </p>
                         <div class="mt-auto absolute bottom-0 right-0">
-                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-sm font-semibold">
+                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
+                                Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
+                    <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative bg-[#f0f5fe]">
+                        <h3 class="font-semibold text-xl text-gray-900 mb-1">Opak Gambir</h3>
+                        <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
+                            17.000
+                        </div>
+                        <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+                            Berdiri sejak 2021
+                        </p>
+                        <div class="mt-auto absolute bottom-0 right-0">
+                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
+                                Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
+                    <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative bg-[#f0f5fe]">
+                        <h3 class="font-semibold text-xl text-gray-900 mb-1">Opak Gambir</h3>
+                        <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
+                            17.000
+                        </div>
+                        <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+                            Berdiri sejak 2021
+                        </p>
+                        <div class="mt-auto absolute bottom-0 right-0">
+                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
+                                Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
+                    <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative bg-[#f0f5fe]">
+                        <h3 class="font-semibold text-xl text-gray-900 mb-1">Opak Gambir</h3>
+                        <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
+                            17.000
+                        </div>
+                        <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+                            Berdiri sejak 2021
+                        </p>
+                        <div class="mt-auto absolute bottom-0 right-0">
+                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
+                                Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
+                    <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative bg-[#f0f5fe]">
+                        <h3 class="font-semibold text-xl text-gray-900 mb-1">Opak Gambir</h3>
+                        <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
+                            17.000
+                        </div>
+                        <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+                            Berdiri sejak 2021
+                        </p>
+                        <div class="mt-auto absolute bottom-0 right-0">
+                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
+                                Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
+                    <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative bg-[#f0f5fe]">
+                        <h3 class="font-semibold text-xl text-gray-900 mb-1">Opak Gambir</h3>
+                        <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
+                            17.000
+                        </div>
+                        <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+                            Berdiri sejak 2021
+                        </p>
+                        <div class="mt-auto absolute bottom-0 right-0">
+                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
                                 Lihat Detail
                             </a>
                         </div>
