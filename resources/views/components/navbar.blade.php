@@ -108,7 +108,7 @@
                                 </li>
                                 <div class="menu-title font-bold mr-auto">
                                     <a href="{{  route('belanja.index')  }}">
-                                        Belanja Desa
+                                        Belanja Produk
                                     </a>
                                 </div>
                             </ul>
@@ -212,10 +212,10 @@
                         </li>
                         <!--Pariwisata Desa END-->
 
-                        <!--Belanja Desa-->
+                        <!--Belanja Produk-->
                         <li class="hover:text-primary">
                             <a href="{{  route('belanja.index')  }}">
-                                Belanja Desa
+                                Belanja Produk
                             </a>
                         </li>
 
