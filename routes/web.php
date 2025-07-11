@@ -17,6 +17,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PengumumanPageController;
 use App\Http\Controllers\PetaUmkmController;
 use App\Http\Controllers\umkmController;
+use App\Http\Controllers\BelanjaController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
@@ -191,3 +192,7 @@ Route::put('/admin/profil-desa/sejarah', [ProfilDesaController::class, 'updateSe
 Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
     ->middleware('checkToken')
     ->name('admin.profil-desa.misi.create');
+
+
+// Halaman Belanja Desa
+Route::get('/belanja', [BelanjaController::class,'index'])->name('belanja.index');
