@@ -106,7 +106,11 @@
                                         <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
                                 </li>
-                                
+                                <div class="menu-title font-bold mr-auto">
+                                    <a href="{{  route('belanja.index')  }}">
+                                        Belanja Desa
+                                    </a>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -209,13 +213,11 @@
                         <!--Pariwisata Desa END-->
 
                         <!--Belanja Desa-->
-                        <div class="menu-title font-semibold mr-auto">
-                            <div>
-                                <a href="{{  route('belanja.index')  }}">
-                                    <img class="w-12 opacity-100 hover:opacity-50 transition duration-300" src="{{ asset('/img/troli.svg') }}" alt="">
-                                </a>
-                            </div>
-                        </div>
+                        <li class="hover:text-primary">
+                            <a href="{{  route('belanja.index')  }}">
+                                Belanja Desa
+                            </a>
+                        </li>
 
                     </ul>
                 </div>

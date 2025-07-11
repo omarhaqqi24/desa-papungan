@@ -7,9 +7,11 @@
         <title>{{ env('APP_NAME') . ' | Belanja Desa' }}</title>
         @vite('resources/css/app.css')
     </head>
-    <body>
-        Halo ngab...
+    <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
+        <x-navbar />
+        <div class="mt-28"></div>
         <br>
         <a href="{{  route('landingPage.index')  }}">pencet ini :) mwehehe</a>
     </body>
+    <x-footer />
 </html>
