@@ -198,3 +198,6 @@ Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisi
 Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
     ->middleware('checkToken')
     ->name('admin.produk.index');
+Route::delete('/admin/produk-desa/{id}', [ProdukDesaController::class, 'deleteProduk'])
+    ->middleware('checkToken')
+    ->name('admin.produk.destroy');
