@@ -23,7 +23,7 @@
             </div> -->
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -38,7 +38,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -53,7 +53,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -68,7 +68,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -83,7 +83,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -98,7 +98,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -113,7 +113,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -128,7 +128,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
@@ -143,7 +143,7 @@
                 </div>
                 <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
                     <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
                         <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
                         <div class="text-blue-700 font-bold text-xl mb-1">
                             17.000
