@@ -95,7 +95,7 @@
                                 <td class="px-6 py-4">
                                     <div class="flex gap-6 justify-center items-center">
                                         
-                                        <button onclick="openModalDeleteProdukDesa('{{ $item['id'] }}')"
+                                        <button onclick="openModalDeleteProdukDesa()"
                                             class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20"  class="stroke-[#475467] hover:stroke-[#ff0000]"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -208,9 +208,23 @@
                         @endif
                     </section>
                 </div>
-
                 <!-- End -->
 
+            </div>
+
+            <div class="flex justify-end mt-4">
+                {{-- tambah produk --}}
+                <button
+                    class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
+                    onclick="modal_tambah_produk.showModal()">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                        <path
+                            d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
+                            fill="white" />
+                    </svg>
+                    Tambahkan
+                </button>
             </div>
         </div>
     </div>
@@ -254,12 +268,12 @@
                             diisi
                         </p> 
                         <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="jenis" id="harga_rendah_produk_show"
+                            <input type="text" name="harga_rendah" id="harga_rendah_produk_show"
                                 class="input input-bordered disabled:bg-slate-100" disabled>
                             <label for="harga_rendah_produk_show" class="label-text text-end">* harga terendah</label>
                         </div>
                         <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="jenis" id="harga_tinggi_produk_show"
+                            <input type="text" name="harga_tinggi" id="harga_tinggi_produk_show"
                                 class="input input-bordered disabled:bg-slate-100" disabled>
                             <label for="harga_tinggi_produk_show" class="label-text text-end">* harga tertinggi</label>
                         </div>
@@ -284,7 +298,7 @@
 
                     <div class="form-control gap-4 w-full">
                         <label for="kontak_produk_show" class="label-text font-semibold">Link Whatsapp Toko</label>
-                        <input type="text" name="jam_buka" id="kontak_produk_show"
+                        <input type="text" name="kontak" id="kontak_produk_show"
                             class="input input-bordered disabled:bg-slate-100" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
@@ -301,7 +315,7 @@
                     
                     <div class="form-control gap-4">
                         <label for="foto_produk_show" class="label-text font-semibold">Foto Produk/Toko</label>
-                        <input type="file" name="no_pirt" id="foto_produk_show" accept=".png, .jpg"
+                        <input type="file" name="foto" id="foto_produk_show" accept=".png, .jpg"
                             class="input input-bordered disabled:bg-slate-100" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
@@ -344,9 +358,116 @@
                 @csrf
                 <div class="form-control gap-6">
                     <div class="form-control gap-4">
+                        <label for="nama_produk_edit" class="label-text font-semibold">Nama produk</label>
+                        <input type="text" name="nama" id="nama_produk_edit"
+                            class="input input-bordered">
+                        <input type="text" name="id" id="id_produk"
+                            class="input input-bordered " hidden>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p>
+                    </div>
+
+                    <div class="form-control gap-4">
+                        <label for="jenis_produk_edit" class="label-text font-semibold">Jenis Produk</label>
+                        <input type="text" name="jenis" id="jenis_produk_edit"
+                            class="input input-bordered">
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p>
+                    </div>
+
+                    <div class="form-control gap-4">
+                        <p class="label-text font-semibold">Harga Produk</p>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p> 
+                        <div class="max-w-[50%] flex flex-col">
+                            <input type="text" name="harga_rendah" id="harga_rendah_produk_edit"
+                                class="input input-bordered">
+                            <label for="harga_rendah_produk_edit" class="label-text text-end">* harga terendah</label>
+                        </div>
+                        <div class="max-w-[50%] flex flex-col">
+                            <input type="text" name="harga_tinggi" id="harga_tinggi_produk_edit"
+                                class="input input-bordered">
+                            <label for="harga_tinggi_produk_edit" class="label-text text-end">* harga tertinggi</label>
+                        </div>
+                    </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <label for="toko_produk_edit" class="label-text font-semibold">Nama Toko</label>
+                        <input type="text" name="toko" id="toko_produk_edit"
+                            class="input input-bordered">
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi</p>
+                    </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <label for="alamat_produk_edit" class="label-text font-semibold">Alamat Toko</label>
+                        <input type="text" name="toko" id="alamat_produk_edit"
+                            class="input input-bordered">
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi</p>
+                    </div>
+
+
+                    <div class="form-control gap-4 w-full">
+                        <label for="kontak_produk_edit" class="label-text font-semibold">Link Whatsapp Toko</label>
+                        <input type="text" name="kontak" id="kontak_produk_edit"
+                            class="input input-bordered">
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi</p>
+                    </div>
+                    
+                    <div class="form-control gap-4">
+                        <label for="desc_produk_edit" class="label-text font-semibold">Deskripsi</label>
+                        <textarea name="deskripsi" id="desc_produk_edit"
+                            class="input input-bordered w-full py-4 h-36"></textarea>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p>
+                    </div>
+                    
+                    <div class="form-control gap-4">
+                        <label for="foto_produk_edit" class="label-text font-semibold">Foto Produk/Toko</label>
+                        <input type="file" accept=".png, .jpg" name="foto" id="foto_produk_edit"
+                            class="input input-bordered align-center">
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
+                    </div>
+                                                    
+                    <div class="relative w-full">
+                        <div class="flex gap-4 justify-end">
+                            <button type="button"
+                                class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
+                                onclick="modal_edit_produk.close()">Tutup</button>
+
+                            {{-- button simpan edit --}}
+                            <button id="edit-btn-test" type="submit"
+                                class="btn rounded-xl text-lightText bg-[#2D68F8] hover:bg-green-500 hover:text-lightText px-4 py-2 flex items-center">
+                                Simpan perubahan
+                            </button>
+                            {{--  --}}
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </dialog>
+    {{-- END UPDATE --}}
+
+    {{-- TAMBAH PRODUK --}}
+    <dialog id="modal_tambah_produk" class="modal">
+        <div class="modal-box w-11/12 max-w-5xl">
+            <h3 class="text-lg font-bold">Ed Produk Desa</h3>
+            <hr class="h-px my-8 bg-gray-300 border-0">
+            <form method="POST" action="" enctype="multipart/form-data">
+                @csrf
+                <div class="form-control gap-6">
+                    <div class="form-control gap-4">
                         <label for="nama_produk_show" class="label-text font-semibold">Nama produk</label>
                         <input type="text" name="nama" id="nama_produk_show"
-                            class="input input-bordered disabled:bg-slate-100">
+                            class="input input-bordered">
                         <input type="text" name="id" id="id_produk"
                             class="input input-bordered " hidden>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
@@ -357,16 +478,33 @@
                     <div class="form-control gap-4">
                         <label for="jenis_produk_show" class="label-text font-semibold">Jenis Produk</label>
                         <input type="text" name="alamat" id="jenis_produk_show"
-                            class="input input-bordered disabled:bg-slate-100">
+                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
                     </div>
 
+                    <div class="form-control gap-4">
+                        <p class="label-text font-semibold">Harga Produk</p>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p> 
+                        <div class="max-w-[50%] flex flex-col">
+                            <input type="text" name="jenis" id="harga_rendah_produk_show"
+                                class="input input-bordered">
+                            <label for="harga_rendah_produk_show" class="label-text text-end">* harga terendah</label>
+                        </div>
+                        <div class="max-w-[50%] flex flex-col">
+                            <input type="text" name="jenis" id="harga_tinggi_produk_show"
+                                class="input input-bordered">
+                            <label for="harga_tinggi_produk_show" class="label-text text-end">* harga tertinggi</label>
+                        </div>
+                    </div>
+
                     <div class="form-control gap-4 w-full">
                         <label for="toko_produk_show" class="label-text font-semibold">Nama Toko</label>
                         <input type="text" name="jenis" id="toko_produk_show"
-                            class="input input-bordered disabled:bg-slate-100">
+                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
                     </div>
@@ -374,7 +512,7 @@
                     <div class="form-control gap-4 w-full">
                         <label for="kontak_produk_show" class="label-text font-semibold">Link Whatsapp Toko</label>
                         <input type="text" name="jam_buka" id="kontak_produk_show"
-                            class="input input-bordered disabled:bg-slate-100">
+                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
                     </div>
@@ -382,7 +520,7 @@
                     <div class="form-control gap-4">
                         <label for="desc_produk_show" class="label-text font-semibold">Deskripsi</label>
                         <textarea name="deskripsi" id="desc_produk_show"
-                            class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                            class="input input-bordered w-full py-4 h-36"></textarea>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
@@ -391,7 +529,7 @@
                     <div class="form-control gap-4">
                         <label for="foto_produk_show" class="label-text font-semibold">Foto Produk/Toko</label>
                         <input type="file" accept=".png, .jpg" name="no_pirt" id="foto_produk_show"
-                            class="input input-bordered disabled:bg-slate-100 align-center">
+                            class="input input-bordered align-center">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
@@ -399,14 +537,14 @@
                         <div class="flex gap-4 justify-end">
                             <button type="button"
                                 class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
-                                onclick="modal_edit_produk.close()">Tutup</button>
+                                onclick="modal_tambah_produk.close()">Tutup</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </dialog>
-    {{-- END UPDATE --}}
+    {{-- END TAMBAH --}}
 
 {{-- modal END --}}
 
@@ -430,16 +568,36 @@
             const descIn = document.getElementById('desc_produk_show');
             descIn.value = data.desc;
             const hiddenInput = document.getElementById('id_produk');
-            hiddenInput.value = data.id;
+            hiddenInput.value = id;
 
             document.getElementById('modal_show_produk').showModal();
         }
 
-        function openModalDeleteProdukDesa(id){
+        function openModalDeleteProdukDesa(){
             document.getElementById('modal_delete_produk').showModal();
         }
 
         function openModalUpdateProdukDesa(id, data){
+            data = JSON.parse(data);
+            const namaIn = document.getElementById('nama_produk_edit');
+            namaIn.value = data.nama;
+            const jenisIn = document.getElementById('jenis_produk_edit');
+            jenisIn.value = data.jenis;
+            const hargaRIn = document.getElementById('harga_rendah_produk_edit');
+            hargaRIn.value = data.hargaRendah;
+            const hargaTIn = document.getElementById('harga_tinggi_produk_edit');
+            hargaTIn.value = data.hargaTinggi;
+            const tokoIn = document.getElementById('toko_produk_edit');
+            tokoIn.value = data.toko;
+            const alamatIn = document.getElementById('alamat_produk_edit');
+            alamatIn.value = data.alamat;
+            const kontakIn = document.getElementById('kontak_produk_edit');
+            kontakIn.value = data.kontak;
+            const descIn = document.getElementById('desc_produk_edit');
+            descIn.value = data.desc;
+            const hiddenInput = document.getElementById('id_produk');
+            hiddenInput.value = id;
+
             document.getElementById('modal_edit_produk').showModal();
         }
     </script>    
