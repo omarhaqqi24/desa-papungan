@@ -44,29 +44,35 @@
                     <h1 class="text-3xl font-semibold text-gray-900 mb-3 font-jakarta">
                         {{ $product['name'] }}
                     </h1>
-                    <div class="text-blue-700 font-bold text-3xl mb-4 font-jakarta">
+                    <div class="text-blue-700 font-bold text-3xl mb-5 font-jakarta">
                         Rp{{ $product['price_min'] }} - Rp{{ $product['price_max'] }}
                     </div>
                     <h2 class="text-xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
-                    <p class="text-gray-600 text-base leading-relaxed mb-6 font-jakarta">
+                    <p class="text-gray-600 text-base leading-relaxed mb-4 font-jakarta">
                         {{ $product['description'] }}
                         @if(strlen($product['description']) > 150)
                             <a href="#" class="text-blue-600 hover:underline">Lihat selengkapnya</a>
                         @endif
                     </p>
                     <h2 class="text-xl font-semibold text-gray-800 mb-2 font-jakarta">Alamat</h2>
-                    <p class="text-gray-600 text-base font-jakarta">
+                    <p class="text-gray-600 text-base font-jakarta mb-4">
                         {{ $product['address'] }}
                     </p>
                 </div>
 
-                <div class="mt-8">
+                <div class="mt-4">
                     <a href="{{ $product['whatsapp_link'] }}" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-full text-lg font-semibold shadow-md hover:from-green-600 hover:to-green-800 transition duration-300 font-jakarta">
-                        <img src="{{ asset('img/whatsapp-icon.svg') }}" alt="WhatsApp" class="w-6 h-6 mr-2"> {{-- Pastikan Anda memiliki ikon WhatsApp ini --}}
+                       class="inline-flex items-center px-6 py-2 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-full text-l font-semibold shadow-md hover:from-green-600 hover:to-green-800 transition duration-300 font-jakarta">
+                        <img src="{{ asset('img/whatsapp-icon.svg') }}" alt="WhatsApp" class="w-6 h-6 mr-2">
                         Hubungi Penjual
                     </a>
-                </div>
+
+                    <a href="{{ $product['maps_link'] }}" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-l font-semibold shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300 font-jakarta">
+                        <img src="{{ asset('img/google-maps-icon.svg') }}" alt="MapsLogo" class="w-6 h-6 mr-2">
+                        Lihat di Maps
+                    </a>
+                </div> 
             </div>
         </div>
 

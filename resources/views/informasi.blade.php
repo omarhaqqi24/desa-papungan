@@ -258,24 +258,21 @@
                         </div>
                     @endif
                 </section>
+                <!-- end berita-->
+
                 <!-- aspirasi-->
-                <div id="aspirasi"></div>
-                <div class=" space-y-2">
-                    <div class="flex items-center gap-2 text-blue-600 w- md:w-1/2 lg:w-1/4">
-                        <div class="text-xl font-medium font-jakarta">FORMULIR</div>
-                        <div class="border-b-2 border-blue-600 w-full"></div>
-                    </div>
-                    <div class="text-2xl font-semibold">Berikan Aspirasi mu!</div>
-                    <div class="font-normal font-jakarta max-w-full lg:min-w-2xl">Kami sangat ingin mendengar pendapat
+                <div id="aspirasi" class="space-y-2">
+                    <x-cardSubjudul class="max-w-sm" jenisJudul="FORMULIR" judul="Berikan Aspirasi mu!"
+                    deskripsi="Kami sangat ingin mendengar pendapat
                         dan saran Anda untuk membuat desa kita lebih baik. Apapun yang ingin Anda sampaikan seperti
                         saran, ide, atau masukan semuanya sangat berarti. Yuk, isi formulir di bawah ini dan mari kita
                         bersama-sama membangun desa yang lebih nyaman dan bahagia. Terima kasih banyak atas
-                        partisipasinya!</div>
+                        partisipasinya!" />
 
                     <form method="POST" class="w-full" enctype="multipart/form-data"
                         action="{{ route('informasi.store') }}">
                         @csrf
-                        <div class="mb-4">
+                        <div class="mt-8 mb-4">
                             <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Nama <span
                                     class="text-gray-500 font-jakarta">(Optional)</span></label>
                             <textarea name="nama" id="nama" placeholder="Tuliskan Nama anda"

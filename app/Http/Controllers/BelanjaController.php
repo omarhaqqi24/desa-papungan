@@ -62,6 +62,7 @@ class BelanjaController extends Controller
                 'description' => 'Kain batik tulis bermotif ikan mujaer khas Desa Papungan, dibuat secara manual oleh pengrajin lokal dengan teknik tradisional. Memiliki panjang 2 meter dan lebar 1,5 meter, kain ini menggunakan bahan katun prima yang lembut. Tersedia dalam berbagai motif dan warna yang menarik.',
                 'address' => 'Dusun Krajan RT 02/RW 01, Desa Papungan Kec. Kanigoro Kab. Blitar',
                 'whatsapp_link' => 'https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20produk%20Batik%20Pak%20Gembus',
+                'maps_link' => 'https://maps.app.goo.gl/wLocyVVVz3HewuDV6',
             ],
             2 => [
                 'id' => 2,
@@ -72,6 +73,7 @@ class BelanjaController extends Controller
                 'description' => 'Opak gambir renyah dengan berbagai varian rasa, cocok untuk camilan. Dibuat dari bahan-bahan pilihan tanpa pengawet.',
                 'address' => 'Dusun Papungan Barat RT 01/RW 02, Desa Papungan Kec. Kanigoro Kab. Blitar',
                 'whatsapp_link' => 'https://wa.me/6281234567891?text=Halo%20saya%20tertarik%20dengan%20produk%20Opak%20Gambir%20Krispi',
+                'maps_link' => 'https://maps.app.goo.gl/9axt9dVKd1JjcxtU9',
             ],
             3 => [
                 'id' => 3,
@@ -82,6 +84,29 @@ class BelanjaController extends Controller
                 'description' => 'Berbagai kerajinan tangan dari anyaman bambu, seperti tas, topi, dan hiasan dinding. Dibuat oleh pengrajin lokal dengan detail yang teliti.',
                 'address' => 'Dusun Anyaman RT 03/RW 01, Desa Papungan Kec. Kanigoro Kab. Blitar',
                 'whatsapp_link' => 'https://wa.me/6281234567892?text=Halo%20saya%20tertarik%20dengan%20produk%20Kerajinan%20Anyaman%20Bambu',
+                'maps_link' => 'https://maps.app.goo.gl/9axt9dVKd1JjcxtU9', // Ganti dengan link maps yang sesuai
+            ],
+            4 => [
+                'id' => 4,
+                'name' => 'Kerajinan Tangan Kulit',
+                'image' => asset('/img/produk/kerajinan-kulit.jpg'), // Ganti dengan gambar dummy Anda
+                'price_min' => '30.000',
+                'price_max' => '200.000',
+                'description' => 'Kerajinan tangan dari kulit sapi asli, seperti dompet, ikat pinggang, dan tas. Setiap produk dibuat dengan tangan oleh pengrajin lokal yang berpengalaman.',
+                'address' => 'Dusun Kulit RT 04/RW 01, Desa Papungan Kec. Kanigoro Kab. Blitar',
+                'whatsapp_link' => 'https://wa.me/6281234567893?text=Halo%20saya%20tertarik%20dengan%20produk%20Kerajinan%20Tangan%20Kulit',
+                'maps_link' => 'https://maps.app.goo.gl/9axt9dVKd1JjcxtU9', // Ganti dengan link maps yang sesuai
+            ],
+            5 => [
+                'id' => 5,
+                'name' => 'Kerajinan Tangan Keramik',
+                'image' => asset('/img/produk/kerajinan-keramik.jpg'), // Ganti dengan gambar dummy Anda
+                'price_min' => '20.000',
+                'price_max' => '150.000',
+                'description' => 'Kerajinan tangan dari keramik, seperti vas bunga, piring, dan hiasan dinding. Setiap produk dibuat dengan teknik tradisional yang diwariskan secara turun-temurun.',
+                'address' => 'Dusun Keramik RT 05/RW 01, Desa Papungan Kec. Kanigoro Kab. Blitar',
+                'whatsapp_link' => 'https://wa.me/6281234567894?text=Halo%20saya%20tertarik%20dengan%20produk%20Kerajinan%20Tangan%20Keramik',
+                'maps_link' => 'https://maps.app.goo.gl/9axt9dVKd1JjcxtU9', // Ganti dengan link maps yang sesuai
             ],
             // Tambahkan produk dummy lainnya di sini sesuai kebutuhan
         ];
@@ -101,6 +126,6 @@ class BelanjaController extends Controller
         $otherProducts = array_slice($otherProducts, 0, 3);
 
 
-        return view('detail_produk', compact('product', 'otherProducts'));
+        return view('detailProduk', compact('product', 'otherProducts'));
     }
 }
