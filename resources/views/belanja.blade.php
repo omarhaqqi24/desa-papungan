@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
             rel="stylesheet">
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="theme-color" content="#ffffff">
         <meta name="description" content="Belanja produk UMKM khas Desa Papungan.">
@@ -25,40 +26,40 @@
             }
         </style>
     </head>
-    <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
+<body class="mytheme font-jakarta antialiased">
     <x-navbar />
-        <div class="mt-28 space-y-20 md:px-0">
-            <!-- isi disini-->
-
-            <!-- belanja-->
-            <div id="belanja"></div>
-            <div class="bg-secondary text-base-100 w-full py-32 px-10">
-                <div class="text-3xl font-semibold">Belanja Produk Desa Papungan</div>
-                <div class="text-sm font-normal">Home / Belanja</div>
-            </div>
+    <div class="mt-28 space-y-20 md:px-0">
+        <div id="belanja"></div>
+        <div class="bg-blue-600 text-lightText w-full py-32 px-10">
+            <div class="text-4xl font-semibold">Belanja Produk Desa Papungan</div>
+            <div class="text-lg mt-4">Home / Belanja</div>
         </div>
-    </div>
-        <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full">
-            <!-- <div class="h-96 w-80 rounded-2xl bg-blue-500">
 
-            </div> -->
-                <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
-                    <img src="{{ asset('/img/produk/og-naseka.JPG') }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative bg-[#f0f5fe]">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-1">Opak Gambir</h3>
-                        <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
-                            17.000
-                        </div>
-                        <p class="text-gray-500 text-sm mb-2 line-clamp-2 font-jakarta">ini asli dah enak banget</p>
-                        <div class="mt-auto absolute bottom-0 right-0">
-                            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-sm font-semibold">
-                                Lihat Detail
-                            </a>
-                        </div>
+    {{-- Produk yang diambil dari BelanjaController::index() --}}
+    <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-center gap-8 w-full">
+        @forelse ($products as $product) {{-- Loop melalui data produk dari controller --}}
+            <div class="h-96 w-80 rounded-2xl my-4 bg-white shadow-md overflow-hidden flex flex-col">
+                <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="h-1/2 w-full object-cover z-0">
+                <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-1 font-jakarta">{{ $product['name'] }}</h3>
+                    <div class="text-blue-700 font-bold font-jakarta text-lg mb-2">
+                        Rp{{ $product['price_min'] }} - Rp{{ $product['price_max'] }}
+                    </div>
+                    <p class="text-gray-500 text-sm mb-2 line-clamp-2 font-jakarta">{{ $product['description'] }}</p>
+                    <div class="mt-auto self-end">
+                        {{-- Menggunakan route helper untuk membuat URL ke halaman detail produk --}}
+                        <a href="{{ route('belanja.show', ['id' => $product['id']]) }}" 
+                           class="inline-block absolute bottom-0 right-0 mt-2 px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl hover:from-blue-500 hover:to-blue-700 text-sm font-semibold font-jakarta">
+                            Lihat Detail
+                        </a>
                     </div>
                 </div>
-    
-        </div>
-    </body>
+            </div>
+        @empty
+            <p class="text-gray-600 font-jakarta text-center w-full">Tidak ada produk yang tersedia saat ini.</p>
+        @endforelse
+    </div>
+
     <x-footer />
+</body>
 </html>
