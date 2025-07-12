@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('jam_buka');
             $table->float('lat');
             $table->float('long');
+            $table->float('url_map');
             $table->string('no_nib');
-            $table->string('no_pirt');
             $table->string('no_halal');
             $table->string('no_bpom');
             $table->timestamps();

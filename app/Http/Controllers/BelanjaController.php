@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-class BelanjaController extends Controller {
-    public function index() {
-        return view('belanja');
+use App\Models\Produk;
+
+class BelanjaController extends Controller
+{
+    public function index()
+    {
+        $produk = Produk::with('umkm')->get();
+
+        return view('belanja', compact('produk'));
     }
 }
