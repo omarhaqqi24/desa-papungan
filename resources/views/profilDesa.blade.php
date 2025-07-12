@@ -34,20 +34,19 @@
 
 </head>
 
-<body class="mytheme font-jakarta antialiased">
+<body class="mytheme font-jakarta antialiased ">
     <x-navbar />
 
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- Tentang Kami-->
         <div id="tentangkami"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
-            <div class="text-5xl font-bold">Profil Desa Papungan</div>
+            <div class="text-4xl font-semibold">Profil Desa Papungan</div>
             <div class="text-lg mt-4">Home / Profil Desa</div>
         </div>
 
         <div class="px-5 md:px-0">
             <div class="container items-center mx-auto space-y-10 text-justify p-10 mt-10 ">
-                <x-headerArtikel subJudul="Kenali Desa Papungan " judul="Tentang Kami" />
+                <x-headerArtikel subJudul="TENTANG KAMI" judul="Kenali Desa Papungan" />
                 <img src="{{ $data1->data->foto }}" alt="balai desa Papungan" class="rounded-lg w-full">
 
                 <div class="text-lg font-jakarta markdown-content leading-relaxed text-gray-500">{!! $data1->data->penjelasan !!}</div>

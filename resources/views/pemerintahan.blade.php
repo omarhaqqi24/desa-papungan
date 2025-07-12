@@ -10,25 +10,22 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
 
     @vite('resources/css/app.css')
 
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
+<body class="mytheme font-jakarta antialiase">
     <x-navbar />
-
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- isi disini-->
-
-
-        <!-- struktural-->
-        <div id="struktural"></div>
-        <div class="bg-secondary text-base-100 w-full py-32 px-10">
-            <div class="text-3xl font-semibold">Pemerintahan Desa Papungan</div>
-            <div class="text-sm font-normal">Home / Pemerintahan</div>
+        <div id="pemerintahan"></div>
+        <div class="bg-blue-600 text-lightText w-full py-32 px-10">
+            <div class="text-4xl font-semibold">Pemerintahan Desa Papungan</div>
+            <div class="text-lg mt-4">Home / Pemerintahan</div>
         </div>
-    </div>
 
     <div class=" px-5 md:px-0 ">
         <div class="container items-center mx-auto space-y-10 text-justify p-10 ">

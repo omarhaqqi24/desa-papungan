@@ -29,16 +29,13 @@
 
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50 overflow-x-hidden">
+<body class="mytheme font-jakarta antialiased">
     <x-navbar />
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- isi disini-->
-
-        <!-- pengumuman-->
-        <div id="pengumuman"></div>
+        <div id="informasi"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
-            <div class="text-3xl font-semibold">Informasi Seputar Desa Papungan</div>
-            <div class="text-sm font-normal">Home / Profil Desa</div>
+            <div class="text-4xl font-semibold">Informasi Seputar Desa Papungan</div>
+            <div class="text-lg mt-4">Home / Informasi</div>
         </div>
 
         <div class="container  flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-6">
