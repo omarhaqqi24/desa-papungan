@@ -88,14 +88,14 @@
                                 <td class="px-6 py-4">{{ $item['alamat'] }}</td>
                                 <td class="px-6 py-4">
                                     <button
-                                        onclick="openModalShowProdukDesa()"
+                                        onclick="openModalShowProdukDesa('{{ $item['id'] }}', '{{ json_encode($item)}}')"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tekan
                                         Disini</button>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-6 justify-center items-center">
                                         
-                                        <button onclick="openModalDeleteProdukDesa()"
+                                        <button onclick="openModalDeleteProdukDesa('{{ $item['id'] }}')"
                                             class="font-medium">
                                             <svg width="21" height="20" viewBox="0 0 21 20"  class="stroke-[#475467] hover:stroke-[#ff0000]"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@
                                         </button>
 
                                         <button
-                                            onclick="openModalUpdateProdukDesa()"
+                                            onclick="openModalUpdateProdukDesa('{{ $item['id'] }}', '{{ json_encode($item)}}')"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             <svg width="21" height="20" viewBox="0 0 21 20" class="stroke-[#475467] hover:stroke-[#2D68F8]"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +142,7 @@
                                         Previous
                                     </button>
                                 @else
-                                    <a href="{{ $items->previousPageUrl() }} #daftar-umkm"
+                                    <a href="{{ $items->previousPageUrl() }} #daftar-produk"
                                         class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                         type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -167,7 +167,7 @@
                                                 </span>
                                             </button>
                                         @else
-                                            <a href="{{ $url }} #daftar-umkm"
+                                            <a href="{{ $url }} #daftar-produk"
                                                 class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
                                                 type="button">
                                                 <span
@@ -180,7 +180,7 @@
                                 </div>
 
                                 @if ($items->hasMorePages())
-                                    <a href="{{ $items->nextPageUrl() }} #daftar-umkm"
+                                    <a href="{{ $items->nextPageUrl() }} #daftar-produk"
                                         class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
                                         type="button">
                                         Next
@@ -254,12 +254,12 @@
                             diisi
                         </p> 
                         <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="jenis" id="jenis_produk_show"
+                            <input type="text" name="jenis" id="harga_rendah_produk_show"
                                 class="input input-bordered disabled:bg-slate-100" disabled>
                             <label for="harga_rendah_produk_show" class="label-text text-end">* harga terendah</label>
                         </div>
                         <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="jenis" id="jenis_produk_show"
+                            <input type="text" name="jenis" id="harga_tinggi_produk_show"
                                 class="input input-bordered disabled:bg-slate-100" disabled>
                             <label for="harga_tinggi_produk_show" class="label-text text-end">* harga tertinggi</label>
                         </div>
@@ -269,6 +269,14 @@
                     <div class="form-control gap-4 w-full">
                         <label for="toko_produk_show" class="label-text font-semibold">Nama Toko</label>
                         <input type="text" name="toko" id="toko_produk_show"
+                            class="input input-bordered disabled:bg-slate-100" disabled>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi</p>
+                    </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <label for="alamat_produk_show" class="label-text font-semibold">Alamat Toko</label>
+                        <input type="text" name="alamat" id="alamat_produk_show"
                             class="input input-bordered disabled:bg-slate-100" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
@@ -339,7 +347,7 @@
                         <label for="nama_produk_show" class="label-text font-semibold">Nama produk</label>
                         <input type="text" name="nama" id="nama_produk_show"
                             class="input input-bordered disabled:bg-slate-100">
-                        <input type="text" name="id" id="id_umkm"
+                        <input type="text" name="id" id="id_produk"
                             class="input input-bordered " hidden>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
@@ -347,8 +355,8 @@
                     </div>
 
                     <div class="form-control gap-4">
-                        <label for="alamat_umkm_show" class="label-text font-semibold">Jenis Produk</label>
-                        <input type="text" name="alamat" id="alamat_umkm_show"
+                        <label for="jenis_produk_show" class="label-text font-semibold">Jenis Produk</label>
+                        <input type="text" name="alamat" id="jenis_produk_show"
                             class="input input-bordered disabled:bg-slate-100">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
@@ -356,24 +364,24 @@
                     </div>
 
                     <div class="form-control gap-4 w-full">
-                        <label for="jenis_umkm_show" class="label-text font-semibold">Nama Toko</label>
-                        <input type="text" name="jenis" id="jenis_umkm_show"
+                        <label for="toko_produk_show" class="label-text font-semibold">Nama Toko</label>
+                        <input type="text" name="jenis" id="toko_produk_show"
                             class="input input-bordered disabled:bg-slate-100">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
                     </div>
 
                     <div class="form-control gap-4 w-full">
-                        <label for="jam_buka_umkm_show" class="label-text font-semibold">Link Whatsapp Toko</label>
-                        <input type="text" name="jam_buka" id="jam_buka_umkm_show"
+                        <label for="kontak_produk_show" class="label-text font-semibold">Link Whatsapp Toko</label>
+                        <input type="text" name="jam_buka" id="kontak_produk_show"
                             class="input input-bordered disabled:bg-slate-100">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
                     </div>
                     
                     <div class="form-control gap-4">
-                        <label for="desc_umkm_show" class="label-text font-semibold">Deskripsi</label>
-                        <textarea name="deskripsi" id="desc_umkm_show"
+                        <label for="desc_produk_show" class="label-text font-semibold">Deskripsi</label>
+                        <textarea name="deskripsi" id="desc_produk_show"
                             class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
@@ -381,8 +389,8 @@
                     </div>
                     
                     <div class="form-control gap-4">
-                        <label for="pirt_umkm_show" class="label-text font-semibold">Foto Produk/Toko</label>
-                        <input type="file" accept=".png, .jpg" name="no_pirt" id="pirt_umkm_show"
+                        <label for="foto_produk_show" class="label-text font-semibold">Foto Produk/Toko</label>
+                        <input type="file" accept=".png, .jpg" name="no_pirt" id="foto_produk_show"
                             class="input input-bordered disabled:bg-slate-100 align-center">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
@@ -403,15 +411,35 @@
 {{-- modal END --}}
 
     <script>
-        function openModalShowProdukDesa(){
+        function openModalShowProdukDesa(id, data){
+            data = JSON.parse(data);
+            const namaIn = document.getElementById('nama_produk_show');
+            namaIn.value = data.nama;
+            const jenisIn = document.getElementById('jenis_produk_show');
+            jenisIn.value = data.jenis;
+            const hargaRIn = document.getElementById('harga_rendah_produk_show');
+            hargaRIn.value = data.hargaRendah;
+            const hargaTIn = document.getElementById('harga_tinggi_produk_show');
+            hargaTIn.value = data.hargaTinggi;
+            const tokoIn = document.getElementById('toko_produk_show');
+            tokoIn.value = data.toko;
+            const alamatIn = document.getElementById('alamat_produk_show');
+            alamatIn.value = data.alamat;
+            const kontakIn = document.getElementById('kontak_produk_show');
+            kontakIn.value = data.kontak;
+            const descIn = document.getElementById('desc_produk_show');
+            descIn.value = data.desc;
+            const hiddenInput = document.getElementById('id_produk');
+            hiddenInput.value = data.id;
+
             document.getElementById('modal_show_produk').showModal();
         }
 
-        function openModalDeleteProdukDesa(){
+        function openModalDeleteProdukDesa(id){
             document.getElementById('modal_delete_produk').showModal();
         }
 
-        function openModalUpdateProdukDesa(){
+        function openModalUpdateProdukDesa(id, data){
             document.getElementById('modal_edit_produk').showModal();
         }
     </script>    

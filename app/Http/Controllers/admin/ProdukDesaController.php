@@ -11,6 +11,7 @@ class ProdukDesaController extends Controller
     public function index(Request $request){
 
         $produk = [
+            'id' => 0,
             'nama' => 'test',
             'jenis'=> 'jenisan',
             'toko' => 'down',
@@ -21,7 +22,12 @@ class ProdukDesaController extends Controller
             'desc' => 'awda awda awda'
         ];
 
-        $items = array_fill(0, 22, $produk);
+        $items;
+
+        for ($i=0; $i < 22 ; $i++) { 
+            $produk['id'] = $i;
+            $items[] = $produk;
+        }
         
         $collection = collect($items);
 
