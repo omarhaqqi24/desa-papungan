@@ -49,7 +49,8 @@ class ProdukDesaController extends Controller
 
        
         return view('adminProdukDesa', [
-            'items' => $paginatedItems
+            'items' => $paginatedItems,
+            'jenises' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         ]);
     }
 }

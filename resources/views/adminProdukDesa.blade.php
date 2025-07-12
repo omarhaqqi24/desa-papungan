@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
 
 <body class="mytheme font-jakarta antialiased dark:text-white/50">
@@ -282,35 +283,39 @@
 
                     <div class="form-control gap-4 w-full">
                         <label for="toko_produk_show" class="label-text font-semibold">Nama Toko</label>
-                        <input type="text" name="toko" id="toko_produk_show"
-                            class="input input-bordered disabled:bg-slate-100" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="toko" id="toko_produk_show"
+                            class="input input-bordered disabled:bg-slate-100" disabled>
+                        
                     </div>
 
                     <div class="form-control gap-4 w-full">
                         <label for="alamat_produk_show" class="label-text font-semibold">Alamat Toko</label>
-                        <input type="text" name="alamat" id="alamat_produk_show"
-                            class="input input-bordered disabled:bg-slate-100" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="alamat" id="alamat_produk_show"
+                            class="input input-bordered disabled:bg-slate-100" disabled>
+                        
                     </div>
 
                     <div class="form-control gap-4 w-full">
                         <label for="kontak_produk_show" class="label-text font-semibold">Link Whatsapp Toko</label>
-                        <input type="text" name="kontak" id="kontak_produk_show"
-                            class="input input-bordered disabled:bg-slate-100" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="kontak" id="kontak_produk_show"
+                            class="input input-bordered disabled:bg-slate-100" disabled>
+                        
                     </div>
                     
                     <div class="form-control gap-4">
                         <label for="desc_produk_show" class="label-text font-semibold">Deskripsi</label>
-                        <textarea name="deskripsi" id="desc_produk_show" disabled
-                            class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
+                        <textarea name="deskripsi" id="desc_produk_show" disabled
+                            class="input input-bordered w-full py-4 h-36 disabled:bg-slate-100"></textarea>
+                        
                     </div>
                     
                     <div class="form-control gap-4">
@@ -349,45 +354,61 @@
     </dialog>
     {{-- END DELETE --}}
 
-    {{-- UPDATE --}}
+    {{-- EDIT --}}
     <dialog id="modal_edit_produk" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
-            <h3 class="text-lg font-bold">Ed Produk Desa</h3>
+            <h3 class="text-lg font-bold">Edit Produk Desa</h3>
             <hr class="h-px my-8 bg-gray-300 border-0">
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="form-control gap-6">
                     <div class="form-control gap-4">
                         <label for="nama_produk_edit" class="label-text font-semibold">Nama produk</label>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p>
                         <input type="text" name="nama" id="nama_produk_edit"
                             class="input input-bordered">
                         <input type="text" name="id" id="id_produk"
                             class="input input-bordered " hidden>
-                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                            diisi
-                        </p>
+                        
                     </div>
 
-                    <div class="form-control gap-4">
-                        <label for="jenis_produk_edit" class="label-text font-semibold">Jenis Produk</label>
-                        <input type="text" name="jenis" id="jenis_produk_edit"
-                            class="input input-bordered">
+                    
+                    <div class="form-control gap-4 w-full">
+                        <label for="jenis_produk_edit" class="label-text font-semibold">Jenis produk</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                            diisi
-                        </p>
+                            diisi</p>
+                        <select multiple="" name="jenis[]" class="jenis_produk_edit"
+                            data-hs-select='{
+                        "placeholder": "Pilih jenis produk...",
+                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                        "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-gray-100 border border-gray-300 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                        "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-gray-100 border border-gray-300 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                        "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                        "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
+                        "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                        }'
+                            class="">
+                            <option value="">Choose</option>
+                            @foreach ($jenises as $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
+                        </select> 
                     </div>
+                    
 
                     <div class="form-control gap-4">
                         <p class="label-text font-semibold">Harga Produk</p>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p> 
-                        <div class="max-w-[50%] flex flex-col">
+                        <div class="lg:max-w-[50%] flex flex-col">
                             <input type="text" name="harga_rendah" id="harga_rendah_produk_edit"
                                 class="input input-bordered">
                             <label for="harga_rendah_produk_edit" class="label-text text-end">* harga terendah</label>
                         </div>
-                        <div class="max-w-[50%] flex flex-col">
+                        <div class="lg:max-w-[50%] flex flex-col">
                             <input type="text" name="harga_tinggi" id="harga_tinggi_produk_edit"
                                 class="input input-bordered">
                             <label for="harga_tinggi_produk_edit" class="label-text text-end">* harga tertinggi</label>
@@ -396,36 +417,40 @@
 
                     <div class="form-control gap-4 w-full">
                         <label for="toko_produk_edit" class="label-text font-semibold">Nama Toko</label>
-                        <input type="text" name="toko" id="toko_produk_edit"
-                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="toko" id="toko_produk_edit"
+                            class="input input-bordered">
+                        
                     </div>
 
                     <div class="form-control gap-4 w-full">
                         <label for="alamat_produk_edit" class="label-text font-semibold">Alamat Toko</label>
-                        <input type="text" name="toko" id="alamat_produk_edit"
-                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="toko" id="alamat_produk_edit"
+                            class="input input-bordered">
+                        
                     </div>
 
 
                     <div class="form-control gap-4 w-full">
                         <label for="kontak_produk_edit" class="label-text font-semibold">Link Whatsapp Toko</label>
-                        <input type="text" name="kontak" id="kontak_produk_edit"
-                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="kontak" id="kontak_produk_edit"
+                            class="input input-bordered">
+                        
                     </div>
                     
                     <div class="form-control gap-4">
                         <label for="desc_produk_edit" class="label-text font-semibold">Deskripsi</label>
-                        <textarea name="deskripsi" id="desc_produk_edit"
-                            class="input input-bordered w-full py-4 h-36"></textarea>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
+                        <textarea name="deskripsi" id="desc_produk_edit"
+                            class="input input-bordered w-full py-4 h-36"></textarea>
+                        
                     </div>
                     
                     <div class="form-control gap-4">
@@ -454,34 +479,48 @@
             </form>
         </div>
     </dialog>
-    {{-- END UPDATE --}}
+    {{-- END EDIT --}}
 
     {{-- TAMBAH PRODUK --}}
     <dialog id="modal_tambah_produk" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
-            <h3 class="text-lg font-bold">Ed Produk Desa</h3>
+            <h3 class="text-lg font-bold">Tambah Produk Desa</h3>
             <hr class="h-px my-8 bg-gray-300 border-0">
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="form-control gap-6">
                     <div class="form-control gap-4">
                         <label for="nama_produk_show" class="label-text font-semibold">Nama produk</label>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi
+                        </p>
                         <input type="text" name="nama" id="nama_produk_show"
                             class="input input-bordered">
                         <input type="text" name="id" id="id_produk"
                             class="input input-bordered " hidden>
-                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                            diisi
-                        </p>
+                        
                     </div>
 
-                    <div class="form-control gap-4">
-                        <label for="jenis_produk_show" class="label-text font-semibold">Jenis Produk</label>
-                        <input type="text" name="alamat" id="jenis_produk_show"
-                            class="input input-bordered">
+                    <div class="form-control gap-4 w-full">
+                        <label for="jenis_produk_edit" class="label-text font-semibold">Jenis produk</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
-                            diisi
-                        </p>
+                            diisi</p>
+                        <select multiple="" name="jenis[]" class="jenis_produk_edit"
+                            data-hs-select='{
+                        "placeholder": "Pilih jenis produk...",
+                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                        "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-gray-100 border border-gray-300 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                        "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-gray-100 border border-gray-300 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                        "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                        "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
+                        "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                        }'
+                            class="">
+                            <option value="">Choose</option>
+                            @foreach ($jenises as $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
+                        </select> 
                     </div>
 
                     <div class="form-control gap-4">
@@ -503,27 +542,30 @@
 
                     <div class="form-control gap-4 w-full">
                         <label for="toko_produk_show" class="label-text font-semibold">Nama Toko</label>
-                        <input type="text" name="jenis" id="toko_produk_show"
-                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="jenis" id="toko_produk_show"
+                            class="input input-bordered">
+                        
                     </div>
 
                     <div class="form-control gap-4 w-full">
                         <label for="kontak_produk_show" class="label-text font-semibold">Link Whatsapp Toko</label>
-                        <input type="text" name="jam_buka" id="kontak_produk_show"
-                            class="input input-bordered">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
+                        <input type="text" name="jam_buka" id="kontak_produk_show"
+                            class="input input-bordered">
+                        
                     </div>
                     
                     <div class="form-control gap-4">
                         <label for="desc_produk_show" class="label-text font-semibold">Deskripsi</label>
-                        <textarea name="deskripsi" id="desc_produk_show"
-                            class="input input-bordered w-full py-4 h-36"></textarea>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
+                        <textarea name="deskripsi" id="desc_produk_show"
+                            class="input input-bordered w-full py-4 h-36"></textarea>
+                        
                     </div>
                     
                     <div class="form-control gap-4">
@@ -579,10 +621,9 @@
 
         function openModalUpdateProdukDesa(id, data){
             data = JSON.parse(data);
+
             const namaIn = document.getElementById('nama_produk_edit');
             namaIn.value = data.nama;
-            const jenisIn = document.getElementById('jenis_produk_edit');
-            jenisIn.value = data.jenis;
             const hargaRIn = document.getElementById('harga_rendah_produk_edit');
             hargaRIn.value = data.hargaRendah;
             const hargaTIn = document.getElementById('harga_tinggi_produk_edit');
