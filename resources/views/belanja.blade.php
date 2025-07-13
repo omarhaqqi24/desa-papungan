@@ -42,16 +42,17 @@
     </div>
     <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full">
         @foreach ($produk as $item)
-        <div class="h-96 w-80 rounded-2xl my-8 bg-white shadow-md overflow-hidden">
+        <div class="h-[416px] w-[360px] rounded-2xl my-8 bg-white shadow-md overflow-hidden">
             <img src="{{ asset('/img/produk/'.$item->image) }}" alt="" class="h-1/2 w-full object-cover scale-[1.3] z-30 relative">
-            <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative">
-                <h3 class="font-semibold text-xl text-gray-900 mb-1">{{ $item->nama_produk }}</h3>
-                <div class="text-blue-700 font-bold font-jakarta text-xl mb-1">
-                    {{ $item->harga }}
-                </div>
-                <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta">
+            <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-[#F0F5fe] h-1/2 relative border-2 border-[#D5E1FE] gap-2">
+                <h3 class="text-xl text-gray-900 mb-1 font-bold">{{ $item->nama_produk }}</h3>
+                <p class="text-gray-500 text-base mb-2 line-clamp-2 font-jakarta flex items-center text-xs font-medium">
+                    <img src="{{  asset('/img/icon-toko.png')  }}" alt="" class="inline mr-2">
                     {{ $item->umkm->nama ?? 'UMKM tidak ditemukan' }}
                 </p>
+                <div class="text-[#2453C6] font-bold font-jakarta text-base mb-1">
+                    {{ $item->harga }}
+                </div>
                 <div class="mt-auto absolute bottom-0 right-0">
                     <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
                         Lihat Detail
