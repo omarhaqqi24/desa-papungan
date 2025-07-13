@@ -35,21 +35,68 @@
         <div class="w-full" id="Kategori">
             <div class="text-3xl font-semibold text-darkText">Kategori Produk</div>
 
+
             {{-- form pencarian --}}
-            <form action="#cari-produk" method="get">
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="search" placeholder="Pencarian" name="qProduk" 
-                        value="{{ request()->input('qProduk') }}"
-                        class="w-1/2 my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
-                </div>
-            </form>
+            <div class="flex flex-row gap-[10px] items-center w-[80%]">
+                <label class="block w-[500px]">
+                    <form action="#cari-produk" method="get">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="search" placeholder="Pencarian" name="qProduk" 
+                                value="{{ request()->input('qProduk') }}"
+                                class="w-full my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
+                        </div>
+                    </form>
+                </label>
+      
+                <label class="hs-select block w-[200px]">
+                    <select name="jenisFilter" id="jenis_produk_filter"
+                        data-hs-select='{
+                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                        "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-gray-100 border border-gray-300 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                        "dropdownClasses": "block mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-gray-100 border border-gray-300 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                        "optionClasses": "block py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                        "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                        }'
+                        class="">
+                            <option value="Semua Jenis Produk" selected>Semua Jenis Produk</option>
+                        @foreach ($jenises as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                        @endforeach
+                    </select> 
+                </label>
+                
+                <label class="hs-select block w-[200px]">
+                    <select
+                        name="tokoFilter"
+                        id="toko_produk_filter"
+                        data-hs-select='{
+                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                        "toggleClasses": "block w-full flex-shrink-0 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap bg-gray-100 border border-gray-300 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:ring-1 dark:focus:ring-neutral-600",
+                        "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-gray-100 border border-gray-300 rounded-lg overflow-y-auto dark:bg-neutral-900 dark:border-neutral-700",
+                        "optionClasses": "py-2 px-4 text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800",
+                        "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"></span></div>",
+                        "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                        }'
+                        class="">
+                            <option value="Semua Toko" selected>Semua Toko</option>
+                        @foreach ($toko as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                        @endforeach
+                    </select>
+                </label>
+
+                <button
+                    onclick="reset()"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">reset</button>
+              
+            </div>
             {{--  --}}
 
             {{-- daftar produk --}}
@@ -268,14 +315,22 @@
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p> 
-                        <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="harga_rendah" id="harga_rendah_produk_show"
-                                class="input input-bordered disabled:bg-slate-100" disabled>
+
+                        <div class="lg:max-w-[60%] flex flex-col">
+                            <div class="flex">
+                                <label for="harga_rendah_produk_show" class="px-4 py-2 border border-r-0 border-gray-300 bg-slate-100 rounded-l-lg text-[#15141466]">RP</label>
+                                <input type="text" name="harga_rendah" id="harga_rendah_produk_show"
+                                    class="input input-bordered disabled:bg-slate-100 rounded-l-none w-full" disabled>
+                            </div>
                             <label for="harga_rendah_produk_show" class="label-text text-end">* harga terendah</label>
                         </div>
-                        <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="harga_tinggi" id="harga_tinggi_produk_show"
-                                class="input input-bordered disabled:bg-slate-100" disabled>
+
+                        <div class="lg:max-w-[60%] flex flex-col">
+                            <div class="flex">
+                                <label for="harga_tinggi_produk_show" class="px-4 py-2 border border-r-0 border-gray-300 bg-slate-100 rounded-l-lg text-[#15141466]">RP</label>
+                                <input type="text" name="harga_tinggi" id="harga_tinggi_produk_show"
+                                    class="input input-bordered disabled:bg-slate-100 rounded-l-none w-full" disabled>
+                            </div>
                             <label for="harga_tinggi_produk_show" class="label-text text-end">* harga tertinggi</label>
                         </div>
                     </div>
@@ -307,6 +362,29 @@
                             class="input input-bordered disabled:bg-slate-100" disabled>
                         
                     </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <p  class="label-text font-semibold">Perizinan Label</p>
+
+                        <label for="halal_produk_show" class="label-text text-gray-500">
+                            no halal (optional)
+                        </label>
+                        <input type="text" name="kontak" id="halal_produk_show"
+                            class="input input-bordered disabled:bg-slate-100 lg:max-w-[60%]" disabled>
+
+                        <label for="nib_produk_show" class="label-text text-gray-500">
+                            no NIB (optional)
+                        </label>
+                        <input type="text" name="kontak" id="nib_produk_show"
+                            class="input input-bordered disabled:bg-slate-100 lg:max-w-[60%]" disabled>
+
+                        <label for="pirt_produk_show" class="label-text text-gray-500">
+                            no P-IRT (optional)
+                        </label>
+                        <input type="text" name="kontak" id="pirt_produk_show"
+                            class="input input-bordered disabled:bg-slate-100 lg:max-w-[60%]" disabled>
+                        
+                    </div>
                     
                     <div class="form-control gap-4">
                         <label for="desc_produk_show" class="label-text font-semibold">Deskripsi</label>
@@ -321,7 +399,7 @@
                     <div class="form-control gap-4">
                         <label for="foto_produk_show" class="label-text font-semibold">Foto Produk/Toko</label>
                         <input type="file" name="foto" id="foto_produk_show" accept=".png, .jpg"
-                            class="input input-bordered disabled:bg-slate-100" disabled>
+                            class=" disabled:bg-[#f3f4f6]" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
@@ -340,8 +418,8 @@
 
     {{-- DELETE --}}
     <dialog id="modal_delete_produk" class="modal">
-        <div class="modal-box w-[50%]">
-            <h2 class="text-xl">Konfirmasi Penghapusan Produk</h2>
+        <div class="modal-box min-w-[80%] flex flex-col gap-[10px]">
+            <p class="text-[35px]">Konfirmasi Penghapusan Produk</p>
             <div class="flex-grow border-b-2 border-black"></div>
             <div class="text-[16px]">⚠️ Penghapusan bersifat permanen.</div>
             <div class="text-[14px]">Produk yang dihapus tidak bisa dipulihkan. Jika Anda ingin menampilkan produk ini lagi, Anda harus menginput ulang semua detailnya.</div>
@@ -403,14 +481,22 @@
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p> 
-                        <div class="lg:max-w-[50%] flex flex-col">
-                            <input type="text" name="harga_rendah" id="harga_rendah_produk_edit"
-                                class="input input-bordered">
+
+                        <div class="lg:max-w-[60%] flex flex-col">
+                            <div class="flex">
+                                <label for="harga_rendah_produk_edit" class="px-4 py-2 border border-r-0 border-gray-300 rounded-l-lg">RP</label>
+                                <input type="text" name="harga_rendah" id="harga_rendah_produk_edit"
+                                    class="input input-bordered rounded-l-none w-full">
+                            </div>
                             <label for="harga_rendah_produk_edit" class="label-text text-end">* harga terendah</label>
                         </div>
-                        <div class="lg:max-w-[50%] flex flex-col">
-                            <input type="text" name="harga_tinggi" id="harga_tinggi_produk_edit"
-                                class="input input-bordered">
+
+                        <div class="lg:max-w-[60%] flex flex-col">
+                            <div class="flex">
+                                <label for="harga_tinggi_produk_edit" class="px-4 py-2 border border-r-0 border-gray-300 rounded-l-lg">RP</label>
+                                <input type="text" name="harga_tinggi" id="harga_tinggi_produk_edit"
+                                    class="input input-bordered rounded-l-none w-full">
+                            </div>
                             <label for="harga_tinggi_produk_edit" class="label-text text-end">* harga tertinggi</label>
                         </div>
                     </div>
@@ -442,6 +528,28 @@
                             class="input input-bordered">
                         
                     </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <p  class="label-text font-semibold">Perizinan Label</p>
+
+                        <label for="halal_produk_edit" class="label-text text-gray-500">
+                            no halal (optional)
+                        </label>
+                        <input type="text" name="kontak" id="halal_produk_edit"
+                            class="input input-bordered lg:max-w-[60%]">
+
+                        <label for="nib_produk_edit" class="label-text text-gray-500">
+                            no NIB (optional)
+                        </label>
+                        <input type="text" name="kontak" id="nib_produk_edit"
+                            class="input input-bordered lg:max-w-[60%]">
+
+                        <label for="pirt_produk_edit" class="label-text text-gray-500">
+                            no P-IRT (optional)
+                        </label>
+                        <input type="text" name="kontak" id="pirt_produk_edit"
+                            class="input input-bordered lg:max-w-[60%]">
+                    </div>
                     
                     <div class="form-control gap-4">
                         <label for="desc_produk_edit" class="label-text font-semibold">Deskripsi</label>
@@ -456,7 +564,7 @@
                     <div class="form-control gap-4">
                         <label for="foto_produk_edit" class="label-text font-semibold">Foto Produk/Toko</label>
                         <input type="file" accept=".png, .jpg" name="foto" id="foto_produk_edit"
-                            class="input input-bordered align-center">
+                            class="input align-center">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
@@ -490,11 +598,11 @@
                 @csrf
                 <div class="form-control gap-6">
                     <div class="form-control gap-4">
-                        <label for="nama_produk_show" class="label-text font-semibold">Nama produk</label>
+                        <label for="nama_produk_add" class="label-text font-semibold">Nama produk</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
-                        <input type="text" name="nama" id="nama_produk_show"
+                        <input type="text" name="nama" id="nama_produk_add"
                             class="input input-bordered">
                         <input type="text" name="id" id="id_produk"
                             class="input input-bordered " hidden>
@@ -528,50 +636,80 @@
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p> 
-                        <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="jenis" id="harga_rendah_produk_show"
-                                class="input input-bordered">
-                            <label for="harga_rendah_produk_show" class="label-text text-end">* harga terendah</label>
+
+                        <div class="lg:max-w-[60%] flex flex-col">
+                            <div class="flex">
+                                <label for="harga_rendah_produk_add" class="px-4 py-2 border border-r-0 border-gray-300 rounded-l-lg">RP</label>
+                                <input type="text" name="harga_rendah" id="harga_rendah_produk_add"
+                                    class="input input-bordered rounded-l-none w-full">
+                            </div>
+                            <label for="harga_rendah_produk_add" class="label-text text-end">* harga terendah</label>
                         </div>
-                        <div class="max-w-[50%] flex flex-col">
-                            <input type="text" name="jenis" id="harga_tinggi_produk_show"
-                                class="input input-bordered">
-                            <label for="harga_tinggi_produk_show" class="label-text text-end">* harga tertinggi</label>
+
+                        <div class="lg:max-w-[60%] flex flex-col">
+                            <div class="flex">
+                                <label for="harga_tinggi_produk_add" class="px-4 py-2 border border-r-0 border-gray-300 rounded-l-lg">RP</label>
+                                <input type="text" name="harga_tinggi" id="harga_tinggi_produk_add"
+                                    class="input input-bordered rounded-l-none w-full">
+                            </div>
+                            <label for="harga_tinggi_produk_add" class="label-text text-end">* harga tertinggi</label>
                         </div>
                     </div>
 
                     <div class="form-control gap-4 w-full">
-                        <label for="toko_produk_show" class="label-text font-semibold">Nama Toko</label>
+                        <label for="toko_produk_add" class="label-text font-semibold">Nama Toko</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
-                        <input type="text" name="jenis" id="toko_produk_show"
+                        <input type="text" name="jenis" id="toko_produk_add"
                             class="input input-bordered">
                         
                     </div>
 
                     <div class="form-control gap-4 w-full">
-                        <label for="kontak_produk_show" class="label-text font-semibold">Link Whatsapp Toko</label>
+                        <label for="kontak_produk_add" class="label-text font-semibold">Link Whatsapp Toko</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
-                        <input type="text" name="jam_buka" id="kontak_produk_show"
+                        <input type="text" name="kontak" id="kontak_produk_add"
                             class="input input-bordered">
                         
+                    </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <p  class="label-text font-semibold">Perizinan Label</p>
+
+                        <label for="halal_produk_add" class="label-text text-gray-500">
+                            no halal (optional)
+                        </label>
+                        <input type="text" name="kontak" id="halal_produk_add"
+                            class="input input-bordered lg:max-w-[60%]">
+
+                        <label for="nib_produk_add" class="label-text text-gray-500">
+                            no NIB (optional)
+                        </label>
+                        <input type="text" name="kontak" id="nib_produk_add"
+                            class="input input-bordered lg:max-w-[60%]">
+
+                        <label for="pirt_produk_add" class="label-text text-gray-500">
+                            no P-IRT (optional)
+                        </label>
+                        <input type="text" name="kontak" id="pirt_produk_add"
+                            class="input input-bordered lg:max-w-[60%]">
                     </div>
                     
                     <div class="form-control gap-4">
-                        <label for="desc_produk_show" class="label-text font-semibold">Deskripsi</label>
+                        <label for="desc_produk_add" class="label-text font-semibold">Deskripsi</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi
                         </p>
-                        <textarea name="deskripsi" id="desc_produk_show"
+                        <textarea name="deskripsi" id="desc_produk_add"
                             class="input input-bordered w-full py-4 h-36"></textarea>
                         
                     </div>
                     
                     <div class="form-control gap-4">
-                        <label for="foto_produk_show" class="label-text font-semibold">Foto Produk/Toko</label>
-                        <input type="file" accept=".png, .jpg" name="no_pirt" id="foto_produk_show"
-                            class="input input-bordered align-center">
+                        <label for="foto_produk_add" class="label-text font-semibold">Foto Produk/Toko</label>
+                        <input type="file" accept=".png, .jpg" name="no_pirt" id="foto_produk_add"
+                            class="input align-center">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
@@ -612,6 +750,16 @@
             const hiddenInput = document.getElementById('id_produk');
             hiddenInput.value = id;
 
+            if (data.halal == null) {
+                document.getElementById('halal_produk_show').placeholder = '(tuliskan nomor halal)'
+            }
+            if (data.nib == null) {
+                document.getElementById('nib_produk_show').placeholder = '(tuliskan nomor NIB)'
+            }
+            if (data.pirt == null) {
+                document.getElementById('pirt_produk_show').placeholder = '(tuliskan nomor P-IRT)'
+            }
+
             document.getElementById('modal_show_produk').showModal();
         }
 
@@ -639,7 +787,24 @@
             const hiddenInput = document.getElementById('id_produk');
             hiddenInput.value = id;
 
+            if (data.halal == null) {
+                document.getElementById('halal_produk_edit').placeholder = '(tuliskan nomor halal)'
+            }
+            if (data.nib == null) {
+                document.getElementById('nib_produk_edit').placeholder = '(tuliskan nomor NIB)'
+            }
+            if (data.pirt == null) {
+                document.getElementById('pirt_produk_edit').placeholder = '(tuliskan nomor P-IRT)'
+            }
+
             document.getElementById('modal_edit_produk').showModal();
+        }
+
+        function reset(){
+            
+            document.getElementById('toko_produk_filter').selectedIndex = 2;
+            console.log('huh');
+            document.getElementById('jenis_produk_filter').selectedIndex = 0;
         }
     </script>    
 </body>
