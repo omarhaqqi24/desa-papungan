@@ -11,6 +11,7 @@ export default {
         extend: {
             fontFamily: {
                 jakarta: ["'Plus Jakarta Sans'", "sans-serif"],
+                inter: ["'Inter'", "sans-serif"]
             },
             backgroundImage: {
                 "card-subjudul": "url('/public/img/bg-cardSubjudul.png')",
