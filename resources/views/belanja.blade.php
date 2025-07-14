@@ -29,20 +29,18 @@
 <body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
     <x-navbar />
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- isi disini-->
-
-        <!-- belanja-->
         <div id="belanja"></div>
         <div class="bg-secondary text-base-100 w-full py-32 px-10">
             <div class="text-3xl font-semibold">Belanja Produk Desa Papungan</div>
             <div class="text-sm font-normal">Home / Belanja</div>
         </div>
     </div>
-    </div>
-    <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full">
-        @foreach ($produk as $itemn)
-        <x-CardBelanja :item="$itemn" />
-        @endforeach
+    <div class="container items-center mx-auto space-y-10 text-justify">
+        <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full gap-2">
+            @foreach ($produk as $itemn)
+            <x-CardBelanja :item="$itemn" />
+            @endforeach
+        </div>
     </div>
 
     </div>
