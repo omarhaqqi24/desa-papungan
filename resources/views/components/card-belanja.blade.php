@@ -13,7 +13,7 @@
             {{  $item->umkm->deskripsi  }}
         </div>
         <div class="mt-auto absolute bottom-0 right-0">
-            <a href="#" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
+            <a href="{{  url('produk/' . $item->id)  }}" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl rounded-br-xl hover:bg-blue-700 text-base font-semibold">
                 Lihat Detail
             </a>
         </div>

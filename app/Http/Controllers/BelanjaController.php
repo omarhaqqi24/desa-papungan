@@ -12,4 +12,11 @@ class BelanjaController extends Controller
 
         return view('belanja', compact('produk'));
     }
+
+    public function show($id)
+    {
+        $produk = Produk::with('umkm')->findOrFail($id);
+
+        return view('detailProduk', compact('produk'));
+    }
 }

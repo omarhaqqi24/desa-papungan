@@ -193,3 +193,4 @@ Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisi
 
 // Halaman Belanja Desa
 Route::get('/belanja', [BelanjaController::class,'index'])->name('belanja.index');
+Route::get('/produk/{id}', [BelanjaController::class, 'show'])->name('produk.show');
