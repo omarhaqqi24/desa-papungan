@@ -61,14 +61,14 @@
 
 
     <div class="container mx-auto px-5 md:px-10 mt-10 space-y-10">
-        <x-headerArtikel subJudul="Katalog Produk" judul="{{ $produk->nama_produk }}" />
+        <x-headerArtikel subJudul="Katalog Produk" judul="{{ $produk->umkm->nama }}" />
 
         <div class="flex flex-col md:flex-row gap-10 py-5">
             <div class="md:w-[460px] md:h-[420px] flex justify-center items-center rounded-xl overflow-hidden">
                 <img src="{{ asset('img/produk/' . $produk->image) }}" alt="{{ $produk->nama }}" class="w-full h-full object-cover shadow-lg">
             </div>
 
-            <div class="md:w-1/2 flex flex-col justify-between">
+            <div class="md:w-auto flex flex-col justify-between">
                 <div>
                     <h1 class="text-[28px] font-semibold text-gray-900 mb-3 font-jakarta">
                         {{ $produk->nama_produk }}
@@ -101,6 +101,35 @@
                 </div>
             </div>
         </div>
+        <div class="space-y-5">
+            <div class="flex flex-row justify-between items-center">
+                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">Produk Lainnya</div>
+            </div>
+            <!-- Horizontal Carousel -->
+            <div class="hidden md:block w-full overflow-hidden">
+                <div class="w-full h-auto overflow-x-scroll flex flex-nowrap gap-12 ">
+                    @foreach ($produkLain as $item)
+                        <a href="{{ url('produk/' . $item->id) }}">
+                            <div class="carousel-item h-auto mb-5">
+                                <x-CardBelanja :item="$item" />
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Vertical Carousel (Mobile) -->
+            <div class="md:hidden w-full overflow-hidden">
+                <div class="w-auto h-[420px] overflow-y-scroll flex flex-col flex-nowrap gap-12 ">
+                    @foreach ($produkLain as $item)
+                        <a href="{{ url('produk/' . $item->id) }}">
+                            <div class="carousel-item h-auto mb-5">
+                                <x-CardBelanja :item="$item" />
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
     </div>
 
     <x-footer />

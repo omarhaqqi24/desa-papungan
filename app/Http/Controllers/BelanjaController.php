@@ -16,7 +16,11 @@ class BelanjaController extends Controller
     public function show($id)
     {
         $produk = Produk::with('umkm')->findOrFail($id);
+        $produkLain = Produk::with('umkm')->inRandomOrder()->limit(10)->get();
 
-        return view('detailProduk', compact('produk'));
+        return view('detailProduk', [
+            'produk' => $produk,
+            'produkLain' => $produkLain
+        ]);
     }
 }
