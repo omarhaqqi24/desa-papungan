@@ -64,38 +64,37 @@
         <x-headerArtikel subJudul="Katalog Produk" judul="{{ $produk->nama_produk }}" />
 
         <div class="flex flex-col md:flex-row gap-10 py-5">
-            {{-- Bagian Gambar Produk --}}
-            <div class="md:w-1/2 flex justify-center items-center">
-                <img src="{{ asset('img/produk/' . $produk->image) }}" alt="{{ $produk->nama }}" class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg">
+            <div class="md:w-[460px] md:h-[420px] flex justify-center items-center rounded-xl overflow-hidden">
+                <img src="{{ asset('img/produk/' . $produk->image) }}" alt="{{ $produk->nama }}" class="w-full h-full object-cover shadow-lg">
             </div>
 
             <div class="md:w-1/2 flex flex-col justify-between">
                 <div>
-                    <h1 class="text-3xl font-semibold text-gray-900 mb-3 font-jakarta">
+                    <h1 class="text-[28px] font-semibold text-gray-900 mb-3 font-jakarta">
                         {{ $produk->nama_produk }}
                     </h1>
-                    <div class="text-blue-700 font-bold text-3xl mb-5 font-jakarta">
+                    <div class="text-blue-700 font-bold text-[42px] mb-5 font-jakarta">
                         {{  $produk->harga  }}
                     </div>
-                    <h2 class="text-xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
-                    <p class="text-gray-600 text-base leading-relaxed mb-4 font-jakarta">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
+                    <p class="text-gray-600 text-xl leading-relaxed mb-4 font-jakarta">
                         {{ $produk->umkm->deskripsi }}
                     </p>
-                    <h2 class="text-xl font-semibold text-gray-800 mb-2 font-jakarta">Alamat</h2>
-                    <p class="text-gray-600 text-base font-jakarta mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Alamat</h2>
+                    <p class="text-gray-600 text-xl font-jakarta mb-4">
                         {{ $produk->umkm->alamat }}
                     </p>
                 </div>
 
                 <div class="mt-4 flex flex-col sm:flex-row gap-4">
-                    <a href="{{ 'https://wa.me/62' . substr($produk->umkm->kontak, 1) }}" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center justify-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-base font-semibold hover:from-blue-500 hover:to-blue-700 transition duration-300 font-jakarta">
+                    <a href="{{ 'https://wa.me/62' . substr(rtrim(rtrim($produk->umkm->kontak, '0'), '.'), 1) }}" target="_blank" rel="noopener noreferrer"
+                        class="w-[284px] h-14 flex items-center justify-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-[22px] font-semibold hover:from-blue-500 hover:to-blue-700 transition duration-300 font-jakarta">
                         <img src="{{ asset('img/whatsapp-icon.svg') }}" alt="WhatsAppLogo" class="w-6 h-6 mr-2">
                         Hubungi Penjual
                     </a>
 
                     <a href="{{ $produk->umkm->url_map }}" target="_blank" rel="noopener noreferrer"
-                        class="gradient-border-wrapper flex items-center justify-center px-6 py-2 bg-white text-blue-600 rounded-full text-base font-semibold transition duration-300 font-jakarta ">
+                        class="w-56 h-14 gradient-border-wrapper flex items-center justify-center px-6 py-2 bg-white text-blue-600 rounded-full text-[22px] font-semibold transition duration-300 font-jakarta ">
                         <img src="{{ asset('img/google-maps-icon.svg') }}" alt="MapsLogo" class="w-6 h-6 mr-2">
                         Lihat di Maps
                     </a>
