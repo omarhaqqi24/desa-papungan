@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\PariwisataDesaController;
 use App\Http\Controllers\admin\PemerintahanDesaController;
 use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\admin\UmkmDesaController;
+use App\Http\Controllers\admin\ProdukDesaController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaPageController;

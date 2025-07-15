@@ -122,7 +122,7 @@
                         <!--PROFIL DESA START-->
                         <li>
                             <details>
-                                <summary class="hover:text-primary">Profil Desa</summary>
+                                <summary class="hover:text-primary">Profil DesaE</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang
                                             Kami</a></li>
