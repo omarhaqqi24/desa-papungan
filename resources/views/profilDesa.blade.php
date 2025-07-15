@@ -46,7 +46,7 @@
 
         <div class="px-5 md:px-0">
             <div class="container items-center mx-auto space-y-10 text-justify p-10 mt-10 ">
-                <x-headerArtikel subJudul="TENTANG KAMI" judul="Kenali Desa Papungan" />
+                <x-headerArtikel subJudul="Kenali Desa Papungan" judul="TENTANG KAMI" />
                 <img src="{{ $data1->data->foto }}" alt="balai desa Papungan" class="rounded-lg w-full">
 
                 <div class="text-lg font-jakarta markdown-content leading-relaxed text-gray-500">{!! $data1->data->penjelasan !!}</div>

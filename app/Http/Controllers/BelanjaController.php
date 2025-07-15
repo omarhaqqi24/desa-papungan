@@ -8,7 +8,20 @@ class BelanjaController extends Controller
 {
     public function index()
     {
-        $produk = Produk::with('umkm')->get();
+        $query = Produk::with('umkm');
+
+        if (request()->filled('nama')) {
+            $search = request()->nama;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_produk', 'like', "%{$search}%")
+                ->orWhereHas('umkm', function ($umkmQuery) use ($search) {
+                    $umkmQuery->where('nama', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        $produk = $query->get();
 
         return view('belanja', compact('produk'));
     }

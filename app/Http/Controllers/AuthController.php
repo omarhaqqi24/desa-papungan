@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function index() {
         if (Session::has('api-token')) {
-            return back();
+            return redirect()->route('admin.profil-desa.index');
         }
         return view('adminLogin');
     }
