@@ -37,22 +37,21 @@
 
 
             {{-- form pencarian --}}
-            <div class="flex flex-row gap-[10px] items-center w-[80%]">
+            <form action="#cari-produk" method="get" class="flex flex-row gap-[10px] items-center w-[80%]">
                 <label class="block w-[500px]">
-                    <form action="#cari-produk" method="get">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="search" placeholder="Pencarian" name="qProduk" 
-                                value="{{ request()->input('qProduk') }}"
-                                class="w-full my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
-                        </div>
-                    </form>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                        <input type="search" placeholder="Pencarian" name="qProduk" 
+                            value="{{ request()->input('qProduk') }}"
+                            class="w-full my-4 py-2 pl-10 pr-5 appearance-none focus:outline-none focus:ring-blue-500 rounded-lg border border-gray-300">
+                    </div>
+                    
                 </label>
       
                 <label class="hs-select block w-[200px]">
@@ -67,7 +66,7 @@
                         class="">
                             <option value="Semua Jenis Produk" selected>Semua Jenis Produk</option>
                         @foreach ($jenises as $item)
-                            <option value="{{ $item }}">{{ $item }}</option>
+                            <option value="{{ $item }} {{ request('jenisFilter')==$item?'selected':'' }}">{{ $item }}</option>
                         @endforeach
                     </select> 
                 </label>
@@ -87,14 +86,21 @@
                         class="">
                             <option value="Semua Toko" selected>Semua Toko</option>
                         @foreach ($toko as $item)
-                            <option value="{{ $item }}">{{ $item }}</option>
+                            <option value="{{ $item }} {{ request('tokoFilter')==$item?'selected':'' }}">{{ $item }}</option>
                         @endforeach
                     </select>
                 </label>
 
                 <button
-                    onclick="reset()"
-                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">reset</button>
+                    type="submit"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">apply</button>
+                
+                <a
+                    href="{{ route('admin.produk.index')}}"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">reset</a>
+            </form>
+
+                
               
             </div>
             {{--  --}}
@@ -457,10 +463,10 @@
                         <label for="jenis_produk_edit" class="label-text font-semibold">Jenis produk</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
-                        <select multiple="" name="jenis[]" class="jenis_produk_edit"
+                        <select multiple="" name="jenis[]" id="jenis_produk_edit"
                             data-hs-select='{
                         "placeholder": "Pilih jenis produk...",
-                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\" id=\"jenis_produk_edit\"></button>",
                         "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-gray-100 border border-gray-300 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
                         "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-gray-100 border border-gray-300 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
                         "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
@@ -603,7 +609,7 @@
                             diisi
                         </p>
                         <input type="text" name="nama" id="nama_produk_add"
-                            class="input input-bordered">
+                            class="input input-bordered" placeholder="(Tuliskan Nama)">
                         <input type="text" name="id" id="id_produk"
                             class="input input-bordered " hidden>
                         
@@ -624,7 +630,7 @@
                         "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                         }'
                             class="">
-                            <option value="">Choose</option>
+                            <option value="" hidden>Jenis Produk</option>
                             @foreach ($jenises as $item)
                                 <option value="{{ $item }}">{{ $item }}</option>
                             @endforeach
@@ -641,7 +647,7 @@
                             <div class="flex">
                                 <label for="harga_rendah_produk_add" class="px-4 py-2 border border-r-0 border-gray-300 rounded-l-lg">RP</label>
                                 <input type="text" name="harga_rendah" id="harga_rendah_produk_add"
-                                    class="input input-bordered rounded-l-none w-full">
+                                    class="input input-bordered rounded-l-none w-full" placeholder="(Cantumkan harga cont. 30000)">
                             </div>
                             <label for="harga_rendah_produk_add" class="label-text text-end">* harga terendah</label>
                         </div>
@@ -650,7 +656,7 @@
                             <div class="flex">
                                 <label for="harga_tinggi_produk_add" class="px-4 py-2 border border-r-0 border-gray-300 rounded-l-lg">RP</label>
                                 <input type="text" name="harga_tinggi" id="harga_tinggi_produk_add"
-                                    class="input input-bordered rounded-l-none w-full">
+                                    class="input input-bordered rounded-l-none w-full" placeholder="(Cantumkan harga cont. 30000)">
                             </div>
                             <label for="harga_tinggi_produk_add" class="label-text text-end">* harga tertinggi</label>
                         </div>
@@ -661,7 +667,16 @@
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
                         <input type="text" name="jenis" id="toko_produk_add"
-                            class="input input-bordered">
+                            class="input input-bordered" placeholder="(Tuliskan Nama)">
+                        
+                    </div>
+
+                    <div class="form-control gap-4 w-full">
+                        <label for="maps_produk_add" class="label-text font-semibold">Google Maps</label>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi</p>
+                        <input type="text" name="maps" id="maps_produk_add"
+                            class="input input-bordered" placeholder="(Salinkan Link)">
                         
                     </div>
 
@@ -670,7 +685,7 @@
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
                         <input type="text" name="kontak" id="kontak_produk_add"
-                            class="input input-bordered">
+                            class="input input-bordered" placeholder="(Salinkan Link)">
                         
                     </div>
 
@@ -702,7 +717,7 @@
                             diisi
                         </p>
                         <textarea name="deskripsi" id="desc_produk_add"
-                            class="input input-bordered w-full py-4 h-36"></textarea>
+                            class="input input-bordered w-full py-4 h-36" placeholder="(Tuliskan Deskripsi Produk)"></textarea>
                         
                     </div>
                     
@@ -800,12 +815,6 @@
             document.getElementById('modal_edit_produk').showModal();
         }
 
-        function reset(){
-            
-            document.getElementById('toko_produk_filter').selectedIndex = 2;
-            console.log('huh');
-            document.getElementById('jenis_produk_filter').selectedIndex = 0;
-        }
     </script>    
 </body>
 
