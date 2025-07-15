@@ -54,6 +54,7 @@ Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('
 Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
 Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
 Route::get('/pariwisataDesa',[PariwisataController::class, "index"])->name('publc.pariwisata.index');
+Route::get('/belanja', [BelanjaController::class, 'index'])->name('publc.belanja.index');
 Route::get('peta-umkm', [PetaUmkmController::class, 'index']);
 
 //admin
@@ -185,3 +186,7 @@ Route::put('/admin/profil-desa/sejarah', [ProfilDesaController::class, 'updateSe
 Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
     ->middleware('checkToken')
     ->name('admin.profil-desa.misi.create');
+
+// Halaman Belanja Desa
+Route::get('/belanja', [BelanjaController::class,'index'])->name('belanja.index');
+Route::get('/produk/{id}', [BelanjaController::class, 'show'])->name('produk.show');

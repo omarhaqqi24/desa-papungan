@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ env('APP_NAME') . ' | ' . $product['name'] }}</title>
+    <title>{{ env('APP_NAME') . ' | Detail Produk' }}</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -15,8 +15,6 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Detail produk {{ $product['name'] }} dari Desa Papungan.">
-    <meta name="keywords" content="Produk, Belanja, Desa Papungan, {{ $product['name'] }}">
     <meta name="author" content="Desa Papungan">
 
     @vite('resources/css/app.css')
@@ -63,79 +61,75 @@
 
 
     <div class="container mx-auto px-5 md:px-10 mt-10 space-y-10">
-        <x-headerArtikel subJudul="Katalog Produk" judul="{{ $product['name'] }}" />
+        <x-headerArtikel subJudul="Katalog Produk" judul="{{ $produk->umkm->nama }}" />
 
         <div class="flex flex-col md:flex-row gap-10 py-5">
-            {{-- Bagian Gambar Produk --}}
-            <div class="md:w-1/2 flex justify-center items-center">
-                <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg">
+            <div class="md:w-[460px] md:h-[420px] flex justify-center items-center rounded-xl overflow-hidden">
+                <img src="{{ asset('img/produk/' . $produk->image) }}" alt="{{ $produk->nama }}" class="w-full h-full object-cover shadow-lg">
             </div>
 
-            <div class="md:w-1/2 flex flex-col justify-between">
+            <div class="md:w-auto flex flex-col justify-between">
                 <div>
-                    <h1 class="text-3xl font-semibold text-gray-900 mb-3 font-jakarta">
-                        {{ $product['name'] }}
+                    <h1 class="text-[28px] font-semibold text-gray-900 mb-3 font-jakarta">
+                        {{ $produk->nama_produk }}
                     </h1>
-                    <div class="text-blue-700 font-bold text-3xl mb-5 font-jakarta">
-                        Rp{{ $product['price_min'] }} - Rp{{ $product['price_max'] }}
+                    <div class="text-blue-700 font-bold text-[42px] mb-5 font-jakarta">
+                        {{  $produk->harga  }}
                     </div>
-                    <h2 class="text-xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
-                    <p class="text-gray-600 text-base leading-relaxed mb-4 font-jakarta">
-                        {{ $product['description'] }}
-                        @if(strlen($product['description']) > 150)
-                        <a href="#" class="text-blue-600 hover:underline">Lihat selengkapnya</a>
-                        @endif
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
+                    <p class="text-gray-600 text-xl leading-relaxed mb-4 font-jakarta">
+                        {{ $produk->umkm->deskripsi }}
                     </p>
-                    <h2 class="text-xl font-semibold text-gray-800 mb-2 font-jakarta">Alamat</h2>
-                    <p class="text-gray-600 text-base font-jakarta mb-4">
-                        {{ $product['address'] }}
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Alamat</h2>
+                    <p class="text-gray-600 text-xl font-jakarta mb-4">
+                        {{ $produk->umkm->alamat }}
                     </p>
                 </div>
 
                 <div class="mt-4 flex flex-col sm:flex-row gap-4">
-                    <a href="{{ $product['whatsapp_link'] }}" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center justify-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-base font-semibold hover:from-blue-500 hover:to-blue-700 transition duration-300 font-jakarta">
+                    <a href="{{ 'https://wa.me/62' . substr(rtrim(rtrim($produk->umkm->kontak, '0'), '.'), 1) }}" target="_blank" rel="noopener noreferrer"
+                        class="w-[284px] h-14 flex items-center justify-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-[22px] font-semibold hover:from-blue-500 hover:to-blue-700 transition duration-300 font-jakarta">
                         <img src="{{ asset('img/whatsapp-icon.svg') }}" alt="WhatsAppLogo" class="w-6 h-6 mr-2">
                         Hubungi Penjual
                     </a>
 
-                    <a href="{{ $product['maps_link'] }}" target="_blank" rel="noopener noreferrer"
-                        class="gradient-border-wrapper flex items-center justify-center px-6 py-2 bg-white text-blue-600 rounded-full text-base font-semibold transition duration-300 font-jakarta ">
+                    <a href="{{ $produk->umkm->url_map }}" target="_blank" rel="noopener noreferrer"
+                        class="w-56 h-14 gradient-border-wrapper flex items-center justify-center px-6 py-2 bg-white text-blue-600 rounded-full text-[22px] font-semibold transition duration-300 font-jakarta ">
                         <img src="{{ asset('img/google-maps-icon.svg') }}" alt="MapsLogo" class="w-6 h-6 mr-2">
                         Lihat di Maps
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-
-    {{-- Bagian Produk Lainnya --}}
-    <div class="container mx-auto px-5 md:px-10 py-10">
-        <div class="mt-5 space-y-10">
-            <x-headerArtikel subJudul="Katalog Produk" judul="Produk Lainnya" />
-            <div class="flex flex-wrap justify-center gap-8 w-full">
-                @forelse ($otherProducts as $otherProduct)
-                <div class="h-96 w-80 rounded-2xl my-4 bg-white shadow-md overflow-hidden flex flex-col">
-                    <img src="{{ $otherProduct['image'] }}" alt="{{ $otherProduct['name'] }}" class="h-1/2 w-full object-cover z-0">
-                    <div class="p-4 flex-1 flex flex-col rounded-xl z-40 bg-white h-1/2 relative">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-1 font-jakarta">{{ $otherProduct['name'] }}</h3>
-                        <div class="text-blue-700 font-bold font-jakarta text-lg mb-2">
-                            Rp{{ $otherProduct['price_min'] }} - Rp{{ $otherProduct['price_max'] }}
-                        </div>
-                        <p class="text-gray-500 text-sm mb-2 line-clamp-2 font-jakarta">{{ $otherProduct['description'] }}</p>
-                        <div class="mt-auto self-end">
-                            <a href="{{ route('belanja.show', ['id' => $otherProduct['id']]) }}"
-                                class="inline-block absolute bottom-0 right-0 mt-2 px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-tl-2xl hover:from-blue-500 hover:to-blue-700 text-sm font-semibold font-jakarta">
-                                Lihat Detail
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <p class="text-gray-600 font-jakarta text-center w-full">Tidak ada produk yang tersedia saat ini.</p>
-                @endforelse
+        <div class="space-y-5">
+            <div class="flex flex-row justify-between items-center">
+                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">Produk Lainnya</div>
             </div>
-        </div>
+            <!-- Horizontal Carousel -->
+            <div class="hidden md:block w-full overflow-hidden">
+                <div class="w-full h-auto overflow-x-scroll flex flex-nowrap gap-12 ">
+                    @foreach ($produkLain as $item)
+                        <a href="{{ url('produk/' . $item->id) }}">
+                            <div class="carousel-item h-auto mb-5">
+                                <x-CardBelanja :item="$item" />
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Vertical Carousel (Mobile) -->
+            <div class="md:hidden w-full overflow-hidden">
+                <div class="w-auto h-[420px] overflow-y-scroll flex flex-col flex-nowrap gap-12 ">
+                    @foreach ($produkLain as $item)
+                        <a href="{{ url('produk/' . $item->id) }}">
+                            <div class="carousel-item h-auto mb-5">
+                                <x-CardBelanja :item="$item" />
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
     </div>
 
     <x-footer />
