@@ -18,7 +18,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:text-white/50">
+<body class="mytheme font-jakarta antialiased dark:text-white/50 overflow-x-hidden">
     <x-admin-navbar/>
 
     <div class="w-screen pl-32 py-3 h-20 bg-secondary text-lightText">
@@ -64,7 +64,9 @@
                         "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                         }'
                         class="">
-                            <option value="Semua Jenis Produk" selected>Semua Jenis Produk</option>
+                        @if (request()->input('jenisFilter')!=null)
+                            <option value="{{ request()->input('jenisFilter') }}" hidden>{{ request()->input('jenisFilter') }}</option>
+                        @endif
                         @foreach ($jenises as $item)
                             <option value="{{ $item }} {{ request('jenisFilter')==$item?'selected':'' }}">{{ $item }}</option>
                         @endforeach
@@ -84,8 +86,10 @@
                         "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                         }'
                         class="">
-                            <option value="Semua Toko" selected>Semua Toko</option>
-                        @foreach ($toko as $item)
+                        @if (request()->input('tokoFilter')!=null)
+                            <option value="{{ request()->input('tokoFilter') }}" hidden>{{ request()->input('tokoFilter') }}</option>
+                        @endif                        
+                        @foreach ($tokos as $item)
                             <option value="{{ $item }} {{ request('tokoFilter')==$item?'selected':'' }}">{{ $item }}</option>
                         @endforeach
                     </select>
@@ -264,21 +268,20 @@
                 </div>
                 <!-- End -->
 
-            </div>
-
-            <div class="flex justify-end mt-4">
-                {{-- tambah produk --}}
-                <button
-                    class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
-                    onclick="modal_tambah_produk.showModal()">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" class="mr-2">
-                        <path
-                            d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
-                            fill="white" />
-                    </svg>
-                    Tambahkan
-                </button>
+                <div class="flex justify-end mt-4">
+                    {{-- tambah produk --}}
+                    <button
+                        class="btn text-lightText bg-secondary hover:bg-blue-900 px-4 py-2 rounded-xl flex items-center"
+                        onclick="modal_tambah_produk.showModal()">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                            <path
+                                d="M13.375 4.625C13.875 4.125 13.875 3.375 13.375 2.875L11.125 0.625C10.625 0.125 9.875 0.125 9.375 0.625L0 10V14H4L13.375 4.625ZM10.25 1.5L12.5 3.75L10.625 5.625L8.375 3.375L10.25 1.5ZM1.25 12.75V10.5L7.5 4.25L9.75 6.5L3.5 12.75H1.25Z"
+                                fill="white" />
+                        </svg>
+                        Tambahkan
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -288,7 +291,7 @@
     {{-- popup detail produk --}}
     <dialog id="modal_show_produk" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
-            <h3 class="text-lg font-bold">Detail Produk Desa</h3>
+            <h3 class="text-lg font-bold">Formulir Detail Produk</h3>
             <hr class="h-px my-8 bg-gray-300 border-0">
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
@@ -405,7 +408,7 @@
                     <div class="form-control gap-4">
                         <label for="foto_produk_show" class="label-text font-semibold">Foto Produk/Toko</label>
                         <input type="file" name="foto" id="foto_produk_show" accept=".png, .jpg"
-                            class=" disabled:bg-[#f3f4f6]" disabled>
+                            class="input align-center block w-full text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-gray-500 file:text-white  bg-gray-100 rounded-lg disabled:bg-[#f3f4f6]" disabled>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
@@ -441,7 +444,7 @@
     {{-- EDIT --}}
     <dialog id="modal_edit_produk" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
-            <h3 class="text-lg font-bold">Edit Produk Desa</h3>
+            <h3 class="text-lg font-bold">Formulir Edit Produk</h3>
             <hr class="h-px my-8 bg-gray-300 border-0">
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
@@ -570,7 +573,7 @@
                     <div class="form-control gap-4">
                         <label for="foto_produk_edit" class="label-text font-semibold">Foto Produk/Toko</label>
                         <input type="file" accept=".png, .jpg" name="foto" id="foto_produk_edit"
-                            class="input align-center">
+                            class="input align-center block w-full text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 bg-gray-100 rounded-lg">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
@@ -598,7 +601,7 @@
     {{-- TAMBAH PRODUK --}}
     <dialog id="modal_tambah_produk" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
-            <h3 class="text-lg font-bold">Tambah Produk Desa</h3>
+            <h3 class="text-lg font-bold">Formulir Pendataan Produk</h3>
             <hr class="h-px my-8 bg-gray-300 border-0">
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
@@ -724,7 +727,7 @@
                     <div class="form-control gap-4">
                         <label for="foto_produk_add" class="label-text font-semibold">Foto Produk/Toko</label>
                         <input type="file" accept=".png, .jpg" name="no_pirt" id="foto_produk_add"
-                            class="input align-center">
+                            class="input align-center block w-full text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 bg-gray-100 rounded-lg">
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span>file png atau jpg</p>
                     </div>
                                                     
