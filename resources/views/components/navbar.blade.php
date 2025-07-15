@@ -11,7 +11,7 @@
 
                     <div class="p-1 justify-start items-center gap-2 flex ">
                         <img src="{{asset('img/emailLogo.svg')}}" alt="phoneLogo" class="w-4 h-4 relative ">
-                        <div class="px-2 text-xs font-medium font-jakarta ">desapapungan@gmail.com</div>
+                        <div class="px-2 text-xs font-medium font-jakarta ">pemdespapungan@gmail.com</div>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
 
                 <button id="mobile-menu-button"
                     class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:opacity-70 transition duration-300 lg:hidden">
-                    <img src="{{ asset('img/hamburgerLogo.svg')}}" class="w-6 h-6"> 
+                    <img src="{{ asset('img/hamburgerLogo.svg')}}" class="w-6 h-6">
                 </button>
 
                 <!-- Mobile Menu -->
@@ -70,8 +70,8 @@
                                 <li>
                                     <ul>
                                         <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang Kami</a></li>
-                                        <li><a class="hover:bg-accent"href="{{ route('profilDesa.index', ['targetID' => 'visidanmisi']) }}">Visi dan Misi</a></li>
-                                        <li><a class="hover:bg-accent"href="{{ route('profilDesa.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'visidanmisi']) }}">Visi dan Misi</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Pemerintahan</div>
@@ -117,12 +117,12 @@
                 </div>
 
                 <div class="flex-none hidden lg:block">
-                    <ul class="menu menu-horizontal text-base lg:space-x-6 flex items-center">
+                    <ul class="menu menu-horizontal text-base lg:space-x-2 flex items-center">
 
                         <!--PROFIL DESA START-->
                         <li>
                             <details>
-                                <summary class="hover:text-primary">Profil DesaE</summary>
+                                <summary class="hover:text-primary">Profil Desa</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2 self-stretch">
                                     <li class=" rounded-md hover:bg-accent hover:text-gray-700"><a href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang
                                             Kami</a></li>
@@ -259,7 +259,7 @@
     </script>
 
     <!-- Untuk auto Scroll-->
-        <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const targetID = urlParams.get('targetID');
@@ -269,7 +269,7 @@
                     const offset = 120; // Ubah nilai ini sesuai kebutuhan Anda
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - offset;
-    
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
@@ -279,4 +279,3 @@
         });
     </script>
 </div>
-

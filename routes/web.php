@@ -23,19 +23,13 @@ use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingPageController::class,'index'])->name('home');
-
 Route::get('/profilDesa', [DataDesaController::class, "index"]);
-
 Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]);
-
 Route::get('/pengumuman/{id}', [PengumumanPageController::class,'index']);
 Route::get('/berita/{id}',[BeritaPageController::class,"index"]);
-
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
 });
-
-
 Route::get('/informasi',[PengumumanController::class,"index"]);
 Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi.store');
 
@@ -51,6 +45,8 @@ Route::get('/peta-makam-mbah-moedjair', function() {
     return view('peta-makam-mbah-moedjair');
 })->name('peta-makam-mbah-moedjair');
 
+Route::get('/belanja', [BelanjaController::class, 'index'])->name('belanja.index');
+Route::get('/belanja/{id}', [BelanjaController::class, 'show'])->name('belanja.show');
 
 
 //public
@@ -194,4 +190,12 @@ Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisi
 
 // Halaman Belanja Desa
 Route::get('/belanja', [BelanjaController::class,'index'])->name('belanja.index');
-Route::get('/produk/{id}', [BelanjaController::class, 'show'])->name('produk.show');
+Route::get('/belanja/{id}', [BelanjaController::class, 'show'])->name('produk.show');
+
+//halaman admin produk desa
+Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.produk.index');
+// Route::delete('/admin/produk-desa/{id}', [ProdukDesaController::class, 'deleteProduk'])
+//     ->middleware('checkToken')
+//     ->name('admin.produk.destroy');

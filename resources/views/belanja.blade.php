@@ -30,9 +30,9 @@
     <x-navbar />
     <div class="mt-28 space-y-20 md:px-0">
         <div id="belanja"></div>
-        <div class="bg-secondary text-base-100 w-full py-32 px-10">
-            <div class="text-3xl font-semibold">Belanja Produk Desa Papungan</div>
-            <div class="text-sm font-normal">Home / Belanja</div>
+        <div class="bg-blue-600 text-lightText w-full py-32 px-10">
+            <div class="text-4xl font-semibold">Belanja Produk Desa Papungan</div>
+            <div class="text-lg mt-4">Belanja Produk UMKM Khas Desa Papungan disini!</div>
         </div>
     </div>
     <div class="container items-center mx-auto space-y-10 text-justify">

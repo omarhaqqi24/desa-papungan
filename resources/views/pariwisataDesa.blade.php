@@ -18,23 +18,19 @@
 
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
+<body class="mytheme font-jakarta antialiased ">
     <x-navbar />
 
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- isi disini-->
-
-        <!-- profil-->
-        <div id="profil"></div>
+        <div id="pariwisata"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
-            <div class="text-3xl font-semibold">Makam Mbah Moedjair Desa Papungan</div>
-            <div class="text-sm font-normal">Home / Pariwisata Desa</div>
+            <div class="text-4xl font-semibold">Makam Mbah Moedjair Desa Papungan</div>
+            <div class="text-lg mt-4">Home / Pariwisata Desa</div>
         </div>
-    </div>
 
     <div class=" px-5 md:px-0 ">
         <div class="container p-10 items-center mx-auto space-y-10">
-            <x-headerArtikel subJudul="Kenali Pariwisata Desa Papungan  " judul="Profil Makam Mbah Moedjair" />
+            <x-headerArtikel subJudul="Kenali Pariwisata Desa Papungan" judul="Profil Makam Mbah Moedjair" />
             <div class="text-sm font-normal">Berikut adalah dokumenter singkat sebagai profil makam Mbah Moedjair. Simak
                 video berikut untuk mengetahui bagaimana tempat peristirahat terakhir Sang Legenda Penemu Ikan Mujair!
             </div>

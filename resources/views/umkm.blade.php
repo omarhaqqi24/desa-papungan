@@ -18,19 +18,16 @@
 
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50">
+<body class="mytheme font-jakarta antialiased">
     <x-navbar />
-
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- profil umkm-->
         <div id="profilumkm"></div>
-        <div class="bg-blue-600 text-white w-full py-32 px-10">
-            <div class="text-3xl font-semibold">UMKM Desa Papungan</div>
-            <div class="text-sm font-normal">Home / UMKM</div>
+        <div class="bg-blue-600 text-lightText w-full py-32 px-10">
+            <div class="text-4xl font-semibold">UMKM Desa Papungan</div>
+            <div class="text-lg mt-4">Home / UMKM</div>
         </div>
-    </div>
 
-    <div class=" px-5 md:px-10 mt-10 space-y-5 md:space-y-10">
+    <div class= "px-5 md:px-10 mt-10 space-y-5 md:space-y-10">
         <div class="container items-center mx-auto space-y-10 text-justify">
             <x-headerArtikel subJudul="Kenali UMKM " judul="Profil UMKM Desa Papungan" />
             <div class="text-sm font-normal ">Berikut adalah video singkat mengenai UMKM di Desa Papungan. Simak video

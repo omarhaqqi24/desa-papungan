@@ -21,6 +21,7 @@
         .truncate-multiline {
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -29,16 +30,13 @@
 
 </head>
 
-<body class="mytheme font-jakarta antialiased dark:bg-black dark:text-white/50 overflow-x-hidden">
+<body class="mytheme font-jakarta antialiased">
     <x-navbar />
     <div class="mt-28 space-y-20 md:px-0">
-        <!-- isi disini-->
-
-        <!-- pengumuman-->
-        <div id="pengumuman"></div>
+        <div id="informasi"></div>
         <div class="bg-blue-600 text-lightText w-full py-32 px-10">
-            <div class="text-3xl font-semibold">Informasi Seputar Desa Papungan</div>
-            <div class="text-sm font-normal">Home / Profil Desa</div>
+            <div class="text-4xl font-semibold">Informasi Seputar Desa Papungan</div>
+            <div class="text-lg mt-4">Home / Informasi</div>
         </div>
 
         <div class="container  flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-6">
@@ -261,24 +259,21 @@
                         </div>
                     @endif
                 </section>
+                <!-- end berita-->
+
                 <!-- aspirasi-->
-                <div id="aspirasi"></div>
-                <div class=" space-y-2">
-                    <div class="flex items-center gap-2 text-blue-600 w- md:w-1/2 lg:w-1/4">
-                        <div class="text-xl font-medium font-jakarta">FORMULIR</div>
-                        <div class="border-b-2 border-blue-600 w-full"></div>
-                    </div>
-                    <div class="text-2xl font-semibold">Berikan Aspirasi mu!</div>
-                    <div class="font-normal font-jakarta max-w-full lg:min-w-2xl">Kami sangat ingin mendengar pendapat
+                <div id="aspirasi" class="space-y-2">
+                    <x-cardSubjudul class="max-w-sm" jenisJudul="FORMULIR" judul="Berikan Aspirasi mu!"
+                    deskripsi="Kami sangat ingin mendengar pendapat
                         dan saran Anda untuk membuat desa kita lebih baik. Apapun yang ingin Anda sampaikan seperti
                         saran, ide, atau masukan semuanya sangat berarti. Yuk, isi formulir di bawah ini dan mari kita
                         bersama-sama membangun desa yang lebih nyaman dan bahagia. Terima kasih banyak atas
-                        partisipasinya!</div>
+                        partisipasinya!" />
 
                     <form method="POST" class="w-full" enctype="multipart/form-data"
                         action="{{ route('informasi.store') }}">
                         @csrf
-                        <div class="mb-4">
+                        <div class="mt-8 mb-4">
                             <label for="nama" class="block text-xl font-medium font-jakarta mb-2">Nama <span
                                     class="text-gray-500 font-jakarta">(Optional)</span></label>
                             <textarea name="nama" id="nama" placeholder="Tuliskan Nama anda"

@@ -17,20 +17,26 @@
             <a class="link link-hover" href="{{route('informasi.index')}}">Informasi</a>
             <a class="link link-hover" href="{{route('umkm.index')}}">UMKM Desa</a>
             <a class="link link-hover" href="{{route('publc.pariwisata.index')}}">Pariwisata Desa</a>
+            <a class="link link-hover" href="{{route('belanja.index')}}">Belanja Produk</a>
         </nav>
         <ul class="font-medium">
             <h6 class="footer-title font-semibold">Kontak Kami</h6>
-            <li class="max-w-96 ">Jl. Setro Jati No. 1, Papungan, Kec. Kanigoro, Kabupaten Blitar, Jawa Timur 66171</li>
+            <li class="max-w-96 ">
+                <a class="link link-hover" href="https://maps.app.goo.gl/9axt9dVKd1JjcxtU9" target="balai_desa">Jl. Setro Jati No. 1, Papungan, Kec. Kanigoro, Kabupaten Blitar, Jawa Timur 66171</a>
+            </li>
             <li class="p-1 flex items-center text-center gap-3 mt-5">
                 <img src="{{asset('img/phoneLogo.svg')}}" alt="phoneLogo" class="w-4 h-4">
                 <div class="">(0342) 814031</div>
             </li>
             <li class="p-1 flex items-center text-center gap-3">
                 <img src="{{asset('img/emailLogo.svg')}}" alt="emailLogo" class="w-4 h-4">
-                <div class="">desapapungan@gmail.com</div>
+                <div class=""><a class="link link-hover" href="mailto:pemdespapungan@gmail.com">pemdespapungan@gmail.com</a></div>
             </li>
             <li class="p-1 flex items-center text-center gap-3">
-                <a class="link link-hover" target="_blank" href="https://wa.me/+6285856665522">Hubungi kami di WhatsApp</a>
+                <img src="{{asset('img/whatsapp-icon-white.svg')}}" alt="whatsappLogo" class="w-4 h-4">
+                <a class="link link-hover" target="_blank" href="https://wa.me/+6285856665522">
+                    Hubungi kami di WhatsApp
+                </a>
             </li>
         </ul>
     </div>
@@ -38,7 +44,7 @@
         class="w-auto border-t-2 p-1 mx-10 text-center gap-2 items-center space-y-5 md:space-y-0 md:py-3 text-white md:flex justify-center">
         <div class="py-2 md:py-0">© 2025 Mahasiswa Membangun Desa Fakultas Ilmu Komputer Universitas Brawijaya</div>
         <div class="border-r-2 h-auto p-2 hidden md:block"></div>
-        <div class="py-2 md:py-0 border-t-2 mt-2 md:border-0 md:mt-0">Made with ♡ by Kelompok 12 Pasukan Papungan</div>
+        <div class="py-2 md:py-0 border-t-2 mt-2 md:border-0 md:mt-0">Made with ♡ by Kelompok 12 & 26 Pasukan Papungan</div>
     </div>
 
 </footer>
