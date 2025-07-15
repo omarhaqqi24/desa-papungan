@@ -27,13 +27,14 @@
         .gradient-border-wrapper {
             position: relative;
             z-index: 1;
-            display: inline-flex; /* Agar wrapper menyesuaikan ukuran konten */
+            display: inline-flex;
+            /* Agar wrapper menyesuaikan ukuran konten */
         }
 
         .gradient-border-wrapper::before {
             content: '';
             position: absolute;
-            inset: 0; 
+            inset: 0;
             padding: 2px;
             border-radius: 9999px;
             background: linear-gradient(to right, #6dafffff, #3B82F6);
@@ -45,8 +46,10 @@
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            z-index: -1; /* Letakkan di belakang tombol */
-            pointer-events: none; /* Agar tidak menghalangi klik tombol */
+            z-index: -1;
+            /* Letakkan di belakang tombol */
+            pointer-events: none;
+            /* Agar tidak menghalangi klik tombol */
         }
 
         .gradient-border-wrapper:hover::before {
@@ -74,7 +77,7 @@
                         {{ $produk->nama_produk }}
                     </h1>
                     <div class="text-blue-700 font-bold text-[42px] mb-5 font-jakarta">
-                        {{  $produk->harga  }}
+                        {{ $produk->harga  }}
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
                     <p class="text-gray-600 text-xl leading-relaxed mb-4 font-jakarta">
@@ -109,11 +112,11 @@
             <div class="hidden md:block w-full overflow-hidden">
                 <div class="w-full h-auto overflow-x-scroll flex flex-nowrap gap-12 ">
                     @foreach ($produkLain as $item)
-                        <a href="{{ url('produk/' . $item->id) }}">
-                            <div class="carousel-item h-auto mb-5">
-                                <x-CardBelanja :item="$item" />
-                            </div>
-                        </a>
+                    <a href="{{ url('produk/' . $item->id) }}">
+                        <div class="carousel-item h-auto mb-5">
+                            <x-CardBelanja :item="$item" />
+                        </div>
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -122,16 +125,16 @@
             <div class="md:hidden w-full overflow-hidden">
                 <div class="w-auto h-[420px] overflow-y-scroll flex flex-col flex-nowrap gap-12 ">
                     @foreach ($produkLain as $item)
-                        <a href="{{ url('produk/' . $item->id) }}">
-                            <div class="carousel-item h-auto mb-5">
-                                <x-CardBelanja :item="$item" />
-                            </div>
-                        </a>
+                    <a href="{{ url('produk/' . $item->id) }}">
+                        <div class="carousel-item h-auto mb-5">
+                            <x-CardBelanja :item="$item" />
+                        </div>
+                    </a>
                     @endforeach
                 </div>
             </div>
+        </div>
     </div>
-
     <x-footer />
 </body>
 
