@@ -27,14 +27,15 @@
         .gradient-border-wrapper {
             position: relative;
             z-index: 1;
-            display: inline-flex; /* Agar wrapper menyesuaikan ukuran konten */
+            display: inline-flex;
+            /* Agar wrapper menyesuaikan ukuran konten */
         }
 
         .gradient-border-wrapper::before {
             content: '';
             position: absolute;
-            inset: 0; 
-            padding: 2px;
+            inset: 0;
+            padding: 3px;
             border-radius: 9999px;
             background: linear-gradient(to right, #6dafffff, #3B82F6);
             -webkit-mask:
@@ -45,8 +46,10 @@
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            z-index: -1; /* Letakkan di belakang tombol */
-            pointer-events: none; /* Agar tidak menghalangi klik tombol */
+            z-index: -1;
+            /* Letakkan di belakang tombol */
+            pointer-events: none;
+            /* Agar tidak menghalangi klik tombol */
         }
 
         .gradient-border-wrapper:hover::before {
@@ -70,17 +73,17 @@
 
             <div class="md:w-auto flex flex-col justify-between">
                 <div>
-                    <h1 class="text-[28px] font-semibold text-gray-900 mb-3 font-jakarta">
+                    <h1 class="text-4xl font-semibold text-gray-900 mb-3 font-jakarta">
                         {{ $produk->nama_produk }}
                     </h1>
-                    <div class="text-blue-700 font-bold text-[42px] mb-5 font-jakarta">
-                        {{  $produk->harga  }}
+                    <div class="text-blue-700 font-bold text-[46px] mb-5 font-jakarta">
+                        {{ $produk->harga  }}
                     </div>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Deskripsi</h2>
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-2 font-jakarta">Deskripsi</h2>
                     <p class="text-gray-600 text-xl leading-relaxed mb-4 font-jakarta">
                         {{ $produk->umkm->deskripsi }}
                     </p>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-jakarta">Alamat</h2>
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-2 font-jakarta">Alamat</h2>
                     <p class="text-gray-600 text-xl font-jakarta mb-4">
                         {{ $produk->umkm->alamat }}
                     </p>
@@ -88,14 +91,14 @@
 
                 <div class="mt-4 flex flex-col sm:flex-row gap-4">
                     <a href="{{ 'https://wa.me/62' . substr(rtrim(rtrim($produk->umkm->kontak, '0'), '.'), 1) }}" target="_blank" rel="noopener noreferrer"
-                        class="w-[284px] h-14 flex items-center justify-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-[22px] font-semibold hover:from-blue-500 hover:to-blue-700 transition duration-300 font-jakarta">
-                        <img src="{{ asset('img/whatsapp-icon.svg') }}" alt="WhatsAppLogo" class="w-6 h-6 mr-2">
+                        class="w-[260px] h-12 flex items-center justify-center px-6 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full text-xl font-semibold hover:from-blue-500 hover:to-blue-700 transition duration-300 font-jakarta">
+                        <img src="{{ asset('img/whatsapp-icon.svg') }}" alt="WhatsAppLogo" class="w-7 h-7 mr-2">
                         Hubungi Penjual
                     </a>
 
                     <a href="{{ $produk->umkm->url_map }}" target="_blank" rel="noopener noreferrer"
-                        class="w-56 h-14 gradient-border-wrapper flex items-center justify-center px-6 py-2 bg-white text-blue-600 rounded-full text-[22px] font-semibold transition duration-300 font-jakarta ">
-                        <img src="{{ asset('img/google-maps-icon.svg') }}" alt="MapsLogo" class="w-6 h-6 mr-2">
+                        class="w-56 h-12 gradient-border-wrapper flex items-center justify-center px-6 py-2 bg-white text-blue-600 rounded-full text-xl font-semibold transition duration-300 font-jakarta ">
+                        <img src="{{ asset('img/google-maps-icon.svg') }}" alt="MapsLogo" class="w-8 h-8 mr-2">
                         Lihat di Maps
                     </a>
                 </div>
@@ -103,17 +106,18 @@
         </div>
         <div class="space-y-5">
             <div class="flex flex-row justify-between items-center">
-                <div class=" text-black text-2xl md:text-4xl font-semibold font-jakarta">Produk Lainnya</div>
+                <div class=" text-3xl font-semibold mt-4">Produk Lainnya</div>
             </div>
+
             <!-- Horizontal Carousel -->
             <div class="hidden md:block w-full overflow-hidden">
                 <div class="w-full h-auto overflow-x-scroll flex flex-nowrap gap-12 ">
                     @foreach ($produkLain as $item)
-                        <a href="{{ url('produk/' . $item->id) }}">
-                            <div class="carousel-item h-auto mb-5">
-                                <x-CardBelanja :item="$item" />
-                            </div>
-                        </a>
+                    <a href="{{ url('produk/' . $item->id) }}">
+                        <div class="carousel-item h-auto mb-5">
+                            <x-CardBelanja :item="$item" />
+                        </div>
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -122,17 +126,18 @@
             <div class="md:hidden w-full overflow-hidden">
                 <div class="w-auto h-[420px] overflow-y-scroll flex flex-col flex-nowrap gap-12 ">
                     @foreach ($produkLain as $item)
-                        <a href="{{ url('produk/' . $item->id) }}">
-                            <div class="carousel-item h-auto mb-5">
-                                <x-CardBelanja :item="$item" />
-                            </div>
-                        </a>
+                    <a href="{{ url('produk/' . $item->id) }}">
+                        <div class="carousel-item h-auto mb-5">
+                            <x-CardBelanja :item="$item" />
+                        </div>
+                    </a>
                     @endforeach
                 </div>
             </div>
+        </div>
     </div>
 
-    <x-footer />
+        <x-footer />
 </body>
 
 </html>

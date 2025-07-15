@@ -30,7 +30,7 @@
             </li>
             <li class="p-1 flex items-center text-center gap-3">
                 <img src="{{asset('img/emailLogo.svg')}}" alt="emailLogo" class="w-4 h-4">
-                <div class="">desapapungan@gmail.com</div>
+                <div class=""><a class="link link-hover" href="mailto:pemdespapungan@gmail.com">pemdespapungan@gmail.com</a></div>
             </li>
             <li class="p-1 flex items-center text-center gap-3">
                 <img src="{{asset('img/whatsapp-icon-white.svg')}}" alt="whatsappLogo" class="w-4 h-4">
