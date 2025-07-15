@@ -28,7 +28,7 @@ class ProdukDesaController extends Controller
             $p['id']         = $i;
             $p['nama']       = "Produk {$i}";
             $p['jenis']      = ['A', 'B', 'C'][array_rand(['A','B','C'])];
-            $p['toko']       = ['Toko1', 'Toko2', 'Toko3'][array_rand(['Toko1','Toko2','Toko3'])];
+            $p['toko']       = ['Toko1', 'Toko2', 'Toko3', 'Toko4', 'Toko5', 'Toko6', 'Toko7', 'Toko8', 'Toko9', 'Toko10'][array_rand(['Toko1', 'Toko2', 'Toko3', 'Toko4', 'Toko5', 'Toko6', 'Toko7', 'Toko8', 'Toko9', 'Toko10'])];
             $items[]         = $p;
         }
 
@@ -81,8 +81,8 @@ class ProdukDesaController extends Controller
         // 8. Kirim ke view
         return view('adminProdukDesa', [
             'items'   => $paginatedItems,
-            'jenises' => ['Semua Jenis Produk', 'A','B','C'],
-            'tokos'    => ['Semua Toko', 'Toko1','Toko2','Toko3'],
+            'jenises' => ['A','B','C'],
+            'tokos'    => ['Toko1', 'Toko2', 'Toko3', 'Toko4', 'Toko5', 'Toko6', 'Toko7', 'Toko8', 'Toko9', 'Toko10'],
             'qProduk'     => $q,
             'jenisFilter' => $jenis,
             'tokoFilter'  => $toko,
