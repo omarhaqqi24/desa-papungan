@@ -1,3 +1,7 @@
+@php
+    $dropdownID=0;
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -509,26 +513,29 @@
                         </div>
                     </div>
 
-                    <form class="w-64 relative">
+                    <div class="form-control gap-4">
+                        <label for="toko_produk_edit" class="label-text font-semibold">Nama Toko</label>
+                        <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
+                            diisi</p>
                         <!-- Input pencarian -->
                         <input
-                            type="text" id="toko_produk_edit"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onfocus="showList()" onkeyup="filterList()" 
-                            autocomplete="off" placeholder="Cari item..."
+                            type="text" id="toko_produk_dropdown_{{ $dropdownID }}"
+                            class="input input-bordered"
+                            onfocus="showList( {{ $dropdownID }} )" onkeyup="filterList({{ $dropdownID }})" onblur="setTimeout(hideList( {{ $dropdownID }} ), 200)"
+                            autocomplete="off"
                         />
 
                         <!-- Dropdown list -->
-                        <ul id="dropdownList"
+                        <ul id="dropdownList_{{ $dropdownID }}"
                             class="relative z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-48 overflow-auto hidden"
                         >
                         @foreach ($tokos as $item)
-                            <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer" onclick="setValue()">
+                            <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer" onmousedown="setValue({{ $dropdownID }}, '{{ $item }}')">
                                 {{ $item }}</li>
                         @endforeach
 
                         </ul>
-                    </form>
+                    </div>
 
                     <div class="form-control gap-4 w-full">
                         <label for="alamat_produk_edit" class="label-text font-semibold">Alamat Toko</label>
@@ -589,7 +596,7 @@
                                 onclick="modal_edit_produk.close()">Tutup</button>
 
                             {{-- button simpan edit --}}
-                            <button id="edit-btn-test" type="submit"
+                            <button id="edit-btn-simpan" type="submit"
                                 class="btn rounded-xl text-lightText bg-[#2D68F8] hover:bg-green-500 hover:text-lightText px-4 py-2 flex items-center">
                                 Simpan perubahan
                             </button>
@@ -670,13 +677,28 @@
                         </div>
                     </div>
 
-                    <div class="form-control gap-4 w-full">
-                        <label for="toko_produk_add" class="label-text font-semibold">Nama Toko</label>
+                    <div class="form-control gap-4">
+                        <label for="toko_produk_edit" class="label-text font-semibold">Nama Toko</label>
                         <p class="label-text text-gray-500"><span class="text-red-500">*</span> wajib
                             diisi</p>
-                        <input type="text" name="jenis" id="toko_produk_add"
-                            class="input input-bordered" placeholder="(Tuliskan Nama)">
-                        
+                        <!-- Input pencarian -->
+                        <input
+                            type="text" id="toko_produk_dropdown_{{ $dropdownID+1 }}"
+                            class="input input-bordered"
+                            onfocus="showList({{ $dropdownID+1 }})" onkeyup="filterList({{ $dropdownID+1 }})" onblur="setTimeout(hideList( {{ $dropdownID+1 }} ), 200)"
+                            autocomplete="off" placeholder="Cari item..."
+                        />
+
+                        <!-- Dropdown list -->
+                        <ul id="dropdownList_{{ $dropdownID+1 }}"
+                            class="relative z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-48 overflow-auto hidden"
+                        >
+                        @foreach ($tokos as $item)
+                            <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer" onmousedown="setValue({{ $dropdownID+1 }}, '{{ $item }}')">
+                                {{ $item }}</li>
+                        @endforeach
+
+                        </ul>
                     </div>
 
                     <div class="form-control gap-4 w-full">
@@ -735,6 +757,14 @@
                             <button type="button"
                                 class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
                                 onclick="modal_tambah_produk.close()">Tutup</button>
+
+                            {{-- button simpan edit --}}
+                            <button id="add-btn-simpan" type="submit"
+                                class="btn rounded-xl text-lightText bg-[#2D68F8] hover:bg-green-500 hover:text-lightText px-4 py-2 flex items-center">
+                                Simpan
+                            </button>
+                            {{--  --}}
+
                         </div>
                     </div>
                 </div>
@@ -783,6 +813,8 @@
             hargaRIn.value = data.hargaRendah;
             const hargaTIn = document.getElementById('harga_tinggi_produk_edit');
             hargaTIn.value = data.hargaTinggi;
+            const tokoIn = document.getElementById('toko_produk_dropdown_0');
+            tokoIn.value = data.toko;
 
             const alamatIn = document.getElementById('alamat_produk_edit');
             alamatIn.value = data.alamat;
@@ -797,24 +829,24 @@
         }
 
         // Tampilkan dropdown
-        function showList() {
-            document.getElementById('dropdownList').classList.remove('hidden');
+        function showList(id) {
+            document.getElementById('dropdownList_'+id).classList.remove('hidden');
         }
 
         // Sembunyikan dropdown
-        function hideList(){
-            document.getElementById('dropdownList').classList.add('hidden');
+        function hideList(id){
+            document.getElementById('dropdownList_'+id).classList.add('hidden');
         }
 
-        function setValue(){
-            console.log('lmao');
-            document.getElementById('toko_produk_edit').value = "lmao";
+        function setValue(id, data){
+            document.getElementById('toko_produk_dropdown_' + id).value = data;
         }
 
         // Filter opsi berdasarkan input
-        function filterList() {
-            const term = document.getElementById('toko_produk_edit').value.toLowerCase();
-            const items = document.querySelectorAll('#dropdownList li');
+        function filterList(id) {
+            const input = document.getElementById('toko_produk_dropdown_' + id);
+            const term = input.value.toLowerCase();
+            const items = document.querySelectorAll('#dropdownList_'+id+' li');
             let anyVisible = false;
 
             items.forEach(li => {
@@ -826,9 +858,15 @@
 
             // Sembunyikan list jika tidak ada yang cocok
             if (!anyVisible) {
-            document.getElementById('dropdownList').classList.add('hidden');
+            document.getElementById('dropdownList_'+id).classList.add('hidden');
+            input.classList.add('bg-red-100');
+            document.getElementById('edit-btn-simpan').classList.add('hidden');
+            document.getElementById('add-btn-simpan').classList.add('hidden');
             } else {
-            document.getElementById('dropdownList').classList.remove('hidden');
+            document.getElementById('dropdownList_'+id).classList.remove('hidden');
+            input.classList.remove('bg-red-100');
+            document.getElementById('edit-btn-simpan').classList.remove('hidden');
+            document.getElementById('add-btn-simpan').classList.remove('hidden');
             }
         }
             
