@@ -74,7 +74,7 @@
 
         <div class="flex flex-col md:flex-row gap-10 py-5">
             <div class="md:w-[460px] md:h-[420px] flex justify-center items-center rounded-xl overflow-hidden">
-                <img src="{{ asset('img/produk/' . $produk->image) }}" alt="{{ $produk->nama }}" class="w-full h-full object-cover shadow-lg">
+                <img id="fotoProduk" src="{{ asset('img/produk/' . $produk->image) }}" alt="{{ $produk->nama }}" class="w-full h-full object-cover shadow-lg cursor-pointer transition duration-300">
             </div>
 
             <div class="md:w-auto flex flex-col justify-between">
@@ -113,6 +113,15 @@
         <div class="space-y-5">
             <div class="flex flex-row justify-between items-center">
                 <div class=" text-3xl font-semibold mt-4">Produk Lainnya</div>
+                <div class=" py-3 rounded-[32px] justify-center items-center gap-2.5 inline-flex">
+                    <div class="flex justify-end text-blue-600 text-lg font-medium font-jakarta m-4 mt-5">
+                        <a href="{{ route('belanja.index', ['targetID' => 'berita']) }}"
+                            class="flex items-center w-full justify-end gap-2">
+                            <span class="hidden md:inline">Lihat Produk Lainnya</span>
+                            <img src="{{ asset('/img/arrow-selengkapnya.svg') }}" alt="" class="ml-2 md:ml-0">
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <!-- Horizontal Carousel -->
@@ -153,7 +162,23 @@
         </div>
     </div>
 
-        <x-footer />
+    <x-footer />
+
+    <script>
+        const gambar = document.getElementById('fotoProduk');
+
+        function toggleImage() {
+            if (gambar.classList.contains('fixed')) {
+                gambar.classList.remove('fixed', 'object-contain', 'max-w-screen-md', 'right-1/2', 'bottom-1/2', 'translate-x-1/2', 'translate-y-1/2', 'z-50', 'p-20', 'rounded-xl', 'backdrop-blur-lg','h-5/6', 'bg-[rgba(0,0,0,0.8)]', 'box-border');
+                gambar.classList.add('w-full', 'h-full', 'object-cover');
+            } else {
+                gambar.classList.add('fixed', 'object-contain', 'max-w-screen-md', 'right-1/2', 'bottom-1/2', 'translate-x-1/2', 'translate-y-1/2', 'z-50', 'p-20', 'rounded-xl', 'backdrop-blur-lg','h-5/6', 'bg-[rgba(0,0,0,0.8)]', 'box-border');
+                gambar.classList.remove('w-full', 'h-full', 'object-cover');
+            }
+        }
+
+        gambar.addEventListener('click', toggleImage);
+    </script>
 </body>
 
 </html>
