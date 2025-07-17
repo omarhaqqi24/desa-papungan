@@ -146,7 +146,7 @@
                                 <td class="px-6 py-4">{{ $item['alamat'] }}</td>
                                 <td class="px-6 py-4">
                                     <button
-                                        onclick="openModalShowProdukDesa('{{ $item['id'] }}', '{{ json_encode($item) }}')"
+                                        onclick="openModalShowProdukDesa('{{$item['id']}}', '{{ json_encode($item) }}')"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tekan
                                         Disini</button>
                                 </td>

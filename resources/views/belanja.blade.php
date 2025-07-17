@@ -36,10 +36,10 @@
         </div>
     </div>
     <div class="container items-center mx-auto space-y-10 text-justify">
-        <form class="flex justify-center items-center mt-10 w-full" action="{{ route('belanja.index') }}" method="GET">
-            <div class="flex flex-wrap md:flex-nowrap space-y-2 md:space-y-0 items-center space-x-2 w-fit hover:border-gray-400">
-                <label class="input input-bordered flex items-center gap-2 border-gray-400 bg-white">
-                    <input class="w-96 inline-block" name="nama" type="search" class="grow" placeholder="Search"/>
+        <form class="flex justify-center items-center mt-10 w-full px-6" action="{{ route('belanja.index') }}" method="GET">
+            <div class="flex flex-row items-center w-full max-w-lg gap-2 hover:border-gray-400">
+                <label class="input input-bordered flex items-center gap-2 border-gray-400 bg-white flex-grow">
+                    <input name="nama" type="search" class="grow w-0 min-w-0" placeholder="Nama Produk"/>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                         class="h-4 w-4 opacity-70">
                         <path fill-rule="evenodd"

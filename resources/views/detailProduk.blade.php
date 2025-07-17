@@ -124,11 +124,6 @@
                             <x-CardBelanja :item="$item" />
                         </div>
                     </a>
-                    <a href="{{ url('produk/' . $item->id) }}">
-                        <div class="carousel-item h-auto mb-5">
-                            <x-CardBelanja :item="$item" />
-                        </div>
-                    </a>
                     @endforeach
                 </div>
             </div>
@@ -137,11 +132,6 @@
             <div class="md:hidden w-full overflow-hidden">
                 <div class="w-auto h-[420px] overflow-y-scroll flex flex-col flex-nowrap gap-12 ">
                     @foreach ($produkLain as $item)
-                    <a href="{{ url('produk/' . $item->id) }}">
-                        <div class="carousel-item h-auto mb-5">
-                            <x-CardBelanja :item="$item" />
-                        </div>
-                    </a>
                     <a href="{{ url('produk/' . $item->id) }}">
                         <div class="carousel-item h-auto mb-5">
                             <x-CardBelanja :item="$item" />

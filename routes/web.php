@@ -22,18 +22,18 @@ use App\Http\Controllers\BelanjaController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LandingPageController::class,'index'])->name('home');
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::get('/profilDesa', [DataDesaController::class, "index"]);
-Route::get('/pemerintahan',[PerangkatDesaController::class,"getData"]);
-Route::get('/pengumuman/{id}', [PengumumanPageController::class,'index']);
-Route::get('/berita/{id}',[BeritaPageController::class,"index"]);
+Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"]);
+Route::get('/pengumuman/{id}', [PengumumanPageController::class, 'index']);
+Route::get('/berita/{id}', [BeritaPageController::class, "index"]);
 Route::get('/pariwisataDesa', function () {
     return view('pariwisataDesa');
 });
-Route::get('/informasi',[PengumumanController::class,"index"]);
-Route::post('/informasi',[PengumumanController::class,"store"])->name('informasi.store');
+Route::get('/informasi', [PengumumanController::class, "index"]);
+Route::post('/informasi', [PengumumanController::class, "store"])->name('informasi.store');
 
-Route::get('/peta-umkm', function() {
+Route::get('/peta-umkm', function () {
     return view('peta-umkm');
 })->name('peta.umkm');
 
@@ -41,20 +41,16 @@ Route::get('/peta-wilayah', function () {
     return view('peta-wilayah');
 })->name('peta-wilayah');
 
-Route::get('/peta-makam-mbah-moedjair', function() {
+Route::get('/peta-makam-mbah-moedjair', function () {
     return view('peta-makam-mbah-moedjair');
 })->name('peta-makam-mbah-moedjair');
-
-Route::get('/belanja', [BelanjaController::class, 'index'])->name('belanja.index');
-Route::get('/belanja/{id}', [BelanjaController::class, 'show'])->name('belanja.show');
-
 
 //public
 Route::get('/', [LandingPageController::class, 'index'])->name('landingPage.index');
 Route::get('/pemerintahan', [PerangkatDesaController::class, "getData"])->name('pemerintahan.index');
 Route::get('/informasi', [PengumumanController::class, "index"])->name('informasi.index');
-Route::get('/umkm',[umkmController::class, "index"])->name('umkm.index');
-Route::get('/pariwisataDesa',[PariwisataController::class, "index"])->name('publc.pariwisata.index');
+Route::get('/umkm', [umkmController::class, "index"])->name('umkm.index');
+Route::get('/pariwisataDesa', [PariwisataController::class, "index"])->name('publc.pariwisata.index');
 Route::get('/belanja', [BelanjaController::class, 'index'])->name('publc.belanja.index');
 Route::get('peta-umkm', [PetaUmkmController::class, 'index']);
 
@@ -118,14 +114,16 @@ Route::put('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'c
 Route::delete('/admin/informasi/berita/{id}', [InformasiDesaController::class, 'deleteBerita'])
     ->middleware('checkToken')
     ->name('admin.informasi.berita.destroy');
-Route::delete('/admin/informasi/pengumuman/{id}',
- [InformasiDesaController::class, 'deletePengumuman'])
+Route::delete(
+    '/admin/informasi/pengumuman/{id}',
+    [InformasiDesaController::class, 'deletePengumuman']
+)
     ->middleware('checkToken')
     ->name('admin.informasi.pengumuman.destroy');
 Route::delete('/admin/informasi/aspirasi/{id}', [InformasiDesaController::class, 'deleteAspirasi'])
     ->middleware('checkToken')
     ->name('admin.informasi.aspirasi.destroy');
-    
+
 // Halaman Admin UMKM Desa
 Route::get('/admin/umkm/', [UmkmDesaController::class, 'index'])
     ->middleware('checkToken')
@@ -148,8 +146,8 @@ Route::post('/admin/umkm/foto', [UmkmDesaController::class, 'tambahFotoUmkm'])
 Route::delete('/admin/umkm/foto/{id}', [UmkmDesaController::class, 'deleteFotoUmkm'])
     ->middleware('checkToken')
     ->name('admin.umkm-desa.foto.destroy');
-    
-    
+
+
 Route::get('/admin/pariwisata', [PariwisataDesaController::class, 'index'])->middleware('checkToken')->name('pariwisata.index');
 Route::post('/admin/pariwisata', [PariwisataDesaController::class, 'tambahPariwisata'])
     ->middleware('checkToken')

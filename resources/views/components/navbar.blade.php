@@ -1,9 +1,9 @@
 <div>
     <!--NAVBAR TOP START-->
     <nav class="w-screen text-lightText flex flex-col fixed bg-base-100 top-0 z-50 shadow-md">
-        <div class="w-screen bg-primary flex">
+        <div class="px-2 w-screen bg-primary flex">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
-                <div class="flex gap-2 px-4">
+                <div class="flex gap-2">
                     <div class="p-1 justify-start items-center md:gap-2 flex border-r-2 border-base-100">
                         <img src="{{asset('img/phoneLogo.svg')}}" alt="phoneLogo" class="w-4 h-4 relative ">
                         <div class="px-2 text-xs font-medium font-jakarta ">(0342) 814031</div>
@@ -11,7 +11,7 @@
 
                     <div class="p-1 justify-start items-center gap-2 flex ">
                         <img src="{{asset('img/emailLogo.svg')}}" alt="phoneLogo" class="w-4 h-4 relative ">
-                        <div class="px-2 text-xs font-medium font-jakarta ">pemdespapungan@gmail.com</div>
+                        <div class="pr-2 text-xs font-medium font-jakarta">pemdespapungan@gmail.com</div>
                     </div>
                 </div>
 
@@ -23,7 +23,7 @@
         <!--NAVBAR TOP END-->
 
         <!--NAVBAR BELLOW START-->
-        <div class=" pl-4 w-screen flex shadow-lg text-black">
+        <div class="px-2 w-screen flex shadow-lg text-black">
             <div class="container flex mx-auto justify-between py-2 text-center items-center">
                 <a class="flex gap-2 text-left" href="{{route('landingPage.index')}}">
                     <img src="{{ asset('img/logokab.png') }}" alt="papunganLogo" class="w-14 h-14">
@@ -47,7 +47,7 @@
                 <div id="mobile-menu" class="navbar-menu fixed  hidden z-40 lg:hidden">
                     <div id="close-mobile-menu-outside" class="fixed inset-0 bg-gray-800 opacity-40"></div>
                     <div
-                        class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-base-100 border-r overflow-y-auto">
+                        class="fixed top-0 left-0 bottom-0 flex flex-col w-1/2 max-w-sm py-6 px-6 bg-base-100 border-r overflow-y-auto">
                         <div class="flex items-center mb-8">
                             <div class="text-3xl font-semibold">Menu</div>
                             <a class="mr-auto text-3xl font-bold leading-none" href="#">
@@ -65,7 +65,7 @@
                             </button>
                         </div>
                         <div>
-                            <ul class="menu rounded-box w-56 mx-auto">
+                            <ul class="menu rounded-box w-auto mx-auto">
                                 <div class="menu-title font-semibold mr-auto">Profil Desa</div>
                                 <li>
                                     <ul>
@@ -117,8 +117,7 @@
                 </div>
 
                 <div class="flex-none hidden lg:block">
-                    <ul class="menu menu-horizontal text-base lg:space-x-2 flex items-center">
-
+                    <ul class="menu menu-horizontal text-base flex items-center">
                         <!--PROFIL DESA START-->
                         <li>
                             <details>
