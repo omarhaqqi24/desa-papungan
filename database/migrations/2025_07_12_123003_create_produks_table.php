@@ -9,7 +9,7 @@ class CreateProduksTable extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
-            $table->string(column: 'nama_produk');
+            $table->string('nama_produk');
             $table->string('harga');
             $table->string('no_pirt');
             $table->string('image');

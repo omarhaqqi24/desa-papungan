@@ -36,6 +36,21 @@
         </div>
     </div>
     <div class="container items-center mx-auto space-y-10 text-justify">
+        <form class="flex justify-center items-center mt-10 w-full" action="{{ route('belanja.index') }}" method="GET">
+            <div class="flex flex-wrap md:flex-nowrap space-y-2 md:space-y-0 items-center space-x-2 w-fit hover:border-gray-400">
+                <label class="input input-bordered flex items-center gap-2 border-gray-400 bg-white">
+                    <input class="w-96 inline-block" name="nama" type="search" class="grow" placeholder="Search"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                        class="h-4 w-4 opacity-70">
+                        <path fill-rule="evenodd"
+                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </label>
+
+                <button type="submit" class="btn bg-secondary text-lightText hover:bg-blue-800">Search</button>
+            </div>
+        </form>
         <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full gap-2">
             @foreach ($produk as $itemn)
             <x-CardBelanja :item="$itemn" />
@@ -44,7 +59,6 @@
     </div>
 
     </div>
+    <x-footer />
 </body>
-<x-footer />
-
 </html>

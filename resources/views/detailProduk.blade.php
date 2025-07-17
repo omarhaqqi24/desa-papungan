@@ -29,6 +29,8 @@
             z-index: 1;
             display: inline-flex;
             /* Agar wrapper menyesuaikan ukuran konten */
+            display: inline-flex;
+            /* Agar wrapper menyesuaikan ukuran konten */
         }
 
         .gradient-border-wrapper::before {
@@ -46,6 +48,10 @@
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
+            z-index: -1;
+            /* Letakkan di belakang tombol */
+            pointer-events: none;
+            /* Agar tidak menghalangi klik tombol */
             z-index: -1;
             /* Letakkan di belakang tombol */
             pointer-events: none;
@@ -118,6 +124,11 @@
                             <x-CardBelanja :item="$item" />
                         </div>
                     </a>
+                    <a href="{{ url('produk/' . $item->id) }}">
+                        <div class="carousel-item h-auto mb-5">
+                            <x-CardBelanja :item="$item" />
+                        </div>
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -126,6 +137,11 @@
             <div class="md:hidden w-full overflow-hidden">
                 <div class="w-auto h-[420px] overflow-y-scroll flex flex-col flex-nowrap gap-12 ">
                     @foreach ($produkLain as $item)
+                    <a href="{{ url('produk/' . $item->id) }}">
+                        <div class="carousel-item h-auto mb-5">
+                            <x-CardBelanja :item="$item" />
+                        </div>
+                    </a>
                     <a href="{{ url('produk/' . $item->id) }}">
                         <div class="carousel-item h-auto mb-5">
                             <x-CardBelanja :item="$item" />

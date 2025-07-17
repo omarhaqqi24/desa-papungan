@@ -190,4 +190,12 @@ Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisi
 
 // Halaman Belanja Desa
 Route::get('/belanja', [BelanjaController::class,'index'])->name('belanja.index');
-Route::get('/produk/{id}', [BelanjaController::class, 'show'])->name('produk.show');
+Route::get('/belanja/{id}', [BelanjaController::class, 'show'])->name('produk.show');
+
+//halaman admin produk desa
+Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.produk.index');
+// Route::delete('/admin/produk-desa/{id}', [ProdukDesaController::class, 'deleteProduk'])
+//     ->middleware('checkToken')
+//     ->name('admin.produk.destroy');
