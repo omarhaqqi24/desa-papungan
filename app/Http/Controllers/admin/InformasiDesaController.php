@@ -80,37 +80,46 @@ class InformasiDesaController extends Controller
             $client = new Client();
             $token = Session::get('api-token');
 
-            $image = $request->file('foto');
-            if (empty($image)) {
+            $images = $request->file('foto');
+
+            if (empty($images)) {
                 $guzzleRequest = new GuzzleRequest('GET', env("API_BASE_URL", "http://localhost:8001") . "/api/berita");
                 $guzzleResponse = new GuzzleResponse(400, [], json_encode(['message' => 'Foto harus diisi!']));
 
                 throw new BadResponseException('Foto harus diisi!', $guzzleRequest, $guzzleResponse);
             }
 
+            // Mulai bangun bagian multipart
+            $multipart = [
+                [
+                    'name' => 'nama',
+                    'contents' => $request->nama
+                ],
+                [
+                    'name' => 'judul',
+                    'contents' => $request->judul
+                ],
+                [
+                    'name' => 'isi',
+                    'contents' => $request->isi
+                ],
+            ];
+
+            // Tambahkan semua foto ke multipart
+            foreach ($images as $image) {
+                $multipart[] = [
+                    'name' => 'foto[]', // harus pakai [] agar terbaca array di sisi backend
+                    'contents' => fopen($image->getPathname(), 'r'),
+                    'filename' => $image->getClientOriginalName(),
+                ];
+            }
+
+            // Kirim request ke API
             $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/berita", [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $token
                 ],
-                'multipart' => [
-                    [
-                        'name' => 'nama',
-                        'contents' => $request->nama
-                    ],
-                    [
-                        'name' => 'judul',
-                        'contents' => $request->judul
-                    ],
-                    [
-                        'name' => 'isi',
-                        'contents' => $request->isi
-                    ],
-                    [
-                        'name' => 'foto',
-                        'contents' => fopen($image->getPathname(), 'r'),
-                        'filename' => $image->getClientOriginalName(),
-                    ],
-                ]
+                'multipart' => $multipart
             ]);
 
             $responseBody = json_decode($response->getBody());
@@ -167,53 +176,37 @@ class InformasiDesaController extends Controller
             $client = new Client();
             $token = Session::get('api-token');
 
-            $image = $request->file('foto');
-            if (!empty($image)) {
-                $multipart = [
-                    [
-                        'name' => 'nama',
-                        'contents' => $request->nama
-                    ],
-                    [
-                        'name' => 'isAccepted',
-                        'contents' => $request->isAccepted
-                    ],
-                    [
-                        'name' => 'judul',
-                        'contents' => $request->judul
-                    ],
-                    [
-                        'name' => 'isi',
-                        'contents' => $request->isi
-                    ],
-                    [
-                        'name' => 'foto',
+            $multipart = [
+                [
+                    'name' => 'nama',
+                    'contents' => $request->nama
+                ],
+                [
+                    'name' => 'isAccepted',
+                    'contents' => $request->isAccepted
+                ],
+                [
+                    'name' => 'judul',
+                    'contents' => $request->judul
+                ],
+                [
+                    'name' => 'isi',
+                    'contents' => $request->isi
+                ],
+            ];
+
+            $images = $request->file('foto');
+            if (!empty($images)) {
+                foreach ($images as $image) {
+                    $multipart[] = [
+                        'name' => 'foto[]', // untuk multiple image, gunakan foto[]
                         'contents' => fopen($image->getPathname(), 'r'),
                         'filename' => $image->getClientOriginalName(),
-                    ],
-                ];
-            } else {
-                $multipart = [
-                    [
-                        'name' => 'nama',
-                        'contents' => $request->nama
-                    ],
-                    [
-                        'name' => 'isAccepted',
-                        'contents' => $request->isAccepted
-                    ],
-                    [
-                        'name' => 'judul',
-                        'contents' => $request->judul
-                    ],
-                    [
-                        'name' => 'isi',
-                        'contents' => $request->isi
-                    ],
-                ];
+                    ];
+                }
             }
 
-            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/$request->id?_method=PUT", [
+            $response = $client->request('POST', env("API_BASE_URL", "http://localhost:8001") . "/api/berita/{$request->id}?_method=PUT", [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $token
                 ],
