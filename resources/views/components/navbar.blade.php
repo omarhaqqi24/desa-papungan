@@ -11,7 +11,7 @@
 
                     <div class="p-1 justify-start items-center gap-2 flex ">
                         <img src="{{asset('img/emailLogo.svg')}}" alt="phoneLogo" class="w-4 h-4 relative ">
-                        <div class="px-2 text-xs font-medium font-jakarta ">desapapungan@gmail.com</div>
+                        <div class="px-2 text-xs font-medium font-jakarta ">pemdespapungan@gmail.com</div>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
 
                 <button id="mobile-menu-button"
                     class="w-10 h-10 relative bg-primary rounded-lg p-2 flex flex-col justify-between mr-5 hover:opacity-70 transition duration-300 lg:hidden">
-                    <img src="{{ asset('img/hamburgerLogo.svg')}}" class="w-6 h-6"> 
+                    <img src="{{ asset('img/hamburgerLogo.svg')}}" class="w-6 h-6">
                 </button>
 
                 <!-- Mobile Menu -->
@@ -70,8 +70,8 @@
                                 <li>
                                     <ul>
                                         <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'tentangkami']) }}">Tentang Kami</a></li>
-                                        <li><a class="hover:bg-accent"href="{{ route('profilDesa.index', ['targetID' => 'visidanmisi']) }}">Visi dan Misi</a></li>
-                                        <li><a class="hover:bg-accent"href="{{ route('profilDesa.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'visidanmisi']) }}">Visi dan Misi</a></li>
+                                        <li><a class="hover:bg-accent" href="{{ route('profilDesa.index', ['targetID' => 'sejarah']) }}">Sejarah</a></li>
                                     </ul>
                                 </li>
                                 <div class="menu-title font-semibold mr-auto">Pemerintahan</div>
@@ -106,14 +106,22 @@
                                         <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
                                 </li>
+<<<<<<< Updated upstream
 
+=======
+                                <div class="menu-title font-bold mr-auto">
+                                    <a href="{{  route('belanja.index')  }}">
+                                        Belanja Produk
+                                    </a>
+                                </div>
+>>>>>>> Stashed changes
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex-none hidden lg:block">
-                    <ul class="menu menu-horizontal text-base lg:space-x-6">
+                    <ul class="menu menu-horizontal text-base lg:space-x-2 flex items-center">
 
                         <!--PROFIL DESA START-->
                         <li>
@@ -208,6 +216,16 @@
                         </li>
                         <!--Pariwisata Desa END-->
 
+<<<<<<< Updated upstream
+=======
+                        <!--Belanja Produk-->
+                        <li class="hover:text-primary">
+                            <a href="{{  route('belanja.index')  }}">
+                                Belanja Produk
+                            </a>
+                        </li>
+
+>>>>>>> Stashed changes
                     </ul>
                 </div>
 
@@ -248,7 +266,7 @@
     </script>
 
     <!-- Untuk auto Scroll-->
-        <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const targetID = urlParams.get('targetID');
@@ -258,7 +276,7 @@
                     const offset = 120; // Ubah nilai ini sesuai kebutuhan Anda
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - offset;
-    
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
@@ -268,4 +286,3 @@
         });
     </script>
 </div>
-

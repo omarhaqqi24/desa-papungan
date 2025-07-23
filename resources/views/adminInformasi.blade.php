@@ -111,7 +111,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <button
-                                        onclick="openModalShowBerita('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                        onclick='openModalShowBerita("{{ $item->id }}", @json($item))'
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat
                                         Isi</a>
                                 </td>
@@ -120,12 +120,14 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <img onclick="openModalPreviewImageBerita('{{ $item->id }}')"
-                                        src="{{ $item->foto }}" alt="berita-desa"
+                                        src="{{ $item->foto[0] }}" alt="berita-desa"
                                         class="w-12 h-12 object-cover rounded-xl">
                                     <dialog id="preview_brt_{{ $item->id }}" class="modal">
                                         <div class="modal-box">
-                                            <img src="{{ $item->foto }}" alt="foto-sejarah-desa"
-                                                class="object-cover rounded-lg">
+                                            @foreach ($item->foto as $poto)
+                                            <img src="{{ $poto }}" alt="foto-sejarah-desa"
+                                                class="object-cover rounded-lg w-full mb-4">
+                                            @endforeach
                                         </div>
                                         <form method="dialog" class="modal-backdrop">
                                             <button>close</button>
@@ -149,7 +151,7 @@
                                         </button>
 
                                         <button
-                                            onclick="openModalUpdateBerita('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                            onclick='openModalUpdateBerita("{{ $item->id }}", @json($item))'
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -227,8 +229,8 @@
                             </div>
                             <div class="form-control gap-4">
                                 <label for="foto_brt_up" class="label-text font-semibold">Foto</label>
-                                <input type="file" name="foto" id="foto_brt_up"
-                                    class="file-input file-input-bordered">
+                                <input type="file" name="foto[]" id="foto_brt_up"
+                                    class="file-input file-input-bordered" multiple>
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau
                                     .jpg</p>
                             </div>
@@ -282,8 +284,8 @@
                             </div>
                             <div class="form-control gap-4">
                                 <label for="foto_brt" class="label-text font-semibold">Foto</label>
-                                <input type="file" name="foto" id="foto_brt"
-                                    class="file-input file-input-bordered">
+                                <input type="file" name="foto[]" id="foto_brt"
+                                    class="file-input file-input-bordered" multiple>
                                 <p class="label-text text-gray-500"><span class="text-red-500">*</span> file .png atau
                                     .jpg</p>
                             </div>
@@ -413,7 +415,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <button
-                                        onclick="openModalShowPengumuman('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                        onclick='openModalShowPengumuman("{{ $item->id }}", @json($item))'
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat
                                         Isi</button>
                                 </td>
@@ -437,7 +439,7 @@
                                         </button>
 
                                         <button
-                                            onclick="openModalUpdatePengumuman('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                            onclick='openModalUpdatePengumuman("{{ $item->id }}", @json($item))'
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -706,11 +708,11 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <img onclick="openModalPreviewImageBerita('{{ $item->id }}')"
-                                        src="{{ $item->foto }}" alt="berita-desa"
+                                        src="{{ $item->foto[0] }}" alt="berita-desa"
                                         class="w-12 h-12 object-cover rounded-xl">
                                     <dialog id="preview_brt_{{ $item->id }}" class="modal">
                                         <div class="modal-box">
-                                            <img src="{{ $item->foto }}" alt="foto-sejarah-desa"
+                                            <img src="{{ $item->foto[0] }}" alt="foto-sejarah-desa"
                                                 class="object-cover rounded-lg">
                                         </div>
                                         <form method="dialog" class="modal-backdrop">
@@ -889,7 +891,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <button
-                                        onclick="openModalShowPengumuman('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                        onclick='openModalShowPengumuman("{{ $item->id }}", @json($item))'
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat
                                         Isi</button>
                                 </td>
@@ -1240,7 +1242,6 @@
     </div>
     <script>
         function openModalUpdateBerita(id, data) {
-            data = JSON.parse(data);
             const judulIn = document.getElementById('judul_brt_up');
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_brt_up');
@@ -1256,7 +1257,6 @@
         }
 
         function openModalShowBerita(id, data) {
-            data = JSON.parse(data);
             const judulIn = document.getElementById('judul_brt_sh');
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_brt_sh');
@@ -1270,7 +1270,6 @@
         }
 
         function openModalShowPengumuman(id, data) {
-            data = JSON.parse(data);
             const judulIn = document.getElementById('judul_png_sh');
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_png_sh');
@@ -1284,7 +1283,6 @@
         }
 
         function openModalUpdatePengumuman(id, data) {
-            data = JSON.parse(data);
             const judulIn = document.getElementById('judul_png_up');
             judulIn.value = data.judul;
             const isiIn = document.getElementById('isi_png_up');
