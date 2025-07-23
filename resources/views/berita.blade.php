@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <!-- berita img -->
-                <img src="{{ $berita->data->foto }}" alt="" class="max-h-96 min-w-full object-cover rounded-lg ">
+                <x-image-slide :fotos="$berita->data->foto" />
                 <!-- isi berita -->
                 <p class="text-lg">{!! nl2br(e($berita->data->isi)) !!}</p>
             </div>

@@ -29,10 +29,6 @@
             </div>
             <p id="nama" class="font-bold text-2xl my-0"></p>
             <p id="jam-buka" class="font-normal text-lg text-gray-500"></p>
-            <div class="space-y-0 my-0">
-                <p class="font-normal text-lg text-gray-500">Jenis Produk:</p>
-                <p id="jenis" class="font-normal text-lg text-black"></p>
-            </div>
             <div>
                 <p class="font-normal text-lg text-gray-500">Alamat:</p>
                 <p id="alamat" class="font-normal text-lg text-black"></p>
@@ -43,12 +39,8 @@
             </div>
             <div>
                 <p class="font-normal text-lg text-gray-500">Perizinan:</p>
-                <p class="font-normal text-lg text-gray-500">P-IRT <span id='pirt'
-                        class="font-normal text-lg text-black"></span></p>
-                <p class="font-normal text-lg text-gray-500">Halal <span id='halal'
-                        class="font-normal text-lg text-black"></span></p>
-                <p class="font-normal text-lg text-gray-500">NIB <span id='nib'
-                        class="font-normal text-lg text-black"></span></p>
+                <p class="font-normal text-lg text-gray-500">NIB <span id='nib'class="font-normal text-lg text-black"></span></p>
+                <p class="font-normal text-lg text-gray-500">BPOM <span id='bpom'class="font-normal text-lg text-black"></span></p>
             </div>
             <div>
                 <p class="font-normal text-lg text-gray-500">Deskripsi:</p>
@@ -183,16 +175,15 @@
             iconAnchor: [21, 36],
         });
 
-        // data dummy
-        const points = JSON.parse('<?= json_encode($data->data->resource) ?>')
+        // data dari database langsung
+        const points = JSON.parse('@json($data)')
 
         polygon.addTo(map);
 
         // create the marker for each data in the data
         points.map(({
             id,
-            jenis,
-            foto,
+            foto_umkm,
             alamat,
             lat,
             long,
@@ -200,8 +191,6 @@
             nama,
             kontak,
             jam_buka,
-            no_pirt,
-            no_halal,
             no_nib,
             no_bpom
         }) => {
@@ -216,33 +205,34 @@
             markers.push(marker);
 
             const carousel = document.getElementById('carousel');
+            // Hapus jika sudah tidak ada
             while (carousel.firstChild) {
                 carousel.removeChild(carousel.firstChild)
             }
-            foto.forEach(obj => {
-                const imgContainer = document.createElement('div');
-                imgContainer.classList.add('carousel-item');
-                imgContainer.classList.add('w-full');
-                imgContainer.classList.add('h-auto');
-                const img = document.createElement('img');
-                img.src = obj.foto;
-                img.classList.add('w-full');
-                img.classList.add('h-full');
-                img.classList.add('bg-black');
-                img.classList.add('object-contain');
-                imgContainer.appendChild(img);
-                carousel.appendChild(imgContainer);
-            });
+            // Ganti foto dengan foto_umkm
+            if (foto_umkm) {
+                foto_umkm.forEach(obj => {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.classList.add('carousel-item');
+                    imgContainer.classList.add('w-full');
+                    imgContainer.classList.add('h-auto');
+                    const img = document.createElement('img');
+                    img.src = obj.foto;
+                    img.classList.add('w-full');
+                    img.classList.add('h-full');
+                    img.classList.add('bg-black');
+                    img.classList.add('object-contain');
+                    imgContainer.appendChild(img);
+                    carousel.appendChild(imgContainer);
+                });
+            }
 
             document.getElementById('nama').innerHTML = nama;
             document.getElementById('jam-buka').innerHTML = 'Jam buka' + " " + jam_buka;
-            const jenis_name = jenis.map(item => item.jenis)
-            document.getElementById('jenis').innerHTML = jenis_name.join(', ');
             document.getElementById('alamat').innerHTML = alamat;
             document.getElementById('kontak').innerHTML = kontak;
-            document.getElementById('pirt').innerHTML = "No. " + no_pirt;
-            document.getElementById('halal').innerHTML = no_halal;
             document.getElementById('nib').innerHTML = no_nib;
+            document.getElementById('bpom').innerHTML = no_bpom;
             document.getElementById('deskripsi').innerHTML = deskripsi;
 
             // create a popup object for each marker / data
@@ -346,6 +336,13 @@
             } else {
                 for (const marker of markers) {
                     marker.unbindTooltip();
+                }
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
                 }
             }
         }, 1000);

@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\ProfilDesaController;
 use App\Http\Controllers\admin\UmkmDesaController;
 use App\Http\Controllers\api\BeritaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BelanjaController;
 use App\Http\Controllers\BeritaPageController;
 use App\Http\Controllers\DataDesaController;
 use App\Http\Controllers\LandingPageController;
@@ -191,3 +192,32 @@ Route::put('/admin/profil-desa/sejarah', [ProfilDesaController::class, 'updateSe
 Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
     ->middleware('checkToken')
     ->name('admin.profil-desa.misi.create');
+<<<<<<< Updated upstream
+=======
+
+
+//halaman admin produk desa
+Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.produk.index');
+// Route::delete('/admin/produk-desa/{id}', [ProdukDesaController::class, 'deleteProduk'])
+//     ->middleware('checkToken')
+//     ->name('admin.produk.destroy');
+
+// Halaman Belanja Desa
+Route::get('/belanja', [BelanjaController::class,'index'])->name('belanja.index');
+Route::get('/belanja/{id}', [BelanjaController::class, 'show'])->name('produk.show');
+
+//halaman admin produk desa
+Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
+    ->middleware('checkToken')
+    ->name('admin.produk.index');
+Route::get('/admin/produk/{id}/edit', [ProdukDesaController::class, 'edit'])->middleware('checkToken')->name('admin.produk.edit');
+Route::post('/admin/produk', [ProdukDesaController::class, 'store'])->middleware('checkToken')->name('admin.produk.store');
+Route::put('/admin/produk/{id}', action: [ProdukDesaController::class, 'update'])->middleware('checkToken')->name('admin.produk.update');
+Route::delete('/admin/produk/{id}', [ProdukDesaController::class, 'destroy'])->middleware('checkToken')->name('admin.produk.destroy');
+
+// Route::delete('/admin/produk-desa/{id}', [ProdukDesaController::class, 'deleteProduk'])
+//     ->middleware('checkToken')
+//     ->name('admin.produk.destroy');
+>>>>>>> Stashed changes
