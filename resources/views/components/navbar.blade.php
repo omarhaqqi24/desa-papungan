@@ -106,15 +106,12 @@
                                         <li><a class="hover:bg-accent" href="{{ route('publc.pariwisata.index', ['targetID' => 'lokasi']) }}">Lokasi</a></li>
                                     </ul>
                                 </li>
-<<<<<<< Updated upstream
 
-=======
                                 <div class="menu-title font-bold mr-auto">
                                     <a href="{{  route('belanja.index')  }}">
-                                        Belanja Produk
+                                        Belanja Desa
                                     </a>
                                 </div>
->>>>>>> Stashed changes
                             </ul>
                         </div>
                     </div>
@@ -216,16 +213,12 @@
                         </li>
                         <!--Pariwisata Desa END-->
 
-<<<<<<< Updated upstream
-=======
                         <!--Belanja Produk-->
                         <li class="hover:text-primary">
                             <a href="{{  route('belanja.index')  }}">
-                                Belanja Produk
+                                Belanja Desa
                             </a>
                         </li>
-
->>>>>>> Stashed changes
                     </ul>
                 </div>
 

@@ -712,8 +712,10 @@
                                         class="w-12 h-12 object-cover rounded-xl">
                                     <dialog id="preview_brt_{{ $item->id }}" class="modal">
                                         <div class="modal-box">
-                                            <img src="{{ $item->foto[0] }}" alt="foto-sejarah-desa"
-                                                class="object-cover rounded-lg">
+                                            @foreach ($item->foto as $poto)
+                                            <img src="{{ $poto }}" alt="foto-sejarah-desa"
+                                                class="object-cover rounded-lg w-full mb-4">
+                                            @endforeach
                                         </div>
                                         <form method="dialog" class="modal-backdrop">
                                             <button>close</button>

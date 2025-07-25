@@ -183,7 +183,6 @@
         // create the marker for each data in the data
         points.map(({
             id,
-            foto_umkm,
             alamat,
             lat,
             long,
@@ -208,23 +207,6 @@
             // Hapus jika sudah tidak ada
             while (carousel.firstChild) {
                 carousel.removeChild(carousel.firstChild)
-            }
-            // Ganti foto dengan foto_umkm
-            if (foto_umkm) {
-                foto_umkm.forEach(obj => {
-                    const imgContainer = document.createElement('div');
-                    imgContainer.classList.add('carousel-item');
-                    imgContainer.classList.add('w-full');
-                    imgContainer.classList.add('h-auto');
-                    const img = document.createElement('img');
-                    img.src = obj.foto;
-                    img.classList.add('w-full');
-                    img.classList.add('h-full');
-                    img.classList.add('bg-black');
-                    img.classList.add('object-contain');
-                    imgContainer.appendChild(img);
-                    carousel.appendChild(imgContainer);
-                });
             }
 
             document.getElementById('nama').innerHTML = nama;

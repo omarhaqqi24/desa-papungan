@@ -20,6 +20,7 @@ use App\Http\Controllers\PetaUmkmController;
 use App\Http\Controllers\umkmController;
 use App\Models\PerangkatDesa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\ProdukDesaController;
 
 Route::get('/', [LandingPageController::class,'index'])->name('home');
 
@@ -192,9 +193,6 @@ Route::put('/admin/profil-desa/sejarah', [ProfilDesaController::class, 'updateSe
 Route::post('/admin/profil-desa/misi', [ProfilDesaController::class, 'tambahMisiDesa'])
     ->middleware('checkToken')
     ->name('admin.profil-desa.misi.create');
-<<<<<<< Updated upstream
-=======
-
 
 //halaman admin produk desa
 Route::get('admin/produk-desa', [ProdukDesaController::class, 'index'])
@@ -220,4 +218,3 @@ Route::delete('/admin/produk/{id}', [ProdukDesaController::class, 'destroy'])->m
 // Route::delete('/admin/produk-desa/{id}', [ProdukDesaController::class, 'deleteProduk'])
 //     ->middleware('checkToken')
 //     ->name('admin.produk.destroy');
->>>>>>> Stashed changes

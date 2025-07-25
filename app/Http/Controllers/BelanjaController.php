@@ -21,10 +21,11 @@ class BelanjaController extends Controller
             });
         }
 
-        $produk = $query->get();
+        $items = $query->paginate(9); // gunakan pagination juga biar sesuai Blade
 
-        return view('belanja', compact('produk'));
+        return view('belanja', compact('items'));
     }
+
 
     public function show($id)
     {

@@ -187,10 +187,6 @@
                                 <td class="px-6 py-4">
 
                                     <div class="flex gap-6 justify-center items-center">
-                                        <button
-                                            onclick="openModalTambahFotoUmkm('{{ $item->id }}', '{{ json_encode($item) }}')"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tambah
-                                            Foto</button>
 
                                         <button onclick="openModalDeleteUmkmDesa('{{ $item->id }}')"
                                             class="font-medium">
@@ -239,39 +235,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                    <dialog id="modal_form_upfoto" class="modal">
-                        <div class="modal-box w-11/12 max-w-5xl">
-                            <h3 class="text-lg font-bold">Formulir Tambah Foto Umkm</h3>
-                            <hr class="h-px my-8 bg-gray-300 border-0">
-                            <form method="POST" action="{{ route('admin.umkm-desa.foto.create') }}"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-control gap-6">
-                                    <div class="form-control gap-4">
-                                        <label for="umkm_upfoto" class="label-text font-semibold">Foto</label>
-                                        <input type="file" name="foto" id="umkm_upfoto"
-                                            class="file-input file-input-bordered w-full disabled:bg-slate-200" />
-                                        <input type="text" name="id" id="id_umkm_upfoto"
-                                            class="input input-bordered " hidden>
-                                    </div>
-                                    <div class="relative w-full">
-                                        <div class="flex gap-4 justify-end">
-                                            <button type="button"
-                                                class="btn rounded-xl bg-red-500 text-lightText hover:bg-red-900"
-                                                onclick="modal_form_upfoto.close()">Tutup</button>
-                                            <button id="edit-btn-test" type="submit"
-                                                class="btn rounded-xl text-lightText bg-green-500 hover:bg-green-900 hover:text-lightText px-4 py-2 flex items-center">
-                                                <img src="/img/saveLogo.svg" alt="">
-                                                Simpan
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </dialog>
-
                 
                     <!-- Pagination Section -->
                     <section class="px-4 py-6 bg-white border-t">
@@ -697,14 +660,6 @@
 
             function openModalDeleteUmkmDesa(id) {
                 document.getElementById('mdumkm_' + id).showModal();
-            }
-
-            function openModalTambahFotoUmkm(id, data) {
-                data = JSON.parse(data);
-                const hiddenInput = document.getElementById('id_umkm_upfoto');
-                hiddenInput.value = data.id;
-
-                document.getElementById('modal_form_upfoto').showModal();
             }
         </script>
 </body>

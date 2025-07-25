@@ -12,7 +12,7 @@
         <div class="text-[#2453C6] font-bold text-base mb-1">
             {{ $item->harga }}
         </div>
-        <div class="w-[316px] h-10 text-sm overflow-hidden text-[#858D9D]">
+        <div class="w-full h-10 text-sm overflow-hidden text-[#858D9D]">
             {{ $item->umkm->deskripsi  }}
         </div>
         <div class="mt-auto absolute bottom-0 right-0">

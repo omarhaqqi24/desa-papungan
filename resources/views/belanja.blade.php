@@ -38,8 +38,8 @@
     <div class="container items-center mx-auto space-y-10 text-justify">
         <form class="flex justify-center items-center mt-10 w-full" action="{{ route('belanja.index') }}" method="GET">
             <div class="flex flex-wrap md:flex-nowrap space-y-2 md:space-y-0 items-center space-x-2 w-fit hover:border-gray-400">
-                <label class="input input-bordered flex items-center gap-2 border-gray-400 bg-white">
-                    <input class="w-96 inline-block" name="nama" type="search" class="grow" placeholder="Search"/>
+                <label class="ml-2 input input-bordered flex items-center gap-2 border-gray-400 bg-white">
+                    <input class="w-auto md:w-96 inline-block" name="nama" type="search" class="grow" placeholder="Search"/>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                         class="h-4 w-4 opacity-70">
                         <path fill-rule="evenodd"
@@ -51,11 +51,98 @@
                 <button type="submit" class="btn bg-secondary text-lightText hover:bg-blue-800">Search</button>
             </div>
         </form>
-        <div class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full gap-2">
-            @foreach ($produk as $itemn)
-            <x-CardBelanja :item="$itemn" />
+        <div id="produk" class="px-5 md:px-10 mt-10 flex flex-wrap justify-around items-center w-full gap-2">
+            @foreach ($items as $itemn)
+                <x-CardBelanja :item="$itemn" />
             @endforeach
         </div>
+        <!-- Pagination Section -->
+        <section class="px-4 py-6 border-t">
+            @if ($items->hasPages())
+                <div class="flex items-center justify-between w-full">
+                    {{-- Tombol Sebelumnya --}}
+                    @if ($items->onFirstPage())
+                        <button disabled
+                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                            </svg>
+                            <div class="hidden md:block">Sebelumnya</div>
+                        </button>
+                    @else
+                        <a href="{{ $items->previousPageUrl() }}#produk"
+                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                            type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                            </svg>
+                            <div class="hidden md:block">Sebelumnya</div>
+                        </a>
+                    @endif
+
+                    {{-- Nomor Halaman --}}
+                    <div class="hidden lg:flex items-center gap-2">
+                        @foreach ($items->getUrlRange(1, $items->lastPage()) as $page => $url)
+                            @if ($page == $items->currentPage())
+                            <button
+                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-blue-100 text-center align-middle font-sans text-xs font-semibold uppercase text-darkText transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                type="button">
+                                <span
+                                    class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                    {{ $page }}
+                                </span>
+                            </button>
+                            @else
+                            <a href="{{ $url }} #berita"
+                                class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20"
+                                type="button">
+                                <span
+                                    class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                    {{ $page }}
+                                </span>
+                            </a>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    {{-- Info Halaman di Mobile --}}
+                    <div class="flex-col text-center items-center gap-2 lg:hidden">
+                        <div class="">{{ $items->currentPage() }} dari {{ $items->lastPage() }}</div>
+                    </div>
+
+                    {{-- Tombol Berikutnya --}}
+                    @if ($items->hasMorePages())
+                        <a href="{{ $items->nextPageUrl() }}#produk" 
+                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20"
+                            type="button">
+                            <div class="hidden md:block">Berikutnya</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                            </svg>
+                        </a>
+                    @else
+                        <button disabled
+                            class="flex border border-gray-300 items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            <div class="hidden md:block">Berikutnya</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                            </svg>
+                        </button>
+                    @endif
+                </div>
+            @endif
+        </section>
+
     </div>
 
     </div>
