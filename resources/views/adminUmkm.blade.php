@@ -180,7 +180,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <button
-                                        onclick="openModalShowUmkmDesa('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                        onclick="openModalShowUmkmDesa('{{ $item->id }}', '{{ addslashes(json_encode($item)) }}')"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tekan
                                         Disini</button>
                                 </td>
@@ -200,7 +200,7 @@
                                         </button>
 
                                         <button
-                                            onclick="openModalUpdateUmkmDesa('{{ $item->id }}', '{{ json_encode($item) }}')"
+                                            onclick="openModalUpdateUmkmDesa('{{ $item->id }}', '{{ addslashes(json_encode($item)) }}')"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             <svg width="21" height="20" viewBox="0 0 21 20"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">

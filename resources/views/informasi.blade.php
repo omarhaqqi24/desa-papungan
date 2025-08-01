@@ -310,7 +310,7 @@
                                     <img src="{{ asset('/img/unggah.svg') }}" alt="Unggah" class="w-5 h-5">
                                     <div class="hidden md:block">Unggah File</div>
                                 </label>
-                                <input type="file" name="foto" id="foto" class="hidden">
+                                <input type="file" name="foto[]" id="foto" class="hidden" multiple>
                             </div>
                             <p class="text-gray-700 text-sm mt-1">* file png atau jpg</p>
                         </div>

@@ -43,32 +43,38 @@ class PengumumanController extends Controller
     {
         try{
             $client = new Client();
-            if ($request -> kategori=="Berita"){
-                $image = $request->file('foto');
+            if ($request->kategori == "Berita") {
+                $images = $request->file('foto'); // array of files dari name="foto[]"
+                
+                $multipart = [
+                    [
+                        'name' => 'judul',
+                        'contents' => $request->judul
+                    ],
+                    [
+                        'name' => 'isi',
+                        'contents' => $request->isi
+                    ],
+                    [
+                        'name' => 'nama',
+                        'contents' => $request->nama
+                    ],
+                ];
+            
+                // Tambahkan semua file foto ke multipart sebagai array: foto[]
+                foreach ($images as $img) {
+                    $multipart[] = [
+                        'name' => 'foto[]', // wajib array sesuai validasi backend
+                        'contents' => fopen($img->getPathname(), 'r'),
+                        'filename' => $img->getClientOriginalName()
+                    ];
+                }
+            
                 $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001") . "/api/berita", [
-                    'multipart' => [
-                        [
-                            'name' => 'judul', 
-                            'contents' => $request -> judul
-                        ],
-                        [
-                            'name' => 'isi',
-                            'contents' => $request -> isi
-                        ],
-                        [
-                            'name' => 'foto',
-                            'contents' => fopen($image->getPathname(), 'r'),
-                            'filename' => $image->getClientOriginalName()
-                        ],
-                        [
-                            'name' => 'nama',
-                            'contents' => $request -> nama
-                        ]
-
-                    ]
-
+                    'multipart' => $multipart
                 ]);
             }
+            
             else if($request -> kategori=="Pengumuman"){
                 $response = $client->request("POST", env("API_BASE_URL", "http://localhost:8001") . "/api/pengumuman", [
                     'multipart' => [

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Umkm;
+use App\Models\Produk; // Added this line to import the Product model
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
@@ -274,6 +275,10 @@ class UmkmDesaController extends Controller
     public function deleteUmkm($id)
     {
         try {
+            // Delete related products locally first
+            // This assumes a 'Product' model exists and has an 'umkm_id' foreign key
+            Produk::where('umkm_id', $id)->delete();
+
             $client = new Client();
             $token = Session::get('api-token');
 

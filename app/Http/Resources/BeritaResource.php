@@ -15,7 +15,7 @@ class BeritaResource extends JsonResource
             'judul' => $this->judul,
             'isi' => $this->isi,
             'penulis' => $this->nama,
-            'foto' => collect($this->foto)->values(), // mengembalikan array biasa seperti ['gambar1.jpg', 'gambar2.png']
+            'foto' => collect($this->foto)->map(fn($file) => url('storage/berita/' . $file)),
             'isAccepted' => intval($this->isAccepted),
             'createdAt' => Carbon::parse($this->created_at)->format('d-M-Y'),
             'updatedAt' => Carbon::parse($this->updated_at)->format('d-M-Y')
